@@ -20,6 +20,43 @@ body {
   text-align: center;
 }
 
+.nav-active {
+  background-color: red;
+}
+
+header {
+  position: fixed;
+  width: 70%;
+  padding: 0px 15%;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header nav ul {
+  display: flex;
+}
+header nav ul a {
+  padding: 10px 10px;
+  margin: 0px 10px;
+}
+header nav ul a li {
+  color: #ffffff;
+  font-size: 18px;
+}
+header nav:first-of-type ul a:first-of-type {
+  margin-left: -10px;
+}
+header nav:last-of-type ul a:last-of-type {
+  margin-right: -10px;
+}
+header h1 {
+  color: #ffd100;
+  font-weight: 600;
+  font-size: 35px;
+  letter-spacing: 0.5px;
+}
+
 .landing-container {
   background-color: #111111;
   position: relative;
@@ -30,7 +67,7 @@ body {
   flex-direction: column;
   text-align: center;
   color: #ffd100;
-  padding: 100px 10% 250px;
+  padding: 100px 7.5% 250px;
   margin-bottom: -150px;
   background-image: url(../images/cyclists-black-white.jpg);
   background-size: cover;

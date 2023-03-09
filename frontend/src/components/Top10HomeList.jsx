@@ -21,7 +21,7 @@ function Top10HomeList() {
 
     return (
         <div className="landing-alltime-ranking-container">
-            <h2 className="sec-header">De 10 bedste ryttere nogensinde</h2>
+            <h2 className="sec-header">De 10 største ryttere nogensinde</h2>
             <div className="ranking-table-container">
                 <div className="ranking-table-titles ranking-table">
                     <p>Placering</p>
