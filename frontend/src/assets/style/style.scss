@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 $gold-main: #ffd100;
+$silver-main: #c1d8ec;
+$bronze-main: #c58037;
+
+$black-main: #111111;
+$white-main: #ffffff;
 
 * {
     margin: 0;
@@ -9,33 +14,141 @@ $gold-main: #ffd100;
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background-color: $black-main;
+}
+
+.sec-header {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: $gold-main;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 .landing-container {
-    background-image: url(../images/cyclists-black-white.jpg);
-    background-size: contain;
-    background-position-y: -450px;
-    background-repeat: no-repeat;
-    padding: 100px 0px;
+    background-color: $black-main;
+    position: relative;
 
     .landing-quote-container {
+        position: relative;
         display: flex;
         flex-direction: column;
         text-align: center;
         color: $gold-main;
-        padding: 0px 15%;
+        padding: 100px 10% 250px;
+        margin-bottom: -150px;
+        background-image: url(../images/cyclists-black-white.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        &::after {
+            display: block;
+            position: absolute;
+            content: "";
+            left: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: 500px;
+            background: #111111;
+            background: linear-gradient(0deg, #111111 0%, #11111196 46%, #11111100);
+        }
 
         h2 {
-            font-size: 40px;
+            font-size: 38px;
+            text-shadow: #111111 0px 0px 20px;
             font-weight: 500;
+            z-index: 2;
+        }
+
+        h3 {
+            z-index: 2;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 25px;
+            margin-top: 15px;
         }
     }
 
-    .landing-gradient {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 500px;
-        top: 200px;
-        background: rgb(0, 0, 0);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5886729691876751) 46%, rgba(0, 0, 0, 0) 100%);
+    .landing-alltime-ranking-container {
+        position: relative;
+        z-index: 2;
+        margin: 0px 15%;
+
+        .ranking-table-container {
+            color: $white-main;
+            width: 100%;
+
+            .ranking-table-titles {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+
+            .ranking-table-row {
+                padding: 3px 0px;
+                border-bottom: solid #ffffff30 1px;
+            }
+
+            .ranking-table {
+                display: flex;
+                width: 100%;
+
+                p,
+                span {
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
+                    font-size: 18px;
+                }
+
+                p:first-child {
+                    width: 15%;
+                }
+
+                p:nth-child(2) {
+                    width: 35%;
+
+                    span {
+                        margin-right: 0.5rem;
+                        font-weight: 600;
+                        font-size: 20px;
+                    }
+                }
+
+                p:nth-child(3) {
+                    width: 25%;
+                }
+
+                .fi {
+                    height: 80%;
+                    margin-right: 8px;
+                }
+
+                p:nth-child(4) {
+                    width: 15%;
+                }
+
+                p:nth-child(5) {
+                    width: 10%;
+                    font-weight: 600;
+                }
+
+
+            }
+
+            .rank-nr-1 {
+                color: $gold-main;
+            }
+
+            .rank-nr-2 {
+                color: $silver-main;
+            }
+
+            .rank-nr-3 {
+                color: $bronze-main;
+            }
+        }
     }
 }

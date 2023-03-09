@@ -1,25 +1,41 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 function Top10HomeList() {
     const ranking = useSelector(state => state.alltimeRanking);
+    const [rankingByPoints, setRankingByPoints] = useState([]);
+
+    useEffect(() => {
+        function sortRanking() {
+            let sortedRanking = ranking.alltimeRanking.slice().sort((a, b) => {
+                return b.points - a.points;
+            })
+
+            setRankingByPoints(sortedRanking);
+        }
+
+        sortRanking();
+
+        console.log(rankingByPoints);
+    }, [ranking])
 
     return (
         <div className="landing-alltime-ranking-container">
-            <h2>Top10 ryttere nogensinde:</h2>
+            <h2 className="sec-header">De 10 bedste ryttere nogensinde</h2>
             <div className="ranking-table-container">
-                <div className="ranking-table-titles">
+                <div className="ranking-table-titles ranking-table">
                     <p>Placering</p>
-                    <p>Nation</p>
                     <p>Rytter</p>
+                    <p>Nation</p>
                     <p>Årgang</p>
                     <p>Point</p>
                 </div>
-                {ranking.alltimeRanking && ranking.alltimeRanking.slice(0, 10).map((rider, index) => {
+                {rankingByPoints && rankingByPoints.slice(0, 10).map((rider, index) => {
                     return (
-                        <div className="ranking-table-row" key={index}>
+                        <div className={"rank-nr-" + (index + 1) + " ranking-table-row ranking-table"} key={index}>
                             <p>{index + 1}</p>
-                            <span className={"fi-" + rider.nationFlagCode + " fi"}></span>
-                            <p>{rider.firstName} <b>{rider.lastName}</b></p>
+                            <p><span>{rider.lastName}</span> {rider.firstName}</p>
+                            <p><span className={"fi-" + rider.nationFlagCode + " fi"}></span> {rider.nation}</p>
                             <p>{rider.birthYear}</p>
                             <p>{rider.points}</p>
                         </div>

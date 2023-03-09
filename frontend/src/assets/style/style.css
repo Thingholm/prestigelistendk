@@ -7,30 +7,119 @@
   font-family: "Poppins", sans-serif;
 }
 
+body {
+  background-color: #111111;
+}
+
+.sec-header {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #ffd100;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .landing-container {
-  background-image: url(../images/cyclists-black-white.jpg);
-  background-size: contain;
-  background-position-y: -450px;
-  background-repeat: no-repeat;
-  padding: 100px 0px;
+  background-color: #111111;
+  position: relative;
 }
 .landing-container .landing-quote-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   text-align: center;
   color: #ffd100;
-  padding: 0px 15%;
+  padding: 100px 10% 250px;
+  margin-bottom: -150px;
+  background-image: url(../images/cyclists-black-white.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.landing-container .landing-quote-container h2 {
-  font-size: 40px;
-  font-weight: 500;
-}
-.landing-container .landing-gradient {
+.landing-container .landing-quote-container::after {
   display: block;
   position: absolute;
+  content: "";
+  left: 0px;
+  bottom: 0px;
   width: 100%;
   height: 500px;
-  top: 200px;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.5886729692) 46%, rgba(0, 0, 0, 0) 100%);
+  background: #111111;
+  background: linear-gradient(0deg, #111111 0%, rgba(17, 17, 17, 0.5882352941) 46%, rgba(17, 17, 17, 0));
+}
+.landing-container .landing-quote-container h2 {
+  font-size: 38px;
+  text-shadow: #111111 0px 0px 20px;
+  font-weight: 500;
+  z-index: 2;
+}
+.landing-container .landing-quote-container h3 {
+  z-index: 2;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 25px;
+  margin-top: 15px;
+}
+.landing-container .landing-alltime-ranking-container {
+  position: relative;
+  z-index: 2;
+  margin: 0px 15%;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container {
+  color: #ffffff;
+  width: 100%;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table-titles {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table-row {
+  padding: 3px 0px;
+  border-bottom: solid rgba(255, 255, 255, 0.1882352941) 1px;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table {
+  display: flex;
+  width: 100%;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table p,
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table span {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 18px;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table p:first-child {
+  width: 15%;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table p:nth-child(2) {
+  width: 35%;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table p:nth-child(2) span {
+  margin-right: 0.5rem;
+  font-weight: 600;
+  font-size: 20px;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table p:nth-child(3) {
+  width: 25%;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table .fi {
+  height: 80%;
+  margin-right: 8px;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table p:nth-child(4) {
+  width: 15%;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .ranking-table p:nth-child(5) {
+  width: 10%;
+  font-weight: 600;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .rank-nr-1 {
+  color: #ffd100;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .rank-nr-2 {
+  color: #c1d8ec;
+}
+.landing-container .landing-alltime-ranking-container .ranking-table-container .rank-nr-3 {
+  color: #c58037;
 }/*# sourceMappingURL=style.css.map */

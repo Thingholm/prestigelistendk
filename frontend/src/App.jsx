@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { supabase } from "./components/SupabaseClient";
 import { useDispatch } from "react-redux";
 import { importRanking } from "./redux/rankingSlice";
-import "../assets/style/style.css";
+import "./assets/style/style.css";
 
 function App() {
   const dispatch = useDispatch();
