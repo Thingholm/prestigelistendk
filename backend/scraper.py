@@ -1,10 +1,9 @@
-from bs4 import BeautifulSoup
-import csv
-import requests
+import gspread as gs
+import pandas as pd
 
-html = requests.get('https://docs.google.com/spreadsheets/d/14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8/edit#gid=1878861879').text
-soup = BeautifulSoup(html, "lxml")
+gc = gs.service_account(filename='service_account.json')
+sh = gc.open_by_url('https://docs.google.com/spreadsheets/d/1wjAQxWnnvU-nNexoT7oUtMqDl2eIM7ogUth4QgbAaPQ/edit#gid=1348170666')
 
-tables = soup.find_all("table")
-
-print(tables)
+ws = sh.worksheet('Resultater')
+df = pd.DataFrame(ws.get_all_records())
+df.head()
