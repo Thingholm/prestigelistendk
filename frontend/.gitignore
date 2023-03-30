@@ -30,3 +30,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Supabase API client with keys
+/app/api/SupabaseClient.js
