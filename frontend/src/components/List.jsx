@@ -22,9 +22,9 @@ export default function List() {
     return (
         <div>
             <ul>
-                {ranking && ranking.map(rider => {
+                {ranking && ranking.slice(0, 10).map(rider => {
                     return (
-                        <li>{rider.fullName}</li>
+                        <li key={rider.id}>{rider.fullName}</li>
                     )
                 })}
             </ul>

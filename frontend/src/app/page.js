@@ -1,9 +1,6 @@
 import List from "@/components/List"
-import { supabase } from "@/utils/supabase"
 
-export default function Home({ data }) {
-  console.log({ data })
-
+export default function Home() {
   return (
     <main>
       <div>
@@ -11,14 +8,4 @@ export default function Home({ data }) {
       </div>
     </main>
   )
-}
-
-export async function getServerSideProps(context) {
-  let data = await supabase.from('alltimeRanking').select('*')
-
-  return {
-    props: {
-      data,
-    }
-  }
 }
