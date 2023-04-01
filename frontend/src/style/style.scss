@@ -1,8 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+$black-primary: #111111;
+$black-lighter: #1c1c1c;
+$yellow-primary: #fee402;
+$yellow-darker: #fdca00;
+$white-primary: #ffffff;
+$white-darker: #ededed;
+
 * {
     margin: 0;
     padding: 0;
     text-decoration: none;
     list-style: none;
+    font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
+}
+
+header {
+    position: fixed;
+    width: 90%;
+    background-color: $black-lighter;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 5%;
+    z-index: 100;
+
+    h1 a {
+        color: $yellow-primary;
+        text-transform: uppercase;
+    }
+
+    nav {
+        width: 40%;
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px 0px;
+
+            li a {
+                color: $yellow-primary;
+                padding: 20px 10px;
+            }
+
+            .nav-item-with-dropdown {
+                position: relative;
+
+                &:hover .nav-dropdown-menu {
+                    display: block;
+                }
+            }
+
+            li .nav-dropdown-menu {
+                display: none;
+                position: absolute;
+                right: -0px;
+
+                ul {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    background-color: $black-lighter;
+                    padding: 10px;
+                    width: 600px;
+                    border-radius: 15px;
+                    margin-top: 25px;
+
+                    li {
+                        padding: 20px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .table {

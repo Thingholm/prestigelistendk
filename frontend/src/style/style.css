@@ -1,8 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   margin: 0;
   padding: 0;
   text-decoration: none;
   list-style: none;
+  font-family: "Inter", "Helvetica", "Arial", sans-serif;
+}
+
+header {
+  position: fixed;
+  width: 90%;
+  background-color: #1c1c1c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 5%;
+  z-index: 100;
+}
+header h1 a {
+  color: #fee402;
+  text-transform: uppercase;
+}
+header nav {
+  width: 40%;
+}
+header nav ul {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 0px;
+}
+header nav ul li a {
+  color: #fee402;
+  padding: 20px 10px;
+}
+header nav ul .nav-item-with-dropdown {
+  position: relative;
+}
+header nav ul .nav-item-with-dropdown:hover .nav-dropdown-menu {
+  display: block;
+}
+header nav ul li .nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0px;
+}
+header nav ul li .nav-dropdown-menu ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #1c1c1c;
+  padding: 10px;
+  width: 600px;
+  border-radius: 15px;
+  margin-top: 25px;
+}
+header nav ul li .nav-dropdown-menu ul li {
+  padding: 20px;
 }
 
 .table {
