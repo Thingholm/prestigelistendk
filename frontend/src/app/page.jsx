@@ -1,10 +1,10 @@
-import List from "@/components/List"
+import AlltimeRanking from "@/components/AlltimeRanking"
 
 export default function Home() {
   return (
     <main>
       <div>
-        <List />
+        <AlltimeRanking />
       </div>
     </main>
   )
