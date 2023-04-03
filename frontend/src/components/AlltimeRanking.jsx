@@ -17,7 +17,7 @@ export default function AlltimeRanking() {
     }, [])
 
     return (
-        <div className='table'>
+        <div className='table hero-alltimeranking'>
             <div className='table-header'>
                 <p>Placering</p>
                 <p>Rytter</p>
@@ -25,17 +25,19 @@ export default function AlltimeRanking() {
                 <p>Årgang</p>
                 <p>Point</p>
             </div>
-            {ranking && ranking.slice(0, 100).map((rider, index) => {
-                return (
-                    <div key={rider.id} className='table-row'>
-                        <p>{index + 1}</p>
-                        <p><span>{rider.lastName} </span>{rider.firstName}</p>
-                        <p>{rider.nation}</p>
-                        <p>{rider.birthYear}</p>
-                        <p>{rider.points}</p>
-                    </div>
-                )
-            })}
+            <div className="table-content">
+                {ranking && ranking.map((rider, index) => {
+                    return (
+                        <div key={rider.id} className='table-row'>
+                            <p>{index + 1}</p>
+                            <p><span>{rider.lastName} </span>{rider.firstName}</p>
+                            <p>{rider.nation}</p>
+                            <p>{rider.birthYear}</p>
+                            <p>{rider.points}</p>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }

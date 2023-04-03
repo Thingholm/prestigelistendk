@@ -58,9 +58,42 @@ header nav ul li .nav-dropdown-menu ul li {
   padding: 20px;
 }
 
+.hero-section {
+  background-color: #fee402;
+  height: 80vh;
+  width: 90%;
+  position: relative;
+  padding: 0px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 60px;
+}
+.hero-section .hero-text-container {
+  width: 45%;
+}
+.hero-section .hero-text-container .hero-text-quote {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.hero-section .hero-text-container .hero-text-quote-byline {
+  font-style: italic;
+}
+.hero-section .hero-text-container p {
+  margin-bottom: 20px;
+}
+.hero-section .hero-alltimeranking {
+  width: 45%;
+  padding: 20px 30px;
+  background-color: #ffffff;
+  height: 80%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15px;
+}
+
 .table {
   position: relative;
-  width: 50%;
 }
 .table .table-header,
 .table .table-row {
@@ -73,7 +106,7 @@ header nav ul li .nav-dropdown-menu ul li {
 }
 .table .table-header p:nth-of-type(2),
 .table .table-row p:nth-of-type(2) {
-  width: 35%;
+  width: 40%;
 }
 .table .table-header p:nth-of-type(3),
 .table .table-row p:nth-of-type(3) {
@@ -85,14 +118,24 @@ header nav ul li .nav-dropdown-menu ul li {
 }
 .table .table-header p:nth-of-type(5),
 .table .table-row p:nth-of-type(5) {
-  width: 15%;
+  width: 10%;
 }
 .table .table-header {
   border-bottom: 2px solid black;
+  margin-bottom: 5px;
 }
-.table .table-row {
+.table .table-content {
+  overflow-y: overlay;
+  overflow-x: hidden;
+  height: 100%;
+}
+.table .table-content::-webkit-scrollbar {
+  display: none;
+}
+.table .table-content .table-row {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-.table .table-row p:nth-of-type(2) span {
+.table .table-content .table-row p:nth-of-type(2) span {
   text-transform: uppercase;
+  font-weight: 600;
 }/*# sourceMappingURL=style.css.map */
