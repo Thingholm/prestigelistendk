@@ -7,6 +7,36 @@
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
 }
 
+.ranking-link-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.ranking-link-header a {
+  color: #1c1c1c;
+  position: relative;
+}
+.ranking-link-header a::after {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 3px;
+  width: 0%;
+  background-color: #1c1c1c;
+  bottom: -3px;
+  left: 0px;
+  transition: 0.2s ease-out;
+}
+.ranking-link-header a:hover::after {
+  width: 100%;
+}
+.ranking-link-header a svg {
+  position: relative;
+  top: 5px;
+  height: 25px;
+  margin-left: 10px;
+}
+
 header {
   position: fixed;
   width: 90%;
@@ -67,7 +97,7 @@ header nav ul li .nav-dropdown-menu ul li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 60px;
+  padding-top: 50px;
 }
 .hero-section .hero-text-container {
   width: 45%;
@@ -82,11 +112,15 @@ header nav ul li .nav-dropdown-menu ul li {
 .hero-section .hero-text-container p {
   margin-bottom: 20px;
 }
-.hero-section .hero-alltimeranking {
+.hero-section .hero-ranking-container {
   width: 45%;
+  position: relative;
+  height: 90%;
+}
+.hero-section .hero-ranking-container .hero-alltimeranking {
   padding: 20px 30px;
   background-color: #ffffff;
-  height: 80%;
+  height: calc(100% - 80px);
   overflow: hidden;
   position: relative;
   border-radius: 15px;
@@ -95,6 +129,28 @@ header nav ul li .nav-dropdown-menu ul li {
 .table {
   position: relative;
 }
+.table::before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 20px;
+  background-color: #ffffff;
+  z-index: 10;
+  bottom: 0;
+  left: 0px;
+}
+.table::after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: calc(100% - 60px);
+  height: 20px;
+  bottom: 20px;
+  left: 30px;
+  box-shadow: inset 0px -12px 10px -12px rgba(0, 0, 0, 0.185);
+  z-index: 5;
+}
 .table .table-header,
 .table .table-row {
   display: flex;
@@ -102,7 +158,7 @@ header nav ul li .nav-dropdown-menu ul li {
 }
 .table .table-header p:nth-of-type(1),
 .table .table-row p:nth-of-type(1) {
-  width: 15%;
+  width: 10%;
 }
 .table .table-header p:nth-of-type(2),
 .table .table-row p:nth-of-type(2) {
@@ -110,30 +166,44 @@ header nav ul li .nav-dropdown-menu ul li {
 }
 .table .table-header p:nth-of-type(3),
 .table .table-row p:nth-of-type(3) {
-  width: 25%;
+  width: 30%;
 }
 .table .table-header p:nth-of-type(4),
 .table .table-row p:nth-of-type(4) {
-  width: 15%;
+  width: 13%;
 }
 .table .table-header p:nth-of-type(5),
 .table .table-row p:nth-of-type(5) {
-  width: 10%;
+  width: 12%;
 }
 .table .table-header {
   border-bottom: 2px solid black;
-  margin-bottom: 5px;
 }
 .table .table-content {
   overflow-y: overlay;
   overflow-x: hidden;
+  position: relative;
   height: 100%;
 }
 .table .table-content::-webkit-scrollbar {
-  display: none;
+  width: 7px;
+}
+.table .table-content::-webkit-scrollbar-track {
+  background: #ededed;
+}
+.table .table-content::-webkit-scrollbar-thumb {
+  background: #fdca00;
+  border-radius: 50px;
+}
+.table .table-content::-webkit-scrollbar-thumb:hover {
+  background: #fee402;
 }
 .table .table-content .table-row {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 3px 0px;
+}
+.table .table-content .table-row:first-of-type {
+  margin-top: 5px;
 }
 .table .table-content .table-row p:nth-of-type(2) span {
   text-transform: uppercase;

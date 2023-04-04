@@ -15,6 +15,42 @@ $white-darker: #ededed;
     font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
 }
 
+.ranking-link-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    a {
+        color: $black-lighter;
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: "";
+            display: block;
+            height: 3px;
+            width: 0%;
+            background-color: $black-lighter;
+            bottom: -3px;
+            left: 0px;
+            transition: 0.2s ease-out;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+
+        svg {
+            position: relative;
+            top: 5px;
+            height: 25px;
+            margin-left: 10px;
+        }
+    }
+
+
+}
+
 header {
     position: fixed;
     width: 90%;
@@ -84,7 +120,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 60px;
+    padding-top: 50px;
 
     .hero-text-container {
         width: 45%;
@@ -103,15 +139,21 @@ header {
         }
     }
 
-    .hero-alltimeranking {
+    .hero-ranking-container {
         width: 45%;
-        padding: 20px 30px;
-        background-color: $white-primary;
-        height: 80%;
-        overflow: hidden;
         position: relative;
-        border-radius: 15px;
+        height: 90%;
+
+        .hero-alltimeranking {
+            padding: 20px 30px;
+            background-color: $white-primary;
+            height: calc(100% - 80px);
+            overflow: hidden;
+            position: relative;
+            border-radius: 15px;
+        }
     }
+
 }
 
 
@@ -119,13 +161,37 @@ header {
 .table {
     position: relative;
 
+    &::before {
+        position: absolute;
+        content: "";
+        display: block;
+        width: 100%;
+        height: 20px;
+        background-color: $white-primary;
+        z-index: 10;
+        bottom: 0;
+        left: 0px;
+    }
+
+    &::after {
+        position: absolute;
+        content: "";
+        display: block;
+        width: calc(100% - 60px);
+        height: 20px;
+        bottom: 20px;
+        left: 30px;
+        box-shadow: inset 0px -12px 10px -12px rgba(0, 0, 0, 0.185);
+        z-index: 5;
+    }
+
     .table-header,
     .table-row {
         display: flex;
         width: 100%;
 
         p:nth-of-type(1) {
-            width: 15%;
+            width: 10%;
         }
 
         p:nth-of-type(2) {
@@ -133,34 +199,54 @@ header {
         }
 
         p:nth-of-type(3) {
-            width: 25%;
+            width: 30%;
         }
 
         p:nth-of-type(4) {
-            width: 15%;
+            width: 13%;
         }
 
         p:nth-of-type(5) {
-            width: 10%;
+            width: 12%;
         }
     }
 
     .table-header {
         border-bottom: 2px solid black;
-        margin-bottom: 5px;
     }
 
     .table-content {
         overflow-y: overlay;
         overflow-x: hidden;
+        position: relative;
         height: 100%;
 
         &::-webkit-scrollbar {
-            display: none;
+            width: 7px;
         }
 
+        &::-webkit-scrollbar-track {
+            background: $white-darker;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $yellow-darker;
+            border-radius: 50px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: $yellow-primary;
+        }
+
+
+
         .table-row {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 3px 0px;
+
+            &:first-of-type {
+                margin-top: 5px;
+            }
 
             p:nth-of-type(2) {
                 span {
