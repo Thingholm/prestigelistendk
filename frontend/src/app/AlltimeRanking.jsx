@@ -4,6 +4,7 @@ import '../style/style.css';
 import { supabase } from "@/utils/supabase";
 import { useEffect, useState } from "react";
 import "../../node_modules/flag-icons/css/flag-icons.min.css";
+import useStore from '@/utils/store';
 
 async function getData() {
     let { data: alltimeRanking } = await supabase.from('alltimeRanking').select('*');
@@ -11,11 +12,13 @@ async function getData() {
 }
 
 export default function AlltimeRanking() {
-    const [ranking, setRanking] = useState();
+    const rankingAlltime = useStore((state) => state.rankingAlltime);
+    const addRankingAlltime = useStore((state) => state.addRankingAlltime);
 
     useEffect(() => {
-        getData().then(result => setRanking(result));
+        getData().then(result => addRankingAlltime(result));
     }, [])
+
 
     return (
         <div className='table hero-alltimeranking'>
@@ -27,7 +30,7 @@ export default function AlltimeRanking() {
                 <p>Point</p>
             </div>
             <div className="table-content">
-                {ranking && ranking.map((rider, index) => {
+                {rankingAlltime && rankingAlltime.map((rider, index) => {
                     return (
                         <div key={rider.id} className='table-row'>
                             <p>{index + 1}</p>

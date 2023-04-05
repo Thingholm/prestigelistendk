@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function RankingLinkHeader(props) {
     return (
         <h2 className="ranking-link-header">
-            <Link href="#">
+            <Link href={props.link}>
                 {props.title}
                 <svg viewBox="0 -4.5 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
