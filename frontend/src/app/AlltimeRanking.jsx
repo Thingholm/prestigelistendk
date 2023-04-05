@@ -16,8 +16,26 @@ export default function AlltimeRanking() {
     const addRankingAlltime = useStore((state) => state.addRankingAlltime);
 
     useEffect(() => {
-        getData().then(result => addRankingAlltime(result));
+        getData().then(result => {
+            const sortedRanking = result.sort(function (a, b) { return b.points - a.points });
+
+            const rankedRanking = sortedRanking.map((obj, index) => {
+                let rank = index + 1;
+
+                if (index > 0 && obj.points == sortedRanking[index - 1].points) {
+                    rank = sortedRanking.findIndex(i => obj.points == i.points) + 1;
+                }
+
+                return ({ ...obj, currentRank: rank })
+            });
+
+            addRankingAlltime(rankedRanking);
+        });
     }, [])
+
+    // useEffect(() => {
+    //     console.log(rankingAlltime);
+    // }, [rankingAlltime])
 
 
     return (
@@ -33,7 +51,7 @@ export default function AlltimeRanking() {
                 {rankingAlltime && rankingAlltime.map((rider, index) => {
                     return (
                         <div key={rider.id} className='table-row'>
-                            <p>{index + 1}</p>
+                            <p>{rider.currentRank}</p>
                             <p><span>{rider.lastName} </span>{rider.firstName}</p>
                             <p><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</p>
                             <p>{rider.birthYear}</p>
