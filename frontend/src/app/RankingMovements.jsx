@@ -28,19 +28,56 @@ export default function RankingMovements() {
 
     useEffect(() => {
         setCombinedList([]);
+
+        let prevRankings = rankingAlltime.map(i => {
+            return ({
+                id: i.id,
+                fullName: i.fullName,
+                points: i.points
+            })
+        });
+
         if (resultsList && racePoints && rankingAlltime) {
-            resultsList.map(i => {
+            resultsList.sort(function (a, b) { return b.raceDate.replace("2023-", "").replace("-", "") - a.raceDate.replace("2023-", "").replace("-", "") }).slice(0, 10).map(i => {
                 let currentRacePoints;
+                const date = i.raceDate;
 
                 if (i.race.includes("etape")) {
                     currentRacePoints = racePoints.find(j => j.raceName == i.race.split(". ")[1]);
                 } else {
                     currentRacePoints = racePoints.find(j => j.raceName == i.race);
                 }
+
                 const rankingIndex = rankingAlltime.findIndex(rider => rider.fullName == i.rider);
                 const currentRankingAlltime = rankingAlltime[rankingIndex];
 
                 if (rankingIndex != -1) {
+                    const rankBeforeResult = { id: prevRankings[rankingIndex].id, fullName: prevRankings[rankingIndex].fullName, points: prevRankings[rankingIndex].points -= currentRacePoints.points, rankingIndex: rankingIndex };
+
+                    let tempRank = prevRankings.map(i => {
+                        return ({
+                            id: i.id,
+                            fullName: i.fullName,
+                            points: i.points
+                        })
+                    });
+
+                    tempRank[rankingIndex] = rankBeforeResult;
+
+                    const sortedRanking = tempRank.sort(function (a, b) { return b.points - a.points });
+
+                    const rankedRanking = sortedRanking.map((obj, index) => {
+                        let rank = index + 1;
+
+                        if (index > 0 && obj.points == sortedRanking[index - 1].points) {
+                            rank = sortedRanking.findIndex(i => obj.points == i.points) + 1;
+                        }
+
+                        return ({ ...obj, currentRank: rank })
+                    });
+
+                    const riderPrevRank = rankedRanking.find(e => e.fullName == i.rider);
+
                     const currentResult = {
                         id: i.id,
                         fullRiderName: i.rider,
@@ -53,16 +90,19 @@ export default function RankingMovements() {
                         nationFlagCode: currentRankingAlltime.nationFlagCode,
                         riderPoints: currentRankingAlltime.points,
                         riderTeam: currentRankingAlltime.currentTeam,
+                        currentRank: currentRankingAlltime.currentRank,
+                        prevPoints: riderPrevRank.points,
+                        prevRank: riderPrevRank.currentRank
                     }
                     setCombinedList(combinedList => [...combinedList, currentResult])
                 }
             })
         }
-        // console.log(combinedList)
+
     }, [resultsList, racePoints, rankingAlltime])
 
     return (
-        <div className="table">
+        <div className="table result-table">
             <div className="table-header">
 
             </div>
@@ -71,8 +111,13 @@ export default function RankingMovements() {
                     return (
                         <div key={result.id} className="table-row">
                             <p>{result.raceDate}</p>
-                            <p>{result.fullRiderName}</p>
+                            <p>{result.currentRank} {result.prevRank}</p>
+                            <p>{result.prevRank - result.currentRank}</p>
+                            <p>{result.riderPoints} <span>{result.prevPoints}</span></p>
+                            <p><span className={'fi fi-' + result.nationFlagCode}></span> {result.lastName} {result.firstName}</p>
                             <p>{result.raceName}</p>
+                            <p>{result.racePoints}</p>
+
                         </div>
                     )
                 })}

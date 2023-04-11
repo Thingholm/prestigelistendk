@@ -33,10 +33,6 @@ export default function AlltimeRanking() {
         });
     }, [])
 
-    // useEffect(() => {
-    //     console.log(rankingAlltime);
-    // }, [rankingAlltime])
-
 
     return (
         <div className='table hero-alltimeranking'>
