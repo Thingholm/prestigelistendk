@@ -48,7 +48,7 @@ export default function AlltimeRanking() {
                     return (
                         <div key={rider.id} className='table-row'>
                             <p>{rider.currentRank}</p>
-                            <p><span>{rider.lastName} </span>{rider.firstName}</p>
+                            <p className='table-name-reversed'><span className='last-name'>{rider.lastName} </span>{rider.firstName}</p>
                             <p><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</p>
                             <p>{rider.birthYear}</p>
                             <p>{rider.points}</p>

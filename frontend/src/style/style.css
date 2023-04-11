@@ -37,6 +37,54 @@
   margin-left: 10px;
 }
 
+.table {
+  position: relative;
+}
+.table .table-header,
+.table .table-row {
+  display: flex;
+  width: 100%;
+}
+.table .table-header {
+  border-bottom: 2px solid black;
+}
+.table .table-content {
+  overflow-y: overlay;
+  overflow-x: hidden;
+  position: relative;
+  height: 100%;
+}
+.table .table-content::-webkit-scrollbar {
+  width: 7px;
+}
+.table .table-content::-webkit-scrollbar-track {
+  background: #ededed;
+}
+.table .table-content::-webkit-scrollbar-thumb {
+  background: #fdca00;
+  border-radius: 50px;
+}
+.table .table-content::-webkit-scrollbar-thumb:hover {
+  background: #fee402;
+}
+.table .table-content .table-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 3px 0px;
+}
+.table .table-content .table-row:first-of-type {
+  margin-top: 5px;
+}
+.table .table-content .table-row .table-name-reversed span.last-name {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.table .table-content .table-row .table-previous-span {
+  font-size: 13px;
+  opacity: 0.8;
+  font-weight: 200;
+  margin-left: 3px;
+}
+
 header {
   position: fixed;
   width: 90%;
@@ -125,11 +173,7 @@ header nav ul li .nav-dropdown-menu ul li {
   position: relative;
   border-radius: 15px;
 }
-
-.table {
-  position: relative;
-}
-.table::before {
+.hero-section .hero-ranking-container .hero-alltimeranking::before {
   position: absolute;
   content: "";
   display: block;
@@ -140,7 +184,7 @@ header nav ul li .nav-dropdown-menu ul li {
   bottom: 0;
   left: 0px;
 }
-.table::after {
+.hero-section .hero-ranking-container .hero-alltimeranking::after {
   position: absolute;
   content: "";
   display: block;
@@ -151,61 +195,70 @@ header nav ul li .nav-dropdown-menu ul li {
   box-shadow: inset 0px -12px 10px -12px rgba(0, 0, 0, 0.185);
   z-index: 5;
 }
-.table .table-header,
-.table .table-row {
-  display: flex;
-  width: 100%;
-}
-.table .table-header p:nth-of-type(1),
-.table .table-row p:nth-of-type(1) {
+.hero-section .hero-ranking-container .hero-alltimeranking .table-header p:nth-of-type(1),
+.hero-section .hero-ranking-container .hero-alltimeranking .table-row p:nth-of-type(1) {
   width: 10%;
 }
-.table .table-header p:nth-of-type(2),
-.table .table-row p:nth-of-type(2) {
+.hero-section .hero-ranking-container .hero-alltimeranking .table-header p:nth-of-type(2),
+.hero-section .hero-ranking-container .hero-alltimeranking .table-row p:nth-of-type(2) {
   width: 40%;
 }
-.table .table-header p:nth-of-type(3),
-.table .table-row p:nth-of-type(3) {
+.hero-section .hero-ranking-container .hero-alltimeranking .table-header p:nth-of-type(3),
+.hero-section .hero-ranking-container .hero-alltimeranking .table-row p:nth-of-type(3) {
   width: 30%;
 }
-.table .table-header p:nth-of-type(4),
-.table .table-row p:nth-of-type(4) {
+.hero-section .hero-ranking-container .hero-alltimeranking .table-header p:nth-of-type(4),
+.hero-section .hero-ranking-container .hero-alltimeranking .table-row p:nth-of-type(4) {
   width: 13%;
 }
-.table .table-header p:nth-of-type(5),
-.table .table-row p:nth-of-type(5) {
+.hero-section .hero-ranking-container .hero-alltimeranking .table-header p:nth-of-type(5),
+.hero-section .hero-ranking-container .hero-alltimeranking .table-row p:nth-of-type(5) {
   width: 12%;
 }
-.table .table-header {
-  border-bottom: 2px solid black;
-}
-.table .table-content {
-  overflow-y: overlay;
-  overflow-x: hidden;
+
+.landing-movements-section {
   position: relative;
-  height: 100%;
+  padding: 0px 5%;
+  background-color: #ffffff;
 }
-.table .table-content::-webkit-scrollbar {
-  width: 7px;
+.landing-movements-section .table .table-header svg,
+.landing-movements-section .table .table-row svg {
+  height: 12px;
+  width: 12px;
+  margin-right: 5px;
+  fill: rgb(53, 189, 0);
 }
-.table .table-content::-webkit-scrollbar-track {
-  background: #ededed;
+.landing-movements-section .table .table-header svg.no-change,
+.landing-movements-section .table .table-row svg.no-change {
+  fill: #a5a5a5;
 }
-.table .table-content::-webkit-scrollbar-thumb {
-  background: #fdca00;
-  border-radius: 50px;
+.landing-movements-section .table .table-header p:nth-of-type(1),
+.landing-movements-section .table .table-row p:nth-of-type(1) {
+  width: 10%;
+  display: flex;
+  align-items: center;
 }
-.table .table-content::-webkit-scrollbar-thumb:hover {
-  background: #fee402;
+.landing-movements-section .table .table-header p:nth-of-type(2),
+.landing-movements-section .table .table-row p:nth-of-type(2) {
+  width: 12%;
 }
-.table .table-content .table-row {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 3px 0px;
+.landing-movements-section .table .table-header p:nth-of-type(3),
+.landing-movements-section .table .table-row p:nth-of-type(3) {
+  width: 25%;
 }
-.table .table-content .table-row:first-of-type {
-  margin-top: 5px;
+.landing-movements-section .table .table-header p:nth-of-type(4),
+.landing-movements-section .table .table-row p:nth-of-type(4) {
+  width: 30%;
 }
-.table .table-content .table-row p:nth-of-type(2) span {
-  text-transform: uppercase;
-  font-weight: 600;
+.landing-movements-section .table .table-header p:nth-of-type(5),
+.landing-movements-section .table .table-row p:nth-of-type(5) {
+  width: 10%;
+}
+.landing-movements-section .table .table-header p:nth-of-type(6),
+.landing-movements-section .table .table-row p:nth-of-type(6) {
+  width: 12%;
+}
+.landing-movements-section .table .table-header p:nth-of-type(7),
+.landing-movements-section .table .table-row p:nth-of-type(7) {
+  width: 10%;
 }/*# sourceMappingURL=style.css.map */

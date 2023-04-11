@@ -4,6 +4,8 @@ import { supabase } from "@/utils/supabase";
 import { useEffect, useState } from "react";
 import "../../node_modules/flag-icons/css/flag-icons.min.css"
 import useStore from "@/utils/store";
+import ArrowUpTriangle from "@/components/ArrowUpTriangle";
+import NoChange from "@/components/NoChange";
 
 async function getResults() {
     let { data: results } = await supabase.from('results').select('*').eq('year', '2023');
@@ -104,20 +106,25 @@ export default function RankingMovements() {
     return (
         <div className="table result-table">
             <div className="table-header">
-
+                <p>Udvikling</p>
+                <p>Rank</p>
+                <p>Rytter</p>
+                <p>Resultat</p>
+                <p>Point vundet</p>
+                <p>Point</p>
+                <p>Dato</p>
             </div>
             <div className="table-content">
                 {combinedList && combinedList.map((result, index) => {
                     return (
                         <div key={result.id} className="table-row">
-                            <p>{result.raceDate}</p>
-                            <p>{result.currentRank} {result.prevRank}</p>
-                            <p>{result.prevRank - result.currentRank}</p>
-                            <p>{result.riderPoints} <span>{result.prevPoints}</span></p>
-                            <p><span className={'fi fi-' + result.nationFlagCode}></span> {result.lastName} {result.firstName}</p>
+                            <p>{result.prevRank - result.currentRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.prevRank - result.currentRank}</p>
+                            <p>{result.currentRank} <span className="table-previous-span">{result.prevRank}</span></p>
+                            <p className='table-name-reversed'><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName}</span> {result.firstName}</p>
                             <p>{result.raceName}</p>
                             <p>{result.racePoints}</p>
-
+                            <p>{result.riderPoints} <span className="table-previous-span">{result.prevPoints}</span></p>
+                            <p>{result.raceDate.replace("2023-", "")}</p>
                         </div>
                     )
                 })}
