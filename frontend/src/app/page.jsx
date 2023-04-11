@@ -2,6 +2,7 @@ import AlltimeRanking from "@/app/AlltimeRanking"
 import '../style/style.css'
 import RankingLinkHeader from "@/components/RankingLinkHeader"
 import RankingMovements from "./RankingMovements"
+import ActiveRanking from "./ActivevRanking"
 
 export default function Home() {
   return (
@@ -23,6 +24,10 @@ export default function Home() {
       <div className="landing-movements-section">
         <RankingLinkHeader title="Seneste bevægelser" link="#" />
         <RankingMovements />
+      </div>
+
+      <div className="landing-split-rankings-section">
+        <ActiveRanking />
       </div>
     </div>
   )
