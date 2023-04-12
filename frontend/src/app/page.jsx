@@ -3,6 +3,7 @@ import '../style/style.css'
 import RankingLinkHeader from "@/components/RankingLinkHeader"
 import RankingMovements from "./RankingMovements"
 import ActiveRanking from "./ActivevRanking"
+import DanishRanking from "./DanishRanking"
 
 export default function Home() {
   return (
@@ -27,7 +28,15 @@ export default function Home() {
       </div>
 
       <div className="landing-split-rankings-section">
-        <ActiveRanking />
+        <div className="active-ranking-table-container split-ranking-table">
+          <RankingLinkHeader title="Største aktive ryttere" link="#" mode="light" />
+          <ActiveRanking />
+        </div>
+
+        <div className="danish-ranking-table-container split-ranking-table">
+          <RankingLinkHeader title="Største danske ryttere" link="#" mode="light" />
+          <DanishRanking />
+        </div>
       </div>
     </div>
   )

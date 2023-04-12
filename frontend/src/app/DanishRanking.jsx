@@ -3,12 +3,12 @@
 import useStore from "@/utils/store"
 import { useEffect, useState } from "react";
 
-export default function ActiveRanking() {
+export default function DanishRanking() {
     const rankingAlltime = useStore((state) => state.rankingAlltime);
-    const [activeRanking, setActiveRanking] = useState([]);
+    const [danishRanking, setDanishRanking] = useState([]);
 
     useEffect(() => {
-        let filteredRanking = rankingAlltime.filter(r => r.active == true);
+        let filteredRanking = rankingAlltime.filter(r => r.nation == "Danmark");
 
         const sortedRanking = filteredRanking.sort(function (a, b) { return b.points - a.points });
 
@@ -21,26 +21,24 @@ export default function ActiveRanking() {
             return ({ ...obj, currentRank: rank });
         });
 
-        setActiveRanking(rankedRanking);
+        setDanishRanking(rankedRanking);
     }, [rankingAlltime])
 
     return (
-        <div className='table hero-alltimeranking landing-ranking-rounded-container'>
+        <div className='table landing-ranking-rounded-container'>
             <div className='table-header'>
                 <p>Nr.</p>
                 <p>Rytter</p>
-                <p>Nation</p>
-                <p>Hold</p>
+                <p>Årgang</p>
                 <p>Point</p>
             </div>
             <div className="table-content">
-                {activeRanking && activeRanking.map((rider, index) => {
+                {danishRanking && danishRanking.map((rider, index) => {
                     return (
                         <div key={rider.id} className='table-row'>
                             <p>{rider.currentRank}</p>
                             <p className='table-name-reversed'><span className='last-name'>{rider.lastName} </span>{rider.firstName}</p>
-                            <p><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</p>
-                            <p>{rider.currentTeam}</p>
+                            <p>{rider.birthYear}</p>
                             <p>{rider.points}</p>
                         </div>
                     )

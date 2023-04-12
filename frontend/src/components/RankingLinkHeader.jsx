@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function RankingLinkHeader(props) {
     return (
-        <h2 className="ranking-link-header">
+        <h2 className={"ranking-link-header " + props.mode}>
             <Link href={props.link}>
                 {props.title}
                 <svg viewBox="0 -4.5 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">

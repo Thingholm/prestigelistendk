@@ -35,7 +35,7 @@ export default function AlltimeRanking() {
 
 
     return (
-        <div className='table hero-alltimeranking'>
+        <div className='table hero-alltimeranking landing-ranking-rounded-container'>
             <div className='table-header'>
                 <p>Nr.</p>
                 <p>Rytter</p>
