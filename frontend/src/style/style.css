@@ -80,6 +80,9 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 3px 0px;
 }
+.table .table-content .table-row p a {
+  color: #111111;
+}
 .table .table-content .table-row:first-of-type {
   margin-top: 5px;
 }

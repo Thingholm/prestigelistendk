@@ -108,6 +108,10 @@ $white-darker: #ededed;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             padding: 3px 0px;
 
+            p a {
+                color: $black-primary;
+            }
+
             &:first-of-type {
                 margin-top: 5px;
             }
