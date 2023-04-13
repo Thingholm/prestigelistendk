@@ -23,9 +23,11 @@ export default function RiderResults(props) {
     return (
         <div className="rider-top-results-container">
             <h4>Største resultater:</h4>
-            {filteredResults.slice(0, 10).map(r =>
-                <p key={r.riderId}>{resultUniques[r.raceName] > 1 && resultUniques[r.raceName] + "x"} {r.raceName.split(" (")[0]} - {r.points}</p>
-            )}
+            <ul>
+                {filteredResults.slice(0, 7).map(r =>
+                    <li key={r.id}><span className="result-number-of-span">{resultUniques[r.raceName] > 1 && resultUniques[r.raceName] + "x"}</span> <span className="rider-top-result-racename-span">{r.raceName.split(" (")[0]}</span></li>
+                )}
+            </ul>
             <p><Link href="#">Se alle pointgivende resultater...</Link></p>
         </div>
     )

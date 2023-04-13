@@ -15,6 +15,10 @@ $white-darker: #ededed;
     font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
 }
 
+main {
+    padding-top: 55px;
+}
+
 .ranking-link-header {
     display: flex;
     align-items: center;
@@ -202,7 +206,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 50px;
 
     .hero-text-container {
         width: 45%;
@@ -400,5 +403,81 @@ header {
     .split-ranking-table {
         height: 80vh;
     }
+}
 
+.rider-profile-container {
+    background-color: $white-darker;
+    padding: 30px 5%;
+    display: flex;
+    justify-content: space-between;
+
+    .rider-profile-info-container {
+        display: flex;
+        align-items: center;
+
+        .rider-profile-info-image-container {
+            background-color: rgb(56, 56, 56);
+            height: 200px;
+            width: 200px;
+            display: block;
+            content: "";
+            border-radius: 15px;
+        }
+
+        .rider-profile-info-info-container {
+            margin-left: 20px;
+
+            h3 {
+                font-size: 30px;
+                margin-bottom: 15px;
+            }
+
+            p {
+                margin-bottom: 5px;
+
+                .profile-value-span {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    .rider-top-results-container {
+        width: 30%;
+        background-color: $yellow-primary;
+        padding: 15px 20px 15px 55px;
+        border-radius: 15px;
+        box-shadow: 0px 0px 15px 1px rgba(92, 92, 92, 0.151);
+
+        h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            li {
+                position: relative;
+                margin-bottom: 2px;
+
+                .result-number-of-span {
+                    position: absolute;
+                    bottom: 0px;
+                    left: -30px;
+                }
+
+                .rider-top-result-racename-span {
+                    font-weight: 600;
+                }
+            }
+        }
+
+        p {
+            margin-top: 10px;
+
+            a {
+                color: $black-primary;
+                text-decoration: underline solid 2px;
+            }
+        }
+    }
 }

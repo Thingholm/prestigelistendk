@@ -48,10 +48,17 @@ export default async function Page({ params }) {
     const results = data.results;
 
     return (
-        <div>
-            <RiderProfile riderData={rider[0]} />
-            <RiderResults resultData={results} />
+        <div className="rider-page-container">
+            <div className="rider-profile-container">
+                <RiderProfile riderData={rider[0]} />
+                <RiderResults resultData={results} />
+            </div>
+
+            <div className="rider-result-evolution">
+
+            </div>
         </div>
+
     )
 }
 

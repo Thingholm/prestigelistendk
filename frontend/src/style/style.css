@@ -7,6 +7,10 @@
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
 }
 
+main {
+  padding-top: 55px;
+}
+
 .ranking-link-header {
   display: flex;
   align-items: center;
@@ -157,7 +161,6 @@ header nav ul li .nav-dropdown-menu ul li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 50px;
 }
 .hero-section .hero-text-container {
   width: 45%;
@@ -326,4 +329,67 @@ header nav ul li .nav-dropdown-menu ul li {
 }
 .landing-split-rankings-section .split-ranking-table {
   height: 80vh;
+}
+
+.rider-profile-container {
+  background-color: #ededed;
+  padding: 30px 5%;
+  display: flex;
+  justify-content: space-between;
+}
+.rider-profile-container .rider-profile-info-container {
+  display: flex;
+  align-items: center;
+}
+.rider-profile-container .rider-profile-info-container .rider-profile-info-image-container {
+  background-color: rgb(56, 56, 56);
+  height: 200px;
+  width: 200px;
+  display: block;
+  content: "";
+  border-radius: 15px;
+}
+.rider-profile-container .rider-profile-info-container .rider-profile-info-info-container {
+  margin-left: 20px;
+}
+.rider-profile-container .rider-profile-info-container .rider-profile-info-info-container h3 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+.rider-profile-container .rider-profile-info-container .rider-profile-info-info-container p {
+  margin-bottom: 5px;
+}
+.rider-profile-container .rider-profile-info-container .rider-profile-info-info-container p .profile-value-span {
+  font-weight: 600;
+}
+.rider-profile-container .rider-top-results-container {
+  width: 30%;
+  background-color: #fee402;
+  padding: 15px 20px 15px 55px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px 1px rgba(92, 92, 92, 0.151);
+}
+.rider-profile-container .rider-top-results-container h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.rider-profile-container .rider-top-results-container ul li {
+  position: relative;
+  margin-bottom: 2px;
+}
+.rider-profile-container .rider-top-results-container ul li .result-number-of-span {
+  position: absolute;
+  bottom: 0px;
+  left: -30px;
+}
+.rider-profile-container .rider-top-results-container ul li .rider-top-result-racename-span {
+  font-weight: 600;
+}
+.rider-profile-container .rider-top-results-container p {
+  margin-top: 10px;
+}
+.rider-profile-container .rider-top-results-container p a {
+  color: #111111;
+  -webkit-text-decoration: underline solid 2px;
+          text-decoration: underline solid 2px;
 }/*# sourceMappingURL=style.css.map */
