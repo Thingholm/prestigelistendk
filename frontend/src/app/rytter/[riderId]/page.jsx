@@ -1,6 +1,7 @@
 import { supabase } from "@/utils/supabase";
 import RiderProfile from "./riderProfile";
 import RiderResults from "./RiderResults";
+import RiderEvolution from "./RiderEvolution";
 
 async function getRiderById(id) {
     let { data: rankingAlltime } = await supabase
@@ -16,6 +17,11 @@ async function getRiderById(id) {
     let { data: pointSystem } = await supabase
         .from('pointSystem')
         .select('*');
+
+    let { data: rankingByYears } = await supabase
+        .from('alltimeRankingPerYear')
+        .select('*')
+        .eq('rider', rankingAlltime[0].fullName);
 
     const resultsCombined = results.map(result => {
         let resultRace = "";
@@ -36,9 +42,11 @@ async function getRiderById(id) {
         return (mergedLists)
     });
 
+
     return {
         rankingAlltime: rankingAlltime,
         results: resultsCombined,
+        rankingByYears: rankingByYears,
     };
 }
 
@@ -46,6 +54,7 @@ export default async function Page({ params }) {
     const data = await getRiderById(params.riderId);
     const rider = data.rankingAlltime;
     const results = data.results;
+    const rankingByYears = data.rankingByYears;
 
     return (
         <div className="rider-page-container">
@@ -54,9 +63,7 @@ export default async function Page({ params }) {
                 <RiderResults resultData={results} />
             </div>
 
-            <div className="rider-result-evolution">
-
-            </div>
+            <RiderEvolution resultData={results} rankingByYearData={rankingByYears} />
         </div>
 
     )

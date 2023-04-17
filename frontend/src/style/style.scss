@@ -481,3 +481,23 @@ header {
         }
     }
 }
+
+.rider-evolution-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    padding: 30px 5% 40px;
+    background-color: $black-lighter;
+
+    .chart-container {
+        position: relative;
+        width: 45%;
+
+
+        canvas {
+            position: relative;
+        }
+    }
+
+}
