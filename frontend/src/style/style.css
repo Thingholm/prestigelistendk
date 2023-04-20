@@ -332,7 +332,7 @@ header nav ul li .nav-dropdown-menu ul li {
 }
 
 .rider-profile-container {
-  background-color: #ededed;
+  background-color: #ffffff;
   padding: 30px 5%;
   display: flex;
   justify-content: space-between;
@@ -364,10 +364,9 @@ header nav ul li .nav-dropdown-menu ul li {
 }
 .rider-profile-container .rider-top-results-container {
   width: 30%;
-  background-color: #fee402;
+  background-color: #ededed;
   padding: 15px 20px 15px 55px;
   border-radius: 15px;
-  box-shadow: 0px 0px 15px 1px rgba(92, 92, 92, 0.151);
 }
 .rider-profile-container .rider-top-results-container h4 {
   font-size: 20px;
@@ -376,11 +375,6 @@ header nav ul li .nav-dropdown-menu ul li {
 .rider-profile-container .rider-top-results-container ul li {
   position: relative;
   margin-bottom: 2px;
-}
-.rider-profile-container .rider-top-results-container ul li .result-number-of-span {
-  position: absolute;
-  bottom: 0px;
-  left: -30px;
 }
 .rider-profile-container .rider-top-results-container ul li .rider-top-result-racename-span {
   font-weight: 600;
@@ -392,6 +386,12 @@ header nav ul li .nav-dropdown-menu ul li {
   color: #111111;
   -webkit-text-decoration: underline solid 2px;
           text-decoration: underline solid 2px;
+}
+
+.result-number-of-span {
+  position: absolute;
+  bottom: 0px;
+  right: calc(100% + 10px);
 }
 
 .rider-evolution-container {
@@ -408,4 +408,48 @@ header nav ul li .nav-dropdown-menu ul li {
 }
 .rider-evolution-container .chart-container canvas {
   position: relative;
+}
+
+.prev,
+.next {
+  position: absolute;
+  height: 100%;
+  top: 45%;
+  padding: 5px;
+  border: none;
+}
+.prev::before,
+.next::before {
+  display: none;
+}
+
+.slick-disabled {
+  opacity: 0;
+}
+
+.prev {
+  left: -50px;
+}
+
+.rider-all-results-container {
+  padding: 20px 5%;
+  position: relative;
+}
+.rider-all-results-container .rider-result-year-container {
+  margin-right: 100px;
+}
+.rider-all-results-container .rider-result-year-container h4 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.rider-all-results-container .rider-result-year-container ul li {
+  position: relative;
+  margin-bottom: 5px;
+}
+.rider-all-results-container .rider-result-year-container ul li .result-race-name {
+  font-weight: 600;
+}
+.rider-all-results-container .rider-result-year-container ul li .result-points-sum {
+  margin-left: 5px;
+  opacity: 0.5;
 }/*# sourceMappingURL=style.css.map */

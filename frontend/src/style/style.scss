@@ -406,7 +406,7 @@ header {
 }
 
 .rider-profile-container {
-    background-color: $white-darker;
+    background-color: $white-primary;
     padding: 30px 5%;
     display: flex;
     justify-content: space-between;
@@ -444,10 +444,10 @@ header {
 
     .rider-top-results-container {
         width: 30%;
-        background-color: $yellow-primary;
+        background-color: $white-darker;
         padding: 15px 20px 15px 55px;
         border-radius: 15px;
-        box-shadow: 0px 0px 15px 1px rgba(92, 92, 92, 0.151);
+        // box-shadow: 0px 0px 15px 1px rgba(92, 92, 92, 0.151);
 
         h4 {
             font-size: 20px;
@@ -458,12 +458,6 @@ header {
             li {
                 position: relative;
                 margin-bottom: 2px;
-
-                .result-number-of-span {
-                    position: absolute;
-                    bottom: 0px;
-                    left: -30px;
-                }
 
                 .rider-top-result-racename-span {
                     font-weight: 600;
@@ -480,6 +474,12 @@ header {
             }
         }
     }
+}
+
+.result-number-of-span {
+    position: absolute;
+    bottom: 0px;
+    right: calc(100% + 10px);
 }
 
 .rider-evolution-container {
@@ -499,5 +499,53 @@ header {
             position: relative;
         }
     }
+}
 
+.prev,
+.next {
+    position: absolute;
+    height: 100%;
+    top: 45%;
+    padding: 5px;
+    border: none;
+
+    &::before {
+        display: none;
+    }
+}
+
+.slick-disabled {
+    opacity: 0;
+}
+
+.prev {
+    left: -50px;
+}
+
+.rider-all-results-container {
+    padding: 20px 5%;
+    position: relative;
+
+    .rider-result-year-container {
+        margin-right: 100px;
+
+        h4 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        ul li {
+            position: relative;
+            margin-bottom: 5px;
+
+            .result-race-name {
+                font-weight: 600;
+            }
+
+            .result-points-sum {
+                margin-left: 5px;
+                opacity: 0.5;
+            }
+        }
+    }
 }

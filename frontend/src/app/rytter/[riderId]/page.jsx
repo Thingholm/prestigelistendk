@@ -2,6 +2,7 @@ import { supabase } from "@/utils/supabase";
 import RiderProfile from "./riderProfile";
 import RiderResults from "./RiderResults";
 import RiderEvolution from "./RiderEvolution";
+import RiderAllResults from "./RiderAllResults";
 
 async function getRiderById(id) {
     let { data: rankingAlltime } = await supabase
@@ -64,6 +65,8 @@ export default async function Page({ params }) {
             </div>
 
             <RiderEvolution resultData={results} rankingByYearData={rankingByYears} />
+
+            <RiderAllResults resultData={results} />
         </div>
 
     )
