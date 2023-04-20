@@ -523,7 +523,7 @@ header {
 }
 
 .rider-all-results-container {
-    padding: 20px 5%;
+    padding: 20px 5% 40px;
     position: relative;
 
     .rider-result-year-container {
@@ -545,6 +545,75 @@ header {
             .result-points-sum {
                 margin-left: 5px;
                 opacity: 0.5;
+            }
+        }
+    }
+}
+
+.rider-related-rankings-container {
+    background-color: $black-lighter;
+    display: flex;
+    padding: 20px 5%;
+    justify-content: space-between;
+
+    .table-wrapper {
+        width: 48%;
+
+        .table {
+            height: 80vh;
+        }
+
+        &:first-of-type {
+            .table {
+
+                .table-header,
+                .table-row {
+                    p:nth-of-type(1) {
+                        width: 10%;
+                    }
+
+                    p:nth-of-type(2) {
+                        width: 60%;
+
+                        .fi {
+                            margin-right: 5px;
+                        }
+                    }
+
+                    p:nth-of-type(3) {
+                        width: 20%;
+                    }
+
+                    p:nth-of-type(4) {
+                        width: 15%;
+                    }
+
+                }
+            }
+        }
+
+        &:nth-of-type(2) {
+            .table {
+
+                .table-header,
+                .table-row {
+                    p:nth-of-type(1) {
+                        width: 10%;
+                    }
+
+                    p:nth-of-type(2) {
+                        width: 50%;
+                    }
+
+                    p:nth-of-type(3) {
+                        width: 30%;
+                    }
+
+                    p:nth-of-type(4) {
+                        width: 15%;
+                    }
+
+                }
             }
         }
     }
