@@ -416,11 +416,15 @@ header {
         align-items: center;
 
         .rider-profile-info-image-container {
-            background-color: rgb(56, 56, 56);
+            &.rider-only {
+                background-color: rgb(56, 56, 56);
+                display: block;
+                content: "";
+
+            }
+
             height: 200px;
             width: 200px;
-            display: block;
-            content: "";
             border-radius: 15px;
         }
 
@@ -505,7 +509,7 @@ header {
 .next {
     position: absolute;
     height: 100%;
-    top: 45%;
+    top: 50%;
     padding: 5px;
     border: none;
 
@@ -514,12 +518,46 @@ header {
     }
 }
 
+.slick-arrow {
+    transition: 0.4s;
+}
+
 .slick-disabled {
     opacity: 0;
 }
 
 .prev {
     left: -50px;
+
+    &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 15px;
+        background: rgb(0, 0, 0);
+        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5886729691876751) 46%, rgba(0, 0, 0, 0) 100%);
+        left: 50px;
+        top: 0px;
+        opacity: 0.07;
+    }
+}
+
+.next {
+    right: -25px;
+
+    &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 15px;
+        background: rgb(0, 0, 0);
+        background: linear-gradient(270deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5886729691876751) 46%, rgba(0, 0, 0, 0) 100%);
+        right: 25px;
+        top: 0px;
+        opacity: 0.07;
+    }
 }
 
 .rider-all-results-container {
@@ -527,7 +565,8 @@ header {
     position: relative;
 
     .rider-result-year-container {
-        margin-right: 100px;
+        margin-right: 60px;
+        padding-left: 50px;
 
         h4 {
             margin-bottom: 10px;
@@ -615,6 +654,116 @@ header {
 
                 }
             }
+        }
+    }
+}
+
+.inactive {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.ranking-page-container {
+    h2 {
+        margin-left: 5%;
+        margin-top: 20px;
+        font-size: 35px;
+    }
+
+    .ranking-filter-options-container {
+        padding: 20px 5%;
+        display: flex;
+        justify-content: space-between;
+
+        .ranking-filter-birth-year-container {
+            .ranking-filter-birth-year-radio-container {
+                display: flex;
+
+                .ranking-filter-birth-year-radio {
+                    margin-right: 20px;
+
+                    label {
+                        margin-right: 5px;
+                    }
+                }
+
+                padding-bottom: 5px;
+                border-bottom: 1px solid $black-lighter;
+            }
+
+            >div {
+                margin-bottom: 10px;
+            }
+
+            .ranking-filter-born {
+                label {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    .ranking-page-table-container {
+        padding: 20px 5%;
+
+        .table {
+
+            .table-header,
+            .table-row {
+                p:nth-of-type(1) {
+                    width: 10%;
+                }
+
+                p:nth-of-type(2) {
+                    width: 10%;
+                }
+
+                p:nth-of-type(3) {
+                    width: 50%;
+                }
+
+                p:nth-of-type(4) {
+                    width: 30%;
+                }
+
+                p:nth-of-type(5) {
+                    width: 15%;
+                }
+            }
+        }
+    }
+}
+
+.load-more-results-button {
+    margin: 0px 5%;
+    width: 90%;
+    padding: 10px 0px;
+    border: none;
+    background-color: $yellow-primary;
+    font-weight: 600;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: $yellow-darker;
+        cursor: pointer;
+    }
+
+    &:active {
+        border: none;
+    }
+}
+
+.nation-evolution-container {
+    background-color: $black-lighter;
+    padding: 20px 5%;
+
+    .charts-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        .chart-container {
+            width: 48%;
         }
     }
 }

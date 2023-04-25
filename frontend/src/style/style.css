@@ -342,12 +342,14 @@ header nav ul li .nav-dropdown-menu ul li {
   align-items: center;
 }
 .rider-profile-container .rider-profile-info-container .rider-profile-info-image-container {
-  background-color: rgb(56, 56, 56);
   height: 200px;
   width: 200px;
+  border-radius: 15px;
+}
+.rider-profile-container .rider-profile-info-container .rider-profile-info-image-container.rider-only {
+  background-color: rgb(56, 56, 56);
   display: block;
   content: "";
-  border-radius: 15px;
 }
 .rider-profile-container .rider-profile-info-container .rider-profile-info-info-container {
   margin-left: 20px;
@@ -414,13 +416,17 @@ header nav ul li .nav-dropdown-menu ul li {
 .next {
   position: absolute;
   height: 100%;
-  top: 45%;
+  top: 50%;
   padding: 5px;
   border: none;
 }
 .prev::before,
 .next::before {
   display: none;
+}
+
+.slick-arrow {
+  transition: 0.4s;
 }
 
 .slick-disabled {
@@ -430,13 +436,42 @@ header nav ul li .nav-dropdown-menu ul li {
 .prev {
   left: -50px;
 }
+.prev::after {
+  display: block;
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 15px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.5886729692) 46%, rgba(0, 0, 0, 0) 100%);
+  left: 50px;
+  top: 0px;
+  opacity: 0.07;
+}
+
+.next {
+  right: -25px;
+}
+.next::after {
+  display: block;
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 15px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(270deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.5886729692) 46%, rgba(0, 0, 0, 0) 100%);
+  right: 25px;
+  top: 0px;
+  opacity: 0.07;
+}
 
 .rider-all-results-container {
   padding: 20px 5% 40px;
   position: relative;
 }
 .rider-all-results-container .rider-result-year-container {
-  margin-right: 100px;
+  margin-right: 60px;
+  padding-left: 50px;
 }
 .rider-all-results-container .rider-result-year-container h4 {
   margin-bottom: 10px;
@@ -501,4 +536,90 @@ header nav ul li .nav-dropdown-menu ul li {
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-header p:nth-of-type(4),
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-row p:nth-of-type(4) {
   width: 15%;
+}
+
+.inactive {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.ranking-page-container h2 {
+  margin-left: 5%;
+  margin-top: 20px;
+  font-size: 35px;
+}
+.ranking-page-container .ranking-filter-options-container {
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-birth-year-radio-container {
+  display: flex;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #1c1c1c;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-birth-year-radio-container .ranking-filter-birth-year-radio {
+  margin-right: 20px;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-birth-year-radio-container .ranking-filter-birth-year-radio label {
+  margin-right: 5px;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container > div {
+  margin-bottom: 10px;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-born label {
+  margin-right: 5px;
+}
+.ranking-page-container .ranking-page-table-container {
+  padding: 20px 5%;
+}
+.ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1),
+.ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) {
+  width: 10%;
+}
+.ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(2),
+.ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(2) {
+  width: 10%;
+}
+.ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(3),
+.ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(3) {
+  width: 50%;
+}
+.ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4),
+.ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) {
+  width: 30%;
+}
+.ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5),
+.ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) {
+  width: 15%;
+}
+
+.load-more-results-button {
+  margin: 0px 5%;
+  width: 90%;
+  padding: 10px 0px;
+  border: none;
+  background-color: #fee402;
+  font-weight: 600;
+  border-radius: 5px;
+}
+.load-more-results-button:hover {
+  background-color: #fdca00;
+  cursor: pointer;
+}
+.load-more-results-button:active {
+  border: none;
+}
+
+.nation-evolution-container {
+  background-color: #1c1c1c;
+  padding: 20px 5%;
+}
+.nation-evolution-container .charts-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.nation-evolution-container .charts-container .chart-container {
+  width: 48%;
 }/*# sourceMappingURL=style.css.map */
