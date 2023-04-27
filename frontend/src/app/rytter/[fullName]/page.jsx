@@ -5,17 +5,18 @@ import RiderEvolution from "./RiderEvolution";
 import RiderAllResults from "./RiderAllResults";
 import RiderRankingFromNation from "./RiderRankingFromNation";
 import RiderRankingFromYear from "./RiderRankingFromYear";
+import { stringEncoder, stringDecoder } from "@/components/stringHandler";
 
-async function getRiderById(id) {
+async function getRiderById(name) {
     let { data: rankingAlltime } = await supabase
         .from('alltimeRanking')
         .select('*')
-        .eq('riderId', id);
+        .ilike('fullName', "%" + name + "%");
 
     let { data: results } = await supabase
         .from('results')
         .select('*')
-        .eq('rider', rankingAlltime[0].fullName);
+        .ilike('rider', "%" + name + "%");
 
     let { data: pointSystem } = await supabase
         .from('pointSystem')
@@ -24,7 +25,7 @@ async function getRiderById(id) {
     let { data: rankingByYears } = await supabase
         .from('alltimeRankingPerYear')
         .select('*')
-        .eq('rider', rankingAlltime[0].fullName);
+        .ilike('rider', "%" + name + "%");
 
     const resultsCombined = results.map(result => {
         let resultRace = "";
@@ -54,11 +55,13 @@ async function getRiderById(id) {
 }
 
 export default async function Page({ params }) {
-    const data = await getRiderById(params.riderId);
+    const data = await getRiderById(stringDecoder(params.fullName));
     const rider = data.rankingAlltime;
     const results = data.results;
     const rankingByYears = data.rankingByYears;
 
+    // console.log(stringEncoder(rider[0].fullName))
+    // console.log(stringDecoder(stringEncoder(rider[0].fullName)))
     return (
         <div className="rider-page-container">
             <div className="rider-profile-container">
@@ -83,6 +86,6 @@ export async function generateStaticParams() {
     let { data: rankingAlltime } = await supabase.from('alltimeRanking').select('*');
 
     return rankingAlltime.map((rider) => ({
-        slug: rider.riderId,
+        slug: stringEncoder(rider.fullName),
     }))
-}
+}   

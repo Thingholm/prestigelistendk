@@ -51,6 +51,7 @@ export default function NationAccChart(props) {
         },
         scales: {
             y: {
+                min: 1,
                 reverse: true,
                 grid: {
                     color: "#ffffff50"

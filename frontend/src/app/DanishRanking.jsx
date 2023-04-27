@@ -2,6 +2,7 @@
 
 import useStore from "@/utils/store"
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function DanishRanking() {
     const rankingAlltime = useStore((state) => state.rankingAlltime);
@@ -37,7 +38,7 @@ export default function DanishRanking() {
                     return (
                         <div key={rider.id} className='table-row'>
                             <p>{rider.currentRank}</p>
-                            <p className='table-name-reversed'><span className='last-name'>{rider.lastName} </span>{rider.firstName}</p>
+                            <p className='table-name-reversed'><Link href={"/rytter/" + rider.riderId}><span className="fi fi-dk"></span><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
                             <p>{rider.birthYear}</p>
                             <p>{rider.points}</p>
                         </div>

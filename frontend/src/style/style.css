@@ -87,6 +87,10 @@ main {
 .table .table-content .table-row p a {
   color: #111111;
 }
+.table .table-content .table-row p a:hover {
+  -webkit-text-decoration: underline solid 2px #111111;
+          text-decoration: underline solid 2px #111111;
+}
 .table .table-content .table-row:first-of-type {
   margin-top: 5px;
 }
@@ -611,9 +615,22 @@ header nav ul li .nav-dropdown-menu ul li {
   border: none;
 }
 
+.nation-profile-info-image-container {
+  height: 187.5px;
+  width: 250px;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px 0px rgba(17, 17, 17, 0.3137254902);
+}
+.nation-profile-info-image-container span {
+  height: 100%;
+  width: 100%;
+  top: -2px;
+}
+
 .nation-evolution-container {
-  background-color: #1c1c1c;
   padding: 20px 5%;
+  background-color: #1c1c1c;
 }
 .nation-evolution-container .charts-container {
   display: flex;
@@ -622,4 +639,87 @@ header nav ul li .nav-dropdown-menu ul li {
 }
 .nation-evolution-container .charts-container .chart-container {
   width: 48%;
+}
+
+.nation-top-results-container {
+  padding: 20px 5% 40px;
+}
+.nation-top-results-container .table .table-header p:nth-of-type(1),
+.nation-top-results-container .table .table-row p:nth-of-type(1) {
+  width: 5%;
+}
+.nation-top-results-container .table .table-header p:nth-of-type(2),
+.nation-top-results-container .table .table-row p:nth-of-type(2) {
+  width: 5%;
+}
+.nation-top-results-container .table .table-header p:nth-of-type(3),
+.nation-top-results-container .table .table-row p:nth-of-type(3) {
+  width: 30%;
+}
+.nation-top-results-container .table .table-header p:nth-of-type(4),
+.nation-top-results-container .table .table-row p:nth-of-type(4) {
+  width: 60%;
+  padding-right: 20px;
+  line-height: 20px;
+}
+
+.nation-rankings-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 5% 40px;
+  height: 80vh;
+}
+.nation-rankings-container .table-wrapper {
+  width: 48%;
+}
+.nation-rankings-container .table-wrapper .fi {
+  margin-right: 5px;
+}
+.nation-rankings-container.riders-ranked {
+  background-color: #1c1c1c;
+}
+.nation-rankings-container.riders-ranked .table-wrapper .table .table-header p:nth-of-type(1),
+.nation-rankings-container.riders-ranked .table-wrapper .table .table-row p:nth-of-type(1) {
+  width: 10%;
+}
+.nation-rankings-container.riders-ranked .table-wrapper .table .table-header p:nth-of-type(2),
+.nation-rankings-container.riders-ranked .table-wrapper .table .table-row p:nth-of-type(2) {
+  width: 60%;
+}
+.nation-rankings-container.riders-ranked .table-wrapper .table .table-header p:nth-of-type(3),
+.nation-rankings-container.riders-ranked .table-wrapper .table .table-row p:nth-of-type(3) {
+  width: 30%;
+}
+.nation-rankings-container.riders-ranked .table-wrapper .table .table-header p:nth-of-type(4),
+.nation-rankings-container.riders-ranked .table-wrapper .table .table-row p:nth-of-type(4) {
+  width: 15%;
+}
+.nation-rankings-container.nations-ranked {
+  background-color: #ededed;
+}
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-header {
+  align-items: flex-end;
+}
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-content .highlighted-nation {
+  font-weight: 600;
+}
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(1),
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(1) {
+  width: 8%;
+}
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(2),
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(2) {
+  width: 35%;
+}
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(3),
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(3) {
+  width: 20%;
+}
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(4),
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(4) {
+  width: 25%;
+}
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(5),
+.nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(5) {
+  width: 10%;
 }/*# sourceMappingURL=style.css.map */

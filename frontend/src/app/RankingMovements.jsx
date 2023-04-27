@@ -6,6 +6,7 @@ import "../../node_modules/flag-icons/css/flag-icons.min.css"
 import useStore from "@/utils/store";
 import ArrowUpTriangle from "@/components/ArrowUpTriangle";
 import NoChange from "@/components/NoChange";
+import Link from "next/link";
 
 async function getResults() {
     let { data: results } = await supabase.from('results').select('*').eq('year', '2023');
@@ -85,6 +86,7 @@ export default function RankingMovements() {
                         fullRiderName: i.rider,
                         raceName: i.race.split(" (")[0],
                         raceDate: i.raceDate,
+                        riderId: currentRankingAlltime.riderId,
                         racePoints: currentRacePoints.points,
                         lastName: currentRankingAlltime.lastName,
                         firstName: currentRankingAlltime.firstName,
@@ -120,7 +122,7 @@ export default function RankingMovements() {
                         <div key={result.id} className="table-row">
                             <p>{result.prevRank - result.currentRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.prevRank - result.currentRank}</p>
                             <p>{result.currentRank} <span className="table-previous-span">{result.prevRank}</span></p>
-                            <p className='table-name-reversed'><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName}</span> {result.firstName}</p>
+                            <p className='table-name-reversed'><Link href={"/rytter/" + result.riderId}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName}</span> {result.firstName}</Link></p>
                             <p>{result.raceName}</p>
                             <p>{result.racePoints}</p>
                             <p>{result.riderPoints} <span className="table-previous-span">{result.prevPoints}</span></p>

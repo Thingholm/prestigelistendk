@@ -5,13 +5,16 @@ export default function NationProfile(props) {
 
     return (
         <div className="nation-profile-info-container rider-profile-info-container">
-            <span className={"rider-profile-info-image-container fi fi-" + nationData.nationFlagCode}></span>
+            <div className="nation-profile-info-image-container">
+                <span className={"fi fi-" + nationData.nationFlagCode}></span>
+            </div>
+
             <div className="rider-profile-info-info-container">
                 <h3>{nationData.nation}</h3>
-                <p>Placering: <span className="profile-value-span">XX</span></p>
-                <p>Point: <span className="profile-value-span">XX</span></p>
-                <p>Aktive placering: <span className="profile-value-span">XX</span></p>
-                <p>Aktive point: <span className="profile-value-span">XX</span></p>
+                <p>Placering: <span className="profile-value-span">{props.nationRankData.currentRank}</span></p>
+                <p>Point: <span className="profile-value-span">{props.nationRankData.points}</span></p>
+                <p>Placering (Aktive): <span className="profile-value-span">{props.activeNationRankData ? props.activeNationRankData.currentRank : "Ingen aktive ryttere"}</span></p>
+                <p>Point (Aktive): <span className="profile-value-span">{props.activeNationRankData ? props.activeNationRankData.points : "Ingen aktive ryttere"}</span></p>
             </div>
         </div>
     )

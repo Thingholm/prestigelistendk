@@ -1,6 +1,6 @@
 "use client"
 
-import { Line } from "react-chartjs-2"
+import { Line, Bar } from "react-chartjs-2"
 import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
@@ -15,7 +15,7 @@ export default function NationByYearChart(props) {
         datasets: [{
             label: "Rank hvert år",
             data: rankingData.map(i => {
-                if (accData.find(e => e.year == i.year).points > 0) {
+                if (accData.find(e => e.year == i.year).points > 0 && i.points > 0) {
                     return i.rank;
                 } else {
                     return null;
@@ -101,7 +101,7 @@ export default function NationByYearChart(props) {
         <div className="by-year-charts-container charts-container">
             <div className="chart-container">
                 <RankingLinkHeader title="Point opnået hvert år" link="#" mode="light" />
-                <Line data={pointsData} options={pointsOptions} />
+                <Bar data={pointsData} options={pointsOptions} />
             </div>
             <div className="chart-container">
                 <RankingLinkHeader title="Placering på Prestigelisten hvert år" link="#" mode="light" />

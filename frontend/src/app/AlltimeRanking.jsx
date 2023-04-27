@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import "../../node_modules/flag-icons/css/flag-icons.min.css";
 import useStore from '@/utils/store';
 import Link from 'next/link';
+import { stringEncoder } from '@/components/stringHandler';
 
 async function getData() {
     let { data: alltimeRanking } = await supabase.from('alltimeRanking').select('*');
@@ -49,8 +50,8 @@ export default function AlltimeRanking() {
                     return (
                         <div key={rider.id} className='table-row'>
                             <p>{rider.currentRank}</p>
-                            <p className='table-name-reversed'><Link href={"/rytter/" + rider.riderId}><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
-                            <p><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</p>
+                            <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
+                            <p><Link href={"/nation/" + rider.nation}><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</Link></p>
                             <p>{rider.birthYear}</p>
                             <p>{rider.points}</p>
                         </div>
