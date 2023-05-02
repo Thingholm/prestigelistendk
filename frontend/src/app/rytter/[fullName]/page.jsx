@@ -31,11 +31,10 @@ async function getRiderById(name) {
         let resultRace = "";
 
         if (result.race.includes("etape")) {
-            resultRace = result.race.split(". ")[1].replace("&#39;", "'")
+            resultRace = result.race.split(". ")[1].replace("&#39;", "'").replace(/comma/g, ",")
         } else {
-            resultRace = result.race.replace("&#39;", "'")
+            resultRace = result.race.replace("&#39;", "'").replace(/comma/g, ",")
         }
-
         const racePointSystem = pointSystem.find(p => p.raceName == resultRace);
 
         const mergedLists = {
@@ -60,8 +59,6 @@ export default async function Page({ params }) {
     const results = data.results;
     const rankingByYears = data.rankingByYears;
 
-    // console.log(stringEncoder(rider[0].fullName))
-    // console.log(stringDecoder(stringEncoder(rider[0].fullName)))
     return (
         <div className="rider-page-container">
             <div className="rider-profile-container">

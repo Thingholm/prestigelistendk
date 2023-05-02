@@ -5,6 +5,7 @@ export function stringEncoder(string) {
         .replace(/æ/g, "_ae")
         .replace(/-/g, "__")
         .replace(/ /g, "-")
+        .replace("&#39;", "'")
         .toLowerCase();
     return encodedString;
 }
@@ -14,6 +15,7 @@ export function stringDecoder(string) {
         .replace(/_oe/g, "ø")
         .replace(/_aa/g, "å")
         .replace(/_ae/g, "æ")
+        .replace("'", "&#39;")
         .split("-")
         .map(s => s.charAt(0).toUpperCase() + s.slice(1).replace(/__/g, "-"))
         .join(" ");
