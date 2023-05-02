@@ -1,8 +1,14 @@
+"use client"
+
 import Link from "next/link";
+import useStore from "@/utils/store";
 
 export default function RankingLinkHeader(props) {
+    const setRankingFilter = useStore((state) => state.setRankingFilter);
+    const rankingFilter = useStore((state) => state.rankingFilter);
+
     return (
-        <h2 className={"ranking-link-header " + props.mode}>
+        <h2 className={"ranking-link-header " + props.mode} onClick={() => { props.filterHandler && setRankingFilter(props.filterHandler) }}>
             <Link href={props.link}>
                 {props.title}
                 <svg viewBox="0 -4.5 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">

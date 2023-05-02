@@ -4,7 +4,7 @@ export default function RiderProfile(props) {
     return (
         <div className="rider-profile-info-container">
             <div className="rider-profile-info-image-container">
-
+                {rider.active && <img src={"https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/riderPortraits/" + rider.fullName.replace(" ", "").toLowerCase() + ".jpg"} />}
             </div>
             <div className="rider-profile-info-info-container">
                 <h3>{rider.fullName}</h3>

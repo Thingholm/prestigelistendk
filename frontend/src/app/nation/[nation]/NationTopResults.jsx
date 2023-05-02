@@ -77,10 +77,10 @@ export default async function NationTopResults(props) {
                 <div className="table-content">
                     {sortedResults.map(result => {
                         return (
-                            <div className="table-row">
+                            <div key={result.id} className="table-row">
                                 <p>{result.points}</p>
                                 <p>{result.resultAmount}</p>
-                                <p>{result.raceName.includes("<") ? result.raceName : result.raceName.split(" (")[0]}</p>
+                                <p>{result.nationFlagCode} {result.raceName.includes("<") ? result.raceName : result.raceName.split(" (")[0]}</p>
                                 <p>{result.rider.length > 0 ?
                                     result.rider.map((name, index) => {
                                         if (index > 0) {

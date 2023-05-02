@@ -11,6 +11,10 @@ main {
   padding-top: 55px;
 }
 
+p .fi {
+  margin-right: 5px;
+}
+
 .ranking-link-header {
   display: flex;
   align-items: center;
@@ -355,6 +359,9 @@ header nav ul li .nav-dropdown-menu ul li {
   display: block;
   content: "";
 }
+.rider-profile-container .rider-profile-info-container .rider-profile-info-image-container img {
+  border-radius: 15px;
+}
 .rider-profile-container .rider-profile-info-container .rider-profile-info-info-container {
   margin-left: 20px;
 }
@@ -552,10 +559,45 @@ header nav ul li .nav-dropdown-menu ul li {
   margin-top: 20px;
   font-size: 35px;
 }
+.ranking-page-container input[type=radio] {
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  /* For iOS to remove gradient background */
+  background-color: #fff;
+  margin: 0;
+  height: 18px;
+  width: 18px;
+  border: 2px solid #1c1c1c;
+  border-radius: 999px;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+.ranking-page-container input[type=radio]:checked::before {
+  transform: scale(1);
+}
+.ranking-page-container input[type=radio]::before {
+  display: flex;
+  position: absolute;
+  content: "";
+  left: 2px;
+  top: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  transform: scale(0);
+  transition: 0.3s;
+  background-color: #fdca00;
+}
 .ranking-page-container .ranking-filter-options-container {
   padding: 20px 5%;
   display: flex;
   justify-content: space-between;
+}
+.ranking-page-container .ranking-filter-options-container select {
+  padding: 2px;
+  border-radius: 4px;
 }
 .ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-birth-year-radio-container {
   display: flex;
@@ -563,7 +605,8 @@ header nav ul li .nav-dropdown-menu ul li {
   border-bottom: 1px solid #1c1c1c;
 }
 .ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-birth-year-radio-container .ranking-filter-birth-year-radio {
-  margin-right: 20px;
+  display: flex;
+  align-items: center;
 }
 .ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-birth-year-radio-container .ranking-filter-birth-year-radio label {
   margin-right: 5px;
@@ -573,6 +616,38 @@ header nav ul li .nav-dropdown-menu ul li {
 }
 .ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-born label {
   margin-right: 5px;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container select {
+  width: 100%;
+  margin-top: 5px;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-active-container .ranking-filter-active-radio-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.ranking-page-container .ranking-filter-options-container button {
+  background-color: #fee402;
+  border: none;
+  border-radius: 15px;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.0901960784);
+}
+.ranking-page-container .ranking-filter-options-container button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.0901960784);
+}
+.ranking-page-container .ranking-filter-options-container button:active {
+  transform: scale(0.95);
+}
+.ranking-page-container .ranking-filter-options-container button span {
+  margin-left: 5px;
 }
 .ranking-page-container .ranking-page-table-container {
   padding: 20px 5%;

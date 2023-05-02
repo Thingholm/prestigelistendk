@@ -19,3 +19,14 @@ export function stringDecoder(string) {
         .join(" ");
     return decodedString;
 }
+
+export function nationEncoder(string) {
+    const encodedString = string
+        .toLowerCase()
+        .replace("ø", "oe")
+        .replace("å", "aa")
+        .replace("æ", "ae")
+        .replace(" ", "-");
+
+    return encodedString;
+}

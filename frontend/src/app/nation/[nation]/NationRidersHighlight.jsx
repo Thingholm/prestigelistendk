@@ -1,3 +1,4 @@
+import { stringEncoder } from "@/components/stringHandler";
 import Link from "next/link";
 
 export default function NationRidersHighlight(props) {
@@ -9,7 +10,7 @@ export default function NationRidersHighlight(props) {
             <ul>
                 {ridersFromNation.slice(0, 6).map(r => {
                     return (
-                        <li key={r.riderId}><Link href={"/rytter/" + r.riderId}>{r.fullName} (nr. {r.currentRank})</Link></li>
+                        <li key={r.riderId}><Link href={"/rytter/" + stringEncoder(r.fullName)}>{r.fullName} (nr. {r.currentRank})</Link></li>
                     )
                 })}
             </ul>

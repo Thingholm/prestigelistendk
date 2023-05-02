@@ -17,7 +17,7 @@ export default function Home() {
           <p>Opgørelsen omfatter data helt tilbage til den første udgave af Milano-Torino i 1876, hvilket vil sige i alt mere end 30.000 placeringer fordelt på de mere end 4.300 forskellige ryttere, der har opnået mindst et af de 757 pointgivende resultater.</p>
         </div>
         <div className="hero-ranking-container">
-          <RankingLinkHeader title="All time største ryttere" link="/listen" />
+          <RankingLinkHeader title="All time største ryttere" link="/listen?active=true" />
           <AlltimeRanking />
         </div>
       </div>
