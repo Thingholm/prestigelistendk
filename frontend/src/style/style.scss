@@ -987,9 +987,13 @@ header {
 }
 
 .nation-ranking-page {
-    padding: 20px 5%;
+    >h2 {
+        padding: 20px 5%;
+    }
 
     .nation-table-wrapper {
+        padding: 20px 5%;
+
         .nation-ranking-table-filter-container {
             display: flex;
             justify-content: space-between;
@@ -1033,6 +1037,45 @@ header {
 
                 p:nth-of-type(6) {
                     width: 10%;
+                }
+            }
+        }
+    }
+
+    .nations-ranking-chart-container {
+        background-color: $black-lighter;
+        padding: 20px 5%;
+
+        h2 {
+            color: $white-primary;
+            margin-bottom: 15px;
+        }
+
+        .chart-custom-legend {
+            h4 {
+                color: $white-primary;
+                margin: 5px 0px 10px;
+            }
+
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+
+                li {
+                    padding: 5px 10px;
+                    margin: 10px 5px;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    transition: 0.3s;
+
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+
+                    span {
+                        margin-right: 5px;
+                        box-shadow: 0px 0px 5px 1px rgba(105, 105, 105, 0.432);
+                    }
                 }
             }
         }
