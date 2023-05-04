@@ -1,6 +1,8 @@
 import RankingLinkHeader from "@/components/RankingLinkHeader";
 import { supabase } from "@/utils/supabase";
 import "../../../../node_modules/flag-icons/css/flag-icons.min.css"
+import Link from "next/link";
+import { nationEncoder, stringEncoder } from "@/components/stringHandler";
 
 async function getRankingFromNation(birthYear) {
     let { data: alltimeRanking } = await supabase
@@ -28,7 +30,7 @@ export default async function RiderRankingFromYear(props) {
 
     return (
         <div className="table-wrapper">
-            <RankingLinkHeader title={"Største ryttere født i " + riderBirthYear} link="#" mode="light" />
+            <RankingLinkHeader title={"Største ryttere født i " + riderBirthYear} link={"listen?yearFilterRange=single&bornBefore=" + riderBirthYear} mode="light" />
             <div className="table landing-ranking-rounded-container">
                 <div className="table-header">
                     <p>Nr.</p>
@@ -41,8 +43,8 @@ export default async function RiderRankingFromYear(props) {
                         return (
                             <div key={rider.id} className="table-row">
                                 <p>{rider.currentRank}</p>
-                                <p className="table-name-reversed"><span className="last-name">{rider.lastName} </span><span>{rider.firstName}</span></p>
-                                <p><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</p>
+                                <p className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className="last-name">{rider.lastName} </span><span>{rider.firstName}</span></Link></p>
+                                <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</Link></p>
                                 <p>{rider.points}</p>
                             </div>
                         )

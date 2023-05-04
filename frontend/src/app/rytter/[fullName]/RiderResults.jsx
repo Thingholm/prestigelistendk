@@ -1,3 +1,4 @@
+import { stringEncoder } from "@/components/stringHandler";
 import Link from "next/link";
 
 export default function RiderResults(props) {
@@ -28,7 +29,6 @@ export default function RiderResults(props) {
                     <li key={r.id}><span className="result-number-of-span">{resultUniques[r.raceName] > 1 && resultUniques[r.raceName] + "x"}</span> <span className="rider-top-result-racename-span">{r.raceName.split(" (")[0]}</span></li>
                 )}
             </ul>
-            <p><Link href="#">Se alle pointgivende resultater...</Link></p>
         </div>
     )
 }

@@ -145,12 +145,12 @@ export default function RiderEvolution(props) {
     return (
         <div className="rider-evolution-container">
             <div className="chart-container">
-                <RankingLinkHeader title="Point opnået hvert år" link="#" mode="light" />
+                <h3>Point opnået hvert år</h3>
                 <Bar data={barData} options={chartOptions} />
             </div>
 
             <div className="chart-container">
-                <RankingLinkHeader title="Udvikling i placering på Prestigelisten" link="#" mode="light" />
+                <h3>Placering på Prestigelisten</h3>
                 <Line data={lineData} options={Object.assign(mergedChartOptions, chartOptions, rankChartOptions)} />
             </div>
         </div>
