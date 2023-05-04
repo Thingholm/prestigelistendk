@@ -3,6 +3,20 @@
 import { Bar, Line } from "react-chartjs-2";
 import { Chart } from "chart.js/auto";
 import RankingLinkHeader from "@/components/RankingLinkHeader";
+import { useEffect } from "react";
+
+function createLabels(arr) {
+    let newData = [];
+    for (let i = arr[0].year; i <= arr[arr.length - 1].year; i++) {
+        const curYear = arr.find(j => j.year == i);
+        let curPoints = 0;
+        if (curYear) {
+            curPoints = curYear.points;
+        }
+        newData.push({ year: i, points: curPoints });
+    }
+    return newData;
+}
 
 export default function RiderEvolution(props) {
     const results = props.resultData;
@@ -12,7 +26,7 @@ export default function RiderEvolution(props) {
         .filter(i => rankingByYears[i.replace("Rank", "Points")] > 0)
         .map(i => { return { year: parseInt(i.replace("Rank", "")), rank: rankingByYears[i] } });
 
-    const summedPointsByYear = results.reduce((acc, result) => {
+    const summedPointsByYear = createLabels(results.reduce((acc, result) => {
         const resultIndex = acc.findIndex(i => i.year === result.year);
         if (resultIndex !== -1) {
             acc[resultIndex].points += result.points;
@@ -20,7 +34,7 @@ export default function RiderEvolution(props) {
             acc.push({ year: result.year, points: result.points });
         }
         return acc;
-    }, []).sort(function (a, b) { return a.year - b.year });
+    }, []).sort(function (a, b) { return a.year - b.year }));
 
     const barData = {
         labels: summedPointsByYear.map(i => i.year),

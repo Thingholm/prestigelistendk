@@ -1,3 +1,6 @@
+import { nationEncoder } from "@/components/stringHandler";
+import Link from "next/link";
+
 export default function RiderProfile(props) {
     const rider = props.riderData;
 
@@ -8,12 +11,12 @@ export default function RiderProfile(props) {
             </div>
             <div className="rider-profile-info-info-container">
                 <h3>{rider.fullName}</h3>
-                <p>Nationalitet: <span className="profile-value-span"><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</span></p>
+                <p>Nationalitet: <Link href={"nation/" + nationEncoder(rider.nation)}><span className="profile-value-span"><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</span></Link></p>
                 {rider.active && <p>Hold: <span className="profile-value-span">{rider.currentTeam}</span></p>}
-                <p>Placering: <span className="profile-value-span">XX</span></p>
-                {rider.active && <p>Aktive placering: <span className="profile-value-span">XX</span></p>}
+                <p>Placering: <Link href={"listen"}><span className="profile-value-span">{rider.currentRank}</span></Link></p>
+                {rider.active && <p>Placering (aktive): <Link href={"listen?activeStatus=active"}><span className="profile-value-span">{rider.activeRank}</span></Link></p>}
                 <p>Point: <span className="profile-value-span">{rider.points}</span></p>
-                <p>Årgang: <span className="profile-value-span">{rider.birthYear}</span></p>
+                <p>Årgang: <Link href={"listen?yearFilterRange=single&bornBefore=" + rider.birthYear}><span className="profile-value-span">{rider.birthYear}</span></Link></p>
             </div>
         </div>
     )

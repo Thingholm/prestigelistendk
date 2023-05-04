@@ -6,12 +6,12 @@ import RiderAllResults from "./RiderAllResults";
 import RiderRankingFromNation from "./RiderRankingFromNation";
 import RiderRankingFromYear from "./RiderRankingFromYear";
 import { stringEncoder, stringDecoder } from "@/components/stringHandler";
+import numerizeRanking from "@/utils/numerizeRanking";
 
 async function getRiderById(name) {
     let { data: rankingAlltime } = await supabase
         .from('alltimeRanking')
         .select('*')
-        .ilike('fullName', "%" + name + "%");
 
     let { data: results } = await supabase
         .from('results')
@@ -45,9 +45,15 @@ async function getRiderById(name) {
         return (mergedLists)
     });
 
+    let riderData = numerizeRanking(rankingAlltime).find(i => i.fullName.toLowerCase() == name.toLowerCase());
+
+    if (riderData.active) {
+        riderData = { ...riderData, activeRank: numerizeRanking(rankingAlltime.filter(i => i.active == true)).find(i => i.fullName.toLowerCase() == name.toLowerCase()).currentRank }
+    }
 
     return {
         rankingAlltime: rankingAlltime,
+        riderData: riderData,
         results: resultsCombined,
         rankingByYears: rankingByYears,
     };
@@ -55,14 +61,14 @@ async function getRiderById(name) {
 
 export default async function Page({ params }) {
     const data = await getRiderById(stringDecoder(params.fullName));
-    const rider = data.rankingAlltime;
+    const rider = data.riderData;
     const results = data.results;
     const rankingByYears = data.rankingByYears;
 
     return (
         <div className="rider-page-container">
             <div className="rider-profile-container">
-                <RiderProfile riderData={rider[0]} />
+                <RiderProfile riderData={rider} />
                 <RiderResults resultData={results} />
             </div>
 
@@ -71,8 +77,8 @@ export default async function Page({ params }) {
             <RiderAllResults resultData={results} />
 
             <div className="rider-related-rankings-container">
-                <RiderRankingFromNation riderNation={rider[0].nation} />
-                <RiderRankingFromYear riderBirthYear={rider[0].birthYear} />
+                <RiderRankingFromNation riderNation={rider.nation} />
+                <RiderRankingFromYear riderBirthYear={rider.birthYear} />
             </div>
         </div>
 

@@ -26,6 +26,7 @@ export default function NationByYearChart(props) {
             color: "#ffffff",
             pointRadius: 0,
             pointHitRadius: 100,
+            spanGaps: true,
         }],
     }
 
