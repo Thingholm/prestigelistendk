@@ -10,7 +10,7 @@ export default async function RankingNationsNation(props) {
     return (
         <div className="nation-rankings-container nations-ranked light">
             <div className="table-wrapper">
-                <RankingLinkHeader title="Største nationer" link="#" />
+                <RankingLinkHeader title="Største nationer" link={"/nationer"} />
                 <div className="table landing-ranking-rounded-container">
                     <div className="table-header">
                         <p>Nr.</p>
@@ -35,7 +35,7 @@ export default async function RankingNationsNation(props) {
                 </div>
             </div>
             <div className="table-wrapper">
-                <RankingLinkHeader title="Største nationer (aktive ryttere)" link="#" />
+                <RankingLinkHeader title="Største nationer (aktive ryttere)" link={"/nationer?activeStatus=active"} />
                 <div className="table landing-ranking-rounded-container">
                     <div className="table-header">
                         <p>Nr.</p>

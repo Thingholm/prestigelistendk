@@ -13,7 +13,7 @@ export default function NationByYearChart(props) {
     const rankData = {
         labels: rankingData.map(i => i.year),
         datasets: [{
-            label: "Rank hvert år",
+            label: "Årlig placering",
             data: rankingData.map(i => {
                 if (accData.find(e => e.year == i.year).points > 0 && i.points > 0) {
                     return i.rank;
@@ -101,11 +101,11 @@ export default function NationByYearChart(props) {
     return (
         <div className="by-year-charts-container charts-container">
             <div className="chart-container">
-                <RankingLinkHeader title="Point opnået hvert år" link="#" mode="light" />
+                <h3>Point opnået per år</h3>
                 <Bar data={pointsData} options={pointsOptions} />
             </div>
             <div className="chart-container">
-                <RankingLinkHeader title="Placering på Prestigelisten hvert år" link="#" mode="light" />
+                <h3>Placering på den årlige Prestigeliste</h3>
                 <Line data={rankData} options={rankOptions} />
             </div>
         </div>

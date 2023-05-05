@@ -1,5 +1,7 @@
-import RankingLinkHeader from "@/components/RankingLinkHeader";
+import { stringEncoder } from "@/components/stringHandler";
+import { nationFlagCodes } from "@/utils/nationFlagCodes";
 import { supabase } from "@/utils/supabase";
+import "flag-icons/css/flag-icons.min.css";
 import Link from "next/link";
 
 async function getResultsData(riders) {
@@ -16,6 +18,16 @@ async function getPointSystem() {
         .select('*')
 
     return pointSystem;
+}
+
+function findNationFlagCode(nation) {
+    let flagCode = "xx";
+
+    if (nationFlagCodes.map(i => i.nation).includes(nation)) {
+        flagCode = nationFlagCodes.find(i => i.nation == nation).nationFlagCode;
+    }
+
+    return flagCode;
 }
 
 export default async function NationTopResults(props) {
@@ -66,7 +78,7 @@ export default async function NationTopResults(props) {
 
     return (
         <div className="nation-top-results-container">
-            <RankingLinkHeader title={"Største resultater af ryttere fra " + nation} link="#" />
+            <h3>Største resultater af ryttere fra {nation}</h3>
             <div className="table">
                 <div className="table-header">
                     <p>Point</p>
@@ -76,17 +88,19 @@ export default async function NationTopResults(props) {
                 </div>
                 <div className="table-content">
                     {sortedResults.map(result => {
+                        const curRaceFlagCode = findNationFlagCode(result.raceNation);
+
                         return (
                             <div key={result.id} className="table-row">
                                 <p>{result.points}</p>
                                 <p>{result.resultAmount}</p>
-                                <p>{result.nationFlagCode} {result.raceName.includes("<") ? result.raceName : result.raceName.split(" (")[0]}</p>
+                                <p><span className={"fi fi-" + curRaceFlagCode}></span> {result.raceName.includes("<") ? result.raceName : result.raceName.split(" (")[0]}</p>
                                 <p>{result.rider.length > 0 ?
                                     result.rider.map((name, index) => {
                                         if (index > 0) {
-                                            return <Link href="#">{", " + name + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
+                                            return <Link href={"/rytter/" + stringEncoder(name)}>{", " + name + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
                                         } else {
-                                            return <Link href="#">{name + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
+                                            return <Link href={"/rytter/" + stringEncoder(name)}>{name + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
                                         }
                                     }) : result.rider}</p>
                             </div>

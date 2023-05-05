@@ -12,7 +12,7 @@ export default function NationAccChart(props) {
     const rankData = {
         labels: rankingData.map(i => i.year),
         datasets: [{
-            label: "Point opnået pr. år",
+            label: "Placering på all time Prestigelisten",
             data: rankingData.map(i => {
                 if (i.points > 0) {
                     return i.rank;
@@ -32,7 +32,7 @@ export default function NationAccChart(props) {
     const pointsData = {
         labels: rankingData.map(i => i.year),
         datasets: [{
-            label: "Point opnået pr. år",
+            label: "Akkumulerede point",
             data: rankingData.map(i => i.points),
             backgroundColor: "#fee40250",
             borderColor: "#fee402",
@@ -100,11 +100,11 @@ export default function NationAccChart(props) {
     return (
         <div className="acc-charts-container charts-container">
             <div className="chart-container">
-                <RankingLinkHeader title="Point opnået all time hvert år" link="#" mode="light" />
+                <h3>Akkumulerede Prestigelisten-point</h3>
                 <Line data={pointsData} options={pointsOptions} />
             </div>
             <div className="chart-container">
-                <RankingLinkHeader title="All time placering hvert år" link="#" mode="light" />
+                <h3>Placering på Prestigelisten all time</h3>
                 <Line data={rankData} options={rankOptions} />
             </div>
         </div>
