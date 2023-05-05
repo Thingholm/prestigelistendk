@@ -2,8 +2,9 @@ import AlltimeRanking from "@/app/AlltimeRanking"
 import '../style/style.css'
 import RankingLinkHeader from "@/components/RankingLinkHeader"
 import RankingMovements from "./RankingMovements"
-import ActiveRanking from "./ActivevRanking"
+import ActiveRanking from "./ActiveRanking"
 import DanishRanking from "./DanishRanking"
+import NationRanking from "./NationRanking"
 
 export default function Home() {
   return (
@@ -38,6 +39,7 @@ export default function Home() {
           <DanishRanking />
         </div>
       </div>
+      <NationRanking />
     </div>
   )
 }
