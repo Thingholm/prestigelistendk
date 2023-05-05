@@ -28,7 +28,9 @@ export default function Page({ searchParams }) {
     const setRankingFilter = useStore((state) => state.setRankingFilter);
 
     useEffect(() => {
-        setRankingFilter({ ...rankingFilter, ...searchParams });
+        if (searchParams) {
+            setRankingFilter({ ...initialFilterState, ...searchParams });
+        }
 
         fetchData().then(result => {
             setalltimeRanking(numerizeRanking(result));
