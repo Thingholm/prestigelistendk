@@ -15,7 +15,7 @@ async function fetchData() {
     return { alltimeRanking: alltimeRanking, nationsAccRank: nationsAccRank };
 }
 
-export default async function Page() {
+export default async function Page({ searchParams }) {
     const fetchedData = await fetchData();
     const alltimeRanking = fetchedData.alltimeRanking;
     const nationsAccRank = fetchedData.nationsAccRank;
@@ -34,7 +34,7 @@ export default async function Page() {
         <div className="nation-ranking-page">
             <h2>Prestigelisten for nationer</h2>
 
-            <NationRankingTable nationRanking={nationRanking} alltimeRanking={alltimeRanking} />
+            <NationRankingTable nationRanking={nationRanking} alltimeRanking={alltimeRanking} searchParams={searchParams} />
 
             <NationsRankingEvolution nationsAccRank={nationsAccRank} nationsFlagCode={nationRanking.map(n => { return { nationFlagCode: n.nationFlagCode, nation: n.nation } })} />
         </div>

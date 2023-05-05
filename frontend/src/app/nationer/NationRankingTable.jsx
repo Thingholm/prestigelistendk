@@ -49,6 +49,10 @@ export default function NationRankingTable(props) {
     const [filteredRanking, setFilteredRanking] = useState(numerizeRanking(nationRanking));
 
     useEffect(() => {
+        setRankingFilter({ ...rankingFilter, ...props.searchParams })
+    }, [])
+
+    useEffect(() => {
         let newFilteredRanking = nationRanking;
 
         if (rankingFilter.filterBy == "aktive") {
