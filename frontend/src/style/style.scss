@@ -15,12 +15,42 @@ $white-darker: #ededed;
     font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
 }
 
+
+
+
+
+// --------------------- GLOBAL STYLING -------------------------
+
 main {
     padding-top: 55px;
 }
 
 p .fi {
     margin-right: 5px;
+    box-shadow: 0px 0px 1px 1px #5a5a5a1c;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+
+    &.light {
+        color: $white-primary;
+    }
+}
+
+a {
+    color: $black-lighter;
+
+    &:hover {
+        text-decoration: underline 2px solid $black-lighter;
+    }
+}
+
+.no-underline {
+    a:hover {
+        text-decoration: none !important;
+    }
 }
 
 input[type="radio"] {
@@ -59,7 +89,6 @@ input[type="radio"] {
 .ranking-link-header {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
 
     &.light {
         a {
@@ -143,8 +172,6 @@ input[type="radio"] {
             background: $yellow-primary;
         }
 
-
-
         .table-row {
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             padding: 3px 0px;
@@ -161,6 +188,10 @@ input[type="radio"] {
                 margin-top: 5px;
             }
 
+            &:last-of-type {
+                margin-bottom: 10px;
+            }
+
             .table-name-reversed {
                 span.last-name {
                     text-transform: uppercase;
@@ -169,14 +200,37 @@ input[type="radio"] {
             }
 
             .table-previous-span {
-                font-size: 13px;
+                font-size: 15px;
                 opacity: 0.8;
                 font-weight: 200;
                 margin-left: 3px;
             }
         }
     }
+
+    &::after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 10px;
+        background: rgb(0, 0, 0);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.4682466736694678) 0%, rgba(0, 0, 0, 0.20774247198879547) 50%, rgba(0, 0, 0, 0) 100%);
+        opacity: 0.2;
+        bottom: -22px;
+    }
 }
+
+.rounded-table-container {
+    background-color: $white-primary;
+    border-radius: 15px;
+    padding: 20px 30px;
+
+    .table {
+        margin-bottom: 20px;
+    }
+}
+
+// --------------------- NAV BAR -------------------------
 
 header {
     position: fixed;
@@ -238,9 +292,14 @@ header {
     }
 }
 
+
+
+
+// --------------------- LANDING PAGE -------------------------
+
+
 .hero-section {
     background-color: $yellow-primary;
-    height: 80vh;
     width: 90%;
     position: relative;
     padding: 0px 5%;
@@ -268,10 +327,10 @@ header {
     .hero-ranking-container {
         width: 45%;
         position: relative;
-        height: 90%;
+        margin: 20px 0px;
 
-        .hero-alltimeranking {
-
+        .table {
+            height: 60vh;
 
             .table-header,
             .table-row {
@@ -299,53 +358,36 @@ header {
     }
 }
 
-.landing-ranking-rounded-container {
-    padding: 20px 30px;
-    background-color: $white-primary;
-    height: calc(100% - 80px);
-    overflow: hidden;
-    position: relative;
-    border-radius: 15px;
-
-    &::before {
-        position: absolute;
-        content: "";
-        display: block;
-        width: 100%;
-        height: 20px;
-        background-color: $white-primary;
-        z-index: 10;
-        bottom: 0;
-        left: 0px;
-    }
-
-    &::after {
-        position: absolute;
-        content: "";
-        display: block;
-        width: calc(100% - 60px);
-        height: 20px;
-        bottom: 20px;
-        left: 30px;
-        box-shadow: inset 0px -12px 10px -12px rgba(0, 0, 0, 0.185);
-        z-index: 5;
-    }
-}
-
 .landing-movements-section {
     position: relative;
-    padding: 20px 5% 30px;
+    padding: 20px 5% 50px;
     background-color: $white-primary;
 
     .table {
+        height: 50vh;
 
         .table-header,
         .table-row {
+            @keyframes rankMovementIndicatorFlash {
+                0% {
+                    opacity: 0;
+                }
+
+                50% {
+                    opacity: 1;
+                }
+
+                100% {
+                    opacity: 0;
+                }
+            }
+
             svg {
                 height: 12px;
                 width: 12px;
                 margin-right: 5px;
                 fill: rgb(53, 189, 0);
+                animation: rankMovementIndicatorFlash 2s infinite ease-in-out;
 
                 &.no-change {
                     fill: #a5a5a5;
@@ -390,6 +432,11 @@ header {
     display: flex;
     padding: 20px 5% 40px;
     justify-content: space-between;
+    position: relative;
+
+    .table {
+        height: 60vh;
+    }
 
     .active-ranking-table-container {
         width: 55%;
@@ -440,10 +487,6 @@ header {
             }
         }
     }
-
-    .split-ranking-table {
-        height: 80vh;
-    }
 }
 
 .landing-nations-ranking-section {
@@ -484,6 +527,12 @@ header {
         }
     }
 }
+
+
+
+
+// --------------------- RIDER SSG PAGE -------------------------
+
 
 .rider-profile-container {
     background-color: $white-primary;
@@ -742,6 +791,13 @@ header {
     }
 }
 
+
+
+
+
+
+// --------------------- ADVANCED LIST (RIDERS) -------------------------
+
 .inactive {
     text-decoration: line-through;
     opacity: 0.5;
@@ -884,6 +940,13 @@ header {
     }
 }
 
+
+
+
+
+
+// --------------------- NATION SSG PAGE -------------------------
+
 .nation-profile-info-image-container {
     height: 187.5px;
     width: 250px;
@@ -946,7 +1009,10 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 20px 5% 40px;
-    height: 80vh;
+
+    .table {
+        height: 70vh;
+    }
 
     .table-wrapper {
         width: 48%;
@@ -1024,6 +1090,12 @@ header {
         }
     }
 }
+
+
+
+
+
+// --------------------- NATIONS ADVANCED LIST -------------------------
 
 .nation-ranking-page {
     >h2 {

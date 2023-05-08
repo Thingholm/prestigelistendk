@@ -100,11 +100,11 @@ export default function NationAccChart(props) {
     return (
         <div className="acc-charts-container charts-container">
             <div className="chart-container">
-                <h3>Akkumulerede Prestigelisten-point</h3>
+                <h3 className="light">Akkumulerede Prestigelisten-point</h3>
                 <Line data={pointsData} options={pointsOptions} />
             </div>
             <div className="chart-container">
-                <h3>Placering på Prestigelisten all time</h3>
+                <h3 className="light">Placering på Prestigelisten all time</h3>
                 <Line data={rankData} options={rankOptions} />
             </div>
         </div>

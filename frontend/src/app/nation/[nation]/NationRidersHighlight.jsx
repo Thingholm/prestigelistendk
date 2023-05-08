@@ -1,4 +1,4 @@
-import { stringEncoder } from "@/components/stringHandler";
+import { nationEncoder, stringEncoder } from "@/components/stringHandler";
 import Link from "next/link";
 
 export default function NationRidersHighlight(props) {
@@ -14,7 +14,7 @@ export default function NationRidersHighlight(props) {
                     )
                 })}
             </ul>
-            <p><Link href="#">Se alle ryttere på Prestigelisten fra {ridersFromNation[0].nation}...</Link></p>
+            <p><Link href={"listen?nation=" + nationEncoder(ridersFromNation[0].nation)}>Se alle ryttere på Prestigelisten fra {ridersFromNation[0].nation}...</Link></p>
         </div>
     )
 }

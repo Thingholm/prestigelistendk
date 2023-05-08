@@ -24,18 +24,18 @@ export default function Home() {
       </div>
 
       <div className="landing-movements-section">
-        <RankingLinkHeader title="Seneste bevægelser" link="#" />
+        <h3>Pointgivende resultater seneste måned</h3>
         <RankingMovements />
       </div>
 
       <div className="landing-split-rankings-section">
         <div className="active-ranking-table-container split-ranking-table">
-          <RankingLinkHeader title="Største aktive ryttere" link="#" mode="light" />
+          <RankingLinkHeader title="Største aktive ryttere" link={"listen?activeStatus=active"} mode="light" />
           <ActiveRanking />
         </div>
 
         <div className="danish-ranking-table-container split-ranking-table">
-          <RankingLinkHeader title="Største danske ryttere" link="#" mode="light" />
+          <RankingLinkHeader title="Største danske ryttere" link={"listen?nation=Danmark"} mode="light" />
           <DanishRanking />
         </div>
       </div>

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import "../../node_modules/flag-icons/css/flag-icons.min.css";
 import useStore from '@/utils/store';
 import Link from 'next/link';
-import { stringEncoder } from '@/components/stringHandler';
+import { nationEncoder, stringEncoder } from '@/components/stringHandler';
 import numerizeRanking from '@/utils/numerizeRanking';
 
 async function getData() {
@@ -26,26 +26,28 @@ export default function AlltimeRanking() {
 
 
     return (
-        <div className='table hero-alltimeranking landing-ranking-rounded-container'>
-            <div className='table-header'>
-                <p>Nr.</p>
-                <p>Rytter</p>
-                <p>Nation</p>
-                <p>Årgang</p>
-                <p>Point</p>
-            </div>
-            <div className="table-content">
-                {rankingAlltime && rankingAlltime.map((rider, index) => {
-                    return (
-                        <div key={rider.id} className='table-row'>
-                            <p>{rider.currentRank}</p>
-                            <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName.replace("&#39;", "'"))}><span className='last-name'>{rider.lastName.replace("&#39;", "'")} </span>{rider.firstName}</Link></p>
-                            <p><Link href={"/nation/" + rider.nation}><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</Link></p>
-                            <p>{rider.birthYear}</p>
-                            <p>{rider.points}</p>
-                        </div>
-                    )
-                })}
+        <div className="rounded-table-container">
+            <div className='table hero-alltimeranking'>
+                <div className='table-header'>
+                    <p>Nr.</p>
+                    <p>Rytter</p>
+                    <p>Nation</p>
+                    <p>Årgang</p>
+                    <p>Point</p>
+                </div>
+                <div className="table-content">
+                    {rankingAlltime && rankingAlltime.map((rider, index) => {
+                        return (
+                            <div key={rider.id} className='table-row'>
+                                <p>{rider.currentRank}</p>
+                                <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName.replace("&#39;", "'"))}><span className='last-name'>{rider.lastName.replace("&#39;", "'")} </span>{rider.firstName}</Link></p>
+                                <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</Link></p>
+                                <p>{rider.birthYear}</p>
+                                <p>{rider.points}</p>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )

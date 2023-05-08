@@ -27,26 +27,28 @@ export default function ActiveRanking() {
     }, [rankingAlltime])
 
     return (
-        <div className='table hero-alltimeranking landing-ranking-rounded-container'>
-            <div className='table-header'>
-                <p>Nr.</p>
-                <p>Rytter</p>
-                <p>Nation</p>
-                <p>Hold</p>
-                <p>Point</p>
-            </div>
-            <div className="table-content">
-                {activeRanking && activeRanking.map((rider, index) => {
-                    return (
-                        <div key={rider.id} className='table-row'>
-                            <p>{rider.currentRank}</p>
-                            <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
-                            <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</Link></p>
-                            <p>{rider.currentTeam}</p>
-                            <p>{rider.points}</p>
-                        </div>
-                    )
-                })}
+        <div className="rounded-table-container">
+            <div className='table'>
+                <div className='table-header'>
+                    <p>Nr.</p>
+                    <p>Rytter</p>
+                    <p>Nation</p>
+                    <p>Hold</p>
+                    <p>Point</p>
+                </div>
+                <div className="table-content">
+                    {activeRanking && activeRanking.map((rider, index) => {
+                        return (
+                            <div key={rider.id} className='table-row'>
+                                <p>{rider.currentRank}</p>
+                                <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
+                                <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span>{rider.nation}</Link></p>
+                                <p>{rider.currentTeam}</p>
+                                <p>{rider.points}</p>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )
