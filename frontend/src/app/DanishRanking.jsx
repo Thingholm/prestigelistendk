@@ -3,6 +3,7 @@
 import useStore from "@/utils/store"
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { stringEncoder } from "@/components/stringHandler";
 
 export default function DanishRanking() {
     const rankingAlltime = useStore((state) => state.rankingAlltime);
@@ -38,8 +39,8 @@ export default function DanishRanking() {
                     return (
                         <div key={rider.id} className='table-row'>
                             <p>{rider.currentRank}</p>
-                            <p className='table-name-reversed'><Link href={"/rytter/" + rider.riderId}><span className="fi fi-dk"></span><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
-                            <p>{rider.birthYear}</p>
+                            <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className="fi fi-dk"></span><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
+                            <p><Link href={"/listen?yearFilterRange=single&bornBefore=" + rider.birthYear}>{rider.birthYear}</Link></p>
                             <p>{rider.points}</p>
                         </div>
                     )

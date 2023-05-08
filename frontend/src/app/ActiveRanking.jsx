@@ -3,6 +3,7 @@
 import useStore from "@/utils/store"
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { nationEncoder, stringEncoder } from "@/components/stringHandler";
 
 export default function ActiveRanking() {
     const rankingAlltime = useStore((state) => state.rankingAlltime);
@@ -39,8 +40,8 @@ export default function ActiveRanking() {
                     return (
                         <div key={rider.id} className='table-row'>
                             <p>{rider.currentRank}</p>
-                            <p className='table-name-reversed'><Link href={"/rytter/" + rider.riderId}><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
-                            <p><Link href={"/nation/" + rider.nation.replace("Ø", "oe")}><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</Link></p>
+                            <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
+                            <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</Link></p>
                             <p>{rider.currentTeam}</p>
                             <p>{rider.points}</p>
                         </div>
