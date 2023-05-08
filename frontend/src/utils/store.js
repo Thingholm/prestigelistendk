@@ -11,6 +11,8 @@ export const initialFilterState = {
 const useStore = create((set) => ({
     rankingAlltime: [],
     rankingFilter: initialFilterState,
+    latestResults: [],
+    pointSystem: [],
 
     addRankingAlltime: (rankings) => set((state) => ({
         rankingAlltime: rankings,
@@ -18,6 +20,14 @@ const useStore = create((set) => ({
 
     setRankingFilter: (newFilter) => set((state) => ({
         rankingFilter: newFilter,
+    })),
+
+    addLatestResults: (results) => set((state) => ({
+        latestResults: results,
+    })),
+
+    addPointSystem: (system) => set((state) => ({
+        pointSystem: system,
     })),
 }))
 

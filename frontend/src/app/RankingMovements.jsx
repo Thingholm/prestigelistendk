@@ -10,10 +10,11 @@ import Link from "next/link";
 import numerizeRanking from "@/utils/numerizeRanking";
 import { stringEncoder } from "@/components/stringHandler";
 
-async function getResults() {
+async function getData() {
     const date = new Date();
     let { data: results } = await supabase.from('results').select('*').gt('raceDate', date.getFullYear() + "-" + (date.getMonth() - 1) + "-" + date.getDate());
-    return results;
+    let { data: pointSystem } = await supabase.from('pointSystem').select('*');
+    return { results: results, pointSystem: pointSystem };
 }
 
 async function getPoints() {
@@ -25,11 +26,16 @@ export default function RankingMovements() {
     const [resultsList, setResultsList] = useState();
     const [racePoints, setRacePoints] = useState();
     const rankingAlltime = useStore((state) => state.rankingAlltime);
+    const latestResults = useStore((state) => state.latestResults);
+    const addLatestResults = useStore((state) => state.addLatestResults);
+    const pointSystem = useStore((state) => state.pointSystem);
+    const addPointSystem = useStore((state) => state.addPointSystem);
 
     useEffect(() => {
-        getPoints().then(result => setRacePoints(result));
-        getResults().then(result => {
-            const filteredForRidersOnly = result.filter(i => {
+        getData().then(result => {
+            addPointSystem(result.pointSystem);
+
+            const filteredForRidersOnly = result.results.filter(i => {
                 if (rankingAlltime.map(j => j.fullName).includes(i.rider)) {
                     return true;
                 }
@@ -39,7 +45,7 @@ export default function RankingMovements() {
                 const key = obj["raceDate"];
                 const curGroup = acc[key] ?? [];
                 const curResult = ((obj.race.includes("etape") ? obj.race.split(". ")[1] : obj.race))
-                const curPoints = racePoints.find(i => i.raceName == curResult).points
+                const curPoints = (pointSystem.find(i => i.raceName == curResult) ? pointSystem.find(i => i.raceName == curResult).points : 0)
                 let counter = 1;
                 if (curGroup.find(i => i.rider == obj.rider)) {
                     const index = curGroup.findIndex(i => i.rider == obj.rider);
@@ -104,7 +110,7 @@ export default function RankingMovements() {
                 prevRanking = newPrevRanking;
             })
 
-            setResultsList(finalMovementsList)
+            addLatestResults(finalMovementsList)
         });
     }, [rankingAlltime])
 
@@ -120,7 +126,7 @@ export default function RankingMovements() {
                 <p>Dato</p>
             </div>
             <div className="table-content">
-                {resultsList && resultsList.map((result, index) => {
+                {latestResults && latestResults.map((result, index) => {
                     return (
                         <div key={index} className="table-row">
                             <p>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.oldRank - result.newRank}</p>
