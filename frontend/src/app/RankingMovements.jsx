@@ -7,9 +7,12 @@ import useStore from "@/utils/store";
 import ArrowUpTriangle from "@/components/ArrowUpTriangle";
 import NoChange from "@/components/NoChange";
 import Link from "next/link";
+import numerizeRanking from "@/utils/numerizeRanking";
+import { stringEncoder } from "@/components/stringHandler";
 
 async function getResults() {
-    let { data: results } = await supabase.from('results').select('*').eq('year', '2023');
+    const date = new Date();
+    let { data: results } = await supabase.from('results').select('*').gt('raceDate', date.getFullYear() + "-" + (date.getMonth() - 1) + "-" + date.getDate());
     return results;
 }
 
@@ -21,89 +24,88 @@ async function getPoints() {
 export default function RankingMovements() {
     const [resultsList, setResultsList] = useState();
     const [racePoints, setRacePoints] = useState();
-    const [combinedList, setCombinedList] = useState([]);
     const rankingAlltime = useStore((state) => state.rankingAlltime);
 
     useEffect(() => {
-        getResults().then(result => setResultsList(result));
         getPoints().then(result => setRacePoints(result));
-    }, [])
-
-    useEffect(() => {
-        setCombinedList([]);
-
-        let prevRankings = rankingAlltime.map(i => {
-            return ({
-                id: i.id,
-                fullName: i.fullName,
-                points: i.points
+        getResults().then(result => {
+            const filteredForRidersOnly = result.filter(i => {
+                if (rankingAlltime.map(j => j.fullName).includes(i.rider)) {
+                    return true;
+                }
             })
-        });
 
-        if (resultsList && racePoints && rankingAlltime) {
-            resultsList.sort(function (a, b) { return b.raceDate.replace("2023-", "").replace("-", "") - a.raceDate.replace("2023-", "").replace("-", "") }).slice(0, 10).map(i => {
-                let currentRacePoints;
-                const date = i.raceDate;
-
-                if (i.race.includes("etape")) {
-                    currentRacePoints = racePoints.find(j => j.raceName == i.race.split(". ")[1]);
+            const resultsGroupedByDateWithPoints = filteredForRidersOnly.reduce((acc, obj) => {
+                const key = obj["raceDate"];
+                const curGroup = acc[key] ?? [];
+                const curResult = ((obj.race.includes("etape") ? obj.race.split(". ")[1] : obj.race))
+                const curPoints = racePoints.find(i => i.raceName == curResult).points
+                let counter = 1;
+                if (curGroup.find(i => i.rider == obj.rider)) {
+                    const index = curGroup.findIndex(i => i.rider == obj.rider);
+                    acc[key][index].points += curPoints;
+                    acc[key][index].race = [acc[key][index].race, obj.race];
+                    acc[key][index].count++;
+                    return { ...acc, [key]: curGroup.sort((a, b) => b.points - a.points) }
                 } else {
-                    currentRacePoints = racePoints.find(j => j.raceName == i.race);
+                    return { ...acc, [key]: [...curGroup, { ...obj, points: curPoints, count: counter }].sort((a, b) => b.points - a.points) }
                 }
+            }, {})
 
-                const rankingIndex = rankingAlltime.findIndex(rider => rider.fullName == i.rider);
-                const currentRankingAlltime = rankingAlltime[rankingIndex];
+            let resultsGroupedArray = [];
 
-                if (rankingIndex != -1) {
-                    const rankBeforeResult = { id: prevRankings[rankingIndex].id, fullName: prevRankings[rankingIndex].fullName, points: prevRankings[rankingIndex].points -= currentRacePoints.points, rankingIndex: rankingIndex };
-
-                    let tempRank = prevRankings.map(i => {
-                        return ({
-                            id: i.id,
-                            fullName: i.fullName,
-                            points: i.points
-                        })
-                    });
-
-                    tempRank[rankingIndex] = rankBeforeResult;
-
-                    const sortedRanking = tempRank.sort(function (a, b) { return b.points - a.points });
-
-                    const rankedRanking = sortedRanking.map((obj, index) => {
-                        let rank = index + 1;
-
-                        if (index > 0 && obj.points == sortedRanking[index - 1].points) {
-                            rank = sortedRanking.findIndex(i => obj.points == i.points) + 1;
-                        }
-
-                        return ({ ...obj, currentRank: rank })
-                    });
-
-                    const riderPrevRank = rankedRanking.find(e => e.fullName == i.rider);
-
-                    const currentResult = {
-                        id: i.id,
-                        fullRiderName: i.rider,
-                        raceName: i.race.split(" (")[0],
-                        raceDate: i.raceDate,
-                        riderId: currentRankingAlltime.riderId,
-                        racePoints: currentRacePoints.points,
-                        lastName: currentRankingAlltime.lastName,
-                        firstName: currentRankingAlltime.firstName,
-                        nation: currentRankingAlltime.nation,
-                        nationFlagCode: currentRankingAlltime.nationFlagCode,
-                        riderPoints: currentRankingAlltime.points,
-                        riderTeam: currentRankingAlltime.currentTeam,
-                        currentRank: currentRankingAlltime.currentRank,
-                        prevPoints: riderPrevRank.points,
-                        prevRank: riderPrevRank.currentRank
-                    }
-                    setCombinedList(combinedList => [...combinedList, currentResult])
-                }
+            Object.keys(resultsGroupedByDateWithPoints).map(i => {
+                resultsGroupedArray.push({ date: i, data: resultsGroupedByDateWithPoints[i] })
             })
-        }
 
-    }, [resultsList, racePoints, rankingAlltime])
+            resultsGroupedArray = resultsGroupedArray.sort((a, b) => b.date.localeCompare(a.date))
+
+            let finalMovementsList = [];
+
+            let prevRanking = numerizeRanking(rankingAlltime);
+
+            resultsGroupedArray = resultsGroupedArray.map(i => {
+                let newPrevRanking = prevRanking.map(j => {
+                    return {
+                        currentRank: j.currentRank,
+                        fullName: j.fullName,
+                        points: j.points,
+                        firstName: j.firstName,
+                        lastName: j.lastName,
+                        nationFlagCode: j.nationFlagCode,
+                    }
+                });
+
+                i.data.map(j => {
+                    const rankingIndex = newPrevRanking.findIndex(k => k.fullName == j.rider)
+                    newPrevRanking[rankingIndex].points = newPrevRanking[rankingIndex].points - j.points;
+
+                })
+
+                newPrevRanking = numerizeRanking(newPrevRanking)
+
+                i.data.map(j => {
+                    const rankingIndex = newPrevRanking.findIndex(k => k.fullName == j.rider);
+                    const newRankIndex = prevRanking.findIndex(k => k.fullName == j.rider);
+                    finalMovementsList.push(
+                        {
+                            ...j,
+                            ...prevRanking[newRankIndex],
+                            oldRank: newPrevRanking[rankingIndex].currentRank,
+                            oldPoints: newPrevRanking[rankingIndex].points,
+                            newRank: prevRanking[newRankIndex].currentRank,
+                            newPoints: prevRanking[newRankIndex].points,
+                            raceDate: i.date,
+                        }
+                    )
+                })
+
+                prevRanking = newPrevRanking;
+            })
+
+            setResultsList(finalMovementsList)
+        });
+    }, [rankingAlltime])
 
     return (
         <div className="table result-table">
@@ -117,16 +119,27 @@ export default function RankingMovements() {
                 <p>Dato</p>
             </div>
             <div className="table-content">
-                {combinedList && combinedList.map((result, index) => {
+                {resultsList && resultsList.map((result, index) => {
                     return (
-                        <div key={result.id} className="table-row">
-                            <p>{result.prevRank - result.currentRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.prevRank - result.currentRank}</p>
-                            <p>{result.currentRank} <span className="table-previous-span">{result.prevRank}</span></p>
-                            <p className='table-name-reversed'><Link href={"/rytter/" + result.riderId}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName}</span> {result.firstName}</Link></p>
-                            <p>{result.raceName}</p>
-                            <p>{result.racePoints}</p>
-                            <p>{result.riderPoints} <span className="table-previous-span">{result.prevPoints}</span></p>
-                            <p>{result.raceDate.replace("2023-", "")}</p>
+                        <div key={index} className="table-row">
+                            <p>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.oldRank - result.newRank}</p>
+                            <p>{result.newRank} <span className="table-previous-span">{result.oldRank}</span></p>
+                            <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(result.rider)}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName}</span> {result.firstName}</Link></p>
+                            <p>{result.count > 1 ?
+                                result.race.map((i, index) => {
+                                    if (index == 0) {
+                                        return i.split(" (")[0]
+                                    } else if (index == (result.race.length - 1)) {
+                                        return " & " + i.split(" (")[0]
+                                    } else {
+                                        return ", " + i.split(" (")[0]
+                                    }
+                                }) :
+                                result.race.split(" (")[0]}
+                            </p>
+                            <p>{result.points}</p>
+                            <p>{result.newPoints} <span className="table-previous-span">{result.oldPoints}</span></p>
+                            <p>{result.raceDate.split("-")[2] + "-" + result.raceDate.split("-")[1]}</p>
                         </div>
                     )
                 })}
