@@ -719,23 +719,32 @@ header nav ul li .nav-dropdown-menu ul li {
 }
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) {
-  width: 10%;
+  width: 5%;
 }
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(2),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(2) {
-  width: 10%;
+  width: 5%;
 }
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(3),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(3) {
-  width: 50%;
+  width: 10%;
 }
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) {
-  width: 30%;
+  width: 40%;
 }
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) {
+  width: 30%;
+}
+.ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(6),
+.ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(6) {
   width: 15%;
+}
+.ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(6):hover {
+  cursor: pointer;
+  -webkit-text-decoration: underline 2px solid #1c1c1c;
+          text-decoration: underline 2px solid #1c1c1c;
 }
 
 .load-more-results-button {

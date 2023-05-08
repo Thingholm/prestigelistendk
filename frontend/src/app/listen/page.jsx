@@ -14,7 +14,7 @@ async function fetchData() {
         .from('alltimeRanking')
         .select('*');
 
-    return (alltimeRanking);
+    return (numerizeRanking(alltimeRanking));
 }
 
 export default function Page({ searchParams }) {
@@ -162,7 +162,8 @@ export default function Page({ searchParams }) {
             <div className="ranking-page-table-container">
                 <div className="table">
                     <div className="table-header">
-                        <p>Placering</p>
+                        <p>Nr.</p>
+                        <p>All time</p>
                         <p>Point</p>
                         <p>Rytter</p>
                         <p>Nation</p>
@@ -173,6 +174,7 @@ export default function Page({ searchParams }) {
                             return (
                                 <div key={rider.id} className="table-row">
                                     <p>{rider.currentRank}</p>
+                                    <p><span className="table-previous-span">{alltimeRanking.find(i => i.fullName == rider.fullName).currentRank}</span> </p>
                                     <p>{rider.points}</p>
                                     <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
                                     <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span>{rider.nation}</Link></p>
