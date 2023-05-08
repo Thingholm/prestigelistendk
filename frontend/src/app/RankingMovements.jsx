@@ -96,6 +96,7 @@ export default function RankingMovements() {
                             newRank: prevRanking[newRankIndex].currentRank,
                             newPoints: prevRanking[newRankIndex].points,
                             raceDate: i.date,
+                            racePoints: j.points,
                         }
                     )
                 })
@@ -137,7 +138,7 @@ export default function RankingMovements() {
                                 }) :
                                 result.race.split(" (")[0]}
                             </p>
-                            <p>{result.points}</p>
+                            <p>{result.racePoints}</p>
                             <p>{result.newPoints} <span className="table-previous-span">{result.oldPoints}</span></p>
                             <p>{result.raceDate.split("-")[2] + "-" + result.raceDate.split("-")[1]}</p>
                         </div>
