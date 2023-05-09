@@ -6,6 +6,9 @@ $yellow-primary: #fee402;
 $yellow-darker: #fdca00;
 $white-primary: #ffffff;
 $white-darker: #ededed;
+$gold: #D4AF37;
+$silver: #61788f;
+$bronze: saddlebrown;
 
 * {
     margin: 0;
@@ -524,6 +527,125 @@ header {
             p:nth-of-type(7) {
                 width: 10%;
             }
+        }
+    }
+}
+
+.three-year-ranking-container {
+    padding: 20px 5%;
+
+    .table {
+        height: 70vh;
+
+        .table-row {
+            padding: 10px 0px;
+
+            p:first-of-type {
+                flex-direction: column;
+                align-items: start;
+                text-align: start;
+
+                span {
+                    margin-left: 0px;
+                }
+            }
+
+            p:nth-of-type(2) {
+                a {
+                    color: goldenrod;
+
+                }
+            }
+
+            p:nth-of-type(3) {
+                a {
+                    color: silver;
+                }
+            }
+
+            p:nth-of-type(4) {
+                a {
+                    color: chocolate;
+
+                }
+            }
+
+            p {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                a {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+
+                    .fi {
+                        margin-right: 0px;
+                        margin-bottom: 3px;
+                    }
+                }
+            }
+        }
+
+        .table-header {
+            p {
+                text-align: center;
+
+                &:first-of-type {
+                    text-align: left;
+                }
+            }
+        }
+
+        .table-header,
+        .table-row {
+            p:nth-of-type(1) {
+                width: 5%;
+            }
+
+            p:nth-of-type(2) {
+                width: 9.5%;
+            }
+
+            p:nth-of-type(3) {
+                width: 9.5%;
+            }
+
+            p:nth-of-type(4) {
+                width: 9.5%;
+            }
+
+            p:nth-of-type(5) {
+                width: 9.5%;
+            }
+
+            p:nth-of-type(6) {
+                width: 9.5%;
+            }
+
+            p:nth-of-type(7) {
+                width: 9.5%;
+            }
+
+            p:nth-of-type(8) {
+                width: 9.5%;
+            }
+
+            p:nth-of-type(9) {
+                width: 9.5%;
+            }
+
+            p:nth-of-type(10) {
+                width: 9.5%;
+            }
+
+            p:nth-of-type(11) {
+                width: 9.5%;
+            }
+
         }
     }
 }
