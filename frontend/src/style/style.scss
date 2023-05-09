@@ -6,9 +6,9 @@ $yellow-primary: #fee402;
 $yellow-darker: #fdca00;
 $white-primary: #ffffff;
 $white-darker: #ededed;
-$gold: #D4AF37;
-$silver: #61788f;
-$bronze: saddlebrown;
+$gold: goldenrod;
+$silver: #7b8ea1;
+$bronze: rgb(153, 81, 30);
 
 * {
     margin: 0;
@@ -550,26 +550,6 @@ header {
                 }
             }
 
-            p:nth-of-type(2) {
-                a {
-                    color: goldenrod;
-
-                }
-            }
-
-            p:nth-of-type(3) {
-                a {
-                    color: silver;
-                }
-            }
-
-            p:nth-of-type(4) {
-                a {
-                    color: chocolate;
-
-                }
-            }
-
             p {
                 display: flex;
                 align-items: center;
@@ -608,14 +588,26 @@ header {
 
             p:nth-of-type(2) {
                 width: 9.5%;
+
+                a {
+                    color: $gold;
+                }
             }
 
             p:nth-of-type(3) {
                 width: 9.5%;
+
+                a {
+                    color: $silver;
+                }
             }
 
             p:nth-of-type(4) {
                 width: 9.5%;
+
+                a {
+                    color: $bronze;
+                }
             }
 
             p:nth-of-type(5) {
