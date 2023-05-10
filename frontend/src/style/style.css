@@ -234,6 +234,36 @@ header nav ul li .nav-dropdown-menu ul li {
   padding: 20px;
 }
 
+footer {
+  background-color: #1c1c1c;
+  padding: 20px 5%;
+  color: #ededed;
+}
+footer a {
+  color: #ededed;
+}
+footer a:hover {
+  color: #fee402;
+  -webkit-text-decoration: underline solid 2px #fee402;
+          text-decoration: underline solid 2px #fee402;
+}
+footer .footer-list-container {
+  margin-bottom: 50px;
+  display: flex;
+}
+footer .footer-list-container .footer-list-item {
+  margin-right: 200px;
+}
+footer .footer-list-container .footer-list-item h4 {
+  color: #ededed;
+  margin-bottom: 20px;
+  font-size: 18px;
+  opacity: 0.7;
+}
+footer .footer-list-container .footer-list-item ul li {
+  margin-bottom: 5px;
+}
+
 .hero-section {
   background-color: #fee402;
   width: 90%;
