@@ -13,8 +13,7 @@ import { stringEncoder } from "@/components/stringHandler";
 async function getData() {
     const date = new Date();
     let { data: results } = await supabase.from('results').select('*').gt('raceDate', date.getFullYear() + "-" + (date.getMonth() - 1) + "-" + date.getDate());
-    let { data: pointSystem } = await supabase.from('pointSystem').select('*');
-    return { results: results, pointSystem: pointSystem };
+    return { results: results };
 }
 
 async function getPoints() {
@@ -32,9 +31,11 @@ export default function RankingMovements() {
     const addPointSystem = useStore((state) => state.addPointSystem);
 
     useEffect(() => {
-        getData().then(result => {
-            addPointSystem(result.pointSystem);
+        getPoints().then(result => addPointSystem(result));
+    }, [rankingAlltime]);
 
+    useEffect(() => {
+        getData().then(result => {
             const filteredForRidersOnly = result.results.filter(i => {
                 if (rankingAlltime.map(j => j.fullName).includes(i.rider)) {
                     return true;
@@ -112,7 +113,7 @@ export default function RankingMovements() {
 
             addLatestResults(finalMovementsList)
         });
-    }, [rankingAlltime])
+    }, [pointSystem])
 
     return (
         <div className="table result-table">
