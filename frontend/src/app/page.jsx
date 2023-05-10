@@ -6,6 +6,7 @@ import ActiveRanking from "./ActiveRanking"
 import DanishRanking from "./DanishRanking"
 import NationRanking from "./NationRanking"
 import ThreeYearRanking from "./ThreeYearRanking"
+import ByDecadeRanking from "./ByDecadeRanking"
 
 export default function Home() {
   return (
@@ -44,6 +45,8 @@ export default function Home() {
       <NationRanking />
 
       <ThreeYearRanking />
+
+      <ByDecadeRanking />
     </div>
   )
 }

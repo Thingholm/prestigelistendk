@@ -533,6 +533,7 @@ header {
 
 .three-year-ranking-container {
     padding: 20px 5%;
+    margin-bottom: 30px;
 
     .table {
         height: 70vh;
@@ -638,6 +639,74 @@ header {
                 width: 9.5%;
             }
 
+        }
+    }
+}
+
+.ranking-each-decade-container {
+    padding: 20px 5%;
+
+    .table-overflow-container {
+        width: 100%;
+        overflow-x: scroll;
+        position: relative;
+
+        &::-webkit-scrollbar {
+            height: 7px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $white-darker;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $yellow-darker;
+            border-radius: 50px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: $yellow-primary;
+        }
+
+        .table-row {
+            padding: 10px 0px;
+        }
+
+        .table {
+            width: fit-content;
+
+            &::after {
+                display: none;
+            }
+
+            .table-header,
+            .table-row {
+                p:first-of-type {
+                    width: 150px;
+                }
+
+                p {
+                    width: 300px;
+                }
+
+                p:nth-of-type(2) {
+                    a {
+                        color: $gold;
+                    }
+                }
+
+                p:nth-of-type(3) {
+                    a {
+                        color: $silver;
+                    }
+                }
+
+                p:nth-of-type(4) {
+                    a {
+                        color: $bronze;
+                    }
+                }
+            }
         }
     }
 }
