@@ -9,6 +9,7 @@ import NoChange from "@/components/NoChange";
 import Link from "next/link";
 import numerizeRanking from "@/utils/numerizeRanking";
 import { stringEncoder } from "@/components/stringHandler";
+import TableSkeleton from "@/components/TableSkeleton";
 
 async function getData() {
     const date = new Date();
@@ -22,8 +23,7 @@ async function getPoints() {
 }
 
 export default function RankingMovements() {
-    const [resultsList, setResultsList] = useState();
-    const [racePoints, setRacePoints] = useState();
+    const [isLoading, setIsLoading] = useState(true);
     const rankingAlltime = useStore((state) => state.rankingAlltime);
     const latestResults = useStore((state) => state.latestResults);
     const addLatestResults = useStore((state) => state.addLatestResults);
@@ -112,6 +112,7 @@ export default function RankingMovements() {
             })
 
             addLatestResults(finalMovementsList)
+            setIsLoading(false);
         });
     }, [pointSystem])
 
@@ -126,32 +127,35 @@ export default function RankingMovements() {
                 <p>Point</p>
                 <p>Dato</p>
             </div>
-            <div className="table-content">
-                {latestResults && latestResults.map((result, index) => {
-                    return (
-                        <div key={index} className="table-row">
-                            <p>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.oldRank - result.newRank}</p>
-                            <p>{result.newRank} <span className="table-previous-span">{result.oldRank}</span></p>
-                            <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(result.rider)}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName}</span> {result.firstName}</Link></p>
-                            <p>{result.count > 1 ?
-                                result.race.map((i, index) => {
-                                    if (index == 0) {
-                                        return i.split(" (")[0]
-                                    } else if (index == (result.race.length - 1)) {
-                                        return " & " + i.split(" (")[0]
-                                    } else {
-                                        return ", " + i.split(" (")[0]
-                                    }
-                                }) :
-                                result.race.split(" (")[0]}
-                            </p>
-                            <p>{result.racePoints}</p>
-                            <p>{result.newPoints} <span className="table-previous-span">{result.oldPoints}</span></p>
-                            <p>{result.raceDate.split("-")[2] + "-" + result.raceDate.split("-")[1]}</p>
-                        </div>
-                    )
-                })}
-            </div>
+            {isLoading ? <TableSkeleton /> :
+                <div className="table-content">
+                    {latestResults.map((result, index) => {
+                        return (
+                            <div key={index} className="table-row">
+                                <p>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.oldRank - result.newRank}</p>
+                                <p>{result.newRank} <span className="table-previous-span">{result.oldRank}</span></p>
+                                <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(result.rider)}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName}</span> {result.firstName}</Link></p>
+                                <p>{result.count > 1 ?
+                                    result.race.map((i, index) => {
+                                        if (index == 0) {
+                                            return i.split(" (")[0]
+                                        } else if (index == (result.race.length - 1)) {
+                                            return " & " + i.split(" (")[0]
+                                        } else {
+                                            return ", " + i.split(" (")[0]
+                                        }
+                                    }) :
+                                    result.race.split(" (")[0]}
+                                </p>
+                                <p>{result.racePoints}</p>
+                                <p>{result.newPoints} <span className="table-previous-span">{result.oldPoints}</span></p>
+                                <p>{result.raceDate.split("-")[2] + "-" + result.raceDate.split("-")[1]}</p>
+                            </div>
+                        )
+                    })}
+                </div>
+            }
+
         </div>
     )
 }
