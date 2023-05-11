@@ -223,6 +223,49 @@ input[type="radio"] {
     }
 }
 
+.loading-table-skeleton-container {
+    overflow: hidden !important;
+
+    .table-row {
+        span {
+            @keyframes skeleton {
+                0% {
+                    transform: translateX(-100%);
+
+                }
+
+                100% {
+                    transform: translateX(250%);
+                }
+            }
+
+            display: block;
+            position: relative;
+            content: "";
+            background-color: #DDDBDD;
+            width: 100%;
+            height: 20px;
+            border-radius: 5px;
+
+            &::after {
+
+                animation: skeleton 2s infinite;
+                position: absolute;
+                display: block;
+                content: "";
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 50%;
+                opacity: 0.5;
+                transform: translateX(-100%);
+                background: rgb(255, 255, 255);
+                background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4682466736694678) 25%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.5018601190476191) 75%, rgba(255, 255, 255, 0) 100%);
+            }
+        }
+    }
+}
+
 .rounded-table-container {
     background-color: $white-primary;
     border-radius: 15px;
