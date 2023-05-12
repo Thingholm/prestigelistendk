@@ -285,9 +285,15 @@ export const nationFlagCodes = [
         numberOfRiders: 3,
         nation: 'Brasilien',
         points: 3,
+    },
+    {
         nationFlagCode: 'bg',
         numberOfRiders: 1,
         nation: 'Bulgarien',
         currentRank: 46
+    },
+    {
+        nationFlagCode: 'gr',
+        nation: 'Grækenland'
     }
 ]

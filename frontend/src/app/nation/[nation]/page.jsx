@@ -32,8 +32,8 @@ function groupFunction(obj) {
 }
 
 
-export default async function Page({ params }) {
-    const nationCapitalized = params.nation.replace("oe", "ø").replace("aa", "å").replace("ae", "æ");
+export default async function Page(props) {
+    const nationCapitalized = props.nation.replace("oe", "ø").replace("aa", "å").replace("ae", "æ");
     let nationString;
 
     if (nationCapitalized == "usa") {
@@ -73,19 +73,4 @@ export default async function Page({ params }) {
             <RankingNationsNation currentNation={nationString} rankingNations={nationsRankings} activeRankingNations={activeNationsRankings} />
         </div>
     )
-}
-
-export async function generateStaticParams() {
-    let { data: rankingAlltime } = await supabase
-        .from('alltimeRanking')
-        .select('nation');
-
-    return rankingAlltime.reduce((acc, curr) => {
-        if (!acc.find((item) => item == curr.toString().toLowerCase().replace("ø", "oe").replace("å", "aa").replace("æ", "ae").replace(" ", "-"))) {
-            acc.push(curr.toString().toLowerCase().replace("ø", "oe").replace("å", "aa").replace("æ", "ae").replace(" ", "-"));
-        }
-        return acc;
-    }, []).map(nation => ({
-        slug: nation,
-    }))
 }

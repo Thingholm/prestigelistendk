@@ -1191,6 +1191,85 @@ footer .footer-list-container .footer-list-item ul li {
   width: 10%;
 }
 
+.nation-page-container.loading-ui-container span {
+  content: "";
+  display: block;
+  background-color: #DDDBDD;
+  position: relative;
+  overflow: hidden;
+}
+.nation-page-container.loading-ui-container span::after {
+  animation: skeleton 2s infinite;
+  position: absolute;
+  display: block;
+  content: "";
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  opacity: 0.5;
+  transform: translateX(-100%);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4682466737) 25%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.501860119) 75%, rgba(255, 255, 255, 0) 100%);
+}
+.nation-page-container.loading-ui-container span.fi::after {
+  display: none;
+}
+.nation-page-container.loading-ui-container .rider-profile-info-info-container p {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.nation-page-container.loading-ui-container .rider-profile-info-info-container p span {
+  display: inline-block;
+  height: 20px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+.nation-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(1) span {
+  width: 50px;
+}
+.nation-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(2) span {
+  width: 100px;
+}
+.nation-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(3) span {
+  width: 50px;
+}
+.nation-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(4) span {
+  width: 100px;
+}
+.nation-page-container.loading-ui-container .rider-top-results-container ul li {
+  position: relative;
+}
+.nation-page-container.loading-ui-container .rider-top-results-container ul li span {
+  height: 20px;
+  border-radius: 5px;
+  margin-bottom: 2px;
+}
+.nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(1) span {
+  width: 150px;
+}
+.nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(2) span {
+  width: 200px;
+}
+.nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(3) span {
+  width: 125px;
+}
+.nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(4) span {
+  width: 250px;
+}
+.nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(5) span {
+  width: 200px;
+}
+.nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(6) span {
+  width: 150px;
+}
+.nation-page-container.loading-ui-container .chart-container span {
+  width: 100%;
+  aspect-ratio: 2/1;
+  border-radius: 15px;
+}
+
 .nation-ranking-page > h2 {
   padding: 20px 5%;
 }
