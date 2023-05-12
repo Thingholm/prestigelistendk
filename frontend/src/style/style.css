@@ -1033,6 +1033,9 @@ footer .footer-list-container .footer-list-item ul li {
 .ranking-page-container .ranking-page-table-container {
   padding: 20px 5%;
 }
+.ranking-page-container .ranking-page-table-container .table::after {
+  display: none;
+}
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) {
   width: 5%;
@@ -1067,16 +1070,20 @@ footer .footer-list-container .footer-list-item ul li {
   margin: 0px 5%;
   width: 90%;
   padding: 10px 0px;
+  margin-bottom: 20px;
   border: none;
   background-color: #fee402;
   font-weight: 600;
   border-radius: 5px;
+  transition: 0.2s;
 }
 .load-more-results-button:hover {
-  background-color: #fdca00;
+  transform: scale(1.01);
+  opacity: 0.9;
   cursor: pointer;
 }
 .load-more-results-button:active {
+  transform: scale(0.99);
   border: none;
 }
 
