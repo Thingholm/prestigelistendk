@@ -8,6 +8,7 @@ import "../../../node_modules/flag-icons/css/flag-icons.min.css"
 import { nationEncoder, stringDecoder, stringEncoder } from "@/components/stringHandler";
 import useStore, { initialFilterState } from "@/utils/store";
 import { IoRefreshOutline } from "react-icons/io5"
+import TableSkeleton from "@/components/TableSkeleton";
 
 async function fetchData() {
     let { data: alltimeRanking } = await supabase
@@ -24,6 +25,7 @@ export default function Page({ searchParams }) {
     const [alltimeRanking, setalltimeRanking] = useState([]);
     const [filteredRanking, setFilteredRanking] = useState([]);
     const [amountLoaded, setAmountLoaded] = useState(100);
+    const [isLoading, setIsLoading] = useState(true);
     const rankingFilter = useStore((state) => state.rankingFilter);
     const setRankingFilter = useStore((state) => state.setRankingFilter);
 
@@ -66,6 +68,7 @@ export default function Page({ searchParams }) {
     }, [])
 
     useEffect(() => {
+        setIsLoading(true);
         let newFilteredRanking = alltimeRanking;
 
         if (rankingFilter.activeStatus == "active") {
@@ -87,6 +90,7 @@ export default function Page({ searchParams }) {
         setSelectedNation(stringDecoder(rankingFilter.nation));
         setAmountLoaded(100);
         setFilteredRanking(numerizeRanking(newFilteredRanking));
+        setIsLoading(false);
     }, [rankingFilter, birthYearList])
 
     return (
@@ -169,20 +173,22 @@ export default function Page({ searchParams }) {
                         <p>Nation</p>
                         <p>Årgang</p>
                     </div>
-                    <div className="table-content">
-                        {filteredRanking.slice(0, amountLoaded).map(rider => {
-                            return (
-                                <div key={rider.id} className="table-row">
-                                    <p>{rider.currentRank}</p>
-                                    <p><span className="table-previous-span">{alltimeRanking.find(i => i.fullName == rider.fullName).currentRank}</span> </p>
-                                    <p>{rider.points}</p>
-                                    <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
-                                    <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span>{rider.nation}</Link></p>
-                                    <p onClick={() => setRankingFilter({ ...rankingFilter, bornBefore: rider.birthYear, yearFilterRange: "single", radioCheck: false })}>{rider.birthYear}</p>
-                                </div>
-                            )
-                        })}
-                    </div>
+                    {isLoading ? <TableSkeleton /> :
+                        <div className="table-content">
+                            {filteredRanking.slice(0, amountLoaded).map(rider => {
+                                return (
+                                    <div key={rider.id} className="table-row">
+                                        <p>{rider.currentRank}</p>
+                                        <p><span className="table-previous-span">{alltimeRanking.find(i => i.fullName == rider.fullName).currentRank}</span> </p>
+                                        <p>{rider.points}</p>
+                                        <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
+                                        <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span>{rider.nation}</Link></p>
+                                        <p onClick={() => setRankingFilter({ ...rankingFilter, bornBefore: rider.birthYear, yearFilterRange: "single", radioCheck: false })}>{rider.birthYear}</p>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    }
                 </div>
             </div>
 
