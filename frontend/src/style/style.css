@@ -174,6 +174,14 @@ input[type=radio]::before {
   bottom: -22px;
 }
 
+@keyframes skeleton {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
 .loading-table-skeleton-container {
   overflow: hidden !important;
 }
@@ -185,14 +193,6 @@ input[type=radio]::before {
   width: 100%;
   height: 20px;
   border-radius: 5px;
-}
-@keyframes skeleton {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(250%);
-  }
 }
 .loading-table-skeleton-container .table-row span::after {
   animation: skeleton 2s infinite;
@@ -724,6 +724,7 @@ footer .footer-list-container .footer-list-item ul li {
   width: 90%;
   padding: 30px 5% 40px;
   background-color: #1c1c1c;
+  min-height: 22.05vw;
 }
 .rider-evolution-container .chart-container {
   position: relative;
@@ -857,6 +858,107 @@ footer .footer-list-container .footer-list-item ul li {
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-header p:nth-of-type(4),
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-row p:nth-of-type(4) {
   width: 15%;
+}
+
+.rider-page-container.loading-ui-container span {
+  content: "";
+  display: block;
+  background-color: #DDDBDD;
+  position: relative;
+  overflow: hidden;
+}
+.rider-page-container.loading-ui-container span::after {
+  animation: skeleton 2s infinite;
+  position: absolute;
+  display: block;
+  content: "";
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  opacity: 0.5;
+  transform: translateX(-100%);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4682466737) 25%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.501860119) 75%, rgba(255, 255, 255, 0) 100%);
+}
+.rider-page-container.loading-ui-container .rider-profile-info-container {
+  position: relative;
+}
+.rider-page-container.loading-ui-container .rider-profile-info-container span {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+}
+.rider-page-container.loading-ui-container .rider-profile-info-info-container p {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.rider-page-container.loading-ui-container .rider-profile-info-info-container p:first-of-type span {
+  width: 150px;
+}
+.rider-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(2) span {
+  width: 50px;
+}
+.rider-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(3) span {
+  width: 100px;
+}
+.rider-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(4) span {
+  width: 100px;
+}
+.rider-page-container.loading-ui-container .rider-profile-info-info-container p span {
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+.rider-page-container.loading-ui-container .rider-top-results-container ul li {
+  position: relative;
+  margin-bottom: 2px;
+}
+.rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(1) span {
+  width: 200px;
+}
+.rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(2) span {
+  width: 300px;
+}
+.rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(3) span {
+  width: 250px;
+}
+.rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(4) span {
+  width: 150px;
+}
+.rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(5) span {
+  width: 200px;
+}
+.rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(6) span {
+  width: 150px;
+}
+.rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(7) span {
+  width: 250px;
+}
+.rider-page-container.loading-ui-container .rider-top-results-container ul li span {
+  position: relative;
+  height: 20px;
+  border-radius: 5px;
+}
+.rider-page-container.loading-ui-container .chart-container {
+  position: relative;
+}
+.rider-page-container.loading-ui-container .chart-container span {
+  height: 90%;
+  aspect-ratio: 2/1;
+  border-radius: 15px;
+}
+.rider-page-container.loading-ui-container .rider-all-results-container {
+  position: relative;
+}
+.rider-page-container.loading-ui-container .rider-all-results-container span {
+  width: 100%;
+  height: 40vh;
+  border-radius: 15px;
 }
 
 .inactive {

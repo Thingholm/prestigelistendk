@@ -9,6 +9,7 @@ $white-darker: #ededed;
 $gold: goldenrod;
 $silver: #7b8ea1;
 $bronze: rgb(153, 81, 30);
+$skeleton-base: #DDDBDD;
 
 * {
     margin: 0;
@@ -223,26 +224,26 @@ input[type="radio"] {
     }
 }
 
+@keyframes skeleton {
+    0% {
+        transform: translateX(-100%);
+
+    }
+
+    100% {
+        transform: translateX(250%);
+    }
+}
+
 .loading-table-skeleton-container {
     overflow: hidden !important;
 
     .table-row {
         span {
-            @keyframes skeleton {
-                0% {
-                    transform: translateX(-100%);
-
-                }
-
-                100% {
-                    transform: translateX(250%);
-                }
-            }
-
             display: block;
             position: relative;
             content: "";
-            background-color: #DDDBDD;
+            background-color: $skeleton-base;
             width: 100%;
             height: 20px;
             border-radius: 5px;
@@ -896,6 +897,7 @@ footer {
     width: 90%;
     padding: 30px 5% 40px;
     background-color: $black-lighter;
+    min-height: 22.05vw;
 
     .chart-container {
         position: relative;
@@ -1057,6 +1059,161 @@ footer {
 
                 }
             }
+        }
+    }
+}
+
+.rider-page-container.loading-ui-container {
+    span {
+        content: "";
+        display: block;
+        background-color: $skeleton-base;
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            animation: skeleton 2s infinite;
+            position: absolute;
+            display: block;
+            content: "";
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            opacity: 0.5;
+            transform: translateX(-100%);
+            background: rgb(255, 255, 255);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4682466736694678) 25%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.5018601190476191) 75%, rgba(255, 255, 255, 0) 100%);
+        }
+    }
+
+    .rider-profile-info-container {
+        position: relative;
+
+        span {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            border-radius: 15px;
+        }
+    }
+
+    .rider-profile-info-info-container {
+        p {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            &:first-of-type {
+                span {
+                    width: 150px;
+                }
+            }
+
+            &:nth-of-type(2) {
+                span {
+                    width: 50px;
+                }
+            }
+
+            &:nth-of-type(3) {
+                span {
+                    width: 100px;
+                }
+            }
+
+            &:nth-of-type(4) {
+                span {
+                    width: 100px;
+                }
+            }
+
+            span {
+                position: relative;
+                display: inline-block;
+                height: 20px;
+                border-radius: 5px;
+                margin-left: 5px;
+
+            }
+        }
+    }
+
+    .rider-top-results-container {
+        ul {
+            li {
+                position: relative;
+                margin-bottom: 2px;
+
+                &:nth-last-of-type(1) {
+                    span {
+                        width: 200px;
+                    }
+                }
+
+                &:nth-last-of-type(2) {
+                    span {
+                        width: 300px;
+                    }
+                }
+
+                &:nth-last-of-type(3) {
+                    span {
+                        width: 250px;
+                    }
+                }
+
+                &:nth-last-of-type(4) {
+                    span {
+                        width: 150px;
+                    }
+                }
+
+                &:nth-last-of-type(5) {
+                    span {
+                        width: 200px;
+                    }
+                }
+
+                &:nth-last-of-type(6) {
+                    span {
+                        width: 150px;
+                    }
+                }
+
+                &:nth-last-of-type(7) {
+                    span {
+                        width: 250px;
+                    }
+                }
+
+
+                span {
+                    position: relative;
+                    height: 20px;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+
+    .chart-container {
+        position: relative;
+
+        span {
+            height: 90%;
+            aspect-ratio: 2 / 1;
+            border-radius: 15px;
+        }
+    }
+
+    .rider-all-results-container {
+        position: relative;
+
+        span {
+            width: 100%;
+            height: 40vh;
+            border-radius: 15px;
         }
     }
 }

@@ -59,8 +59,8 @@ async function getRiderById(name) {
     };
 }
 
-export default async function Page({ params }) {
-    const data = await getRiderById(stringDecoder(params.fullName));
+export default async function Page(props) {
+    const data = await getRiderById(stringDecoder(props.fullName));
     const rider = data.riderData;
     const results = data.results;
     const rankingByYears = data.rankingByYears;
@@ -84,11 +84,3 @@ export default async function Page({ params }) {
 
     )
 }
-
-export async function generateStaticParams() {
-    let { data: rankingAlltime } = await supabase.from('alltimeRanking').select('*');
-
-    return rankingAlltime.map((rider) => ({
-        slug: stringEncoder(rider.fullName),
-    }))
-}   
