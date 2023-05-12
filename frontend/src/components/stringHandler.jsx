@@ -11,7 +11,7 @@ export function stringEncoder(string) {
 }
 
 export function stringDecoder(string) {
-    const decodedString = string
+    let decodedString = string
         .replace(/_oe/g, "ø")
         .replace(/_aa/g, "å")
         .replace(/_ae/g, "æ")
@@ -19,6 +19,10 @@ export function stringDecoder(string) {
         .split("-")
         .map(s => s.charAt(0).toUpperCase() + s.slice(1).replace(/__/g, "-"))
         .join(" ");
+
+    if (string == "usa") {
+        decodedString = "USA";
+    }
     return decodedString;
 }
 
