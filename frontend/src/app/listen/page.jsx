@@ -1,13 +1,14 @@
 "use client"
 
 import { supabase } from "@/utils/supabase"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import numerizeRanking from "@/utils/numerizeRanking";
 import Link from "next/link";
 import "../../../node_modules/flag-icons/css/flag-icons.min.css"
 import { nationEncoder, stringDecoder, stringEncoder } from "@/components/stringHandler";
 import useStore, { initialFilterState } from "@/utils/store";
-import { IoRefreshOutline } from "react-icons/io5"
+import { IoRefreshOutline, IoSearch } from "react-icons/io5"
+import { AiOutlineVerticalAlignTop } from "react-icons/ai"
 import TableSkeleton from "@/components/TableSkeleton";
 
 async function fetchData() {
@@ -18,6 +19,25 @@ async function fetchData() {
     return (numerizeRanking(alltimeRanking));
 }
 
+function checkClick(ref) {
+    let visibleState;
+    useEffect(() => {
+        function handleOutsideClick(event) {
+            if (ref.current && !ref.current.contains(event.target)) {
+                visibleState = false;
+            } else {
+                visibleState = true;
+            }
+        }
+
+        document.addEventListener("mousedown", handleOutsideClick, true);
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick, true);
+        }
+    }, [ref])
+    return visibleState;
+}
+
 export default function Page({ searchParams }) {
     const [nationsList, setNationsList] = useState([]);
     const [birthYearList, setBirthYearList] = useState([]);
@@ -26,10 +46,32 @@ export default function Page({ searchParams }) {
     const [filteredRanking, setFilteredRanking] = useState([]);
     const [amountLoaded, setAmountLoaded] = useState(100);
     const [isLoading, setIsLoading] = useState(true);
+    const [search, setSearch] = useState("");
+    const [searchVisible, setSearchVisible] = useState(true);
+    const [targetedRiderId, setTargetedRiderId] = useState();
     const rankingFilter = useStore((state) => state.rankingFilter);
     const setRankingFilter = useStore((state) => state.setRankingFilter);
 
+    const containerRef = useRef(null);
+
     useEffect(() => {
+        function handleOutsideClick(event) {
+            if (containerRef.current && !containerRef.current.contains(event.target)) {
+                setSearchVisible(false);
+            } else {
+                setSearchVisible(true);
+            }
+        }
+
+        document.addEventListener("mousedown", handleOutsideClick, true);
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick, true);
+        }
+    }, [containerRef])
+
+    useEffect(() => {
+        setSearch("");
+
         if (searchParams) {
             setRankingFilter({ ...initialFilterState, ...searchParams });
         }
@@ -68,6 +110,8 @@ export default function Page({ searchParams }) {
     }, [])
 
     useEffect(() => {
+        setSearch("");
+        setTargetedRiderId();
         setIsLoading(true);
         let newFilteredRanking = alltimeRanking;
 
@@ -163,6 +207,39 @@ export default function Page({ searchParams }) {
                 <button className="reset-filter-btn" onClick={() => { setRankingFilter(initialFilterState); setAmountLoaded(100) }}><IoRefreshOutline size={20} /> <span>Nulstil filtre</span></button>
             </div>
 
+            <div ref={containerRef} className="search-container">
+                <div className="search-input-container">
+                    <input type="text" name="search-for-rider" placeholder="Søg efter rytter..." id="search-for-rider" autoComplete="false" value={search} onChange={e => setSearch(e.target.value)} />
+                    <div>
+                        <IoSearch />
+                    </div>
+                </div>
+                {search.length > 2 &&
+                    <ul className={"visible-" + String(searchVisible)}>
+                        {filteredRanking.filter(i => i.fullName.toLowerCase().includes(search.toLowerCase())).map(i => {
+                            return (
+                                <li>
+                                    <a
+                                        href={"/listen#" + i.id}
+                                        onClick={() => {
+                                            if (i.points > 14) {
+                                                setAmountLoaded(i.currentRank + 100)
+                                            } else {
+                                                setAmountLoaded(i.currentRank + 1000)
+                                            }
+                                            setSearchVisible(false);
+                                            setTargetedRiderId(i.id);
+                                        }}
+                                    >
+                                        {i.fullName}
+                                    </a>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                }
+            </div>
+
             <div className="ranking-page-table-container">
                 <div className="table">
                     <div className="table-header">
@@ -177,7 +254,7 @@ export default function Page({ searchParams }) {
                         <div className="table-content">
                             {filteredRanking.slice(0, amountLoaded).map(rider => {
                                 return (
-                                    <div key={rider.id} className="table-row">
+                                    <div key={rider.id} className={targetedRiderId == rider.id ? "table-row highlighted" : "table-row"} id={rider.id}>
                                         <p>{rider.currentRank}</p>
                                         <p><span className="table-previous-span">{alltimeRanking.find(i => i.fullName == rider.fullName).currentRank}</span> </p>
                                         <p>{rider.points}</p>
@@ -193,6 +270,8 @@ export default function Page({ searchParams }) {
             </div>
 
             {filteredRanking.length > amountLoaded && <button className="load-more-results-button" onClick={() => setAmountLoaded(amountLoaded + 100)}>Indlæs flere...</button>}
+
+            <button className="scroll-to-top-button" onClick={() => window.scrollTo(0, 0)}><AiOutlineVerticalAlignTop size={20} /></button>
         </div>
     )
 }

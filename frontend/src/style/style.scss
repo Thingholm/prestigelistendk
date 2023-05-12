@@ -25,6 +25,11 @@ $skeleton-base: #DDDBDD;
 
 // --------------------- GLOBAL STYLING -------------------------
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 150px;
+}
+
 main {
     padding-top: 55px;
 }
@@ -1317,6 +1322,82 @@ footer {
         }
     }
 
+    .search-container {
+        position: relative;
+        padding: 10px 5%;
+
+        .search-input-container {
+            position: relative;
+            width: 500px;
+            z-index: 2;
+
+            input {
+                position: relative;
+                width: 100%;
+                padding: 10px 20px;
+                border-radius: 10px;
+                background-color: #e5e5e5;
+                border: none;
+                outline: none;
+
+                &:focus {
+                    background-color: #f0f0f0;
+                }
+            }
+
+            div {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                height: 100%;
+                top: 0px;
+                right: -20px;
+                color: $black-lighter;
+            }
+        }
+
+        ul {
+            position: absolute;
+            top: 35px;
+            left: 5%;
+            background-color: #fcfcfc;
+            border-radius: 0px 0px 15px 15px;
+            box-shadow: 0px 0px 10px 5px #69696934;
+            z-index: 1;
+            width: 540px;
+
+            &.visible-false {
+                display: none;
+            }
+
+            li {
+                a {
+                    display: block;
+                    padding: 10px 10px;
+                    margin: 0px 10px;
+                    border-bottom: solid 1px #cfcfcf;
+
+                    &:hover {
+                        background-color: #f8f8f8;
+                        text-decoration: none;
+                    }
+                }
+
+                &:first-of-type {
+                    a {
+                        padding-top: 20px;
+                    }
+                }
+
+                &:last-of-type {
+                    a {
+                        border-bottom: 0px;
+                    }
+                }
+            }
+        }
+    }
+
     .ranking-page-table-container {
         padding: 20px 5%;
 
@@ -1355,6 +1436,11 @@ footer {
             }
 
             .table-row {
+
+                &.highlighted {
+                    background-color: $yellow-primary;
+                }
+
                 p:nth-of-type(6) {
                     &:hover {
                         cursor: pointer;
@@ -1388,6 +1474,23 @@ footer {
         border: none;
     }
 }
+
+.scroll-to-top-button {
+    border: none;
+    background-color: $white-darker;
+    border-radius: 999px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    box-shadow: 0px 0px 5px 5px #00000007;
+    color: $black-lighter;
+}
+
 
 
 
