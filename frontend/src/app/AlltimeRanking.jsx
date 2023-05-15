@@ -42,7 +42,7 @@ export default function AlltimeRanking() {
 
                 {isLoading ? <TableSkeleton /> :
                     <div className="table-content">
-                        {rankingAlltime.map((rider, index) => {
+                        {rankingAlltime.slice(0, 100).map((rider, index) => {
                             return (
                                 <div key={rider.id} className='table-row'>
                                     <p>{rider.currentRank}</p>
