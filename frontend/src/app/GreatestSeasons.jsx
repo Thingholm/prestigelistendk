@@ -1,17 +1,25 @@
-"use client";
-
 import { nationEncoder, stringEncoder } from "@/components/stringHandler";
-import useStore from "@/utils/store";
 import { supabase } from "@/utils/supabase";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 
 async function fetchData() {
     let { data: greatestSeasons } = await supabase
         .from('greatestSeasons')
         .select('*');
 
-    return greatestSeasons.sort((a, b) => a.place - b.place);
+    let { data: rankingAlltime } = await supabase
+        .from('alltimeRanking')
+        .select('*');
+
+    let { data: pointSystem } = await supabase
+        .from('pointSystem')
+        .select('*')
+
+    return {
+        greatestSeasons: greatestSeasons.sort((a, b) => a.place - b.place),
+        rankingAlltime: rankingAlltime,
+        pointSystem: pointSystem,
+    };
 }
 
 async function fetchResults(riders, years) {
@@ -23,88 +31,78 @@ async function fetchResults(riders, years) {
     return results;
 }
 
-export default function GreatestSeasons() {
-    const [greatestSeasons, setGreatestSeasons] = useState([]);
-    const [results, setResults] = useState([]);
-    const [resultsWithPoints, setResultsWithPoints] = useState([]);
-    const rankingAlltime = useStore((state) => state.rankingAlltime);
-    const pointSystem = useStore((state) => state.pointSystem);
+export default async function GreatestSeasons() {
+    const data = await fetchData();
+    const rankingAlltime = data.rankingAlltime;
+    const pointSystem = data.pointSystem;
+    let greatestSeasons = data.greatestSeasons;
+    let results;
+    let resultsWithPoints;
 
-    useEffect(() => {
-        if (rankingAlltime) {
-            fetchData().then(data => setGreatestSeasons(data));
-        }
-    }, [rankingAlltime]);
 
-    useEffect(() => {
-        if (greatestSeasons) {
-            fetchResults(
-                greatestSeasons.reduce((acc, obj) => {
-                    if (!acc.includes(obj.rider)) {
-                        acc.push(obj.rider)
+    results = await fetchResults(
+        greatestSeasons.reduce((acc, obj) => {
+            if (!acc.includes(obj.rider)) {
+                acc.push(obj.rider)
+            }
+
+            return acc;
+        }, []),
+
+        greatestSeasons.reduce((acc, obj) => {
+            if (!acc.includes(obj.year)) {
+                acc.push(obj.year)
+            }
+            return acc;
+        }, [])
+    )
+
+
+    if (results) {
+        const resultsGroupedByRider = results.map(i => {
+            return {
+                ...i,
+                racePoints: pointSystem.find(j =>
+                    j.raceName == (i.race.includes("etape") ? i.race.replace("&#39;", "'").split(". ")[1].replace(/comma/g, ",") : i.race.replace("&#39;", "'").replace(/comma/g, ","))
+                ).points
+            }
+        }).reduce((acc, obj) => {
+            const key = obj["rider"];
+            const curGroup = acc[key] ?? [];
+            let race = obj.race;
+
+            if (obj.race.includes("etape")) {
+                race = obj.race.split(". ")[1];
+            }
+
+            return { ...acc, [key]: [...curGroup, { ...obj, race: race, count: 1 }] }
+        }, {})
+
+
+        resultsWithPoints = Object.keys(resultsGroupedByRider).map(i => {
+
+            return {
+                [i]: resultsGroupedByRider[i].reduce((acc, obj) => {
+                    const key = obj["year"];
+                    const curGroup = acc[key] ?? [];
+
+                    if (curGroup.map(j => j.race).includes(obj.race)) {
+                        let index = curGroup.findIndex(j => j.race == obj.race)
+                        if (!obj.race.includes("Dag i førertrøjen")) {
+                            curGroup[index].racePoints += obj.racePoints;
+                        }
+                        curGroup[index].count += 1
+                        return { ...acc, [key]: [...curGroup].sort((a, b) => b.racePoints - a.racePoints) }
+                    } else {
+                        return { ...acc, [key]: [...curGroup, obj].sort((a, b) => b.racePoints - a.racePoints) }
                     }
+                }, {})
+            }
 
-                    return acc;
-                }, []),
+        })
 
-                greatestSeasons.reduce((acc, obj) => {
-                    if (!acc.includes(obj.year)) {
-                        acc.push(obj.year)
-                    }
-                    return acc;
-                }, [])
-            ).then(results =>
-                setResults(results)
-            );
-        }
-    }, [greatestSeasons])
+    }
 
-    useEffect(() => {
-        if (results && pointSystem) {
-            const resultsGroupedByRider = results.map(i => {
-                return {
-                    ...i,
-                    racePoints: pointSystem.find(j =>
-                        j.raceName == (i.race.includes("etape") ? i.race.replace("&#39;", "'").split(". ")[1].replace(/comma/g, ",") : i.race.replace("&#39;", "'").replace(/comma/g, ","))
-                    ).points
-                }
-            }).reduce((acc, obj) => {
-                const key = obj["rider"];
-                const curGroup = acc[key] ?? [];
-                let race = obj.race;
-
-                if (obj.race.includes("etape")) {
-                    race = obj.race.split(". ")[1];
-                }
-
-                return { ...acc, [key]: [...curGroup, { ...obj, race: race, count: 1 }] }
-            }, {})
-
-            setResultsWithPoints(
-                Object.keys(resultsGroupedByRider).map(i => {
-
-                    return {
-                        [i]: resultsGroupedByRider[i].reduce((acc, obj) => {
-                            const key = obj["year"];
-                            const curGroup = acc[key] ?? [];
-
-                            if (curGroup.map(j => j.race).includes(obj.race)) {
-                                let index = curGroup.findIndex(j => j.race == obj.race)
-                                if (!obj.race.includes("Dag i førertrøjen")) {
-                                    curGroup[index].racePoints += obj.racePoints;
-                                }
-                                curGroup[index].count += 1
-                                return { ...acc, [key]: [...curGroup].sort((a, b) => b.racePoints - a.racePoints) }
-                            } else {
-                                return { ...acc, [key]: [...curGroup, obj].sort((a, b) => b.racePoints - a.racePoints) }
-                            }
-                        }, {})
-                    }
-
-                })
-            )
-        }
-    }, [results, pointSystem])
 
     return (
         <div className="greatest-seasons-container">
