@@ -38,7 +38,7 @@ function numerizeRankingByNoR(rankingList) {
 
     return (rankedRanking)
 }
-
+{/* 625 */ }
 export default function NationRankingTable(props) {
     const nationRanking = props.nationRanking;
     const alltimeRanking = props.alltimeRanking;
@@ -47,12 +47,14 @@ export default function NationRankingTable(props) {
         filterBy: "alle",
     });
     const [filteredRanking, setFilteredRanking] = useState(numerizeRanking(nationRanking));
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setRankingFilter({ ...rankingFilter, ...props.searchParams })
     }, [])
 
     useEffect(() => {
+        setIsLoading(true);
         let newFilteredRanking = nationRanking;
 
         if (rankingFilter.filterBy == "aktive") {
@@ -84,6 +86,7 @@ export default function NationRankingTable(props) {
         }
 
         setFilteredRanking(newFilteredRanking);
+        setIsLoading(false);
     }, [rankingFilter])
 
     return (
@@ -99,8 +102,8 @@ export default function NationRankingTable(props) {
                                 id="nation-sort-by-points"
                                 value="point"
                                 checked={rankingFilter.sortBy == "point"}
-                                onChange={e => setRankingFilter({ ...rankingFilter, sortBy: e.currentTarget.value })}
-                            />
+                                onChange={e => { setIsLoading(true); setRankingFilter({ ...rankingFilter, sortBy: e.currentTarget.value }) }
+                                } />
                             <label htmlFor="nation-sort-by-points">Point</label>
                         </div>
 
@@ -111,8 +114,8 @@ export default function NationRankingTable(props) {
                                 id="nation-sort-by-points-per-rider"
                                 value="pointPerRytter"
                                 checked={rankingFilter.sortBy == "pointPerRytter"}
-                                onChange={e => setRankingFilter({ ...rankingFilter, sortBy: e.currentTarget.value })}
-                            />
+                                onChange={e => { setIsLoading(true); setRankingFilter({ ...rankingFilter, sortBy: e.currentTarget.value }) }
+                                } />
                             <label htmlFor="nation-sort-by-points-per-rider">Point per rytter</label>
                         </div>
 
@@ -123,8 +126,8 @@ export default function NationRankingTable(props) {
                                 id="nation-sort-by-number-of-riders"
                                 value="antalRyttere"
                                 checked={rankingFilter.sortBy == "antalRyttere"}
-                                onChange={e => setRankingFilter({ ...rankingFilter, sortBy: e.currentTarget.value })}
-                            />
+                                onChange={e => { setIsLoading(true); setRankingFilter({ ...rankingFilter, sortBy: e.currentTarget.value }) }
+                                } />
                             <label htmlFor="nation-sort-by-number-of-riders">Antal ryttere</label>
                         </div>
                     </div>
@@ -140,7 +143,7 @@ export default function NationRankingTable(props) {
                                 id="nation-filter-all"
                                 value="alle"
                                 checked={rankingFilter.filterBy == "alle"}
-                                onChange={e => setRankingFilter({ ...rankingFilter, filterBy: e.currentTarget.value })}
+                                onChange={e => { setIsLoading(true); setRankingFilter({ ...rankingFilter, filterBy: e.currentTarget.value }) }}
                             />
                             <label htmlFor="nation-filter-all">Alle ryttere</label>
                         </div>
@@ -152,7 +155,7 @@ export default function NationRankingTable(props) {
                                 id="nation-filter-active"
                                 value="aktive"
                                 checked={rankingFilter.filterBy == "aktive"}
-                                onChange={e => setRankingFilter({ ...rankingFilter, filterBy: e.currentTarget.value })}
+                                onChange={e => { setIsLoading(true); setRankingFilter({ ...rankingFilter, filterBy: e.currentTarget.value }) }}
                             />
                             <label htmlFor="nation-filter-active">Aktive ryttere</label>
                         </div>
@@ -164,7 +167,7 @@ export default function NationRankingTable(props) {
                                 id="nation-filter-inactive"
                                 value="inaktive"
                                 checked={rankingFilter.filterBy == "inaktive"}
-                                onChange={e => setRankingFilter({ ...rankingFilter, filterBy: e.currentTarget.value })}
+                                onChange={e => { setIsLoading(true); setRankingFilter({ ...rankingFilter, filterBy: e.currentTarget.value }) }}
                             />
                             <label htmlFor="nation-filter-inactive">Inaktive ryttere</label>
                         </div>
@@ -182,6 +185,7 @@ export default function NationRankingTable(props) {
                     <p>Antal ryttere</p>
                 </div>
                 <div className="table-content">
+                    <span className={"loading-overlay " + String(isLoading)}></span>
                     {filteredRanking.map((nation, index) => {
                         const greatestRiders = numerizeRanking(alltimeRanking)
                             .filter(i => i.nation == nation.nation)

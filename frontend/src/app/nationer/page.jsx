@@ -31,9 +31,7 @@ export default async function Page({ searchParams }) {
     const nationRanking = Object.keys(nationsGrouped).map(n => { return { ...nationsGrouped[n], nation: n } })
 
     return (
-        <div className="nation-ranking-page">
-            <h2>Prestigelisten for nationer</h2>
-
+        <div>
             <NationRankingTable nationRanking={nationRanking} alltimeRanking={alltimeRanking} searchParams={searchParams} />
 
             <NationsRankingEvolution nationsAccRank={nationsAccRank} nationsFlagCode={nationRanking.map(n => { return { nationFlagCode: n.nationFlagCode, nation: n.nation } })} />
