@@ -505,6 +505,41 @@ footer .footer-list-container .footer-list-item ul li {
   width: 10%;
 }
 
+.greatest-seasons-container {
+  padding: 20px 5% 40px;
+  background-color: #ededed;
+  position: relative;
+}
+.greatest-seasons-container .table {
+  height: 60vh;
+}
+.greatest-seasons-container .table .table-content {
+  margin-bottom: 50px;
+}
+.greatest-seasons-container .table .table-header p:nth-of-type(1),
+.greatest-seasons-container .table .table-row p:nth-of-type(1) {
+  width: 5%;
+}
+.greatest-seasons-container .table .table-header p:nth-of-type(2),
+.greatest-seasons-container .table .table-row p:nth-of-type(2) {
+  width: 25%;
+}
+.greatest-seasons-container .table .table-header p:nth-of-type(3),
+.greatest-seasons-container .table .table-row p:nth-of-type(3) {
+  width: 60%;
+}
+.greatest-seasons-container .table .table-header p:nth-of-type(4),
+.greatest-seasons-container .table .table-row p:nth-of-type(4) {
+  width: 10%;
+}
+.greatest-seasons-container .table .table-header p:nth-of-type(5),
+.greatest-seasons-container .table .table-row p:nth-of-type(5) {
+  width: 10%;
+}
+.greatest-seasons-container .table .table-row {
+  padding: 7px 0px;
+}
+
 .three-year-ranking-container {
   padding: 20px 5%;
   margin-bottom: 30px;

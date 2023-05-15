@@ -47,7 +47,7 @@ export default function AlltimeRanking() {
                                 <div key={rider.id} className='table-row'>
                                     <p>{rider.currentRank}</p>
                                     <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName.replace("&#39;", "'"))}><span className='last-name'>{rider.lastName.replace("&#39;", "'")} </span>{rider.firstName}</Link></p>
-                                    <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</Link></p>
+                                    <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span>{rider.nation}</Link></p>
                                     <p>{rider.birthYear}</p>
                                     <p>{rider.points}</p>
                                 </div>
