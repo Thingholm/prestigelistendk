@@ -8,6 +8,8 @@ import NationRanking from "./NationRanking"
 import ThreeYearRanking from "./ThreeYearRanking"
 import ByDecadeRanking from "./ByDecadeRanking"
 import GreatestSeasons from "./GreatestSeasons"
+import { Suspense } from "react"
+import LoadingGreatestSeasons from "./LoadingGreatestSeasons"
 
 export default function Home() {
   return (
@@ -45,7 +47,9 @@ export default function Home() {
 
       <NationRanking />
 
-      <GreatestSeasons />
+      <Suspense fallback={<LoadingGreatestSeasons />}>
+        <GreatestSeasons />
+      </Suspense>
 
       <ThreeYearRanking />
 
