@@ -9,7 +9,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 150px;
+  scroll-padding-top: 70px;
 }
 
 main {
@@ -177,6 +177,36 @@ input[type=radio]::before {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.4682466737) 0%, rgba(0, 0, 0, 0.207742472) 50%, rgba(0, 0, 0, 0) 100%);
   opacity: 0.2;
   bottom: -22px;
+  z-index: 1;
+}
+
+.table-bottom-button {
+  background-color: #fee402;
+  position: relative;
+  border: none;
+  width: calc(100% - 10px);
+  padding: 7px 0px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  z-index: 5;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.table-bottom-button.vertical {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0px 7px;
+  height: calc(100% - 15px);
+}
+.table-bottom-button:hover {
+  cursor: pointer;
+  background-color: #fdca00;
+}
+.table-bottom-button:active {
+  transform: scale(0.98);
 }
 
 @keyframes skeleton {
@@ -471,7 +501,7 @@ footer .footer-list-container .footer-list-item ul li {
 }
 
 .landing-nations-ranking-section {
-  padding: 20px 5% 30px;
+  padding: 20px 5% 60px;
 }
 .landing-nations-ranking-section .table {
   height: 70vh;
@@ -640,9 +670,24 @@ footer .footer-list-container .footer-list-item ul li {
 .ranking-each-decade-container {
   padding: 20px 5%;
 }
+.ranking-each-decade-container .table-wrapper {
+  position: relative;
+}
+.ranking-each-decade-container .table-wrapper::after {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.4682466737) 0%, rgba(0, 0, 0, 0.207742472) 50%, rgba(0, 0, 0, 0) 100%);
+  opacity: 0.2;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+}
 .ranking-each-decade-container .table-overflow-container {
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: overlay;
   position: relative;
 }
 .ranking-each-decade-container .table-overflow-container::-webkit-scrollbar {
@@ -664,6 +709,7 @@ footer .footer-list-container .footer-list-item ul li {
 .ranking-each-decade-container .table-overflow-container .table {
   width: -moz-fit-content;
   width: fit-content;
+  position: relative;
 }
 .ranking-each-decade-container .table-overflow-container .table::after {
   display: none;
@@ -687,6 +733,9 @@ footer .footer-list-container .footer-list-item ul li {
 .ranking-each-decade-container .table-overflow-container .table .table-header p:nth-of-type(4) a,
 .ranking-each-decade-container .table-overflow-container .table .table-row p:nth-of-type(4) a {
   color: rgb(153, 81, 30);
+}
+.ranking-each-decade-container .table-overflow-container .table .table-content {
+  padding-right: 50px;
 }
 
 .rider-profile-container {

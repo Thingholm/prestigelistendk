@@ -10,6 +10,7 @@ export default function ActiveRanking() {
     const rankingAlltime = useStore((state) => state.rankingAlltime);
     const [activeRanking, setActiveRanking] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [amountLoaded, setLoadedAmount] = useState(100);
 
     useEffect(() => {
         setIsLoading(true);
@@ -42,7 +43,7 @@ export default function ActiveRanking() {
                 </div>
                 {isLoading ? <TableSkeleton /> :
                     <div className="table-content">
-                        {activeRanking && activeRanking.map((rider, index) => {
+                        {activeRanking && activeRanking.slice(0, amountLoaded).map((rider, index) => {
                             return (
                                 <div key={rider.id} className='table-row'>
                                     <p>{rider.currentRank}</p>
@@ -53,6 +54,7 @@ export default function ActiveRanking() {
                                 </div>
                             )
                         })}
+                        {amountLoaded < 500 && <button className="table-bottom-button" onClick={() => setLoadedAmount(500)}>Indlæs alle...</button>}
                     </div>
                 }
 

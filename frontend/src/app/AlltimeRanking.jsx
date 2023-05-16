@@ -53,6 +53,7 @@ export default function AlltimeRanking() {
                                 </div>
                             )
                         })}
+                        <Link className="table-bottom-button" href={"/listen"}>Se hele listen</Link>
                     </div>
                 }
             </div>

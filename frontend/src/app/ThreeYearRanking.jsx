@@ -17,6 +17,7 @@ async function getData() {
 export default function ThreeYearRanking() {
     const rankingAlltime = useStore((state) => state.rankingAlltime)
     const [threeYearRanking, setThreeYearRanking] = useState([]);
+    const [loadedAmount, setLoadedAmount] = useState(10);
 
     useEffect(() => {
         getData().then(data => setThreeYearRanking(data));
@@ -40,7 +41,7 @@ export default function ThreeYearRanking() {
                     <p>10.</p>
                 </div>
                 <div className="table-content">
-                    {threeYearRanking.map(year => {
+                    {threeYearRanking.slice(0, loadedAmount).map(year => {
                         return (
                             <div className="table-row">
                                 <p>{year.year}<span className="table-previous-span">{year.year - 3}</span></p>
@@ -65,6 +66,7 @@ export default function ThreeYearRanking() {
                             </div>
                         )
                     })}
+                    {loadedAmount < 200 && <button className="table-bottom-button" onClick={() => setLoadedAmount(200)}>Indlæs alle...</button>}
                 </div>
             </div>
         </div>

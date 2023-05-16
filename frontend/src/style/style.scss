@@ -27,7 +27,7 @@ $skeleton-base: #DDDBDD;
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 150px;
+    scroll-padding-top: 70px;
 }
 
 main {
@@ -226,6 +226,38 @@ input[type="radio"] {
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.4682466736694678) 0%, rgba(0, 0, 0, 0.20774247198879547) 50%, rgba(0, 0, 0, 0) 100%);
         opacity: 0.2;
         bottom: -22px;
+        z-index: 1;
+    }
+}
+
+.table-bottom-button {
+    background-color: $yellow-primary;
+    position: relative;
+    border: none;
+    width: calc(100% - 10px);
+    padding: 7px 0px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    z-index: 5;
+    font-weight: 600;
+    transition: 0.3s;
+
+    &.vertical {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        width: fit-content;
+        padding: 0px 7px;
+        height: calc(100% - 15px);
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: $yellow-darker;
+    }
+
+    &:active {
+        transform: scale(0.98);
     }
 }
 
@@ -586,7 +618,7 @@ footer {
 }
 
 .landing-nations-ranking-section {
-    padding: 20px 5% 30px;
+    padding: 20px 5% 60px;
 
     .table {
         height: 70vh;
@@ -780,9 +812,26 @@ footer {
 .ranking-each-decade-container {
     padding: 20px 5%;
 
+    .table-wrapper {
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: "";
+            width: 10px;
+            height: 100%;
+            background: rgb(0, 0, 0);
+            background: linear-gradient(270deg, rgba(0, 0, 0, 0.4682466736694678) 0%, rgba(0, 0, 0, 0.20774247198879547) 50%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0.2;
+            top: 0px;
+            right: 0px;
+            z-index: 1;
+        }
+    }
+
     .table-overflow-container {
         width: 100%;
-        overflow-x: scroll;
+        overflow-x: overlay;
         position: relative;
 
         &::-webkit-scrollbar {
@@ -808,6 +857,7 @@ footer {
 
         .table {
             width: fit-content;
+            position: relative;
 
             &::after {
                 display: none;
@@ -841,6 +891,12 @@ footer {
                     }
                 }
             }
+
+            .table-content {
+                padding-right: 50px;
+            }
+
+
         }
     }
 }
