@@ -25,7 +25,7 @@ export default function ThreeYearRanking() {
 
     return (
         <div className="three-year-ranking-container">
-            <h3>3-årig rullende rangliste</h3>
+            <h3 id="3-aarig-rullende">3-årig rullende rangliste</h3>
             <div className="table">
                 <div className="table-header">
                     <p>År</p>

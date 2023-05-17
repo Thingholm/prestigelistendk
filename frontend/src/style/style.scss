@@ -42,6 +42,7 @@ p .fi {
 h3 {
     font-size: 24px;
     margin-bottom: 15px;
+    position: relative;
 
     &.light {
         color: $white-primary;
@@ -314,9 +315,58 @@ input[type="radio"] {
     }
 }
 
+h3 {
+    &:hover {
+        .copy-to-clipboard-button {
+            background-color: $white-darker;
 
+            svg {
+                opacity: 0.6;
+            }
+        }
+    }
+}
 
+.copy-to-clipboard-hover-container {
+    position: absolute;
+    height: 25px;
+    padding-right: 5px;
+    left: -30px;
+    top: 2px;
+}
 
+.copy-to-clipboard-button {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+
+    svg {
+        transition: 0.2s;
+        position: relative;
+        height: 18px;
+        opacity: 0.2;
+    }
+}
+
+.toast {
+    font-size: 15px !important;
+    width: 500px;
+    color: #dadada;
+}
 
 
 // --------------------- NAV BAR -------------------------

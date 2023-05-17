@@ -10,6 +10,8 @@ import ByDecadeRanking from "./ByDecadeRanking"
 import GreatestSeasons from "./GreatestSeasons"
 import { Suspense } from "react"
 import LoadingGreatestSeasons from "./LoadingGreatestSeasons"
+import SectionLinkButton from "@/components/SectionLinkButton"
+import { baseUrl } from "@/utils/baseUrl"
 
 export default function Home() {
   return (
@@ -28,8 +30,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="landing-movements-section">
-        <h3>Pointgivende resultater seneste måned</h3>
+      <div className="landing-movements-section" id="seneste-resultater">
+        <h3>Pointgivende resultater seneste måned <SectionLinkButton link={baseUrl + "/#seneste-resultater"} /></h3>
         <RankingMovements />
       </div>
 

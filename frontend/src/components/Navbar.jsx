@@ -19,10 +19,9 @@ export default function Navbar() {
                                 <li><Link href="/listen?activeStatus=active">Aktive ryttere</Link></li>
                                 <li><Link href="/nationer">Nationer</Link></li>
                                 <li><Link href="/listen?nation=Danmark">Største danskere</Link></li>
-                                <li><Link href="#">3-årig rullende rangliste</Link></li>
-                                <li><Link href="#">All time hvert år</Link></li>
-                                <li><Link href="#">Største per årti</Link></li>
-                                <li><Link href="#">Største individuelle sæsoner</Link></li>
+                                <li><a href="/#3-aarig-rullende">3-årig rullende rangliste</a></li>
+                                <li><a href="/#stoerste-per-aarti">Største per årti</a></li>
+                                <li><a href="/#stoerste-saesoner">Største individuelle sæsoner</a></li>
                                 <li><Link href="/listen?yearFilterRange=single">Største per årgang</Link></li>
                             </ul>
                         </div>

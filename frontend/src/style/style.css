@@ -24,6 +24,7 @@ p .fi {
 h3 {
   font-size: 24px;
   margin-bottom: 15px;
+  position: relative;
 }
 h3.light {
   color: #ffffff;
@@ -251,6 +252,51 @@ input[type=radio]::before {
 }
 .rounded-table-container .table {
   margin-bottom: 20px;
+}
+
+h3:hover .copy-to-clipboard-button {
+  background-color: #ededed;
+}
+h3:hover .copy-to-clipboard-button svg {
+  opacity: 0.6;
+}
+
+.copy-to-clipboard-hover-container {
+  position: absolute;
+  height: 25px;
+  padding-right: 5px;
+  left: -30px;
+  top: 2px;
+}
+
+.copy-to-clipboard-button {
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+}
+.copy-to-clipboard-button:hover {
+  cursor: pointer;
+}
+.copy-to-clipboard-button:active {
+  transform: scale(0.95);
+  opacity: 0.5;
+}
+.copy-to-clipboard-button svg {
+  transition: 0.2s;
+  position: relative;
+  height: 18px;
+  opacity: 0.2;
+}
+
+.toast {
+  font-size: 15px !important;
+  width: 500px;
+  color: #dadada;
 }
 
 header {

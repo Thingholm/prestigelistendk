@@ -25,7 +25,7 @@ export default function ByDecadeRanking() {
 
     return (
         <div className="ranking-each-decade-container">
-            <h3>Største ryttere hvert årti</h3>
+            <h3 id="stoerste-per-aarti">Største ryttere hvert årti</h3>
             <div className="table-wrapper">
                 <div className="table-overflow-container">
                     <div className="table">

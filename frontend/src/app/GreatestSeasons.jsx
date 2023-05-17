@@ -106,7 +106,7 @@ export default async function GreatestSeasons() {
 
     return (
         <div className="greatest-seasons-container">
-            <h3>Største individuelle sæsoner</h3>
+            <h3 id="stoerste-saesoner">Største individuelle sæsoner</h3>
             <div className="rounded-table-container">
                 <div className="table">
                     <div className="table-header">
