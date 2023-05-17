@@ -1,5 +1,6 @@
 import Link from "next/link"
 import '../style/style.css'
+import { IoChevronDownOutline } from "react-icons/io5"
 
 export default function Navbar() {
     return (
@@ -11,7 +12,7 @@ export default function Navbar() {
                     <li><Link href="#">Pointsystem</Link></li>
                     <li><Link href="#">Quiz</Link></li>
                     <li className="nav-item-with-dropdown">
-                        <Link href="#">Ranglister</Link>
+                        <Link href="#">Ranglister <span><IoChevronDownOutline className="down-icon" /></span></Link>
                         <div className="nav-dropdown-menu">
                             <ul>
                                 <li><Link href="#">All time</Link></li>
@@ -28,6 +29,7 @@ export default function Navbar() {
                     </li>
                 </ul>
             </nav>
+            <Link className="nav-highlighted-item" href="/listen">Se listen</Link>
         </header>
     )
 }

@@ -53,7 +53,7 @@ export default function AlltimeRanking() {
                                 </div>
                             )
                         })}
-                        <Link className="table-bottom-button" href={"/listen"}>Se hele listen</Link>
+                        <button className="table-bottom-button" onClick={() => location.href = "/listen"} >Se hele listen</button>
                     </div>
                 }
             </div>

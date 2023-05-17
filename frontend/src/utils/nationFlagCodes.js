@@ -295,5 +295,33 @@ export const nationFlagCodes = [
     {
         nationFlagCode: 'gr',
         nation: 'Grækenland'
+    },
+    {
+        nationFlagCodes: 'ae',
+        nation: 'UAE'
+    },
+    {
+        nationFlagCodes: 'cn',
+        nation: 'Kina'
+    },
+    {
+        nationFlagCodes: 'tr',
+        nation: 'Tyrkiet'
+    },
+    {
+        nationFlagCodes: 'jp',
+        nation: 'Japan'
+    },
+    {
+        nationFlagCodes: 'xx',
+        nation: 'Benelux'
+    },
+    {
+        nationFlagCodes: 'xx',
+        nation: 'Europa'
+    },
+    {
+        nationFlagCodes: 'xx',
+        nation: 'Verden'
     }
 ]
