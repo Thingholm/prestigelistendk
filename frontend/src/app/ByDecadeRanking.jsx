@@ -5,6 +5,8 @@ import { supabase } from "@/utils/supabase";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { stringEncoder } from "@/components/stringHandler";
+import { baseUrl } from "@/utils/baseUrl";
+import SectionLinkButton from "@/components/SectionLinkButton";
 
 async function fetchData() {
     let { data: greatestByDecade } = await supabase
@@ -24,8 +26,8 @@ export default function ByDecadeRanking() {
     }, [])
 
     return (
-        <div className="ranking-each-decade-container">
-            <h3 id="stoerste-per-aarti">Største ryttere hvert årti</h3>
+        <div className="ranking-each-decade-container" id="stoerste-per-aarti">
+            <h3>Største ryttere hvert årti <SectionLinkButton link={baseUrl + "/#stoerste-per-aarti"} sectionName={"Største ryttere hvert årti"} /></h3>
             <div className="table-wrapper">
                 <div className="table-overflow-container">
                     <div className="table">

@@ -14,6 +14,7 @@ export default function RankingLinkHeader(props) {
                 {props.title}
                 <IoArrowForward />
             </Link>
+            {props.sectionLink}
         </h3>
     )
 }

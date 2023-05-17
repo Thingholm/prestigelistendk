@@ -1,7 +1,10 @@
+import SectionLinkButton from "@/components/SectionLinkButton";
+import { baseUrl } from "@/utils/baseUrl";
+
 export default function AboutPage() {
     return (
         <div className="about-page">
-            <h3>Om Prestigelisten</h3>
+            <h2>Om Prestigelisten <SectionLinkButton link={baseUrl + "/om-prestigelisten"} sectionName={"Om Prestigelisten"} /></h2>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae illum quas unde doloribus eos labore at, maxime nulla officia repudiandae quibusdam fugit vel, quae, commodi dignissimos totam nobis expedita sapiente eveniet? Laboriosam perferendis incidunt sed rerum officia quisquam nesciunt quod?</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum explicabo sint delectus deserunt quaerat quis, modi earum voluptatem consectetur ea maxime in deleniti laudantium obcaecati rem cumque. Accusantium, possimus dolore? Ullam dolore similique, quisquam accusamus ratione deleniti. Pariatur illum nemo veniam vitae repudiandae dicta. Quam quis dolor quaerat illo debitis enim dolores vel repellendus dolorum magni quia quos iusto ipsa ab natus molestiae, ex facilis laborum deserunt id cupiditate sint tenetur. Aspernatur sequi, voluptatem vel maiores eum suscipit quisquam modi?</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident minima cum dicta aut, delectus ipsum error nesciunt odio sint libero perspiciatis consequuntur similique qui debitis facilis a commodi? Illo officiis ab nesciunt. A, quisquam odio.</p>

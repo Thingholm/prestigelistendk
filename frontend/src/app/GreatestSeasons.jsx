@@ -1,4 +1,6 @@
+import SectionLinkButton from "@/components/SectionLinkButton";
 import { nationEncoder, stringEncoder } from "@/components/stringHandler";
+import { baseUrl } from "@/utils/baseUrl";
 import { supabase } from "@/utils/supabase";
 import Link from "next/link";
 
@@ -105,8 +107,8 @@ export default async function GreatestSeasons() {
 
 
     return (
-        <div className="greatest-seasons-container">
-            <h3 id="stoerste-saesoner">Største individuelle sæsoner</h3>
+        <div className="greatest-seasons-container" id="stoerste-saesoner">
+            <h3>Største individuelle sæsoner <SectionLinkButton link={baseUrl + "/#stoerste-saesoner"} sectionName={"Største individuelle sæsoner"} /></h3>
             <div className="rounded-table-container">
                 <div className="table">
                     <div className="table-header">

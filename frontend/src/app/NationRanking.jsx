@@ -8,6 +8,8 @@ import useStore from "@/utils/store";
 import "flag-icons/css/flag-icons.min.css";
 import { useEffect, useState } from "react";
 import TableSkeleton from "@/components/TableSkeleton";
+import SectionLinkButton from "@/components/SectionLinkButton";
+import { baseUrl } from "@/utils/baseUrl";
 
 export default function NationRanking() {
     const [isLoading, setIsLoading] = useState(true);
@@ -53,7 +55,7 @@ export default function NationRanking() {
 
     return (
         <div className="landing-nations-ranking-section">
-            <RankingLinkHeader title="Største nationer" link="/nationer" />
+            <RankingLinkHeader title="Største nationer" link="/nationer" sectionLink={<SectionLinkButton link={baseUrl + "/#stoerste-nationer"} sectionName={"Største nationer"} />} />
             <div className="table">
                 <div className="table-header">
                     <p>Nr.</p>

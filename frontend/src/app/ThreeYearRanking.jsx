@@ -1,6 +1,8 @@
 "use client";
 
+import SectionLinkButton from "@/components/SectionLinkButton";
 import { stringEncoder } from "@/components/stringHandler";
+import { baseUrl } from "@/utils/baseUrl";
 import useStore from "@/utils/store";
 import { supabase } from "@/utils/supabase";
 import Link from "next/link";
@@ -24,8 +26,8 @@ export default function ThreeYearRanking() {
     }, [])
 
     return (
-        <div className="three-year-ranking-container">
-            <h3 id="3-aarig-rullende">3-årig rullende rangliste</h3>
+        <div className="three-year-ranking-container" id="3-aarig-rullende">
+            <h3>3-årig rullende rangliste <SectionLinkButton link={baseUrl + "/#3-aarig-rullende"} sectionName={"3-årig rullende rangliste"} /></h3>
             <div className="table">
                 <div className="table-header">
                     <p>År</p>

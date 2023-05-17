@@ -31,18 +31,18 @@ export default function Home() {
       </div>
 
       <div className="landing-movements-section" id="seneste-resultater">
-        <h3>Pointgivende resultater seneste måned <SectionLinkButton link={baseUrl + "/#seneste-resultater"} /></h3>
+        <h3>Pointgivende resultater seneste måned <SectionLinkButton link={baseUrl + "/#seneste-resultater"} sectionName={"Pointgivende resultater seneste måned"} /></h3>
         <RankingMovements />
       </div>
 
       <div className="landing-split-rankings-section">
         <div className="active-ranking-table-container split-ranking-table">
-          <RankingLinkHeader title="Største aktive ryttere" link={"listen?activeStatus=active"} mode="light" />
+          <RankingLinkHeader title="Største aktive ryttere" link={"listen?activeStatus=active"} mode="light" sectionLink={<SectionLinkButton link={baseUrl + "/#stoerste-aktive"} sectionName={"Største aktive ryttere"} />} />
           <ActiveRanking />
         </div>
 
         <div className="danish-ranking-table-container split-ranking-table">
-          <RankingLinkHeader title="Største danske ryttere" link={"listen?nation=Danmark"} mode="light" />
+          <RankingLinkHeader title="Største danske ryttere" link={"listen?nation=Danmark"} mode="light" sectionLink={<SectionLinkButton link={baseUrl + "/#stoerste-danskere"} sectionName={"Største danskere"} />} />
           <DanishRanking />
         </div>
       </div>

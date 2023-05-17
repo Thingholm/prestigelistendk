@@ -42,9 +42,9 @@ export default async function Page() {
 
     return (
         <div className="table-content">
-            {Object.keys(pointSystemGrouped).map(category => {
+            {Object.keys(pointSystemGrouped).map((category, index) => {
                 return (
-                    <div>
+                    <div key={index}>
                         <div className="table-row category-row">
                             <p>{category}</p>
                         </div>
@@ -52,7 +52,7 @@ export default async function Page() {
                         <div className="race-points-list">
                             {pointSystemGrouped[category].sort((a, b) => a.id - b.id).map(r => {
                                 return (
-                                    <p className="result-and-points-container"><span>{r.result}</span><span>{r.points}p</span></p>
+                                    <p key={r.id} className="result-and-points-container"><span>{r.result}</span><span>{r.points}p</span></p>
                                 )
                             })}
                         </div>

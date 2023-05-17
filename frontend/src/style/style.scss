@@ -43,6 +43,7 @@ h3 {
     font-size: 24px;
     margin-bottom: 15px;
     position: relative;
+    display: inline-block;
 
     &.light {
         color: $white-primary;
@@ -315,7 +316,8 @@ input[type="radio"] {
     }
 }
 
-h3 {
+h3,
+h2 {
     &:hover {
         .copy-to-clipboard-button {
             background-color: $white-darker;
@@ -325,6 +327,10 @@ h3 {
             }
         }
     }
+}
+
+h2 .copy-to-clipboard-hover-container {
+    top: 8px;
 }
 
 .copy-to-clipboard-hover-container {
@@ -361,6 +367,17 @@ h3 {
         opacity: 0.2;
     }
 }
+
+.rider-profile-title {
+    .copy-to-clipboard-hover-container {
+        left: auto;
+        right: -30px;
+        top: 8px;
+        padding-right: 0px;
+        padding-left: 10px;
+    }
+}
+
 
 .toast {
     font-size: 15px !important;
@@ -1492,6 +1509,7 @@ footer {
         margin-left: 5%;
         margin-top: 20px;
         font-size: 35px;
+        position: relative;
     }
 
     .ranking-filter-options-container {
@@ -2030,7 +2048,10 @@ footer {
 
 .nation-ranking-page {
     >h2 {
-        padding: 20px 5%;
+        position: relative;
+        margin: 20px 5% 10px;
+        font-size: 35px;
+
     }
 
     .nation-table-wrapper {
@@ -2122,6 +2143,7 @@ footer {
         padding: 20px 5%;
 
         h2 {
+            position: relative;
             color: $white-primary;
             margin-bottom: 15px;
         }
@@ -2165,8 +2187,21 @@ footer {
     }
 }
 
+
+
+
+
+
+// ----------------- ABOUT PAGE -----------------------
+
 .about-page {
     padding: 20px 5%;
+
+    h2 {
+        position: relative;
+        font-size: 35px;
+        margin-bottom: 10px;
+    }
 
     p {
         margin-bottom: 20px;
@@ -2181,6 +2216,12 @@ footer {
 
 .pointsystem-page {
     padding: 20px 5%;
+
+    h2 {
+        position: relative;
+        font-size: 35px;
+        margin-bottom: 10px;
+    }
 
     .table-content {
         margin-top: 20px;

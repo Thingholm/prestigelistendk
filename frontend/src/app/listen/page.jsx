@@ -10,6 +10,8 @@ import useStore, { initialFilterState } from "@/utils/store";
 import { IoRefreshOutline, IoSearch } from "react-icons/io5"
 import { AiOutlineVerticalAlignTop } from "react-icons/ai"
 import TableSkeleton from "@/components/TableSkeleton";
+import SectionLinkButton from "@/components/SectionLinkButton";
+import { baseUrl } from "@/utils/baseUrl";
 
 async function fetchData() {
     let { data: alltimeRanking } = await supabase
@@ -139,7 +141,7 @@ export default function Page({ searchParams }) {
 
     return (
         <div className="ranking-page-container">
-            <h2>Rangliste</h2>
+            <h2>Prestigelisten <SectionLinkButton link={baseUrl + "/listen"} sectionName={"Prestigelisten"} /></h2>
 
             <div className="ranking-filter-options-container">
                 <div className="ranking-filter-birth-year-container">

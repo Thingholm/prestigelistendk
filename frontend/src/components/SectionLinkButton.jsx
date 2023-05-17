@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function SectionLinkButton(props) {
     function notification() {
-        toast(props.link + " kopieret til udklipsholder", {
+        toast("Link til " + props.sectionName + " kopieret til udklipsholder", {
             position: "bottom-left",
             autoClose: 2000,
             hideProgressBar: true,

@@ -25,6 +25,7 @@ h3 {
   font-size: 24px;
   margin-bottom: 15px;
   position: relative;
+  display: inline-block;
 }
 h3.light {
   color: #ffffff;
@@ -254,11 +255,17 @@ input[type=radio]::before {
   margin-bottom: 20px;
 }
 
-h3:hover .copy-to-clipboard-button {
+h3:hover .copy-to-clipboard-button,
+h2:hover .copy-to-clipboard-button {
   background-color: #ededed;
 }
-h3:hover .copy-to-clipboard-button svg {
+h3:hover .copy-to-clipboard-button svg,
+h2:hover .copy-to-clipboard-button svg {
   opacity: 0.6;
+}
+
+h2 .copy-to-clipboard-hover-container {
+  top: 8px;
 }
 
 .copy-to-clipboard-hover-container {
@@ -291,6 +298,14 @@ h3:hover .copy-to-clipboard-button svg {
   position: relative;
   height: 18px;
   opacity: 0.2;
+}
+
+.rider-profile-title .copy-to-clipboard-hover-container {
+  left: auto;
+  right: -30px;
+  top: 8px;
+  padding-right: 0px;
+  padding-left: 10px;
 }
 
 .toast {
@@ -1181,6 +1196,7 @@ footer .footer-list-container .footer-list-item ul li {
   margin-left: 5%;
   margin-top: 20px;
   font-size: 35px;
+  position: relative;
 }
 .ranking-page-container .ranking-filter-options-container {
   padding: 20px 5%;
@@ -1567,7 +1583,9 @@ footer .footer-list-container .footer-list-item ul li {
 }
 
 .nation-ranking-page > h2 {
-  padding: 20px 5%;
+  position: relative;
+  margin: 20px 5% 10px;
+  font-size: 35px;
 }
 .nation-ranking-page .nation-table-wrapper {
   padding: 20px 5%;
@@ -1644,6 +1662,7 @@ footer .footer-list-container .footer-list-item ul li {
   padding: 20px 5%;
 }
 .nation-ranking-page .nations-ranking-chart-container h2 {
+  position: relative;
   color: #ffffff;
   margin-bottom: 15px;
 }
@@ -1677,12 +1696,22 @@ footer .footer-list-container .footer-list-item ul li {
 .about-page {
   padding: 20px 5%;
 }
+.about-page h2 {
+  position: relative;
+  font-size: 35px;
+  margin-bottom: 10px;
+}
 .about-page p {
   margin-bottom: 20px;
 }
 
 .pointsystem-page {
   padding: 20px 5%;
+}
+.pointsystem-page h2 {
+  position: relative;
+  font-size: 35px;
+  margin-bottom: 10px;
 }
 .pointsystem-page .table-content {
   margin-top: 20px;
