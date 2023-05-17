@@ -331,9 +331,33 @@ header {
     padding: 0px 5%;
     z-index: 100;
 
+    a {
+        position: relative;
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 0%;
+            background-color: $yellow-primary;
+            transition: 0.3s;
+        }
+
+        &:hover {
+            &::after {
+                width: 100%;
+            }
+        }
+    }
+
     h1 a {
         color: $yellow-primary;
         text-transform: uppercase;
+
+        &::after {
+            display: none;
+        }
     }
 
     nav {
@@ -355,12 +379,18 @@ header {
 
             li a {
                 color: $yellow-primary;
-                padding: 20px 10px;
+                padding: 20px 0px;
             }
 
             .nav-item-with-dropdown {
                 position: relative;
                 z-index: -1;
+
+                .dropdown-button {
+                    &::after {
+                        display: none;
+                    }
+                }
 
                 span {
                     position: relative;
@@ -427,8 +457,13 @@ header {
         padding: 10px 30px;
         transition: 0.2s;
 
+        &::after {
+            display: none;
+        }
+
         &:hover {
             transform: scale(1.05);
+            filter: brightness(1.05);
         }
 
         &:active {

@@ -263,9 +263,27 @@ header {
   padding: 0px 5%;
   z-index: 100;
 }
+header a {
+  position: relative;
+}
+header a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 0%;
+  background-color: #fee402;
+  transition: 0.3s;
+}
+header a:hover::after {
+  width: 100%;
+}
 header h1 a {
   color: #fee402;
   text-transform: uppercase;
+}
+header h1 a::after {
+  display: none;
 }
 header nav {
   width: 40%;
@@ -285,11 +303,14 @@ header nav ul li {
 }
 header nav ul li a {
   color: #fee402;
-  padding: 20px 10px;
+  padding: 20px 0px;
 }
 header nav ul .nav-item-with-dropdown {
   position: relative;
   z-index: -1;
+}
+header nav ul .nav-item-with-dropdown .dropdown-button::after {
+  display: none;
 }
 header nav ul .nav-item-with-dropdown span {
   position: relative;
@@ -344,8 +365,12 @@ header .nav-highlighted-item {
   transition: 0.2s;
   color: #1c1c1c;
 }
+header .nav-highlighted-item::after {
+  display: none;
+}
 header .nav-highlighted-item:hover {
   transform: scale(1.05);
+  filter: brightness(1.05);
 }
 header .nav-highlighted-item:active {
   transform: scale(0.95);
