@@ -325,7 +325,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0px 5%;
-  z-index: 100;
+  z-index: 10;
 }
 header a {
   position: relative;
@@ -420,6 +420,102 @@ header nav ul li .nav-dropdown-menu ul li {
   opacity: 0.01;
   transition: 0.1s;
   transition-delay: 0s;
+}
+header .nav-right-container {
+  display: flex;
+  align-items: center;
+}
+header .nav-right-container .nav-search-container {
+  color: #fee402;
+  margin-right: 10px;
+  padding-right: 5px;
+  border-right: 1px solid #fee402;
+  position: relative;
+  z-index: 100;
+}
+header .nav-right-container .nav-search-container .nav-search-icon-container {
+  padding: 8px;
+  position: relative;
+  z-index: 1;
+  border-radius: 5px;
+}
+header .nav-right-container .nav-search-container .nav-search-icon-container:hover {
+  cursor: pointer;
+  background-color: #434343;
+}
+header .nav-right-container .nav-search-container #nav-search-bar-input {
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  width: 0px;
+  padding-left: 0px;
+  height: 100%;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background-color: #434343;
+  transition: 0.3s;
+  color: #434343;
+}
+header .nav-right-container .nav-search-container #nav-search-bar-input.visible {
+  width: 55vw;
+  padding-left: 10px;
+  color: #ededed;
+}
+header .nav-right-container .nav-search-container .nav-search-input-delete-container {
+  opacity: 0;
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  padding-right: 10px;
+  border-right: #ededed 1px solid;
+  height: 20px;
+  align-items: center;
+  color: #ededed;
+  z-index: 2;
+  transition: 0.2s;
+}
+header .nav-right-container .nav-search-container .nav-search-input-delete-container:hover {
+  cursor: pointer;
+}
+header .nav-right-container .nav-search-container .nav-search-input-delete-container.visible {
+  display: flex;
+  opacity: 0.6;
+}
+header .nav-right-container .nav-search-container .search-results-container {
+  position: absolute;
+  right: 0px;
+  width: calc(55vw + 10px);
+  top: 0px;
+  border-radius: 5px;
+  margin-right: 5px;
+  padding-top: 50px;
+  background-color: #383838;
+  z-index: -1;
+  display: none;
+}
+header .nav-right-container .nav-search-container .search-results-container.visible {
+  display: block;
+}
+header .nav-right-container .nav-search-container .search-results-container h4 {
+  padding-left: 10px;
+  margin-top: 10px;
+  color: #ededed;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+header .nav-right-container .nav-search-container .search-results-container ul li a {
+  color: #ededed;
+  display: block;
+  padding: 10px;
+}
+header .nav-right-container .nav-search-container .search-results-container ul li a:hover {
+  text-decoration: none;
+  background-color: #434343;
+}
+header .nav-right-container .nav-search-container .search-results-container ul li a::after {
+  display: none;
 }
 header .nav-highlighted-item {
   background: rgb(255, 233, 39);

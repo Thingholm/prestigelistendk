@@ -1,6 +1,7 @@
 import Link from "next/link"
 import '../style/style.css'
 import { IoChevronDownOutline } from "react-icons/io5"
+import NavSearch from "./NavSearch"
 
 export default function Navbar() {
     return (
@@ -28,7 +29,10 @@ export default function Navbar() {
                     </li>
                 </ul>
             </nav>
-            <Link className="nav-highlighted-item" href="/listen">Se listen</Link>
+            <div className="nav-right-container">
+                <NavSearch />
+                <Link className="nav-highlighted-item" href="/listen">Se listen</Link>
+            </div>
         </header>
     )
 }
