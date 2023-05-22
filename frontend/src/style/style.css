@@ -163,6 +163,10 @@ input[type=radio]::before {
 .table .table-content .table-row:last-of-type {
   margin-bottom: 10px;
 }
+.table .table-content .table-row .table-name-reversed span.last-name {
+  text-transform: uppercase;
+  font-weight: 600;
+}
 .table .table-content .table-row .table-previous-span {
   font-size: 15px;
   opacity: 0.8;
@@ -179,11 +183,6 @@ input[type=radio]::before {
   opacity: 0.2;
   bottom: -22px;
   z-index: 1;
-}
-
-.table-name-reversed span.last-name {
-  text-transform: uppercase;
-  font-weight: 600;
 }
 
 .table-bottom-button {
@@ -353,7 +352,6 @@ header h1 a::after {
 header nav {
   width: 40%;
   position: relative;
-  z-index: 1;
 }
 header nav ul {
   display: flex;
@@ -366,20 +364,14 @@ header nav ul {
 }
 header nav ul li {
   position: relative;
-  z-index: 1;
 }
 header nav ul li a {
-  position: relative;
-  z-index: 1;
   color: #fee402;
   padding: 20px 0px;
 }
 header nav ul .nav-item-with-dropdown {
   position: relative;
   z-index: -1;
-}
-header nav ul .nav-item-with-dropdown .dropdown-button {
-  position: relative;
 }
 header nav ul .nav-item-with-dropdown .dropdown-button::after {
   display: none;
@@ -395,20 +387,19 @@ header nav ul .nav-item-with-dropdown:hover .down-icon {
   transform: rotate(-180deg);
 }
 header nav ul .nav-item-with-dropdown:hover .nav-dropdown-menu {
-  opacity: 1;
-  transform: scale(1);
+  top: 20px;
+  visibility: visible;
 }
 header nav ul .nav-item-with-dropdown:hover .nav-dropdown-menu ul li {
   opacity: 1;
   transition: 0.2s;
-  transition-delay: 0.1s;
+  transition-delay: 0.2s;
 }
 header nav ul li .nav-dropdown-menu {
-  opacity: 0;
-  transform: scale(0);
-  transition: 0.2s;
+  visibility: hidden;
+  transition: 0.3s;
   position: absolute;
-  top: 20px;
+  top: -500px;
   right: 0px;
   z-index: -1;
 }
@@ -424,7 +415,6 @@ header nav ul li .nav-dropdown-menu ul {
   z-index: -1;
 }
 header nav ul li .nav-dropdown-menu ul li {
-  position: relative;
   padding: 20px;
   z-index: -1;
   opacity: 0.01;
@@ -986,161 +976,6 @@ footer .footer-list-container .footer-list-item ul li {
 .three-year-ranking-container .table .table-header p:nth-of-type(11),
 .three-year-ranking-container .table .table-row p:nth-of-type(11) {
   width: 9.5%;
-}
-
-.ranking-each-year-container {
-  background-color: #1c1c1c;
-  padding: 20px 5% 40px;
-  color: #ffffff;
-}
-.ranking-each-year-container .overflow-container {
-  margin-top: 20px;
-  background-color: #ffffff;
-  padding: 30px 40px 30px 10px;
-  border-radius: 15px;
-  color: #1c1c1c;
-}
-.ranking-each-year-container .wrapper {
-  display: flex;
-  position: relative;
-}
-.ranking-each-year-container .wrapper::after {
-  position: absolute;
-  content: "";
-  width: 10px;
-  height: 100%;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(270deg, rgba(0, 0, 0, 0.4682466737) 0%, rgba(0, 0, 0, 0.207742472) 50%, rgba(0, 0, 0, 0) 100%);
-  opacity: 0.2;
-  top: 0px;
-  right: 0px;
-  z-index: 1;
-}
-.ranking-each-year-container .wrapper::before {
-  position: absolute;
-  content: "";
-  width: 10px;
-  height: 100%;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.4682466737) 0%, rgba(0, 0, 0, 0.207742472) 50%, rgba(0, 0, 0, 0) 100%);
-  opacity: 0.2;
-  top: 0px;
-  left: 30px;
-  z-index: 1;
-}
-.ranking-each-year-container .wrapper .header {
-  width: 30px;
-  position: absolute;
-  background-color: #ffffff;
-  z-index: 1;
-  text-align: end;
-}
-.ranking-each-year-container .wrapper .header p {
-  padding-right: 5px;
-}
-.ranking-each-year-container .wrapper .header p:first-of-type {
-  opacity: 0;
-  margin-bottom: 3px;
-}
-.ranking-each-year-container .wrapper .header p:first-of-type:hover {
-  cursor: default;
-}
-.ranking-each-year-container .wrapper .content {
-  display: flex;
-  overflow-x: overlay;
-  position: relative;
-  padding-bottom: 10px;
-  margin-left: 30px;
-}
-.ranking-each-year-container .wrapper .content::-webkit-scrollbar {
-  height: 7px;
-}
-.ranking-each-year-container .wrapper .content::-webkit-scrollbar-track {
-  background: #ededed;
-}
-.ranking-each-year-container .wrapper .content::-webkit-scrollbar-thumb {
-  background: #fdca00;
-  border-radius: 50px;
-}
-.ranking-each-year-container .wrapper .content::-webkit-scrollbar-thumb:hover {
-  background: #fee402;
-}
-.ranking-each-year-container .wrapper .content .row {
-  position: relative;
-  width: 300px;
-}
-.ranking-each-year-container .wrapper .content .row p {
-  padding-left: 15px;
-  position: relative;
-  width: 300px;
-}
-.ranking-each-year-container .wrapper .content .row p:first-of-type {
-  border-bottom: 2px solid #1c1c1c;
-  margin-bottom: 3px;
-}
-.ranking-each-year-container .wrapper .content .row p .icon-container {
-  display: inline-block;
-  position: relative;
-  top: 3px;
-}
-.ranking-each-year-container .wrapper .content .row:last-of-type {
-  margin-right: 35px;
-}
-.ranking-each-year-container .wrapper .content .table-bottom-button.vertical {
-  position: relative;
-}
-.ranking-each-year-container .wrapper .content .skeleton {
-  display: flex;
-  width: 100%;
-  overflow: hidden;
-}
-.ranking-each-year-container .wrapper .content .skeleton .row {
-  background-color: #DDDBDD;
-  width: calc(90vw - 40px);
-  margin-right: 10px;
-  margin-left: 10px;
-  border-radius: 15px;
-  margin-bottom: 0px;
-}
-.ranking-each-year-container .wrapper .content .skeleton .row::after {
-  animation: skeleton 2s infinite;
-  position: absolute;
-  display: block;
-  content: "";
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 50%;
-  opacity: 0.5;
-  transform: translateX(-100%);
-  background: rgb(255, 255, 255);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4682466737) 25%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.501860119) 75%, rgba(255, 255, 255, 0) 100%);
-}
-.ranking-each-year-container .wrapper .content .skeleton p {
-  opacity: 0;
-}
-.ranking-each-year-container .wrapper .content .skeleton p:hover {
-  cursor: default;
-}
-.ranking-each-year-container .wrapper .header p,
-.ranking-each-year-container .wrapper .row p {
-  z-index: 2;
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-.ranking-each-year-container .rank-up a {
-  color: rgb(0, 194, 0);
-}
-.ranking-each-year-container .rank-down a {
-  color: rgb(199, 0, 0);
-}
-.ranking-each-year-container .rank-down a,
-.ranking-each-year-container .rank-up a {
-  font-weight: 600;
-}
-.ranking-each-year-container .rank-down a .last-name,
-.ranking-each-year-container .rank-up a .last-name {
-  font-weight: 700;
 }
 
 .ranking-each-decade-container {

@@ -14,7 +14,6 @@ import SectionLinkButton from "@/components/SectionLinkButton"
 import { baseUrl } from "@/utils/baseUrl"
 import Link from "next/link"
 import { ImQuotesRight } from "../../node_modules/react-icons/im"
-import RankingEachYear from "./RankingEachYear"
 
 export default function Home() {
   return (
@@ -65,8 +64,6 @@ export default function Home() {
       </Suspense>
 
       <ThreeYearRanking />
-
-      <RankingEachYear />
 
       <ByDecadeRanking />
     </div>
