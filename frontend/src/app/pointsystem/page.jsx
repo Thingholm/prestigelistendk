@@ -42,7 +42,7 @@ export default async function Page() {
 
     return (
         <div className="table-content">
-            {Object.keys(pointSystemGrouped).map((category, index) => {
+            {["Tour de France", "Grand Tour", "Monument", "WTT A", "WTC A", "WTT B", "WTC B", "WTT C", "WTC C", "WTT D", "WTC D", "VM", "VM ITT", "EM", "EM ITT", "National A", "National ITT A", "National B", "National ITT B", "OL", "OL ITT", "OL (amatør)", "OL ITT (amatør)", "Andre"].map((category, index) => {
                 return (
                     <div key={index}>
                         <div className="table-row category-row">

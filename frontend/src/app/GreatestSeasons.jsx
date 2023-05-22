@@ -108,7 +108,7 @@ export default async function GreatestSeasons() {
 
     return (
         <div className="greatest-seasons-container" id="stoerste-saesoner">
-            <h3>Største individuelle sæsoner <SectionLinkButton link={baseUrl + "/#stoerste-saesoner"} sectionName={"Største individuelle sæsoner"} /></h3>
+            <h3>Største individuelle sæsoner <SectionLinkButton link={baseUrl + "/#stoerste-saesoner"} sectionName={"Største individuelle sæsoner"} bg={"grey"} /></h3>
             <div className="rounded-table-container">
                 <div className="table">
                     <div className="table-header">

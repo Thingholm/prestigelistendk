@@ -317,7 +317,7 @@ export const nationFlagCodes = [
         nation: 'Benelux'
     },
     {
-        nationFlagCodes: 'xx',
+        nationFlagCodes: 'eu',
         nation: 'Europa'
     },
     {

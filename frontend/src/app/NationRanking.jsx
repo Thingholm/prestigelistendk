@@ -58,26 +58,23 @@ export default function NationRanking() {
             <RankingLinkHeader title="Største nationer" link="/nationer" sectionLink={<SectionLinkButton link={baseUrl + "/#stoerste-nationer"} sectionName={"Største nationer"} />} />
             <div className="table">
                 <div className="table-header">
-                    <p>Nr.</p>
-                    <p>Point</p>
+                    <p>Nr. <span className="table-previous-span">(aktive)</span></p>
+                    <p>Point <span className="table-previous-span">(aktive)</span></p>
                     <p>Nation</p>
-                    <p>Nr. (aktive)</p>
-                    <p>Point (aktive)</p>
+                    <p>Pt. pr. rytter</p>
                     <p>Antal ryttere</p>
-                    <p>Pnt. pr. rytter</p>
+
                 </div>
                 {isLoading ? <TableSkeleton /> :
                     <div className="table-content">
                         {nationRanking.map(nation => {
                             return (
                                 <div className="table-row">
-                                    <p>{nation.currentRank}</p>
-                                    <p>{nation.points}</p>
+                                    <p>{nation.currentRank} <span className="table-previous-span">{nation.activeRank}</span></p>
+                                    <p>{nation.points} <span className="table-previous-span">{nation.activePoints}</span></p>
                                     <p><Link href={"/nation/" + nationEncoder(nation.nation)}><span className={"fi fi-" + nation.nationFlagCode}></span>{nation.nation}</Link></p>
-                                    <p>{nation.activeRank}</p>
-                                    <p>{nation.activePoints}</p>
-                                    <p>{nation.numberOfRiders}</p>
                                     <p>{Math.round(nation.points / nation.numberOfRiders * 10) / 10}</p>
+                                    <p>{nation.numberOfRiders}</p>
                                 </div>
                             )
                         })}

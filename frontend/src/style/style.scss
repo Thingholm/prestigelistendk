@@ -212,13 +212,6 @@ input[type="radio"] {
                     font-weight: 600;
                 }
             }
-
-            .table-previous-span {
-                font-size: 15px;
-                opacity: 0.8;
-                font-weight: 200;
-                margin-left: 3px;
-            }
         }
     }
 
@@ -233,6 +226,13 @@ input[type="radio"] {
         bottom: -22px;
         z-index: 1;
     }
+}
+
+.table-previous-span {
+    font-size: 15px;
+    opacity: 0.8;
+    font-weight: 200;
+    margin-left: 3px;
 }
 
 .table-bottom-button {
@@ -324,6 +324,14 @@ h2 {
     &:hover {
         .copy-to-clipboard-button {
             background-color: $white-darker;
+
+            &.dark {
+                background-color: #383838;
+            }
+
+            &.grey {
+                background-color: #cfcfcf;
+            }
 
             svg {
                 opacity: 0.6;
@@ -1004,32 +1012,28 @@ footer {
         .table-header,
         .table-row {
             p:nth-of-type(1) {
-                width: 5%;
+                width: 10%;
             }
 
             p:nth-of-type(2) {
-                width: 10%;
-            }
-
-            p:nth-of-type(3) {
-                width: 30%;
-            }
-
-            p:nth-of-type(4) {
-                width: 10%;
-            }
-
-            p:nth-of-type(5) {
                 width: 20%;
             }
 
-            p:nth-of-type(6) {
-                width: 10%;
+            p:nth-of-type(3) {
+                width: 55%;
             }
 
-            p:nth-of-type(7) {
-                width: 10%;
+            p:nth-of-type(4) {
+                width: 20%;
             }
+
+            p:nth-of-type(5) {
+                width: 15%;
+            }
+        }
+
+        .table-row p:nth-last-of-type(3) {
+            font-weight: 500;
         }
     }
 }

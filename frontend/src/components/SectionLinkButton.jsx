@@ -16,10 +16,10 @@ export default function SectionLinkButton(props) {
 
     return (
         <div className="copy-to-clipboard-hover-container">
-            <div className="copy-to-clipboard-button" onClick={() => { navigator.clipboard.writeText(props.link); notification(); }}>
+            <div className={"copy-to-clipboard-button " + props.bg} onClick={() => { navigator.clipboard.writeText(props.link); notification(); }}>
                 <IoCopyOutline />
             </div>
-            <ToastContainer />
+            <ToastContainer limit={1} />
         </div>
     )
 }

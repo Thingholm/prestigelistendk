@@ -47,12 +47,12 @@ export default function Home() {
 
       <div className="landing-split-rankings-section">
         <div className="active-ranking-table-container split-ranking-table">
-          <RankingLinkHeader title="Største aktive ryttere" link={"listen?activeStatus=active"} mode="light" sectionLink={<SectionLinkButton link={baseUrl + "/#stoerste-aktive"} sectionName={"Største aktive ryttere"} />} />
+          <RankingLinkHeader title="Største aktive ryttere" link={"listen?activeStatus=active"} mode="light" sectionLink={<SectionLinkButton link={baseUrl + "/#stoerste-aktive"} sectionName={"Største aktive ryttere"} bg={"dark"} />} />
           <ActiveRanking />
         </div>
 
         <div className="danish-ranking-table-container split-ranking-table">
-          <RankingLinkHeader title="Største danske ryttere" link={"listen?nation=Danmark"} mode="light" sectionLink={<SectionLinkButton link={baseUrl + "/#stoerste-danskere"} sectionName={"Største danskere"} />} />
+          <RankingLinkHeader title="Største danske ryttere" link={"listen?nation=Danmark"} mode="light" sectionLink={<SectionLinkButton link={baseUrl + "/#stoerste-danskere"} sectionName={"Største danskere"} bg={"dark"} />} />
           <DanishRanking />
         </div>
       </div>
