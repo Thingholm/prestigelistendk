@@ -116,7 +116,7 @@ export default async function GreatestSeasons() {
                         <p>Rytter</p>
                         <p>Resultater</p>
                         <p>Sæson</p>
-                        <p>Point opnået</p>
+                        <p>Point<span className="media table-previous-span">sæson</span></p>
                     </div>
                     <div className="table-content">
                         {greatestSeasons && greatestSeasons.map((s, index) => {
@@ -137,10 +137,10 @@ export default async function GreatestSeasons() {
                                             if (race.includes("etape")) {
                                                 race = i.count + "x " + race.replace("etape", "etaper");
                                             }
-                                            return (index == 0 ? race : ", " + race)
+                                            return (index !== 2 ? <span className="race-name-span">{race}, </span> : <span>{race}</span>)
                                         })}</p>}
                                     <p>{s.year}</p>
-                                    <p>{s.points}</p>
+                                    <p>{s.points}<span className="media table-previous-span">{s.year}</span></p>
                                 </div>
                             )
                         })}

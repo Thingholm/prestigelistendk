@@ -55,7 +55,7 @@ export default function NationsRankingEvolution(props) {
     }
 
     const chartOptions = {
-        aspectRatio: 3 / 1,
+        responsive: true,
         scales: {
             y: {
                 reverse: true,
@@ -85,7 +85,7 @@ export default function NationsRankingEvolution(props) {
 
     return (
         <div className="nations-ranking-chart-container">
-            <h2>Udvikling i Prestigelisten for nationer</h2>
+            <h3>Udvikling i Prestigelisten for nationer</h3>
 
             <Line data={chartData} options={chartOptions} />
 

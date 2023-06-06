@@ -33,7 +33,7 @@ export default function NavSearch() {
             <div className="nav-search-icon-container" onClick={() => { if (searchBarActive) { setSearchBarActive(false) } else { setSearchBarActive(true) } }}>
                 <IoSearchOutline size={22} />
             </div>
-            <div onClick={() => setSearchInput("")} className={searchInput.length > 0 && searchBarActive ? "nav-search-input-delete-container visible" : "nav-search-input-delete-container"}>
+            <div onClick={() => setSearchInput("")} className={searchInput.length > 0 && searchBarActive ? "nav-search-input-delete-container visible" : "nav-search-input-delete-container"} id={searchInput.length > 1 && "search-close-container"}>
                 <IoCloseOutline size={22} />
             </div>
             <input

@@ -81,7 +81,7 @@ export default async function NationTopResults(props) {
             <h3>Største resultater af ryttere fra {nation}</h3>
             <div className="table">
                 <div className="table-header">
-                    <p>Point</p>
+                    <p><span>Point</span><span className="media">Pnt.</span></p>
                     <p>Antal</p>
                     <p>Resultat</p>
                     <p>Rytter</p>
@@ -94,7 +94,7 @@ export default async function NationTopResults(props) {
                             <div key={result.id} className="table-row">
                                 <p>{result.points}</p>
                                 <p>{result.resultAmount}</p>
-                                <p><span className={"fi fi-" + curRaceFlagCode}></span> {result.raceName.includes("<") ? result.raceName : result.raceName.split(" (")[0]}</p>
+                                <p><span className={"fi fi-" + curRaceFlagCode}></span> {result.raceName.includes("<") ? result.raceName : result.raceName.split(" (")[0]} <span className="table-previous-span media">x{result.resultAmount}</span> </p>
                                 <p>{result.rider.length > 0 ?
                                     result.rider.map((name, index) => {
                                         if (index > 0) {

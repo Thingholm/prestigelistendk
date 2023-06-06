@@ -45,7 +45,7 @@ export default function DanishRanking() {
                             return (
                                 <div key={rider.id} className='table-row'>
                                     <p>{rider.currentRank}</p>
-                                    <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className="fi fi-dk"></span><span className='last-name'>{rider.lastName} </span>{rider.firstName}</Link></p>
+                                    <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className="fi fi-dk"></span><span className='last-name'>{rider.lastName} </span><span className="first-name">{rider.firstName}</span></Link></p>
                                     <p><Link href={"/listen?yearFilterRange=single&bornBefore=" + rider.birthYear}>{rider.birthYear}</Link></p>
                                     <p>{rider.points}</p>
                                 </div>

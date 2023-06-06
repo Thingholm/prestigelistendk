@@ -28,47 +28,49 @@ export default function ThreeYearRanking() {
     return (
         <div className="three-year-ranking-container" id="3-aarig-rullende">
             <h3>3-årig rullende rangliste <SectionLinkButton link={baseUrl + "/#3-aarig-rullende"} sectionName={"3-årig rullende rangliste"} /></h3>
-            <div className="table">
-                <div className="table-header">
-                    <p>År</p>
-                    <p>1.</p>
-                    <p>2.</p>
-                    <p>3.</p>
-                    <p>4.</p>
-                    <p>5.</p>
-                    <p>6.</p>
-                    <p>7.</p>
-                    <p>8.</p>
-                    <p>9.</p>
-                    <p>10.</p>
-                </div>
-                <div className="table-content">
-                    {threeYearRanking.slice(0, loadedAmount).map(year => {
-                        return (
-                            <div className="table-row">
-                                <p>{year.year}<span className="table-previous-span">{year.year - 3}</span></p>
-                                {[...Array(10)].map((i, index) => {
-                                    const rider = rankingAlltime.find(j => j.fullName.toLowerCase() == year[index + 1].toLowerCase());
-                                    let firstName;
-                                    let lastName;
-                                    let nationFlagCode;
+            <div className="table-wrapper">
+                <div className="table">
+                    <div className="table-header">
+                        <p>År</p>
+                        <p>1.</p>
+                        <p>2.</p>
+                        <p>3.</p>
+                        <p>4.</p>
+                        <p>5.</p>
+                        <p>6.</p>
+                        <p>7.</p>
+                        <p>8.</p>
+                        <p>9.</p>
+                        <p>10.</p>
+                    </div>
+                    <div className="table-content">
+                        {threeYearRanking.slice(0, loadedAmount).map(year => {
+                            return (
+                                <div className="table-row">
+                                    <p>{year.year}<span className="table-previous-span">{year.year - 3}</span></p>
+                                    {[...Array(10)].map((i, index) => {
+                                        const rider = rankingAlltime.find(j => j.fullName.toLowerCase() == year[index + 1].toLowerCase());
+                                        let firstName;
+                                        let lastName;
+                                        let nationFlagCode;
 
-                                    if (rider) {
-                                        firstName = rider.firstName;
-                                        lastName = rider.lastName;
-                                        nationFlagCode = rider.nationFlagCode
-                                    }
-                                    if (rider) {
-                                        return (
-                                            <p className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(firstName + " " + lastName)}><span className={"fi fi-" + nationFlagCode}></span><span className='last-name'>{lastName} </span> <span>{firstName}</span></Link></p>
-                                        )
-                                    }
+                                        if (rider) {
+                                            firstName = rider.firstName;
+                                            lastName = rider.lastName;
+                                            nationFlagCode = rider.nationFlagCode
+                                        }
+                                        if (rider) {
+                                            return (
+                                                <p className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(firstName + " " + lastName)}><span className={"fi fi-" + nationFlagCode}></span><span className='last-name'>{lastName} </span> <span>{firstName}</span></Link></p>
+                                            )
+                                        }
 
-                                })}
-                            </div>
-                        )
-                    })}
-                    {loadedAmount < 200 && <button className="table-bottom-button" onClick={() => setLoadedAmount(200)}>Indlæs alle...</button>}
+                                    })}
+                                </div>
+                            )
+                        })}
+                        {loadedAmount < 200 && <button className="table-bottom-button" onClick={() => setLoadedAmount(200)}><span>Indlæs alle</span>...</button>}
+                    </div>
                 </div>
             </div>
         </div>

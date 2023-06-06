@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
 import { Bar, Line } from "react-chartjs-2";
 import { Chart } from "chart.js/auto";
 import RankingLinkHeader from "@/components/RankingLinkHeader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function createLabels(arr) {
     let newData = [];
@@ -20,6 +20,7 @@ function createLabels(arr) {
 
 export default function RiderEvolution(props) {
     const results = props.resultData;
+    const [graphShowStatus, setGraphShowStatus] = useState(1);
     const rankingByYears = props.rankingByYearData[0];
     const rankingByYearsChartData = Object.keys(rankingByYears)
         .filter(i => i.includes("Rank"))
@@ -144,12 +145,19 @@ export default function RiderEvolution(props) {
 
     return (
         <div className="rider-evolution-container">
-            <div className="chart-container">
+            <div className="media">
+                <h3>Karriere i grafer</h3>
+                <div className="btn-container">
+                    <button onClick={() => setGraphShowStatus(1)} className={graphShowStatus == 1 && "btn-active"}>Point opnået hvert år</button>
+                    <button onClick={() => setGraphShowStatus(2)} className={graphShowStatus == 2 && "btn-active"}>Udv. i placering på Prestigelisten</button>
+                </div>
+            </div>
+            <div className={graphShowStatus == 1 ? "chart-container show" : "chart-container hide"}>
                 <h3 className="light">Point opnået hvert år</h3>
                 <Bar data={barData} options={chartOptions} />
             </div>
 
-            <div className="chart-container">
+            <div className={graphShowStatus == 2 ? "chart-container show" : "chart-container hide"}>
                 <h3 className="light">Placering på Prestigelisten</h3>
                 <Line data={lineData} options={Object.assign(mergedChartOptions, chartOptions, rankChartOptions)} />
             </div>

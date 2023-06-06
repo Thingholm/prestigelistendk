@@ -14,7 +14,7 @@ export default function NationTopActiveRiders(props) {
                     <div className="table-header">
                         <p>Nr.</p>
                         <p>Rytter</p>
-                        <p>Årgang</p>
+                        <p>År<span>gang</span></p>
                         <p>Point</p>
                     </div>
                     <div className="table-content">

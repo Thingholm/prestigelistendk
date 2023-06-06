@@ -1,6 +1,7 @@
 import { supabase } from "@/utils/supabase"
 import NationByYearChart from "./NationByYearChart";
 import NationAccChart from "./NationAccChart";
+import MobileChartsContainer from "./MobileChartsContainer";
 
 async function fetchData(nation) {
     let { data: accRanking } = await supabase
@@ -33,6 +34,9 @@ export default async function NationEvolution(props) {
 
     return (
         <div className="nation-evolution-container">
+            <div className="media">
+                <MobileChartsContainer rankingData={nationRankingsData.yearRanking} accData={nationRankingsData.accRanking} />
+            </div>
             <NationByYearChart rankingData={nationRankingsData.yearRanking} accData={nationRankingsData.accRanking} />
             <NationAccChart rankingData={nationRankingsData.accRanking} />
         </div>

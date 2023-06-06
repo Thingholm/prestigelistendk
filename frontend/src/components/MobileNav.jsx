@@ -1,20 +1,42 @@
+"use client";
+
 import Link from "next/link"
 import '../style/style.css'
-import { IoChevronDownOutline } from "react-icons/io5"
+import { IoChevronBackOutline, IoChevronDownOutline, IoChevronForwardOutline, IoMenuOutline, IoReorderTwo } from "react-icons/io5"
 import NavSearch from "./NavSearch"
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
-export default function Navbar() {
+export default function MobileNavbar() {
+    const [navActive, setNavActive] = useState(false);
+    const [showLists, setShowLists] = useState(false);
+    const pathName = usePathname();
+
+    useEffect(() => {
+        setNavActive(false);
+        setShowLists(false);
+    }, [pathName]);
+
     return (
-        <header className="non-mobile-header">
+        <header className="mobile-header">
             <h1><Link href="/">Prestigelisten</Link></h1>
-            <nav>
+            <div className={navActive ? "menu-icon-container show" : "menu-icon-container hide"} onClick={() => { if (navActive) { setNavActive(false) } else { setNavActive(true) } }}>
+            </div>
+            <nav className={navActive ? "show" : "hide"}>
+                <span className={navActive ? "show nav-bg" : "hide nav-bg"} onClick={() => setNavActive(false)}></span>
+
+                <div className={showLists ? "nav-search hide" : "nav-search show"}>
+                    <NavSearch />
+                </div>
+
                 <ul>
                     <li><Link href="/om-prestigelisten">Om listen</Link></li>
                     <li><Link href="/pointsystem">Pointsystem</Link></li>
                     <li><Link href="https://docs.google.com/spreadsheets/d/14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8/edit#gid=768297916">Quiz</Link></li>
                     <li className="nav-item-with-dropdown">
-                        <p className="dropdown-button">Ranglister <span><IoChevronDownOutline className="down-icon" /></span></p>
-                        <div className="nav-dropdown-menu">
+                        <p className="dropdown-button" onClick={() => { if (showLists) { setShowLists(false) } else { setShowLists(true) } }}>Ranglister <span><IoChevronForwardOutline /></span></p>
+                        <div className={showLists ? "nav-expand-list showList" : "nav-expand-list hideList"}>
+                            <p onClick={() => setShowLists(false)}>Tilbage <IoChevronForwardOutline /></p>
                             <ul>
                                 <li><Link href="/listen">All time</Link></li>
                                 <li><Link href="/listen?activeStatus=active">Aktive ryttere</Link></li>
@@ -28,11 +50,8 @@ export default function Navbar() {
                         </div>
                     </li>
                 </ul>
-            </nav>
-            <div className="nav-right-container">
-                <NavSearch />
                 <Link className="nav-highlighted-item" href="/listen">Se listen</Link>
-            </div>
+            </nav>
         </header>
     )
 }

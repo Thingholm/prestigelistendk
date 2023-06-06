@@ -46,7 +46,7 @@ export default async function Page() {
                 return (
                     <div key={index}>
                         <div className="table-row category-row">
-                            <p>{category}</p>
+                            <h4>{category}</h4>
                         </div>
 
                         <div className="race-points-list">

@@ -33,6 +33,25 @@ export default function RiderAllResults(props) {
         arrows: true,
         nextArrow: <SliderArrow clName="next" to={<IoChevronForward color="black" size={32} />} />,
         prevArrow: <SliderArrow clName="prev" to={<IoChevronBack color="black" size={32} />} />,
+
+        responsive: [
+            {
+                breakpoint: 1100,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    adaptiveHeight: true,
+                }
+            },
+            {
+                breakpoint: 700,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    adaptiveHeight: true,
+                }
+            },
+        ],
     }
 
     return (

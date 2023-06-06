@@ -58,8 +58,8 @@ export default function NationRanking() {
             <RankingLinkHeader title="Største nationer" link="/nationer" sectionLink={<SectionLinkButton link={baseUrl + "/#stoerste-nationer"} sectionName={"Største nationer"} />} />
             <div className="table">
                 <div className="table-header">
-                    <p>Nr. <span className="table-previous-span">(aktive)</span></p>
-                    <p>Point <span className="table-previous-span">(aktive)</span></p>
+                    <p>Nr. <span className="table-previous-span">aktive</span></p>
+                    <p>Point <span className="table-previous-span">aktive</span></p>
                     <p>Nation</p>
                     <p>Pt. pr. rytter</p>
                     <p>Antal ryttere</p>

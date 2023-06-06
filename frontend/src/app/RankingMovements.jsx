@@ -13,7 +13,7 @@ import TableSkeleton from "@/components/TableSkeleton";
 
 async function getData() {
     const date = new Date();
-    let { data: results } = await supabase.from('results').select('*').gt('raceDate', date.getFullYear() + "-" + (date.getMonth() - 1) + "-" + date.getDate());
+    let { data: results } = await supabase.from('results').select('*').gt('raceDate', date.getFullYear() + "-" + (date.getMonth() - 3) + "-" + date.getDate());
     return { results: results };
 }
 
@@ -119,34 +119,34 @@ export default function RankingMovements() {
     return (
         <div className="table result-table">
             <div className="table-header">
-                <p>Udvikling</p>
+                <p><span>Udvikling</span><span className="media">Udv.</span></p>
                 <p>Rank</p>
-                <p>Rytter</p>
+                <p>Rytter <span className="media"> og resultat</span></p>
                 <p>Resultat</p>
-                <p>Point vundet</p>
+                <p><span>Point vundet</span><span className="media">+Pt.</span></p>
                 <p>Point</p>
                 <p>Dato</p>
             </div>
             {isLoading ? <TableSkeleton /> :
                 <div className="table-content">
                     {latestResults.map((result, index) => {
+                        const race = (result.count > 1 ?
+                            result.race.map((i, index) => {
+                                if (index == 0) {
+                                    return i.split(" (")[0]
+                                } else if (index == (result.race.length - 1)) {
+                                    return " & " + i.split(" (")[0]
+                                } else {
+                                    return ", " + i.split(" (")[0]
+                                }
+                            }) :
+                            result.race.split(" (")[0]);
                         return (
                             <div key={index} className="table-row">
-                                <p>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.oldRank - result.newRank}</p>
+                                <p className={result.oldRank - result.newRank > 0 ? "rank-up" : "no-movement"}>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.oldRank - result.newRank}</p>
                                 <p>{result.newRank} <span className="table-previous-span">{result.oldRank}</span></p>
-                                <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(result.rider)}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName}</span> {result.firstName}</Link></p>
-                                <p>{result.count > 1 ?
-                                    result.race.map((i, index) => {
-                                        if (index == 0) {
-                                            return i.split(" (")[0]
-                                        } else if (index == (result.race.length - 1)) {
-                                            return " & " + i.split(" (")[0]
-                                        } else {
-                                            return ", " + i.split(" (")[0]
-                                        }
-                                    }) :
-                                    result.race.split(" (")[0]}
-                                </p>
+                                <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(result.rider)}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName}</span> {result.firstName}</Link><span className="media">{race} <span className="media-smallest">({result.racePoints} pt.)</span></span></p>
+                                <p>{race}</p>
                                 <p>{result.racePoints}</p>
                                 <p>{result.newPoints} <span className="table-previous-span">{result.oldPoints}</span></p>
                                 <p>{result.raceDate.split("-")[2] + "-" + result.raceDate.split("-")[1]}</p>
