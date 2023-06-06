@@ -80,11 +80,11 @@ export default function RiderAllResults(props) {
                     })
 
                     return (
-                        <div className="rider-result-year-container">
+                        <div key={result.id} className="rider-result-year-container">
                             <h4>{key}</h4>
                             <ul>
-                                {filteredResults && filteredResults.map(result =>
-                                    <li>
+                                {filteredResults && filteredResults.map((result, index) =>
+                                    <li key={index}>
                                         <span className="result-number-of-span">{resultUniques[result.raceName] > 1 && resultUniques[result.raceName] + "x "}</span>
                                         <span className="result-race-name">{result.raceName && result.raceName.includes(" (") ? result.raceName.split(" (")[0] : result.raceName}</span>
                                         <span className="result-points-sum"> {resultUniques[result.raceName] > 1 ? (result.points * resultUniques[result.raceName]) + "p" : result.points + "p"}</span>

@@ -24,7 +24,7 @@ export default function Home() {
             <div className="quote-icon-container">
               <ImQuotesRight size={20} />
             </div>
-            <p className="hero-text-quote">Cycling isn't a game, it's a sport. Tough, hard and unpitying, and it requires great sacrifices. One plays football, or tennis, or hockey. One doesn't play at cycling.</p>
+            <p className="hero-text-quote">Cycling isn&#39;t a game, it&#39;s a sport. Tough, hard and unpitying, and it requires great sacrifices. One plays football, or tennis, or hockey. One doesn&#39;t play at cycling.</p>
             <p className="hero-text-quote-byline">- Jean De Gribaldy</p>
           </div>
           <p>Velkommen til Mathias Jensens og Mathias Mundbjergs bud på en prestigeliste i landevejscyklingens verden.</p>

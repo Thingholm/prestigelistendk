@@ -46,7 +46,7 @@ export default function ThreeYearRanking() {
                     <div className="table-content">
                         {threeYearRanking.slice(0, loadedAmount).map(year => {
                             return (
-                                <div className="table-row">
+                                <div key={year.year} className="table-row">
                                     <p>{year.year}<span className="table-previous-span">{year.year - 3}</span></p>
                                     {[...Array(10)].map((i, index) => {
                                         const rider = rankingAlltime.find(j => j.fullName.toLowerCase() == year[index + 1].toLowerCase());
@@ -61,7 +61,7 @@ export default function ThreeYearRanking() {
                                         }
                                         if (rider) {
                                             return (
-                                                <p className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(firstName + " " + lastName)}><span className={"fi fi-" + nationFlagCode}></span><span className='last-name'>{lastName} </span> <span>{firstName}</span></Link></p>
+                                                <p key={index} className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(firstName + " " + lastName)}><span className={"fi fi-" + nationFlagCode}></span><span className='last-name'>{lastName} </span> <span>{firstName}</span></Link></p>
                                             )
                                         }
 

@@ -1,6 +1,11 @@
 import SectionLinkButton from "@/components/SectionLinkButton";
 import { baseUrl } from "@/utils/baseUrl";
 
+export const metadata = {
+    title: 'Om Prestigelisten',
+    description: 'Hvad er Prestigelisten, og hvem står bag?',
+}
+
 export default function AboutPage() {
     return (
         <div className="about-page">

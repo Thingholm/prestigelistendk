@@ -67,9 +67,9 @@ export default function NationRanking() {
                 </div>
                 {isLoading ? <TableSkeleton /> :
                     <div className="table-content">
-                        {nationRanking.map(nation => {
+                        {nationRanking.map((nation, index) => {
                             return (
-                                <div className="table-row">
+                                <div key={index} className="table-row">
                                     <p>{nation.currentRank} <span className="table-previous-span">{nation.activeRank}</span></p>
                                     <p>{nation.points} <span className="table-previous-span">{nation.activePoints}</span></p>
                                     <p><Link href={"/nation/" + nationEncoder(nation.nation)}><span className={"fi fi-" + nation.nationFlagCode}></span>{nation.nation}</Link></p>

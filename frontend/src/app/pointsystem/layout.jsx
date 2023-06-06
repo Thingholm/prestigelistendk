@@ -2,6 +2,11 @@ import SectionLinkButton from "@/components/SectionLinkButton";
 import Page from "./page";
 import { baseUrl } from "@/utils/baseUrl";
 
+export const metadata = {
+    title: 'Pointsystemet - Prestigelisten',
+    description: 'Pointsystemet, som Prestigelisten er baseret på.',
+}
+
 export default function PointSystemLayout() {
     return (
         <div className="pointsystem-page">

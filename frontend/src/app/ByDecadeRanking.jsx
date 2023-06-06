@@ -44,7 +44,7 @@ export default function ByDecadeRanking() {
                             {greatestByDecade.map(decade => {
                                 return (
                                     <div key={decade.id} className="table-row">
-                                        <p>{decade.decade}'erne</p>
+                                        <p>{decade.decade}&#39;erne</p>
                                         {[...Array(amountLoaded)].map((i, index) => {
                                             const rider = rankingAlltime.find(j => j.fullName.toLowerCase() == decade[index + 1].toLowerCase());
                                             let firstName;
