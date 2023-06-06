@@ -69,7 +69,7 @@ export default async function Page(props) {
         <div className="rider-page-container">
             <div className="rider-profile-container">
                 <RiderProfile riderData={rider} />
-                {/* <RiderResults resultData={results} /> */}
+                <RiderResults resultData={results} />
             </div>
 
             {/* <RiderEvolution resultData={results} rankingByYearData={rankingByYears} />
