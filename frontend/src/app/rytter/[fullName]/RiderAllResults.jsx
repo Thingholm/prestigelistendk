@@ -1,6 +1,5 @@
 "use client"
 
-import RankingLinkHeader from "@/components/RankingLinkHeader";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -80,7 +79,7 @@ export default function RiderAllResults(props) {
                     })
 
                     return (
-                        <div key={result.id} className="rider-result-year-container">
+                        <div key={key} className="rider-result-year-container">
                             <h4>{key}</h4>
                             <ul>
                                 {filteredResults && filteredResults.map((result, index) =>
