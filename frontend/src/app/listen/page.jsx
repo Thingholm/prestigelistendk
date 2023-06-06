@@ -21,24 +21,24 @@ async function fetchData() {
     return (numerizeRanking(alltimeRanking));
 }
 
-function checkClick(ref) {
-    let visibleState;
-    useEffect(() => {
-        function handleOutsideClick(event) {
-            if (ref.current && !ref.current.contains(event.target)) {
-                visibleState = false;
-            } else {
-                visibleState = true;
-            }
-        }
+// function checkClick(ref) {
+//     let visibleState;
+//     useEffect(() => {
+//         function handleOutsideClick(event) {
+//             if (ref.current && !ref.current.contains(event.target)) {
+//                 visibleState = false;
+//             } else {
+//                 visibleState = true;
+//             }
+//         }
 
-        document.addEventListener("mousedown", handleOutsideClick, true);
-        return () => {
-            document.removeEventListener("mousedown", handleOutsideClick, true);
-        }
-    }, [ref])
-    return visibleState;
-}
+//         document.addEventListener("mousedown", handleOutsideClick, true);
+//         return () => {
+//             document.removeEventListener("mousedown", handleOutsideClick, true);
+//         }
+//     }, [ref])
+//     return visibleState;
+// }
 
 export const metadata = {
     title: 'Prestigelisten - Rangliste over de største cykelryttere',

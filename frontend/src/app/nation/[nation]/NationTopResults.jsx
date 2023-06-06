@@ -98,9 +98,9 @@ export default async function NationTopResults(props) {
                                 <p>{result.rider.length > 0 ?
                                     result.rider.map((name, index) => {
                                         if (index > 0) {
-                                            return <Link href={"/rytter/" + stringEncoder(name)}>{", " + name + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
+                                            return <Link key={index} href={"/rytter/" + stringEncoder(name)}>{", " + name + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
                                         } else {
-                                            return <Link href={"/rytter/" + stringEncoder(name)}>{name + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
+                                            return <Link key={index} href={"/rytter/" + stringEncoder(name)}>{name + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
                                         }
                                     }) : result.rider}</p>
                             </div>
