@@ -1,5 +1,5 @@
 import { supabase } from "@/utils/supabase";
-import RiderProfile from "./riderProfile";
+import RiderProfile from "./RiderProfile";
 import RiderResults from "./RiderResults";
 import RiderEvolution from "./RiderEvolution";
 import RiderAllResults from "./RiderAllResults";
