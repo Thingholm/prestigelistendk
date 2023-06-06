@@ -74,12 +74,12 @@ export default async function Page(props) {
 
             <RiderEvolution resultData={results} rankingByYearData={rankingByYears} />
 
-            <RiderAllResults resultData={results} />
+            {/* <RiderAllResults resultData={results} /> */}
 
-            {/* <div className="rider-related-rankings-container">
+            <div className="rider-related-rankings-container">
                 <RiderRankingFromNation riderNation={rider.nation} />
                 <RiderRankingFromYear riderBirthYear={rider.birthYear} />
-            </div> */}
+            </div>
         </div>
 
     )
