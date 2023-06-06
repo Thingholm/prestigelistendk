@@ -12,9 +12,9 @@ export async function generateMetadata({ params }) {
 export default function NationLayout({ params }) {
     return (
         <div>
-            <Suspense fallback={<NationLoading nation={params.nation} />}>
-                <Page nation={params.nation} />
-            </Suspense>
+            {/* <Suspense fallback={<NationLoading nation={params.nation} />}> */}
+            <Page nation={params.nation} />
+            {/* </Suspense> */}
         </div>
     )
 }
