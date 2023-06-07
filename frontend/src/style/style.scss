@@ -177,10 +177,8 @@ input[type="radio"] {
     .table-header {
         border-bottom: 2px solid black;
         align-items: end;
-
-        p:last-of-type {
-            padding-right: 7px;
-        }
+        width: calc(100% - 7px);
+        padding-right: 7px;
     }
 
     .table-content {
@@ -2981,7 +2979,7 @@ footer {
     }
 }
 
-@media screen and (max-width: 1003px) {
+@media screen and (max-width: 1020px) {
     .landing-movements-section {
         .table {
             padding-bottom: 16px;

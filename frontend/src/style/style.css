@@ -143,8 +143,7 @@ input[type=radio]::before {
 .table .table-header {
   border-bottom: 2px solid black;
   align-items: end;
-}
-.table .table-header p:last-of-type {
+  width: calc(100% - 7px);
   padding-right: 7px;
 }
 .table .table-content {
@@ -2233,7 +2232,7 @@ footer .footer-list-container .footer-list-item ul li {
     font-size: 18px;
   }
 }
-@media screen and (max-width: 1003px) {
+@media screen and (max-width: 1020px) {
   .landing-movements-section .table {
     padding-bottom: 16px;
   }
