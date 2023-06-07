@@ -16,17 +16,21 @@ async function getRankingFromNation(birthYear) {
 export default async function RiderRankingFromYear(props) {
     const riderBirthYear = props.riderBirthYear;
     const rankingFetch = await getRankingFromNation(riderBirthYear)
+    let rankedRanking = 0;
 
-    const sortedRanking = rankingFetch.sort(function (a, b) { return b.points - a.points });
+    if (rankingFetch.length > 1) {
+        const sortedRanking = rankingFetch.sort(function (a, b) { return b.points - a.points });
 
-    const rankedRanking = sortedRanking.map((obj, index) => {
-        let rank = index + 1;
-        if (index > 0 && obj.points == sortedRanking[index - 1].points) {
-            rank = sortedRanking.findIndex(i => obj.points == i.points) + 1;
-        }
 
-        return ({ ...obj, currentRank: rank });
-    });
+        rankedRanking = sortedRanking.map((obj, index) => {
+            let rank = index + 1;
+            if (index > 0 && obj.points == sortedRanking[index - 1].points) {
+                rank = sortedRanking.findIndex(i => obj.points == i.points) + 1;
+            }
+
+            return ({ ...obj, currentRank: rank });
+        });
+    }
 
     return (
         <div className="table-wrapper">
@@ -40,7 +44,7 @@ export default async function RiderRankingFromYear(props) {
                         <p>Point</p>
                     </div>
                     <div className="table-content">
-                        {rankedRanking.map(rider => {
+                        {rankedRanking && rankedRanking.map(rider => {
                             return (
                                 <div key={rider.id} className="table-row">
                                     <p>{rider.currentRank}</p>

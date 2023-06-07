@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Page from "./page";
 import NationLoading from "./loading";
+import { stringDecoder } from "@/components/stringHandler";
 
 export async function generateMetadata({ params }) {
     return {
