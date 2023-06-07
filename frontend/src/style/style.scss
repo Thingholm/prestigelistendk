@@ -177,8 +177,7 @@ input[type="radio"] {
     .table-header {
         border-bottom: 2px solid black;
         align-items: end;
-        width: calc(100% - 7px);
-        padding-right: 7px;
+        width: 100%;
     }
 
     .table-content {
@@ -3594,6 +3593,10 @@ footer {
             .search-input-container {
                 width: calc(100% - 40px);
             }
+
+            ul {
+                width: 90%;
+            }
         }
 
         .ranking-page-table-container {
@@ -4048,6 +4051,7 @@ footer {
                                     padding-bottom: 5px;
                                     border-bottom: solid 1px $black-lighter;
                                     font-weight: 600;
+                                    color: $black-lighter;
 
                                     svg {
                                         position: relative;
@@ -4598,6 +4602,10 @@ footer {
             .rounded-table-container {
                 .table {
 
+                    .table-row {
+                        align-items: center;
+                    }
+
                     .table-header,
                     .table-row {
                         .cur-team-span {
@@ -4782,6 +4790,26 @@ footer {
 }
 
 @media screen and (max-width: 450px) {
+    .landing-movements-section {
+        .table {
+
+            .table-header,
+            .table-row {
+                p:nth-of-type(1) {
+                    display: none;
+                }
+
+                p:nth-of-type(2) {
+                    width: 20%;
+                }
+
+                p:nth-of-type(3) {
+                    padding-right: 5px;
+                }
+            }
+        }
+    }
+
     .ranking-page-container {
         .ranking-filter-options-container {
             grid-template-columns: auto calc(30px + 5vw);
@@ -4818,12 +4846,13 @@ footer {
                 .table-header,
                 .table-row {
                     p:nth-of-type(1) {
-                        width: 10%;
+                        width: 20%;
 
                         .media {
-                            display: block;
+                            display: inline-block;
                             opacity: 0.4;
                             font-weight: 300;
+                            padding-left: 5px;
                         }
                     }
 
@@ -4833,28 +4862,23 @@ footer {
 
 
                     p:nth-of-type(3) {
-                        width: 12%;
+                        width: 20%;
                     }
 
                     p:nth-of-type(4) {
-                        width: 35%;
-
-                        span.first-name {
-                            display: block;
-                            opacity: 0.8;
+                        .media {
+                            display: inline-block;
                         }
+
+                        width: 70%;
                     }
 
                     p:nth-of-type(5) {
-                        width: 30%;
-
-                        .fi {
-                            margin-right: 3px;
-                        }
+                        display: none;
                     }
 
                     p:nth-of-type(6) {
-                        width: 10%;
+                        display: none;
                     }
                 }
             }
@@ -4938,38 +4962,38 @@ footer {
     }
 }
 
-@media screen and (max-width: 400px) {
-    .ranking-page-container {
-        .ranking-page-table-container {
-            .table {
+// @media screen and (max-width: 400px) {
+//     .ranking-page-container {
+//         .ranking-page-table-container {
+//             .table {
 
-                .table-header,
-                .table-row {
-                    p:nth-of-type(1) {
-                        width: 15%;
-                    }
+//                 .table-header,
+//                 .table-row {
+//                     p:nth-of-type(1) {
+//                         width: 15%;
+//                     }
 
-                    p:nth-of-type(3) {
-                        width: 15%;
-                    }
+//                     p:nth-of-type(3) {
+//                         width: 15%;
+//                     }
 
-                    p:nth-of-type(4) {
-                        width: 40%;
-                    }
+//                     p:nth-of-type(4) {
+//                         width: 40%;
+//                     }
 
-                    p:nth-of-type(5) {
-                        width: 30%;
-                    }
+//                     p:nth-of-type(5) {
+//                         width: 30%;
+//                     }
 
 
-                    p:nth-of-type(6) {
-                        display: none;
-                    }
-                }
-            }
-        }
-    }
-}
+//                     p:nth-of-type(6) {
+//                         display: none;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
 @media screen and (max-width: 375px) {
     h3 {
@@ -4995,7 +5019,25 @@ footer {
     }
 
     .landing-split-rankings-section {
+        padding-top: 10px;
+
+        .active-ranking-table-container {
+            .rounded-table-container {
+                .table {
+
+                    .table-header,
+                    .table-row {
+                        p:nth-of-type(1) {
+                            width: 14%;
+                        }
+                    }
+                }
+            }
+        }
+
         .danish-ranking-table-container {
+            padding-top: 15px;
+
             .rounded-table-container {
                 .table {
                     .table-row {
@@ -5004,6 +5046,11 @@ footer {
 
                         p:nth-of-type(2) {
                             a {
+                                .fi {
+                                    position: relative;
+                                    top: 7px;
+                                }
+
                                 .first-name {
                                     display: block;
                                     position: relative;
@@ -5030,6 +5077,8 @@ footer {
     }
 
     .landing-nations-ranking-section {
+        padding-top: 10px;
+
         .table {
             .table-row {
                 display: flex;
@@ -5061,6 +5110,10 @@ footer {
                 }
             }
         }
+    }
+
+    .three-year-ranking-container {
+        margin-bottom: 0px;
     }
 }
 

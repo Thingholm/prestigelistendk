@@ -143,8 +143,7 @@ input[type=radio]::before {
 .table .table-header {
   border-bottom: 2px solid black;
   align-items: end;
-  width: calc(100% - 7px);
-  padding-right: 7px;
+  width: 100%;
 }
 .table .table-content {
   overflow-y: overlay;
@@ -2618,6 +2617,9 @@ footer .footer-list-container .footer-list-item ul li {
   .ranking-page-container .search-container .search-input-container {
     width: calc(100% - 40px);
   }
+  .ranking-page-container .search-container ul {
+    width: 90%;
+  }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) {
     width: 10%;
@@ -2928,6 +2930,7 @@ footer .footer-list-container .footer-list-item ul li {
     padding-bottom: 5px;
     border-bottom: solid 1px #1c1c1c;
     font-weight: 600;
+    color: #1c1c1c;
   }
   header.mobile-header nav ul li.nav-item-with-dropdown .nav-expand-list p svg {
     position: relative;
@@ -3313,6 +3316,9 @@ footer .footer-list-container .footer-list-item ul li {
   .landing-movements-section .table .table-header p:nth-of-type(7) {
     display: none;
   }
+  .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-row {
+    align-items: center;
+  }
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-header .cur-team-span,
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-row .cur-team-span {
     display: block;
@@ -3414,6 +3420,18 @@ footer .footer-list-container .footer-list-item ul li {
   }
 }
 @media screen and (max-width: 450px) {
+  .landing-movements-section .table .table-header p:nth-of-type(1),
+  .landing-movements-section .table .table-row p:nth-of-type(1) {
+    display: none;
+  }
+  .landing-movements-section .table .table-header p:nth-of-type(2),
+  .landing-movements-section .table .table-row p:nth-of-type(2) {
+    width: 20%;
+  }
+  .landing-movements-section .table .table-header p:nth-of-type(3),
+  .landing-movements-section .table .table-row p:nth-of-type(3) {
+    padding-right: 5px;
+  }
   .ranking-page-container .ranking-filter-options-container {
     grid-template-columns: auto calc(30px + 5vw);
   }
@@ -3440,13 +3458,14 @@ footer .footer-list-container .footer-list-item ul li {
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) {
-    width: 10%;
+    width: 20%;
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1) .media,
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) .media {
-    display: block;
+    display: inline-block;
     opacity: 0.4;
     font-weight: 300;
+    padding-left: 5px;
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(2),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(2) {
@@ -3454,28 +3473,23 @@ footer .footer-list-container .footer-list-item ul li {
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(3),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(3) {
-    width: 12%;
+    width: 20%;
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) {
-    width: 35%;
+    width: 70%;
   }
-  .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4) span.first-name,
-  .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) span.first-name {
-    display: block;
-    opacity: 0.8;
+  .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4) .media,
+  .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) .media {
+    display: inline-block;
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) {
-    width: 30%;
-  }
-  .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5) .fi,
-  .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) .fi {
-    margin-right: 3px;
+    display: none;
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(6),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(6) {
-    width: 10%;
+    display: none;
   }
   .rider-profile-container .rider-profile-info-container {
     flex-direction: column;
@@ -3519,28 +3533,6 @@ footer .footer-list-container .footer-list-item ul li {
     margin-left: 0px;
   }
 }
-@media screen and (max-width: 400px) {
-  .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1),
-  .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) {
-    width: 15%;
-  }
-  .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(3),
-  .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(3) {
-    width: 15%;
-  }
-  .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4),
-  .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) {
-    width: 40%;
-  }
-  .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5),
-  .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) {
-    width: 30%;
-  }
-  .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(6),
-  .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(6) {
-    display: none;
-  }
-}
 @media screen and (max-width: 375px) {
   h3 {
     font-size: 16px;
@@ -3557,9 +3549,23 @@ footer .footer-list-container .footer-list-item ul li {
     padding-left: 0px;
     margin-left: 0px;
   }
+  .landing-split-rankings-section {
+    padding-top: 10px;
+  }
+  .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(1),
+  .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(1) {
+    width: 14%;
+  }
+  .landing-split-rankings-section .danish-ranking-table-container {
+    padding-top: 15px;
+  }
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row {
     display: flex;
     align-items: center;
+  }
+  .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(2) a .fi {
+    position: relative;
+    top: 7px;
   }
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(2) a .first-name {
     display: block;
@@ -3574,6 +3580,9 @@ footer .footer-list-container .footer-list-item ul li {
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(3),
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(3) {
     width: 20%;
+  }
+  .landing-nations-ranking-section {
+    padding-top: 10px;
   }
   .landing-nations-ranking-section .table .table-row {
     display: flex;
@@ -3598,6 +3607,9 @@ footer .footer-list-container .footer-list-item ul li {
   .landing-nations-ranking-section .table .table-header p:nth-of-type(3),
   .landing-nations-ranking-section .table .table-row p:nth-of-type(3) {
     width: 45%;
+  }
+  .three-year-ranking-container {
+    margin-bottom: 0px;
   }
 }
 @media screen and (max-width: 340px) {
