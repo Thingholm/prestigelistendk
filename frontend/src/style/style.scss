@@ -177,8 +177,7 @@ input[type="radio"] {
     .table-header {
         border-bottom: 2px solid black;
         align-items: end;
-        width: calc(100% - 7px);
-        padding-right: 7px;
+        width: 100%;
     }
 
     .table-content {
@@ -1426,72 +1425,99 @@ footer {
     }
 }
 
-.prev,
-.next {
-    position: absolute;
-    height: 100%;
-    top: 50%;
-    padding: 5px;
-    border: none;
-
-    &::before {
-        display: none;
-    }
-}
-
-.slick-arrow {
-    transition: 0.4s;
-}
-
-.slick-disabled {
-    opacity: 0;
-}
-
-.prev {
-    left: -50px;
-
-    &::after {
-        display: block;
-        content: "";
-        position: absolute;
-        height: 100%;
-        width: 15px;
-        background: rgb(0, 0, 0);
-        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5886729691876751) 46%, rgba(0, 0, 0, 0) 100%);
-        left: 50px;
-        top: 0px;
-        opacity: 0.07;
-    }
-}
-
-.next {
-    right: -25px;
-
-    &::after {
-        display: block;
-        content: "";
-        position: absolute;
-        height: 100%;
-        width: 15px;
-        background: rgb(0, 0, 0);
-        background: linear-gradient(270deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5886729691876751) 46%, rgba(0, 0, 0, 0) 100%);
-        right: 25px;
-        top: 0px;
-        opacity: 0.07;
-    }
-}
-
 .rider-all-results-container {
     padding: 20px 5% 40px;
     position: relative;
+    overflow: hidden;
+
+    >div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .btn-container {
+            position: relative;
+
+            button {
+                position: absolute;
+                height: 1000px;
+                top: -500px;
+                width: 100px;
+                background-color: unset;
+                border: none;
+
+                &:hover {
+                    cursor: pointer;
+
+                    >svg {
+                        transform: scale(1.2);
+                    }
+                }
+
+                svg {
+                    transition: 0.2s;
+                    color: $black-lighter;
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+            &:first-of-type {
+                button {
+                    left: 0px;
+                }
+            }
+
+            &:last-of-type {
+                button {
+                    right: 0px;
+                }
+            }
+
+            &.disabled {
+                opacity: 0.2;
+
+                button {
+                    &:hover {
+                        cursor: default;
+
+                        >svg {
+                            transform: none;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
 
     .rider-result-year-container {
         margin-right: 60px;
         padding-left: 50px;
+        width: 60%;
 
         h4 {
             margin-bottom: 10px;
-            font-size: 20px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        >div {
+            display: flex;
+            justify-content: space-between;
+
+            >div {
+                h5 {
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                }
+
+                &:last-of-type {
+                    span {
+                        font-weight: 500;
+                    }
+                }
+            }
         }
 
         ul li {
@@ -1499,7 +1525,7 @@ footer {
             margin-bottom: 5px;
 
             .result-race-name {
-                font-weight: 600;
+                font-weight: 500;
             }
 
             .result-points-sum {
@@ -3119,16 +3145,23 @@ footer {
     }
 
     .rider-all-results-container {
-        .slick-slider {
-            .slick-list {
-                cursor: grab;
-            }
-
-            .slick-arrow {
-                svg {
-                    display: none;
-
+        >div {
+            .btn-container {
+                &:first-of-type {
+                    left: -40px;
                 }
+
+                &:last-of-type {
+                    right: -40px;
+                }
+            }
+        }
+
+        .rider-result-year-container {
+            width: 80%;
+
+            h4 {
+                font-size: 20px;
             }
         }
     }
@@ -3594,6 +3627,10 @@ footer {
             .search-input-container {
                 width: calc(100% - 40px);
             }
+
+            ul {
+                width: 90%;
+            }
         }
 
         .ranking-page-table-container {
@@ -4048,6 +4085,7 @@ footer {
                                     padding-bottom: 5px;
                                     border-bottom: solid 1px $black-lighter;
                                     font-weight: 600;
+                                    color: $black-lighter;
 
                                     svg {
                                         position: relative;
@@ -4497,6 +4535,22 @@ footer {
         }
     }
 
+    .rider-all-results-container {
+        .rider-result-year-container {
+            width: 70%;
+
+            >div {
+                flex-direction: column;
+
+                >div {
+                    &:first-of-type {
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+        }
+    }
+
     .nation-page-container {
         .nation-profile-container {
             .nation-profile-info-container {
@@ -4557,6 +4611,22 @@ footer {
     }
 }
 
+@media screen and (max-width: 600px) {
+    .rider-all-results-container {
+        justify-content: center;
+
+        .rider-result-year-container {
+            h4 {
+                position: relative;
+                left: -20px;
+            }
+
+            width: fit-content;
+            margin-right: 0px;
+        }
+    }
+}
+
 @media screen and (max-width: 500px) {
     .landing-movements-section {
         .table {
@@ -4597,6 +4667,10 @@ footer {
         .active-ranking-table-container {
             .rounded-table-container {
                 .table {
+
+                    .table-row {
+                        align-items: center;
+                    }
 
                     .table-header,
                     .table-row {
@@ -4782,6 +4856,26 @@ footer {
 }
 
 @media screen and (max-width: 450px) {
+    .landing-movements-section {
+        .table {
+
+            .table-header,
+            .table-row {
+                p:nth-of-type(1) {
+                    display: none;
+                }
+
+                p:nth-of-type(2) {
+                    width: 20%;
+                }
+
+                p:nth-of-type(3) {
+                    padding-right: 5px;
+                }
+            }
+        }
+    }
+
     .ranking-page-container {
         .ranking-filter-options-container {
             grid-template-columns: auto calc(30px + 5vw);
@@ -4818,12 +4912,13 @@ footer {
                 .table-header,
                 .table-row {
                     p:nth-of-type(1) {
-                        width: 10%;
+                        width: 20%;
 
                         .media {
-                            display: block;
+                            display: inline-block;
                             opacity: 0.4;
                             font-weight: 300;
+                            padding-left: 5px;
                         }
                     }
 
@@ -4833,28 +4928,23 @@ footer {
 
 
                     p:nth-of-type(3) {
-                        width: 12%;
+                        width: 20%;
                     }
 
                     p:nth-of-type(4) {
-                        width: 35%;
-
-                        span.first-name {
-                            display: block;
-                            opacity: 0.8;
+                        .media {
+                            display: inline-block;
                         }
+
+                        width: 70%;
                     }
 
                     p:nth-of-type(5) {
-                        width: 30%;
-
-                        .fi {
-                            margin-right: 3px;
-                        }
+                        display: none;
                     }
 
                     p:nth-of-type(6) {
-                        width: 10%;
+                        display: none;
                     }
                 }
             }
@@ -4939,31 +5029,25 @@ footer {
 }
 
 @media screen and (max-width: 400px) {
-    .ranking-page-container {
-        .ranking-page-table-container {
-            .table {
-
-                .table-header,
-                .table-row {
-                    p:nth-of-type(1) {
-                        width: 15%;
+    .rider-all-results-container {
+        >div {
+            .btn-container {
+                button {
+                    svg {
+                        width: 25px;
+                        height: 25px;
                     }
+                }
 
-                    p:nth-of-type(3) {
-                        width: 15%;
+                &:first-of-type {
+                    button {
+                        left: -10px;
                     }
+                }
 
-                    p:nth-of-type(4) {
-                        width: 40%;
-                    }
-
-                    p:nth-of-type(5) {
-                        width: 30%;
-                    }
-
-
-                    p:nth-of-type(6) {
-                        display: none;
+                &:last-of-type {
+                    button {
+                        right: -10px;
                     }
                 }
             }
@@ -4995,7 +5079,25 @@ footer {
     }
 
     .landing-split-rankings-section {
+        padding-top: 10px;
+
+        .active-ranking-table-container {
+            .rounded-table-container {
+                .table {
+
+                    .table-header,
+                    .table-row {
+                        p:nth-of-type(1) {
+                            width: 14%;
+                        }
+                    }
+                }
+            }
+        }
+
         .danish-ranking-table-container {
+            padding-top: 15px;
+
             .rounded-table-container {
                 .table {
                     .table-row {
@@ -5004,6 +5106,11 @@ footer {
 
                         p:nth-of-type(2) {
                             a {
+                                .fi {
+                                    position: relative;
+                                    top: 7px;
+                                }
+
                                 .first-name {
                                     display: block;
                                     position: relative;
@@ -5030,6 +5137,8 @@ footer {
     }
 
     .landing-nations-ranking-section {
+        padding-top: 10px;
+
         .table {
             .table-row {
                 display: flex;
@@ -5061,6 +5170,10 @@ footer {
                 }
             }
         }
+    }
+
+    .three-year-ranking-container {
+        margin-bottom: 0px;
     }
 }
 
