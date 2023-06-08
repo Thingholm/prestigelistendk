@@ -1,7 +1,9 @@
 import SectionLinkButton from "@/components/SectionLinkButton";
 import { nationEncoder, stringEncoder } from "@/components/stringHandler";
 import { baseUrl } from "@/utils/baseUrl";
+import Image from "next/image";
 import Link from "next/link";
+import RiderImage from "./RiderImage";
 
 export default function RiderProfile(props) {
     const rider = props.riderData;
@@ -9,7 +11,7 @@ export default function RiderProfile(props) {
     return (
         <div className="rider-profile-info-container">
             <div className="rider-profile-info-image-container">
-                {rider.active && <img src={"https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/riderPortraits/" + rider.fullName.replace(" ", "").toLowerCase() + ".jpg"} />}
+                <RiderImage riderInfo={rider} />
             </div>
             <div className="rider-profile-info-info-container">
                 <h3 className="rider-profile-title">{rider.fullName} <SectionLinkButton link={baseUrl + "/rytter/" + stringEncoder(rider.fullName)} sectionName={rider.fullName} /></h3>
