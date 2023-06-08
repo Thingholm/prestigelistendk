@@ -18,13 +18,13 @@ export default function Footer() {
                             <Link href="nationer">Nationer</Link>
                         </li>
                         <li>
-                            <Link href="#">3-årig rullende rangliste</Link>
+                            <Link href="/#3-aarig-rullende">3-årig rullende rangliste</Link>
                         </li>
                         <li>
-                            <Link href="#">Største hvert årti</Link>
+                            <Link href="#stoerste-per-aarti">Største hvert årti</Link>
                         </li>
                         <li>
-                            <Link href="#">Største individuelle sæsoner</Link>
+                            <Link href="#stoerste-saesoner">Største individuelle sæsoner</Link>
                         </li>
                     </ul>
                 </div>
@@ -33,10 +33,10 @@ export default function Footer() {
                     <h4>Om Prestigelisten</h4>
                     <ul>
                         <li>
-                            <Link href="#">Om listen</Link>
+                            <Link href="/om-prestigelisten">Om listen</Link>
                         </li>
                         <li>
-                            <Link href="#">Pointsystemet</Link>
+                            <Link href="/pointsystem">Pointsystemet</Link>
                         </li>
                     </ul>
                 </div>
@@ -45,7 +45,7 @@ export default function Footer() {
                     <h4>Kontakt</h4>
                     <ul>
                         <li>
-                            Mail: <Link href="#">prestigelisten@hotmail.dk</Link>
+                            Mail: <Link href="mailto:prestigelisten@hotmail.dk">prestigelisten@hotmail.dk</Link>
                         </li>
                     </ul>
                 </div>

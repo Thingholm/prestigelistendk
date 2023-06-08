@@ -110,40 +110,42 @@ export default async function GreatestSeasons() {
         <div className="greatest-seasons-container" id="stoerste-saesoner">
             <h3>Største individuelle sæsoner <SectionLinkButton link={baseUrl + "/#stoerste-saesoner"} sectionName={"Største individuelle sæsoner"} bg={"grey"} /></h3>
             <div className="rounded-table-container">
-                <div className="table">
-                    <div className="table-header">
-                        <p>Nr.</p>
-                        <p>Rytter</p>
-                        <p>Resultater</p>
-                        <p>Sæson</p>
-                        <p>Point<span className="media table-previous-span">sæson</span></p>
-                    </div>
-                    <div className="table-content">
-                        {greatestSeasons && greatestSeasons.map((s, index) => {
-                            const rider = rankingAlltime.find(i => i.fullName.toLowerCase() == s.rider.toLowerCase())
-                            let riderTopResults;
-                            if (resultsWithPoints.length > 10) {
-                                riderTopResults = Object.values(resultsWithPoints.find(i => Object.keys(i) == s.rider))[0][s.year]
-                            }
+                <div className="table-shadow-container">
+                    <div className="table">
+                        <div className="table-header">
+                            <p>Nr.</p>
+                            <p>Rytter</p>
+                            <p>Resultater</p>
+                            <p>Sæson</p>
+                            <p>Point<span className="media table-previous-span">sæson</span></p>
+                        </div>
+                        <div className="table-content">
+                            {greatestSeasons && greatestSeasons.map((s, index) => {
+                                const rider = rankingAlltime.find(i => i.fullName.toLowerCase() == s.rider.toLowerCase())
+                                let riderTopResults;
+                                if (resultsWithPoints.length > 10) {
+                                    riderTopResults = Object.values(resultsWithPoints.find(i => Object.keys(i) == s.rider))[0][s.year]
+                                }
 
 
-                            return (
-                                <div key={index} className="table-row">
-                                    <p>{s.place}</p>
-                                    {rider && <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName.replace("&#39;", "'"))}><span className={'fi fi-' + rider.nationFlagCode}></span><span className='last-name'>{rider.lastName.replace("&#39;", "'")} </span>{rider.firstName}</Link></p>}
-                                    {riderTopResults &&
-                                        <p>{riderTopResults.slice(0, 3).map((i, index) => {
-                                            let race = i.race.replace("&#39;", "'").split(" (")[0]
-                                            if (race.includes("etape")) {
-                                                race = i.count + "x " + race.replace("etape", "etaper");
-                                            }
-                                            return (index !== 2 ? <span className="race-name-span">{race}, </span> : <span>{race}</span>)
-                                        })}</p>}
-                                    <p>{s.year}</p>
-                                    <p>{s.points}<span className="media table-previous-span">{s.year}</span></p>
-                                </div>
-                            )
-                        })}
+                                return (
+                                    <div key={index} className="table-row">
+                                        <p>{s.place}</p>
+                                        {rider && <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName.replace("&#39;", "'"))}><span className={'fi fi-' + rider.nationFlagCode}></span><span className='last-name'>{rider.lastName.replace("&#39;", "'")} </span>{rider.firstName}</Link></p>}
+                                        {riderTopResults &&
+                                            <p>{riderTopResults.slice(0, 3).map((i, index) => {
+                                                let race = i.race.replace("&#39;", "'").split(" (")[0]
+                                                if (race.includes("etape")) {
+                                                    race = i.count + "x " + race.replace("etape", "etaper");
+                                                }
+                                                return (index !== 2 ? <span className="race-name-span">{race}, </span> : <span>{race}</span>)
+                                            })}</p>}
+                                        <p>{s.year}</p>
+                                        <p>{s.points}<span className="media table-previous-span">{s.year}</span></p>
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

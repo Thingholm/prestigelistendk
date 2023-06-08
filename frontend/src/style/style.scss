@@ -167,6 +167,26 @@ input[type="radio"] {
 
 .table {
     position: relative;
+    overflow-y: overlay;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $white-darker;
+        border-radius: 50px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $yellow-darker;
+        border-radius: 50px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: $yellow-primary;
+    }
+
 
     .table-header,
     .table-row {
@@ -178,30 +198,15 @@ input[type="radio"] {
         border-bottom: 2px solid black;
         align-items: end;
         width: 100%;
+        position: sticky;
+        top: 0px;
+        background-color: $white-primary;
+        z-index: 1;
     }
 
     .table-content {
-        overflow-y: overlay;
-        overflow-x: hidden;
         position: relative;
         height: 100%;
-
-        &::-webkit-scrollbar {
-            width: 7px;
-        }
-
-        &::-webkit-scrollbar-track {
-            background: $white-darker;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background: $yellow-darker;
-            border-radius: 50px;
-        }
-
-        &::-webkit-scrollbar-thumb:hover {
-            background: $yellow-primary;
-        }
 
         .table-row {
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -230,18 +235,6 @@ input[type="radio"] {
                 }
             }
         }
-    }
-
-    &::after {
-        position: absolute;
-        content: "";
-        width: 100%;
-        height: 10px;
-        background: rgb(0, 0, 0);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.4682466736694678) 0%, rgba(0, 0, 0, 0.20774247198879547) 50%, rgba(0, 0, 0, 0) 100%);
-        opacity: 0.2;
-        bottom: -22px;
-        z-index: 1;
     }
 }
 
@@ -330,9 +323,22 @@ input[type="radio"] {
     background-color: $white-primary;
     border-radius: 15px;
     padding: 20px 30px;
+    position: relative;
+}
 
-    .table {
-        margin-bottom: 20px;
+.table-shadow-container {
+    position: relative;
+
+    &::after {
+        position: absolute;
+        content: "";
+        display: block;
+        width: 100%;
+        height: 10px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, .468), rgba(0, 0, 0, .208) 50%, transparent);
+        opacity: 0.2;
+        bottom: 0px;
+        z-index: 0;
     }
 }
 
