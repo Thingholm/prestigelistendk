@@ -74,7 +74,7 @@ export default async function Page(props) {
 
             <RiderEvolution resultData={results} rankingByYearData={rankingByYears} />
 
-            <RiderAllResults resultData={results} />
+            <RiderAllResults resultData={results} rankingByYearData={rankingByYears} />
 
             <div className="rider-related-rankings-container">
                 <RiderRankingFromNation riderNation={rider.nation} />

@@ -1166,77 +1166,81 @@ footer .footer-list-container .footer-list-item ul li {
   position: relative;
 }
 
-.prev,
-.next {
-  position: absolute;
-  height: 100%;
-  top: 50%;
-  padding: 5px;
-  border: none;
-}
-.prev::before,
-.next::before {
-  display: none;
-}
-
-.slick-arrow {
-  transition: 0.4s;
-}
-
-.slick-disabled {
-  opacity: 0;
-}
-
-.prev {
-  left: -50px;
-}
-.prev::after {
-  display: block;
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 15px;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.5886729692) 46%, rgba(0, 0, 0, 0) 100%);
-  left: 50px;
-  top: 0px;
-  opacity: 0.07;
-}
-
-.next {
-  right: -25px;
-}
-.next::after {
-  display: block;
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 15px;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(270deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.5886729692) 46%, rgba(0, 0, 0, 0) 100%);
-  right: 25px;
-  top: 0px;
-  opacity: 0.07;
-}
-
 .rider-all-results-container {
   padding: 20px 5% 40px;
   position: relative;
+  overflow: hidden;
+}
+.rider-all-results-container > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rider-all-results-container > div .btn-container {
+  position: relative;
+}
+.rider-all-results-container > div .btn-container button {
+  position: absolute;
+  height: 1000px;
+  top: -500px;
+  width: 100px;
+  background-color: unset;
+  border: none;
+}
+.rider-all-results-container > div .btn-container button:hover {
+  cursor: pointer;
+}
+.rider-all-results-container > div .btn-container button:hover > svg {
+  transform: scale(1.2);
+}
+.rider-all-results-container > div .btn-container button svg {
+  transition: 0.2s;
+  color: #1c1c1c;
+  width: 30px;
+  height: 30px;
+}
+.rider-all-results-container > div .btn-container:first-of-type button {
+  left: 0px;
+}
+.rider-all-results-container > div .btn-container:last-of-type button {
+  right: 0px;
+}
+.rider-all-results-container > div .btn-container.disabled {
+  opacity: 0.2;
+}
+.rider-all-results-container > div .btn-container.disabled button:hover {
+  cursor: default;
+}
+.rider-all-results-container > div .btn-container.disabled button:hover > svg {
+  transform: none;
 }
 .rider-all-results-container .rider-result-year-container {
   margin-right: 60px;
   padding-left: 50px;
+  width: 60%;
 }
 .rider-all-results-container .rider-result-year-container h4 {
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 22px;
+  text-align: center;
+}
+.rider-all-results-container .rider-result-year-container > div {
+  display: flex;
+  justify-content: space-between;
+}
+.rider-all-results-container .rider-result-year-container > div > div h5 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.rider-all-results-container .rider-result-year-container > div > div:last-of-type span {
+  font-weight: 500;
 }
 .rider-all-results-container .rider-result-year-container ul li {
   position: relative;
   margin-bottom: 5px;
 }
 .rider-all-results-container .rider-result-year-container ul li .result-race-name {
-  font-weight: 600;
+  font-weight: 500;
 }
 .rider-all-results-container .rider-result-year-container ul li .result-points-sum {
   margin-left: 5px;
@@ -2308,11 +2312,17 @@ footer .footer-list-container .footer-list-item ul li {
     font-size: 24px;
     margin-bottom: 10px;
   }
-  .rider-all-results-container .slick-slider .slick-list {
-    cursor: grab;
+  .rider-all-results-container > div .btn-container:first-of-type {
+    left: -40px;
   }
-  .rider-all-results-container .slick-slider .slick-arrow svg {
-    display: none;
+  .rider-all-results-container > div .btn-container:last-of-type {
+    right: -40px;
+  }
+  .rider-all-results-container .rider-result-year-container {
+    width: 80%;
+  }
+  .rider-all-results-container .rider-result-year-container h4 {
+    font-size: 20px;
   }
   .nation-page-container .nation-profile-container .nation-profile-info-container .nation-profile-info-image-container {
     width: 200px;
@@ -3252,6 +3262,15 @@ footer .footer-list-container .footer-list-item ul li {
   .rider-evolution-container .hide {
     display: none;
   }
+  .rider-all-results-container .rider-result-year-container {
+    width: 70%;
+  }
+  .rider-all-results-container .rider-result-year-container > div {
+    flex-direction: column;
+  }
+  .rider-all-results-container .rider-result-year-container > div > div:first-of-type {
+    margin-bottom: 20px;
+  }
   .nation-page-container .nation-profile-container .nation-profile-info-container .nation-profile-info-image-container {
     width: 175px;
   }
@@ -3285,6 +3304,20 @@ footer .footer-list-container .footer-list-item ul li {
   }
   .landing-movements-section .table {
     padding-bottom: 14px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .rider-all-results-container {
+    justify-content: center;
+  }
+  .rider-all-results-container .rider-result-year-container {
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-right: 0px;
+  }
+  .rider-all-results-container .rider-result-year-container h4 {
+    position: relative;
+    left: -20px;
   }
 }
 @media screen and (max-width: 500px) {
@@ -3531,6 +3564,18 @@ footer .footer-list-container .footer-list-item ul li {
   }
   .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container > div > div > div input {
     margin-left: 0px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .rider-all-results-container > div .btn-container button svg {
+    width: 25px;
+    height: 25px;
+  }
+  .rider-all-results-container > div .btn-container:first-of-type button {
+    left: -10px;
+  }
+  .rider-all-results-container > div .btn-container:last-of-type button {
+    right: -10px;
   }
 }
 @media screen and (max-width: 375px) {
