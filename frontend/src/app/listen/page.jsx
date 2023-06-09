@@ -12,6 +12,7 @@ import { AiOutlineVerticalAlignTop } from "react-icons/ai"
 import TableSkeleton from "@/components/TableSkeleton";
 import SectionLinkButton from "@/components/SectionLinkButton";
 import { baseUrl } from "@/utils/baseUrl";
+import { useSearchParams } from "next/navigation";
 
 async function fetchData() {
     let { data: alltimeRanking } = await supabase
@@ -21,26 +22,8 @@ async function fetchData() {
     return (numerizeRanking(alltimeRanking));
 }
 
-// function checkClick(ref) {
-//     let visibleState;
-//     useEffect(() => {
-//         function handleOutsideClick(event) {
-//             if (ref.current && !ref.current.contains(event.target)) {
-//                 visibleState = false;
-//             } else {
-//                 visibleState = true;
-//             }
-//         }
-
-//         document.addEventListener("mousedown", handleOutsideClick, true);
-//         return () => {
-//             document.removeEventListener("mousedown", handleOutsideClick, true);
-//         }
-//     }, [ref])
-//     return visibleState;
-// }
-
-export default function Page({ searchParams }) {
+export default function Page() {
+    const searchParams = Object.fromEntries(useSearchParams().entries());
     const [nationsList, setNationsList] = useState([]);
     const [birthYearList, setBirthYearList] = useState([]);
     const [selectedNation, setSelectedNation] = useState();
