@@ -42,9 +42,9 @@ export default function MobileNavbar() {
                                 <li><Link href="/listen?activeStatus=active">Aktive ryttere</Link></li>
                                 <li><Link href="/nationer">Nationer</Link></li>
                                 <li><Link href="/listen?nation=Danmark">Største danskere</Link></li>
-                                <li><a href="/#3-aarig-rullende">3-årig rullende rangliste</a></li>
-                                <li><a href="/#stoerste-per-aarti">Største per årti</a></li>
-                                <li><a href="/#stoerste-saesoner">Største individuelle sæsoner</a></li>
+                                <li><a href="/#3-aarig-rullende" onClick={() => setNavActive(false)}>3-årig rullende rangliste</a></li>
+                                <li><a href="/#stoerste-per-aarti" onClick={() => setNavActive(false)}>Største per årti</a></li>
+                                <li><a href="/#stoerste-saesoner" onClick={() => setNavActive(false)}>Største individuelle sæsoner</a></li>
                                 <li><Link href="/listen?yearFilterRange=single">Største per årgang</Link></li>
                             </ul>
                         </div>
