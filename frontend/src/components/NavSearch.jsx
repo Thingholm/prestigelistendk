@@ -7,13 +7,27 @@ import { IoCloseOutline, IoSearchOutline } from "react-icons/io5";
 import { nationEncoder, stringEncoder } from "./stringHandler";
 import colorDict from "@/utils/nationsColors";
 
+async function getData() {
+    let { data: alltimeRanking } = await supabase.from('alltimeRanking').select('*');
+    return (alltimeRanking);
+}
+
 export default function NavSearch() {
     const [searchBarActive, setSearchBarActive] = useState(false);
+    const addRankingAlltime = useStore((state) => state.addRankingAlltime);
     const rankingAlltime = useStore((state) => state.rankingAlltime);
     const nationsList = Object.keys(colorDict);
 
     const [searchInput, setSearchInput] = useState("");
     const containerRef = useRef(null);
+
+    useEffect(() => {
+        if (!rankingAlltime) {
+            getData().then(result => {
+                addRankingAlltime(numerizeRanking(result));
+            });
+        }
+    }, [])
 
     useEffect(() => {
         function handleOutsideClick(event) {
