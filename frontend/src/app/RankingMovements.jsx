@@ -13,7 +13,7 @@ import TableSkeleton from "@/components/TableSkeleton";
 
 async function getData() {
     const date = new Date();
-    let { data: results } = await supabase.from('results').select('*').gt('raceDate', date.getFullYear() + "-" + (date.getMonth() - 3) + "-" + date.getDate());
+    let { data: results } = await supabase.from('results').select('*').gt('raceDate', date.getFullYear() + "-" + (date.getMonth() - 1) + "-" + date.getDate());
     return { results: results };
 }
 

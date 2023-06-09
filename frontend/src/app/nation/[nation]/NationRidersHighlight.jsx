@@ -10,7 +10,7 @@ export default function NationRidersHighlight(props) {
             <ul>
                 {ridersFromNation.slice(0, 6).map(r => {
                     return (
-                        <li key={r.riderId}><Link href={"/rytter/" + stringEncoder(r.fullName)}>{r.fullName} (nr. {r.currentRank})</Link></li>
+                        <li key={r.riderId}><Link href={"/rytter/" + stringEncoder(r.fullName)}>{r.fullName.replace("&#39;", "'")} (nr. {r.currentRank})</Link></li>
                     )
                 })}
             </ul>

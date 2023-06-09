@@ -59,7 +59,7 @@ export default async function NationTopResults(props) {
             acc.push({ ...curr, resultAmount: 1, yearArr: [{ year: curr.year, rider: curr.rider }] });
         } else {
             const currentEleInAcc = acc[acc.map(i => i.raceName).indexOf(curr.raceName)]
-            currentEleInAcc.rider += "&" + curr.rider;
+            currentEleInAcc.rider += "?" + curr.rider;
             currentEleInAcc.yearArr.push({ year: curr.year, rider: curr.rider });
             currentEleInAcc.resultAmount++;
         }
@@ -67,7 +67,7 @@ export default async function NationTopResults(props) {
         return acc;
     }, []).map(i => {
         return {
-            ...i, rider: i.rider.split("&").reduce((acc, curr) => {
+            ...i, rider: i.rider.split("?").reduce((acc, curr) => {
                 if (!acc.includes(curr)) {
                     acc.push(curr);
                 }
@@ -98,9 +98,9 @@ export default async function NationTopResults(props) {
                                 <p>{result.rider.length > 0 ?
                                     result.rider.map((name, index) => {
                                         if (index > 0) {
-                                            return <Link key={index} href={"/rytter/" + stringEncoder(name)}>{", " + name + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
+                                            return <Link key={index} href={"/rytter/" + stringEncoder(name)}>{", " + name.replace("&#39;", "'") + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
                                         } else {
-                                            return <Link key={index} href={"/rytter/" + stringEncoder(name)}>{name + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
+                                            return <Link key={index} href={"/rytter/" + stringEncoder(name)}>{name.replace("&#39;", "'") + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
                                         }
                                     }) : result.rider}</p>
                             </div>

@@ -3110,6 +3110,7 @@ footer .footer-list-container .footer-list-item ul li {
     width: 50%;
   }
   .landing-split-rankings-section .danish-ranking-table-container {
+    padding-top: 20px;
     width: 100%;
   }
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(4),

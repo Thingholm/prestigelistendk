@@ -14,7 +14,7 @@ export default function RiderProfile(props) {
                 <RiderImage riderInfo={rider} />
             </div>
             <div className="rider-profile-info-info-container">
-                <h3 className="rider-profile-title">{rider.fullName} <SectionLinkButton link={baseUrl + "/rytter/" + stringEncoder(rider.fullName)} sectionName={rider.fullName} /></h3>
+                <h3 className="rider-profile-title">{rider.fullName.replace("&#39;", "'")} <SectionLinkButton link={baseUrl + "/rytter/" + stringEncoder(rider.fullName)} sectionName={rider.fullName.replace("&#39;", "'")} /></h3>
                 <p>Nationalitet: <Link href={"nation/" + nationEncoder(rider.nation)}><span className="profile-value-span"><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</span></Link></p>
                 {rider.active && <p>Hold: <span className="profile-value-span">{rider.currentTeam}</span></p>}
                 <p>Placering: <Link href={"listen"}><span className="profile-value-span">{rider.currentRank}</span></Link></p>

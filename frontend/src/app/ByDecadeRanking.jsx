@@ -61,7 +61,7 @@ export default function ByDecadeRanking() {
                                                 <p className="table-name-reversed" key={index}>
                                                     <Link href={"/rytter/" + stringEncoder(firstName + " " + lastName)}>
                                                         <span className={"fi fi-" + nationFlagCode}></span>
-                                                        <span className='last-name'>{lastName} </span>
+                                                        <span className='last-name'>{lastName && lastName.replace("&#39;", "'")} </span>
                                                         <span>{firstName}</span>
                                                     </Link>
                                                 </p>

@@ -23,7 +23,7 @@ export default function NationTopActiveRiders(props) {
                                 return (
                                     <div key={rider.id} className="table-row">
                                         <p>{rider.currentRank}</p>
-                                        <p className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className={'fi fi-' + rider.nationFlagCode}></span><span className="last-name">{rider.lastName} </span><span>{rider.firstName}</span></Link></p>
+                                        <p className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className={'fi fi-' + rider.nationFlagCode}></span><span className="last-name">{rider.lastName.replace("&#39;", "'")} </span><span>{rider.firstName}</span></Link></p>
                                         <p><Link href={"/listen?yearFilterRange=single&bornBefore=" + rider.birthYear}>{rider.birthYear}</Link></p>
                                         <p>{rider.points}</p>
                                     </div>
