@@ -24,13 +24,13 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_API_KEY)
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 # The ID and range of a sample spreadsheet.
-SAMPLE_SPREADSHEET_ID = '1sqGrGYQHGQQ1FH4t96ufA66koLnVLuk2PbW2vqTF2h4'
-# SAMPLE_RANGE_NAME = 'All time!A1:E4108'
-SAMPLE_RANGE_NAME = 'Resultater!A1:ACD2'
+SAMPLE_SPREADSHEET_ID = '14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8'
+SAMPLE_RANGE_NAME = 'All time!A1:E4108'
+SAMPLE_RANGE_RESULTS = 'Resultater!A1:ACD2'
 
 
 def main():
-    """nationFlagCodes = json.load(open("backend/scraper/nations.json"))
+    nationFlagCodes = json.load(open("backend/scraper/nations.json"))
 
     alltimeRanking = supabase.table("alltimeRanking").select("fullName", "points").execute()
     alltimeRankingFullNames = []
@@ -50,7 +50,7 @@ def main():
             for y in x[1]:
                 rankingPerYearFullNames.append(y["rider"])
                 rankingPerYearDict[y["rider"]] = y["2023Points"]
-                rankingPerYearRankDict[y["rider"]] = y["2023Rank"]"""
+                rankingPerYearRankDict[y["rider"]] = y["2023Rank"]
     
     resultsCurYear = supabase.table("results").select("*").eq("year", 2023).execute()
     resultsCurYearRaceList = []
@@ -95,13 +95,7 @@ def main():
              print('No data found.')
              return
         
-        for riderIndex, rider in enumerate(values[1]):
-            if rider and values[0][riderIndex] not in resultsCurYearRaceList:
-                # print(rider.replace("'", "&#39;") + values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"))
-                insertData = supabase.table("results").insert({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": datetime.date.today().strftime("%Y" + "-" + "%m" + "-" + "%d")}).execute()
-                print({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": datetime.date.today().strftime("%Y" + "-" + "%m" + "-" + "%d")})
-
-        """for row in values:
+        for row in values:
             if not row[1] == "Rytter":
                 if not row[1].replace("'", "&#39;") in alltimeRankingFullNames:
                     nameArr = row[1].split(" ")
@@ -122,8 +116,28 @@ def main():
                     print({"rider": row[1].replace("'", "&#39;"), "2023Points": row[2], "2023Rank": row[0]})
                 else:
                     if str(rankingPerYearDict[row[1].replace("'", "&#39;")]) != str(row[2]) or str(rankingPerYearRankDict[row[1].replace("'", "&#39;")]) != str(row[0]):
-                        updateData = supabase.table("alltimeRankingPerYear").update({"2023Points": row[2], "2023Rank": row[0]}).eq("rider", row[1].replace("'", "&#39;")).execute()"""
+                        updateData = supabase.table("alltimeRankingPerYear").update({"2023Points": row[2], "2023Rank": row[0]}).eq("rider", row[1].replace("'", "&#39;")).execute()
+    except HttpError as err:
+        print(err)
 
+    try:
+        service = build('sheets', 'v4', credentials=creds)
+
+        # Call the Sheets API
+        sheet = service.spreadsheets()
+        result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
+                                     range=SAMPLE_RANGE_RESULTS).execute()
+        values = result.get('values', [])
+
+        if not values:
+             print('No data found.')
+             return
+        
+        for riderIndex, rider in enumerate(values[1]):
+            if rider and values[0][riderIndex].replace("'", "&#39;").replace(",", "comma") not in resultsCurYearRaceList and values[0][riderIndex]:
+                # print(rider.replace("'", "&#39;") + values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"))
+                insertData = supabase.table("results").insert({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": datetime.date.today().strftime("%Y" + "-" + "%m" + "-" + "%d")}).execute()
+                # print({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": datetime.date.today().strftime("%Y" + "-" + "%m" + "-" + "%d")})
 
     except HttpError as err:
         print(err)

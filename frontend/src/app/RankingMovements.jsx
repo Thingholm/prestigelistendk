@@ -148,7 +148,7 @@ export default function RankingMovements() {
                                 <div key={index} className="table-row">
                                     <p className={result.oldRank - result.newRank > 0 ? "rank-up" : "no-movement"}>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.oldRank - result.newRank}</p>
                                     <p>{result.newRank} <span className="table-previous-span">{result.oldRank}</span></p>
-                                    <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(result.rider)}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName}</span> {result.firstName}</Link><span className="media">{race} <span className="media-smallest">({result.racePoints} pt.)</span></span></p>
+                                    <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(result.rider)}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName.replace("&#39;", "'")}</span> {result.firstName}</Link><span className="media">{race} <span className="media-smallest">({result.racePoints} pt.)</span></span></p>
                                     <p>{race}</p>
                                     <p>{result.racePoints}</p>
                                     <p>{result.newPoints} <span className="table-previous-span">{result.oldPoints}</span></p>
