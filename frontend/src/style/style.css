@@ -2801,13 +2801,6 @@ footer .footer-list-container .footer-list-item ul li {
   }
 }
 @media screen and (max-width: 680px) {
-  .table .table-header {
-    width: calc(100% - 5px);
-    padding-right: 5px;
-  }
-  .table .table-header p:last-of-type {
-    padding-right: 0px;
-  }
   .table .table-content::-webkit-scrollbar {
     width: 5px;
   }
