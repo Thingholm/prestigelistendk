@@ -40,6 +40,8 @@ export default function RankingMovements() {
                 if (rankingAlltime.map(j => j.fullName).includes(i.rider)) {
                     return true;
                 }
+            }).map(i => {
+                return { ...i, race: i.race.replace("&#39;", "'") }
             })
 
             const resultsGroupedByDateWithPoints = filteredForRidersOnly.reduce((acc, obj) => {
@@ -136,7 +138,7 @@ export default function RankingMovements() {
                                     if (index == 0) {
                                         return i.split(" (")[0]
                                     } else if (index == (result.race.length - 1)) {
-                                        return " & " + i.split(" (")[0]
+                                        return " og " + i.split(" (")[0]
                                     } else {
                                         return ", " + i.split(" (")[0]
                                     }
