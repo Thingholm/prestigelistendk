@@ -25,8 +25,9 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 # The ID and range of a sample spreadsheet.
 SAMPLE_SPREADSHEET_ID = '14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8'
-SAMPLE_RANGE_NAME = 'All time!A1:E4108'
+SAMPLE_RANGE_NAME = 'All time!A1:E'
 SAMPLE_RANGE_RESULTS = 'Resultater!A1:ACD2'
+SAMPLE_RANGE_NATIONS = "Største nationer!A1:E"
 
 
 def main():
@@ -61,6 +62,15 @@ def main():
                 resultsCurYearRaceList.append(y["race"])
                 resultsCurYearDict[y["race"]] = y["raceDate"]
 
+    nationNameList = []
+    nationDict = {}
+    nationsRanking = supabase.table("nationsRanking").select("*").execute()
+    for index, x in enumerate(nationsRanking):
+        if index == 0:
+            for y in x[1]:
+                nationDict[y["nation"]] = y
+                nationNameList.append(y["nation"])
+                
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.
     """
@@ -96,27 +106,35 @@ def main():
              return
         
         for row in values:
+            if not row[1]:
+                break
             if not row[1] == "Rytter":
                 if not row[1].replace("'", "&#39;") in alltimeRankingFullNames:
                     nameArr = row[1].split(" ")
                     firstName = nameArr[0]
                     lastName = " ".join(nameArr[1:])
-
                     if row[3] in nationFlagCodes:
                         flagCode = nationFlagCodes[row[3]]
                     else:
                         flagCode = row[3][:2].lower()
                     
                     insertData = supabase.table("alltimeRanking").insert({"fullName": row[1].replace("'", "&#39;"), "lastName": lastName, "firstName": firstName, "nation": row[3], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True}).execute()
+                    print("INSERTED TO ALLTIMERANKING: ")
+                    print({"fullName": row[1].replace("'", "&#39;"), "lastName": lastName, "firstName": firstName, "nation": row[3], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True})
                 else:
                     if str(alltimeRankingDict[row[1].replace("'", "&#39;")]) != str(row[2]):
                         updateData = supabase.table("alltimeRanking").update({"points": row[2]}).eq("fullName", row[1].replace("'", "&#39;")).execute()
+                        print("UPDATED TO ALLTIMERANKING: ")
+                        print({"points": row[2]}).eq("fullName", row[1].replace("'", "&#39;"))
                 if not row[1].replace("'", "&#39;") in rankingPerYearFullNames:
                     insertData = supabase.table("alltimeRankingPerYear").insert({"rider": row[1].replace("'", "&#39;"), "2023Points": row[2], "2023Rank": row[0]}).execute()
+                    print("INSERTED TO ALLTIMERANKINGPERYEAR: ")
                     print({"rider": row[1].replace("'", "&#39;"), "2023Points": row[2], "2023Rank": row[0]})
                 else:
                     if str(rankingPerYearDict[row[1].replace("'", "&#39;")]) != str(row[2]) or str(rankingPerYearRankDict[row[1].replace("'", "&#39;")]) != str(row[0]):
                         updateData = supabase.table("alltimeRankingPerYear").update({"2023Points": row[2], "2023Rank": row[0]}).eq("rider", row[1].replace("'", "&#39;")).execute()
+                        print("UPDATED TO ALLTIMERANKINGPERYEAR: ")
+                        print({"2023Points": row[2], "2023Rank": row[0]}).eq("rider", row[1].replace("'", "&#39;"))
     except HttpError as err:
         print(err)
 
@@ -135,12 +153,41 @@ def main():
         
         for riderIndex, rider in enumerate(values[1]):
             if rider and values[0][riderIndex].replace("'", "&#39;").replace(",", "comma") not in resultsCurYearRaceList and values[0][riderIndex]:
-                # print(rider.replace("'", "&#39;") + values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"))
                 insertData = supabase.table("results").insert({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": datetime.date.today().strftime("%Y" + "-" + "%m" + "-" + "%d")}).execute()
-                # print({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": datetime.date.today().strftime("%Y" + "-" + "%m" + "-" + "%d")})
+                print("INSERTED TO RESULTS: ")
+                print({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": datetime.date.today().strftime("%Y" + "-" + "%m" + "-" + "%d")})
 
     except HttpError as err:
         print(err)
 
+    try:
+        service = build('sheets', 'v4', credentials=creds)
+
+        # Call the Sheets API
+        sheet = service.spreadsheets()
+        result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
+                                     range=SAMPLE_RANGE_NATIONS).execute()
+        values = result.get('values', [])
+
+        if not values:
+             print('No data found.')
+             return
+        
+        for nation in values[2:]:
+            if nation[1] in nationNameList:
+                if int(nation[2]) != nationDict[nation[1]]["points"] or int(nation[3]) != nationDict[nation[1]]["numberOfRiders"]:
+                    updateData = supabase.table("nationsRanking").update({"points": nation[2], "numberOfRiders": nation[3]}).eq("nation", nation[1]).execute()
+                    print("UPDATED TO NATIONS: ")
+                    print({"points": nation[2], "numberOfRiders": nation[3]})
+            else:
+                if nation[1] in nationFlagCodes:
+                    flagCode = nationFlagCodes[nation[1]]
+                else:
+                    flagCode = nation[1][:2].lower()
+                insertData = supabase.table("nationsRanking").insert({"nation": nation[1], "flagCode": flagCode, "points": nation[2], "numberOfRiders": nation[3]}).execute()
+                print("INSERTED TO NATIONS: ")
+                print({"nation": nation[1], "flagCode": flagCode, "points": nation[2], "numberOfRiders": nation[3]})
+    except HttpError as err:
+        print(err)
 if __name__ == '__main__':
     main()
