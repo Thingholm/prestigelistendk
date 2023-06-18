@@ -125,7 +125,7 @@ def main():
                     if str(alltimeRankingDict[row[1].replace("'", "&#39;")]) != str(row[2]):
                         updateData = supabase.table("alltimeRanking").update({"points": row[2]}).eq("fullName", row[1].replace("'", "&#39;")).execute()
                         print("UPDATED TO ALLTIMERANKING: ")
-                        print({"points": row[2]}).eq("fullName", row[1].replace("'", "&#39;"))
+                        print({"points": row[2], "fullName": row[1].replace("'", "&#39;")})
                 if not row[1].replace("'", "&#39;") in rankingPerYearFullNames:
                     insertData = supabase.table("alltimeRankingPerYear").insert({"rider": row[1].replace("'", "&#39;"), "2023Points": row[2], "2023Rank": row[0]}).execute()
                     print("INSERTED TO ALLTIMERANKINGPERYEAR: ")
@@ -134,7 +134,7 @@ def main():
                     if str(rankingPerYearDict[row[1].replace("'", "&#39;")]) != str(row[2]) or str(rankingPerYearRankDict[row[1].replace("'", "&#39;")]) != str(row[0]):
                         updateData = supabase.table("alltimeRankingPerYear").update({"2023Points": row[2], "2023Rank": row[0]}).eq("rider", row[1].replace("'", "&#39;")).execute()
                         print("UPDATED TO ALLTIMERANKINGPERYEAR: ")
-                        print({"2023Points": row[2], "2023Rank": row[0]}).eq("rider", row[1].replace("'", "&#39;"))
+                        print({"2023Points": row[2], "2023Rank": row[0], "rider: ": row[1].replace("'", "&#39;")})
     except HttpError as err:
         print(err)
 

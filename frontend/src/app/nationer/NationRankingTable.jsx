@@ -5,48 +5,15 @@ import numerizeRanking from "@/utils/numerizeRanking";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-function numerizeRankingByPPR(rankingList) {
-    const newRanking = rankingList.map(i => { return { ...i, ppr: i.points / i.numberOfRiders } })
 
-    const sortedRanking = newRanking.sort(function (a, b) { return b.ppr - a.ppr });
-
-    const rankedRanking = sortedRanking.map((obj, index) => {
-        let rank = index + 1;
-
-        if (index > 0 && obj.ppr == sortedRanking[index - 1].ppr) {
-            rank = sortedRanking.findIndex(i => obj.ppr == i.ppr) + 1;
-        }
-
-        return ({ ...obj, currentRank: rank })
-    });
-
-    return (rankedRanking)
-}
-
-function numerizeRankingByNoR(rankingList) {
-    const sortedRanking = rankingList.sort(function (a, b) { return b.numberOfRiders - a.numberOfRiders });
-
-    const rankedRanking = sortedRanking.map((obj, index) => {
-        let rank = index + 1;
-
-        if (index > 0 && obj.numberOfRiders == sortedRanking[index - 1].numberOfRiders) {
-            rank = sortedRanking.findIndex(i => obj.numberOfRiders == i.numberOfRiders) + 1;
-        }
-
-        return ({ ...obj, currentRank: rank })
-    });
-
-    return (rankedRanking)
-}
-{/* 625 */ }
 export default function NationRankingTable(props) {
-    const nationRanking = props.nationRanking;
+    const nationsRanking = props.nationsRanking;
     const alltimeRanking = props.alltimeRanking;
     const [rankingFilter, setRankingFilter] = useState({
         sortBy: "point",
         filterBy: "alle",
     });
-    const [filteredRanking, setFilteredRanking] = useState(numerizeRanking(nationRanking));
+    const [filteredRanking, setFilteredRanking] = useState(numerizeRanking(nationsRanking));
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -55,7 +22,7 @@ export default function NationRankingTable(props) {
 
     useEffect(() => {
         setIsLoading(true);
-        let newFilteredRanking = nationRanking;
+        let newFilteredRanking = nationsRanking;
 
         if (rankingFilter.filterBy == "aktive") {
             const nationsGrouped = alltimeRanking.filter(i => i.active == true).reduce((acc, curr) => {
@@ -196,7 +163,7 @@ export default function NationRankingTable(props) {
                             <div key={index} className="table-row">
                                 <p>{nation.currentRank}</p>
                                 <p>{nation.points}</p>
-                                <p><Link href={"nation/" + nationEncoder(nation.nation)}><span className={"fi fi-" + nation.nationFlagCode}></span>{nation.nation}</Link></p>
+                                <p><Link href={"nation/" + nationEncoder(nation.nation)}><span className={"fi fi-" + nation.flagCode}></span>{nation.nation}</Link></p>
                                 <p>{greatestRiders.map((i, index) => { if (index == 2) { return (<Link key={index} href={"rytter/" + stringEncoder(i.fullName)}>{i.fullName.replace("&#39;", "'")}</Link>) } else { return (<Link key={index} href={"rytter/" + stringEncoder(i.fullName)}>{i.fullName.replace("&#39;", "'") + ", "}</Link>) } })}</p>
                                 <p>{Math.round(nation.points / nation.numberOfRiders * 10) / 10}</p>
                                 <p>{nation.numberOfRiders}</p>
