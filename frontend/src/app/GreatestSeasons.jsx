@@ -62,7 +62,6 @@ export default async function GreatestSeasons() {
 
     if (results) {
         const resultsGroupedByRider = results.map(i => {
-            console.log(i)
             return {
                 ...i,
                 racePoints: pointSystem.find(j =>

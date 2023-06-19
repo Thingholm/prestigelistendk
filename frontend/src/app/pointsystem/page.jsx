@@ -25,7 +25,18 @@ async function fetchData() {
 function generateTableRows(r) {
     return (
         <div key={r.id} className={!r.active && "inactive-race"}>
-            <p><span className={"fi fi-" + nationFlagCodes.find(i => i.nation == r.raceNation).nationFlagCode}></span>{r.raceName}</p>
+            <p>
+                <span className={"fi fi-" + nationFlagCodes.find(i => i.nation == r.raceNation).nationFlagCode}></span>
+                {r.raceName
+                    .replace("Verdensmester i enkeltstart", "VM i enkeltstart")
+                    .replace("Verdensmester", "VM i linjeløb")
+                    .replace("Europamester i enkeltstart", "EM i enkeltstart")
+                    .replace("Europamester", "EM i linjeløb")
+                    .replace("Olympisk mester i enkeltstart", "OL i enkeltstart")
+                    .replace("Olympisk mester", "OL i linjeløb")
+                    .replace("OL 12 timers løb - guld", "OL 12 timers løb")
+                }
+            </p>
         </div>
     )
 }
@@ -59,7 +70,7 @@ export default async function Page() {
 
                         <div className="category-content">
                             <div className="race-name-list">
-                                {pointSystem.filter(i => i.category == category).filter(i => !i.raceName.includes("plads") && !i.raceName.includes("etape") && !i.raceName.includes("trøje")).sort((a, b) => b.active - a.active).map(r => {
+                                {pointSystem.filter(i => i.category == category).filter(i => !i.raceName.includes("plads") && !i.raceName.includes("sølv") && !i.raceName.includes("bronze") && !i.raceName.includes("etape") && !i.raceName.includes("trøje")).sort((a, b) => b.active - a.active).map(r => {
                                     return generateTableRows(r)
                                 })}
                             </div>
