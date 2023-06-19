@@ -5,6 +5,7 @@
   text-decoration: none;
   list-style: none;
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
+  color: #1c1c1c;
 }
 
 .media {
@@ -1921,6 +1922,24 @@ footer .footer-list-container .footer-list-item ul li {
 .about-page h2 {
   position: relative;
   margin-bottom: 10px;
+}
+.about-page ul {
+  margin-bottom: 20px;
+}
+.about-page ul li {
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-bottom: 10px;
+}
+.about-page ul li a,
+.about-page p a {
+  -webkit-text-decoration: underline dotted 2px #a5a5a5;
+          text-decoration: underline dotted 2px #a5a5a5;
+}
+.about-page ul li a:hover,
+.about-page p a:hover {
+  -webkit-text-decoration: underline solid 2px #1c1c1c;
+          text-decoration: underline solid 2px #1c1c1c;
 }
 .about-page p {
   margin-bottom: 20px;

@@ -17,6 +17,7 @@ $skeleton-base: #DDDBDD;
     text-decoration: none;
     list-style: none;
     font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
+    color: $black-lighter;
 }
 
 .media {
@@ -2479,6 +2480,25 @@ footer {
     h2 {
         position: relative;
         margin-bottom: 10px;
+    }
+
+    ul {
+        li {
+            list-style-type: disc;
+            list-style-position: inside;
+            margin-bottom: 10px;
+        }
+
+        margin-bottom: 20px;
+    }
+
+    ul li a,
+    p a {
+        text-decoration: underline dotted 2px #a5a5a5;
+
+        &:hover {
+            text-decoration: underline solid 2px $black-lighter;
+        }
     }
 
     p {

@@ -32,23 +32,25 @@ export default function MobileNavbar() {
                 <ul>
                     <li><Link href="/om-prestigelisten">Om listen</Link></li>
                     <li><Link href="/pointsystem">Pointsystem</Link></li>
-                    <li><Link href="https://docs.google.com/spreadsheets/d/14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8/edit#gid=768297916">Quiz</Link></li>
                     <li className="nav-item-with-dropdown">
                         <p className="dropdown-button" onClick={() => { if (showLists) { setShowLists(false) } else { setShowLists(true) } }}>Ranglister <span><IoChevronForwardOutline /></span></p>
                         <div className={showLists ? "nav-expand-list showList" : "nav-expand-list hideList"}>
                             <p onClick={() => setShowLists(false)}>Tilbage <IoChevronForwardOutline /></p>
                             <ul>
                                 <li><Link href="/listen">All time</Link></li>
-                                <li><Link href="/listen?activeStatus=active">Aktive ryttere</Link></li>
+                                <li><Link href="/listen?activeStatus=active">Aktive</Link></li>
                                 <li><Link href="/nationer">Nationer</Link></li>
-                                <li><Link href="/listen?nation=Danmark">Største danskere</Link></li>
-                                <li><a href="/#3-aarig-rullende" onClick={() => setNavActive(false)}>3-årig rullende rangliste</a></li>
-                                <li><a href="/#stoerste-per-aarti" onClick={() => setNavActive(false)}>Største per årti</a></li>
+                                <li><Link href="/listen?nation=Danmark">Danskere</Link></li>
+                                <li><a href="/#3-aarig-rullende" onClick={() => setNavActive(false)}>Største ryttere over en 3-årig periode</a></li>
+                                <li><a href="/#stoerste-per-aarti" onClick={() => setNavActive(false)}>Største pr. årti</a></li>
                                 <li><a href="/#stoerste-saesoner" onClick={() => setNavActive(false)}>Største individuelle sæsoner</a></li>
-                                <li><Link href="/listen?yearFilterRange=single">Største per årgang</Link></li>
+                                <li><Link href="/listen?yearFilterRange=single">Største pr. årgang</Link></li>
                             </ul>
                         </div>
                     </li>
+                    <li><Link href="https://docs.google.com/spreadsheets/d/14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8/edit#gid=1348170666" target="_blank">Rådata</Link></li>
+                    <li><Link href="https://docs.google.com/spreadsheets/d/14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8/edit#gid=768297916" target="_blank">Quiz</Link></li>
+
                 </ul>
                 <Link className="nav-highlighted-item" href="/listen">Se listen</Link>
             </nav>

@@ -27,9 +27,9 @@ export default function Home() {
             <p className="hero-text-quote">Cycling isn&#39;t a game, it&#39;s a sport. Tough, hard and unpitying, and it requires great sacrifices. One plays football, or tennis, or hockey. One doesn&#39;t play at cycling.</p>
             <p className="hero-text-quote-byline">- Jean De Gribaldy</p>
           </div>
-          <p>Velkommen til Mathias Jensens og Mathias Mundbjergs bud på en prestigeliste i landevejscyklingens verden.</p>
-          <p>Prestigelistens formål er dels at fungere som opslagsværk for cykelhistoriens vigtigste resultater, og dels at give mulighed for at sammenligne ryttere over tid.</p>
-          <p>Opgørelsen omfatter data helt tilbage til den første udgave af Milano-Torino i 1876, hvilket vil sige i alt mere end 30.000 placeringer fordelt på de mere end 4.300 forskellige ryttere, der har opnået mindst et af de 757 pointgivende resultater.</p>
+          <p>Velkommen til Mathias Jensens og Mathias Fisker Mundbjergs bud på en prestigeliste i landevejscyklingens verden.</p>
+          <p>Vi vil gerne begynde med at slå fast, at pointsystemet er baseret på en subjektiv vurdering, men en gennemdiskuteret og - mener vi selv - kvalificeret en af slagsen.</p>
+          <p>Prestigelistens primære formål er at give mulighed for at sammenligne ryttere over tid. Vi har forsøgt at udfærdige pointgivningen, så hverken de nutidige eller de ældste ryttere favoriseres i for høj grad. Vi har forsøgt at balancere det, så det, at der var mindre konkurrence for 100 år siden, udligner det mindre antal prestigefyldte løb, hvori det var muligt at score point.</p>
           <div className="btn-container">
             <Link href="/listen">Udforsk Prestigelisten</Link>
             <Link href="/om-prestigelisten">Mere om listen...</Link>

@@ -8,24 +8,14 @@ export default function Footer() {
                 <div className="footer-list-item">
                     <h4>Lister</h4>
                     <ul>
-                        <li>
-                            <Link href="listen">Ryttere (all time)</Link>
-                        </li>
-                        <li>
-                            <Link href="listen?activeStatus=active">Ryttere (Aktive)</Link>
-                        </li>
-                        <li>
-                            <Link href="nationer">Nationer</Link>
-                        </li>
-                        <li>
-                            <Link href="/#3-aarig-rullende">3-årig rullende rangliste</Link>
-                        </li>
-                        <li>
-                            <Link href="#stoerste-per-aarti">Største hvert årti</Link>
-                        </li>
-                        <li>
-                            <Link href="#stoerste-saesoner">Største individuelle sæsoner</Link>
-                        </li>
+                        <li><Link href="/listen">All time</Link></li>
+                        <li><Link href="/listen?activeStatus=active">Aktive</Link></li>
+                        <li><Link href="/nationer">Nationer</Link></li>
+                        <li><Link href="/listen?nation=Danmark">Danskere</Link></li>
+                        <li><a href="/#3-aarig-rullende">Største ryttere over en 3-årig periode</a></li>
+                        <li><a href="/#stoerste-per-aarti">Største pr. årti</a></li>
+                        <li><a href="/#stoerste-saesoner">Største individuelle sæsoner</a></li>
+                        <li><Link href="/listen?yearFilterRange=single">Største pr. årgang</Link></li>
                     </ul>
                 </div>
 
@@ -33,7 +23,7 @@ export default function Footer() {
                     <h4>Om Prestigelisten</h4>
                     <ul>
                         <li>
-                            <Link href="/om-prestigelisten">Om listen</Link>
+                            <Link href="/om-prestigelisten">Om Prestigelisten</Link>
                         </li>
                         <li>
                             <Link href="/pointsystem">Pointsystemet</Link>
@@ -45,7 +35,7 @@ export default function Footer() {
                     <h4>Kontakt</h4>
                     <ul>
                         <li>
-                            Mail: <Link href="mailto:prestigelisten@hotmail.dk">prestigelisten@hotmail.dk</Link>
+                            Mail: <Link href="mailto:prestigelisten@hotmail.dk">prestigelisten@hotmail.com</Link>
                         </li>
                     </ul>
                 </div>
