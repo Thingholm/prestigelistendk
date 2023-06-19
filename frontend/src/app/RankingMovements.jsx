@@ -122,11 +122,11 @@ export default function RankingMovements() {
         <div className="table-shadow-container">
             <div className="table result-table">
                 <div className="table-header">
+                    <p>Placering</p>
                     <p><span>Udvikling</span><span className="media">Udv.</span></p>
-                    <p>Rank</p>
                     <p>Rytter <span className="media"> og resultat</span></p>
                     <p>Resultat</p>
-                    <p><span>Point vundet</span><span className="media">+Pt.</span></p>
+                    <p><span>Point optjent</span><span className="media">+Pt.</span></p>
                     <p>Point</p>
                     <p>Dato</p>
                 </div>
@@ -135,19 +135,20 @@ export default function RankingMovements() {
                         {latestResults.map((result, index) => {
                             const race = (result.count > 1 ?
                                 result.race.map((i, index) => {
+                                    const fR = i.replace("af", "i")
                                     if (index == 0) {
-                                        return i.split(" (")[0]
+                                        return fR.split(" (")[0]
                                     } else if (index == (result.race.length - 1)) {
-                                        return " og " + i.split(" (")[0]
+                                        return " og " + fR.split(" (")[0]
                                     } else {
-                                        return ", " + i.split(" (")[0]
+                                        return ", " + fR.split(" (")[0]
                                     }
                                 }) :
-                                result.race.split(" (")[0]);
+                                result.race.replace("af", "i").split(" (")[0]);
                             return (
                                 <div key={index} className="table-row">
-                                    <p className={result.oldRank - result.newRank > 0 ? "rank-up" : "no-movement"}>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.oldRank - result.newRank}</p>
                                     <p>{result.newRank} <span className="table-previous-span">{result.oldRank}</span></p>
+                                    <p className={result.oldRank - result.newRank > 0 ? "rank-up" : "no-movement"}>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.oldRank - result.newRank}</p>
                                     <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(result.rider)}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName.replace("&#39;", "'")}</span> {result.firstName}</Link><span className="media">{race} <span className="media-smallest">({result.racePoints} pt.)</span></span></p>
                                     <p>{race}</p>
                                     <p>{result.racePoints}</p>

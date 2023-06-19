@@ -11,7 +11,7 @@ export default function PointSystemLayout() {
     return (
         <div className="pointsystem-page">
             <h2>Poinsystemet <SectionLinkButton link={baseUrl + "/pointsystem"} sectionName={"Pointsystemet"} /></h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quis id pariatur enim ipsa molestiae molestias similique tempora. Officiis cum, quidem earum accusantium reprehenderit quasi libero et vitae dolorum exercitationem veniam pariatur assumenda ducimus voluptate velit a magni. Rerum, delectus?</p>
+            <p>Pointsystemet er baseret på en subjektiv vurdering, men en gennemdiskuteret og - mener vi selv - kvalificeret en af slagsen.</p>
             <Page />
         </div>
     )

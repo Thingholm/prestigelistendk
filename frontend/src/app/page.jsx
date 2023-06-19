@@ -43,7 +43,7 @@ export default function Home() {
       </div>
 
       <div className="landing-movements-section" id="seneste-resultater">
-        <h3>Pointgivende resultater seneste måned <SectionLinkButton link={baseUrl + "/#seneste-resultater"} sectionName={"Pointgivende resultater seneste måned"} /></h3>
+        <h3>Seneste pointgivende resultater <SectionLinkButton link={baseUrl + "/#seneste-resultater"} sectionName={"Pointgivende resultater seneste måned"} /></h3>
         <RankingMovements />
       </div>
 

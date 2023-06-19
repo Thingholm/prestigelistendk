@@ -94,7 +94,7 @@ export default async function NationTopResults(props) {
                             <div key={result.id} className="table-row">
                                 <p>{result.points}</p>
                                 <p>{result.resultAmount}</p>
-                                <p><span className={"fi fi-" + curRaceFlagCode}></span> {result.raceName.includes("<") ? result.raceName : result.raceName.split(" (")[0]} <span className="table-previous-span media">x{result.resultAmount}</span> </p>
+                                <p><span className={"fi fi-" + curRaceFlagCode}></span> {result.raceName.includes("<") ? result.raceName.replace("af", "i") : result.raceName.split(" (")[0].replace("af", "i")} <span className="table-previous-span media">x{result.resultAmount}</span> </p>
                                 <p>{result.rider.length > 0 ?
                                     result.rider.map((name, index) => {
                                         if (index > 0) {

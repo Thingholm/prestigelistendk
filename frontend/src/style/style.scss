@@ -918,6 +918,11 @@ footer {
     .table {
         height: 50vh;
 
+        .table-row {
+            display: flex;
+            align-items: center;
+        }
+
         .table-header,
         .table-row {
             @keyframes rankMovementIndicatorFlash {
@@ -946,13 +951,13 @@ footer {
                 }
             }
 
-            p:nth-of-type(1) {
+            p:nth-of-type(2) {
                 width: 10%;
                 display: flex;
                 align-items: center;
             }
 
-            p:nth-of-type(2) {
+            p:nth-of-type(1) {
                 width: 12%;
             }
 
@@ -3426,7 +3431,11 @@ footer {
 
             .table-header,
             .table-row {
-                p:nth-of-type(1) {
+                p:nth-of-type(2) {
+                    svg {
+                        display: none;
+                    }
+
                     width: 7%;
                 }
 
@@ -4251,9 +4260,6 @@ footer {
         .table {
 
             .table-row {
-                display: flex;
-                align-items: center;
-
                 .media {
                     margin-top: 2px;
                 }
@@ -4261,12 +4267,12 @@ footer {
 
             .table-row,
             .table-header {
-                p:nth-of-type(1) {
-                    width: 8%;
+                p:nth-of-type(2) {
+                    width: 10%;
                 }
 
-                p:nth-of-type(2) {
-                    width: 15%;
+                p:nth-of-type(1) {
+                    width: 14%;
                 }
 
                 p:nth-of-type(3) {
@@ -4274,7 +4280,7 @@ footer {
 
                     .media {
                         display: block;
-                        opacity: 0.8;
+                        opacity: 0.6;
                     }
                 }
 
@@ -4643,6 +4649,24 @@ footer {
             margin-right: 0px;
         }
     }
+
+    .landing-movements-section {
+        .table {
+
+            .table-row,
+            .table-header {
+                p:nth-of-type(1) {
+                    width: 13%;
+
+                    span {
+                        display: block;
+                        position: relative;
+                        left: -3px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -4651,11 +4675,11 @@ footer {
 
             .table-row,
             .table-header {
-                p:nth-of-type(1) {
-                    width: 10%;
+                p:nth-of-type(2) {
+                    width: 13%;
                 }
 
-                p:nth-of-type(2) {
+                p:nth-of-type(1) {
                     width: 15%;
 
                     span {
@@ -4666,7 +4690,7 @@ footer {
                 }
 
                 p:nth-of-type(3) {
-                    width: 70%;
+                    width: 65%;
                 }
 
                 p:nth-of-type(5) {
@@ -4879,11 +4903,11 @@ footer {
 
             .table-header,
             .table-row {
-                p:nth-of-type(1) {
+                p:nth-of-type(2) {
                     display: none;
                 }
 
-                p:nth-of-type(2) {
+                p:nth-of-type(1) {
                     width: 20%;
                 }
 
@@ -5236,11 +5260,11 @@ footer {
 
             .table-header,
             .table-row {
-                p:nth-of-type(1) {
+                p:nth-of-type(2) {
                     width: 15%;
                 }
 
-                p:nth-of-type(2) {
+                p:nth-of-type(1) {
                     width: 15%;
                 }
 

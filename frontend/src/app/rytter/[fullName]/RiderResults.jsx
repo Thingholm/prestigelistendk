@@ -26,7 +26,7 @@ export default function RiderResults(props) {
             <h4>Største resultater:</h4>
             <ul>
                 {filteredResults.slice(0, 7).map(r =>
-                    <li key={r.id}><span className="result-number-of-span">{resultUniques[r.raceName] > 1 && resultUniques[r.raceName] + "x"}</span> <span className="rider-top-result-racename-span">{r.raceName.split(" (")[0]}</span></li>
+                    <li key={r.id}><span className="result-number-of-span">{resultUniques[r.raceName] > 1 && resultUniques[r.raceName] + "x"}</span> <span className="rider-top-result-racename-span">{r.raceName.split(" (")[0].replace("af", "i")}</span></li>
                 )}
             </ul>
         </div>

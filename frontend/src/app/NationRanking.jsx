@@ -59,8 +59,8 @@ export default function NationRanking() {
             <div className="table-shadow-container">
                 <div className="table">
                     <div className="table-header">
-                        <p>Nr. <span className="table-previous-span">aktive</span></p>
-                        <p>Point <span className="table-previous-span">aktive</span></p>
+                        <p>Nr. <span className="table-previous-span">kun aktive</span></p>
+                        <p>Point <span className="table-previous-span">kun aktive</span></p>
                         <p>Nation</p>
                         <p>Pt. pr. rytter</p>
                         <p>Antal ryttere</p>

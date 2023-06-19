@@ -62,6 +62,7 @@ export default async function GreatestSeasons() {
 
     if (results) {
         const resultsGroupedByRider = results.map(i => {
+            console.log(i)
             return {
                 ...i,
                 racePoints: pointSystem.find(j =>
@@ -115,7 +116,7 @@ export default async function GreatestSeasons() {
                         <div className="table-header">
                             <p>Nr.</p>
                             <p>Rytter</p>
-                            <p>Resultater</p>
+                            <p>Største resultater</p>
                             <p>Sæson</p>
                             <p>Point<span className="media table-previous-span">sæson</span></p>
                         </div>

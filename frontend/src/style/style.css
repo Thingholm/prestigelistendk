@@ -748,6 +748,10 @@ footer .footer-list-container .footer-list-item ul li {
 .landing-movements-section .table {
   height: 50vh;
 }
+.landing-movements-section .table .table-row {
+  display: flex;
+  align-items: center;
+}
 @keyframes rankMovementIndicatorFlash {
   0% {
     opacity: 0;
@@ -771,14 +775,14 @@ footer .footer-list-container .footer-list-item ul li {
 .landing-movements-section .table .table-row svg.no-change {
   fill: #a5a5a5;
 }
-.landing-movements-section .table .table-header p:nth-of-type(1),
-.landing-movements-section .table .table-row p:nth-of-type(1) {
+.landing-movements-section .table .table-header p:nth-of-type(2),
+.landing-movements-section .table .table-row p:nth-of-type(2) {
   width: 10%;
   display: flex;
   align-items: center;
 }
-.landing-movements-section .table .table-header p:nth-of-type(2),
-.landing-movements-section .table .table-row p:nth-of-type(2) {
+.landing-movements-section .table .table-header p:nth-of-type(1),
+.landing-movements-section .table .table-row p:nth-of-type(1) {
   width: 12%;
 }
 .landing-movements-section .table .table-header p:nth-of-type(3),
@@ -2493,9 +2497,13 @@ footer .footer-list-container .footer-list-item ul li {
     color: #46ac17;
     font-weight: 600;
   }
-  .landing-movements-section .table .table-header p:nth-of-type(1),
-  .landing-movements-section .table .table-row p:nth-of-type(1) {
+  .landing-movements-section .table .table-header p:nth-of-type(2),
+  .landing-movements-section .table .table-row p:nth-of-type(2) {
     width: 7%;
+  }
+  .landing-movements-section .table .table-header p:nth-of-type(2) svg,
+  .landing-movements-section .table .table-row p:nth-of-type(2) svg {
+    display: none;
   }
   .landing-movements-section .table .table-header p:nth-of-type(4),
   .landing-movements-section .table .table-row p:nth-of-type(4) {
@@ -3064,20 +3072,16 @@ footer .footer-list-container .footer-list-item ul li {
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(5) {
     width: 10%;
   }
-  .landing-movements-section .table .table-row {
-    display: flex;
-    align-items: center;
-  }
   .landing-movements-section .table .table-row .media {
     margin-top: 2px;
   }
-  .landing-movements-section .table .table-row p:nth-of-type(1),
-  .landing-movements-section .table .table-header p:nth-of-type(1) {
-    width: 8%;
-  }
   .landing-movements-section .table .table-row p:nth-of-type(2),
   .landing-movements-section .table .table-header p:nth-of-type(2) {
-    width: 15%;
+    width: 10%;
+  }
+  .landing-movements-section .table .table-row p:nth-of-type(1),
+  .landing-movements-section .table .table-header p:nth-of-type(1) {
+    width: 14%;
   }
   .landing-movements-section .table .table-row p:nth-of-type(3),
   .landing-movements-section .table .table-header p:nth-of-type(3) {
@@ -3086,7 +3090,7 @@ footer .footer-list-container .footer-list-item ul li {
   .landing-movements-section .table .table-row p:nth-of-type(3) .media,
   .landing-movements-section .table .table-header p:nth-of-type(3) .media {
     display: block;
-    opacity: 0.8;
+    opacity: 0.6;
   }
   .landing-movements-section .table .table-row p:nth-of-type(4),
   .landing-movements-section .table .table-header p:nth-of-type(4) {
@@ -3338,25 +3342,35 @@ footer .footer-list-container .footer-list-item ul li {
     position: relative;
     left: -20px;
   }
-}
-@media screen and (max-width: 500px) {
   .landing-movements-section .table .table-row p:nth-of-type(1),
   .landing-movements-section .table .table-header p:nth-of-type(1) {
-    width: 10%;
+    width: 13%;
   }
+  .landing-movements-section .table .table-row p:nth-of-type(1) span,
+  .landing-movements-section .table .table-header p:nth-of-type(1) span {
+    display: block;
+    position: relative;
+    left: -3px;
+  }
+}
+@media screen and (max-width: 500px) {
   .landing-movements-section .table .table-row p:nth-of-type(2),
   .landing-movements-section .table .table-header p:nth-of-type(2) {
+    width: 13%;
+  }
+  .landing-movements-section .table .table-row p:nth-of-type(1),
+  .landing-movements-section .table .table-header p:nth-of-type(1) {
     width: 15%;
   }
-  .landing-movements-section .table .table-row p:nth-of-type(2) span,
-  .landing-movements-section .table .table-header p:nth-of-type(2) span {
+  .landing-movements-section .table .table-row p:nth-of-type(1) span,
+  .landing-movements-section .table .table-header p:nth-of-type(1) span {
     display: block;
     position: relative;
     left: -3px;
   }
   .landing-movements-section .table .table-row p:nth-of-type(3),
   .landing-movements-section .table .table-header p:nth-of-type(3) {
-    width: 70%;
+    width: 65%;
   }
   .landing-movements-section .table .table-row p:nth-of-type(5),
   .landing-movements-section .table .table-header p:nth-of-type(5) {
@@ -3472,12 +3486,12 @@ footer .footer-list-container .footer-list-item ul li {
   }
 }
 @media screen and (max-width: 450px) {
-  .landing-movements-section .table .table-header p:nth-of-type(1),
-  .landing-movements-section .table .table-row p:nth-of-type(1) {
-    display: none;
-  }
   .landing-movements-section .table .table-header p:nth-of-type(2),
   .landing-movements-section .table .table-row p:nth-of-type(2) {
+    display: none;
+  }
+  .landing-movements-section .table .table-header p:nth-of-type(1),
+  .landing-movements-section .table .table-row p:nth-of-type(1) {
     width: 20%;
   }
   .landing-movements-section .table .table-header p:nth-of-type(3),
@@ -3695,12 +3709,12 @@ footer .footer-list-container .footer-list-item ul li {
   .hero-section .hero-ranking-container .rounded-table-container .table .table-row p:nth-of-type(4) {
     width: 20%;
   }
-  .landing-movements-section .table .table-header p:nth-of-type(1),
-  .landing-movements-section .table .table-row p:nth-of-type(1) {
-    width: 15%;
-  }
   .landing-movements-section .table .table-header p:nth-of-type(2),
   .landing-movements-section .table .table-row p:nth-of-type(2) {
+    width: 15%;
+  }
+  .landing-movements-section .table .table-header p:nth-of-type(1),
+  .landing-movements-section .table .table-row p:nth-of-type(1) {
     width: 15%;
   }
   .landing-movements-section .table .table-header p:nth-of-type(3),

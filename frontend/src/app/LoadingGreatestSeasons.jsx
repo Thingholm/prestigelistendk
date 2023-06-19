@@ -11,7 +11,7 @@ export default function LoadingGreatestSeasons() {
                     <div className="table-header">
                         <p>Nr.</p>
                         <p>Rytter</p>
-                        <p>Resultater</p>
+                        <p>Største resultater</p>
                         <p>Sæson</p>
                         <p>Point opnået</p>
                     </div>

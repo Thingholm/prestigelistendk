@@ -27,12 +27,12 @@ export default function ThreeYearRanking() {
 
     return (
         <div className="three-year-ranking-container" id="3-aarig-rullende">
-            <h3>3-årig rullende rangliste <SectionLinkButton link={baseUrl + "/#3-aarig-rullende"} sectionName={"3-årig rullende rangliste"} /></h3>
+            <h3>Største ryttere over en 3-årig periode <SectionLinkButton link={baseUrl + "/#3-aarig-rullende"} sectionName={"3-årig rullende rangliste"} /></h3>
             <div className="table-wrapper">
                 <div className="table-shadow-container">
                     <div className="table">
                         <div className="table-header">
-                            <p>År</p>
+                            <p>Periode</p>
                             <p>1.</p>
                             <p>2.</p>
                             <p>3.</p>
@@ -48,7 +48,7 @@ export default function ThreeYearRanking() {
                             {threeYearRanking.slice(0, loadedAmount).map(year => {
                                 return (
                                     <div key={year.year} className="table-row">
-                                        <p>{year.year}<span className="table-previous-span">{year.year - 3}</span></p>
+                                        <p>{year.year}<span className="table-previous-span">{year.year - 2}</span></p>
                                         {[...Array(10)].map((i, index) => {
                                             const rider = rankingAlltime.find(j => j.fullName.toLowerCase() == year[index + 1].toLowerCase());
                                             let firstName;

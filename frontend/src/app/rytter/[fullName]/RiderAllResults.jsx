@@ -61,7 +61,7 @@ export default function RiderAllResults(props) {
                                         {filteredResults && filteredResults.map((result, index) =>
                                             <li key={index}>
                                                 <span className="result-number-of-span">{resultUniques[result.raceName] > 1 && resultUniques[result.raceName] + "x "}</span>
-                                                <span className="result-race-name">{result.raceName && result.raceName.includes(" (") ? result.raceName.split(" (")[0] : result.raceName}</span>
+                                                <span className="result-race-name">{result.raceName && result.raceName.includes(" (") ? result.raceName.split(" (")[0].replace("af", "i") : result.raceName.replace("af", "i")}</span>
                                                 <span className="result-points-sum"> {resultUniques[result.raceName] > 1 ? (result.points * resultUniques[result.raceName]) + "p" : result.points + "p"}</span>
                                             </li>
                                         )}
