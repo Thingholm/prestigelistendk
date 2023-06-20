@@ -5,6 +5,15 @@
   text-decoration: none;
   list-style: none;
   font-family: "Inter", "Helvetica", "Arial", sans-serif;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #1c1c1c;
 }
 
@@ -482,6 +491,10 @@ header .nav-right-container .nav-search-container .nav-search-icon-container {
   position: relative;
   z-index: 1;
   border-radius: 5px;
+}
+header .nav-right-container .nav-search-container .nav-search-icon-container svg,
+header .nav-right-container .nav-search-container .nav-search-icon-container path {
+  color: #fee402;
 }
 header .nav-right-container .nav-search-container .nav-search-icon-container:hover {
   cursor: pointer;
@@ -1445,6 +1458,39 @@ footer .footer-list-container .footer-list-item ul li {
 .ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-born label {
   margin-right: 5px;
 }
+.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container > button {
+  background-color: unset;
+  border: none;
+  margin-top: 5px;
+  padding: 5px 0px;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container > button:hover {
+  -webkit-text-decoration: underline solid 2px #1c1c1c;
+          text-decoration: underline solid 2px #1c1c1c;
+  cursor: pointer;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container {
+  position: relative;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container button {
+  background-color: unset;
+  border: none;
+  position: absolute;
+  top: 8px;
+  right: -25px;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container button:hover {
+  cursor: pointer;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container button:hover > svg {
+  opacity: 0.9;
+}
+.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container button svg {
+  height: 20px;
+  width: 20px;
+  opacity: 0.5;
+  transition: 0.4s;
+}
 .ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container select {
   width: 100%;
   margin-top: 5px;
@@ -1454,7 +1500,7 @@ footer .footer-list-container .footer-list-item ul li {
   align-items: center;
   margin-bottom: 10px;
 }
-.ranking-page-container .ranking-filter-options-container button {
+.ranking-page-container .ranking-filter-options-container .reset-filter-btn {
   background-color: #fee402;
   border: none;
   border-radius: 15px;
@@ -1467,14 +1513,14 @@ footer .footer-list-container .footer-list-item ul li {
   transition: 0.3s;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.0901960784);
 }
-.ranking-page-container .ranking-filter-options-container button:hover {
+.ranking-page-container .ranking-filter-options-container .reset-filter-btn:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.0901960784);
 }
-.ranking-page-container .ranking-filter-options-container button:active {
+.ranking-page-container .ranking-filter-options-container .reset-filter-btn:active {
   transform: scale(0.95);
 }
-.ranking-page-container .ranking-filter-options-container button span {
+.ranking-page-container .ranking-filter-options-container .reset-filter-btn span {
   margin-left: 5px;
 }
 .ranking-page-container .search-container {
@@ -1484,7 +1530,7 @@ footer .footer-list-container .footer-list-item ul li {
 .ranking-page-container .search-container .search-input-container {
   position: relative;
   width: 500px;
-  z-index: 2;
+  z-index: 3;
 }
 .ranking-page-container .search-container .search-input-container input {
   position: relative;
@@ -1514,7 +1560,7 @@ footer .footer-list-container .footer-list-item ul li {
   background-color: #fcfcfc;
   border-radius: 0px 0px 15px 15px;
   box-shadow: 0px 0px 10px 5px rgba(105, 105, 105, 0.2039215686);
-  z-index: 1;
+  z-index: 2;
   width: 540px;
 }
 .ranking-page-container .search-container ul.visible-false {

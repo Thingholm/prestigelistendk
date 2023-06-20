@@ -17,6 +17,15 @@ $skeleton-base: #DDDBDD;
     text-decoration: none;
     list-style: none;
     font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: $black-lighter;
 }
 
@@ -582,6 +591,12 @@ header {
                 position: relative;
                 z-index: 1;
                 border-radius: 5px;
+
+                svg,
+                path {
+                    color: $yellow-primary;
+
+                }
 
                 &:hover {
                     cursor: pointer;
@@ -1830,6 +1845,45 @@ footer {
         }
 
         .ranking-filter-nation-container {
+            >button {
+                background-color: unset;
+                border: none;
+                margin-top: 5px;
+                padding: 5px 0px;
+
+                &:hover {
+                    text-decoration: underline solid 2px $black-lighter;
+                    cursor: pointer;
+                }
+            }
+
+            .select-container {
+                position: relative;
+
+                button {
+                    background-color: unset;
+                    border: none;
+                    position: absolute;
+                    top: 8px;
+                    right: -25px;
+
+                    &:hover {
+                        cursor: pointer;
+
+                        >svg {
+                            opacity: 0.9;
+                        }
+                    }
+
+                    svg {
+                        height: 20px;
+                        width: 20px;
+                        opacity: 0.5;
+                        transition: 0.4s;
+                    }
+                }
+            }
+
             select {
                 width: 100%;
                 margin-top: 5px;
@@ -1844,7 +1898,7 @@ footer {
             }
         }
 
-        button {
+        .reset-filter-btn {
             background-color: $yellow-primary;
             border: none;
             border-radius: 15px;
@@ -1878,7 +1932,7 @@ footer {
         .search-input-container {
             position: relative;
             width: 500px;
-            z-index: 2;
+            z-index: 3;
 
             input {
                 position: relative;
@@ -1912,7 +1966,7 @@ footer {
             background-color: #fcfcfc;
             border-radius: 0px 0px 15px 15px;
             box-shadow: 0px 0px 10px 5px #69696934;
-            z-index: 1;
+            z-index: 2;
             width: 540px;
 
             &.visible-false {

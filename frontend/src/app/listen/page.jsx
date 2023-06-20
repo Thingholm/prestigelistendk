@@ -7,7 +7,7 @@ import Link from "next/link";
 import "../../../node_modules/flag-icons/css/flag-icons.min.css"
 import { nationEncoder, stringDecoder, stringEncoder } from "@/components/stringHandler";
 import useStore, { initialFilterState } from "@/utils/store";
-import { IoRefreshOutline, IoSearch } from "react-icons/io5"
+import { IoRefreshOutline, IoRemoveCircleOutline, IoSearch } from "react-icons/io5"
 import { AiOutlineVerticalAlignTop } from "react-icons/ai"
 import TableSkeleton from "@/components/TableSkeleton";
 import SectionLinkButton from "@/components/SectionLinkButton";
@@ -26,7 +26,7 @@ export default function Page() {
     const searchParams = Object.fromEntries(useSearchParams().entries());
     const [nationsList, setNationsList] = useState([]);
     const [birthYearList, setBirthYearList] = useState([]);
-    const [selectedNation, setSelectedNation] = useState();
+    const [selectedNation, setSelectedNation] = useState(["none"]);
     const [alltimeRanking, setalltimeRanking] = useState([]);
     const [filteredRanking, setFilteredRanking] = useState([]);
     const [amountLoaded, setAmountLoaded] = useState(100);
@@ -58,7 +58,11 @@ export default function Page() {
         setSearch("");
 
         if (searchParams) {
-            setRankingFilter({ ...initialFilterState, ...searchParams });
+            if (searchParams.nation) {
+                setRankingFilter({ ...initialFilterState, ...searchParams, nation: [searchParams.nation] });
+            } else {
+                setRankingFilter({ ...initialFilterState, ...searchParams });
+            }
         }
 
         fetchData().then(result => {
@@ -106,8 +110,8 @@ export default function Page() {
             newFilteredRanking = newFilteredRanking.filter(i => i.active !== true)
         }
 
-        if (rankingFilter.nation && rankingFilter.nation != "none") {
-            newFilteredRanking = newFilteredRanking.filter(i => i.nation == stringDecoder(rankingFilter.nation));
+        if (rankingFilter.nation && !rankingFilter.nation.every(i => i == "none")) {
+            newFilteredRanking = newFilteredRanking.filter(i => rankingFilter.nation.map(j => stringDecoder(j)).includes(i.nation));
         }
 
         if (rankingFilter.yearFilterRange == "range") {
@@ -116,7 +120,7 @@ export default function Page() {
             newFilteredRanking = newFilteredRanking.filter(i => i.birthYear == rankingFilter.bornBefore)
         }
 
-        setSelectedNation(stringDecoder(rankingFilter.nation));
+        setSelectedNation(rankingFilter.nation.map(j => stringDecoder(j)));
         setAmountLoaded(100);
         setFilteredRanking(numerizeRanking(newFilteredRanking));
         setIsLoading(false);
@@ -164,19 +168,54 @@ export default function Page() {
 
                 <div className="ranking-filter-nation-container">
                     <label htmlFor="select-nation-filter">Nation:</label>
-                    <select name="select-nation-filter" id="select-nation-filter" value={selectedNation} onChange={e => setRankingFilter({ ...rankingFilter, nation: e.target.value })}>
-                        <option value="none">Alle nationer</option>
-                        {nationsList.map(nation => {
-                            return (
-                                <option key={nation.id} value={nation.nation}>{nation.nation}</option>
-                            )
-                        })}
-                    </select>
+                    {[...Array(rankingFilter.nation.length)].map((i, index) => {
+                        return (
+                            <div key={index} className="select-container">
+                                <select
+                                    name="select-nation-filter"
+                                    id="select-nation-filter"
+                                    value={selectedNation[index]}
+                                    onChange={e => {
+                                        const curFilter = rankingFilter;
+                                        curFilter.nation[index] = e.target.value;
+                                        setRankingFilter({ ...curFilter });
+                                    }}
+                                >
+                                    <option value="none">Alle nationer</option>
+                                    {nationsList.map(nation => {
+                                        return (
+                                            <option key={nation.id} value={nation.nation}>{nation.nation}</option>
+                                        )
+                                    })}
+                                </select>
+                                {index > 0 && <button onClick={() => {
+                                    let nationsArr = rankingFilter.nation;
+                                    nationsArr.splice(index, 1);
+                                    setRankingFilter({ ...rankingFilter, nation: nationsArr });
+                                }
+                                }><IoRemoveCircleOutline /></button>}
+                            </div>
+                        )
+                    })}
+                    {rankingFilter.nation.length < 5 && <button onClick={() => {
+                        if (rankingFilter.nation.length < 5) {
+                            setRankingFilter({ ...rankingFilter, nation: [...rankingFilter.nation, "none"] });
+                        }
+                    }}>
+                        + Tilføj nation...
+                    </button>}
+
                 </div>
 
                 <div className="ranking-filter-active-container">
                     <div className="ranking-filter-active-radio-container">
-                        <input type="radio" name="filter-active-status-radio" id="filter-active-all-radio" value={"all"} checked={rankingFilter.activeStatus == "all"} onChange={e => setRankingFilter({ ...rankingFilter, activeStatus: e.currentTarget.value })} />
+                        <input
+                            type="radio"
+                            name="filter-active-status-radio"
+                            id="filter-active-all-radio" value={"all"}
+                            checked={rankingFilter.activeStatus == "all"}
+                            onChange={e => setRankingFilter({ ...rankingFilter, activeStatus: e.currentTarget.value })}
+                        />
                         <label htmlFor="filter-active-all-radio">Alle</label>
                     </div>
                     <div className="ranking-filter-active-radio-container">
@@ -190,7 +229,7 @@ export default function Page() {
                 </div>
 
                 <div className="btn-container">
-                    <button className="reset-filter-btn" onClick={() => { setRankingFilter(initialFilterState); setAmountLoaded(100) }}><IoRefreshOutline size={20} /> <span>Nulstil filtre</span></button>
+                    <button className="reset-filter-btn" onClick={() => { setRankingFilter({ ...initialFilterState, nation: ["none"] }); setAmountLoaded(100) }}><IoRefreshOutline size={20} /> <span>Nulstil filtre</span></button>
                 </div>
             </div>
 

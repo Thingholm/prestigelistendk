@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export const initialFilterState = {
     activeStatus: "all",
-    nation: "none",
+    nation: ["none"],
     bornBefore: 2003,
     bornAfter: 1852,
     yearFilterRange: "range",
