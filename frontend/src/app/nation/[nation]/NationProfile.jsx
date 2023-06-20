@@ -17,8 +17,8 @@ export default function NationProfile(props) {
                 <h3 className="rider-profile-title">{nationData.nation} <SectionLinkButton link={baseUrl + "/nation/" + nationEncoder(nationData.nation)} sectionName={nationData.nation} /></h3>
                 <p>Placering: <Link href={"/nationer"}><span className="profile-value-span">{props.nationRankData.currentRank}</span></Link></p>
                 <p>Point: <span className="profile-value-span">{props.nationRankData.points}</span></p>
-                <p>Placering (Aktive): <span className="profile-value-span">{props.activeNationRankData ? props.activeNationRankData.currentRank : "Ingen aktive ryttere"}</span></p>
-                <p>Point (Aktive): <span className="profile-value-span">{props.activeNationRankData ? props.activeNationRankData.points : "Ingen aktive ryttere"}</span></p>
+                <p>Placering (Kun aktive): <span className="profile-value-span">{props.activeNationRankData ? props.activeNationRankData.currentRank : "Ingen aktive ryttere"}</span></p>
+                <p>Point (Kun aktive): <span className="profile-value-span">{props.activeNationRankData ? props.activeNationRankData.points : "Ingen aktive ryttere"}</span></p>
             </div>
         </div>
     )

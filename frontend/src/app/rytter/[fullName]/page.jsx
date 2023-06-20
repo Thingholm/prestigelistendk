@@ -46,6 +46,7 @@ async function getRiderById(name) {
     });
 
     let riderData = numerizeRanking(rankingAlltime).find(i => i.fullName.toLowerCase() == name.toLowerCase());
+    const alltimeRankByNation = numerizeRanking(rankingAlltime.filter(i => i.nation == riderData.nation)).find(i => i.fullName.toLowerCase() == name.toLowerCase())
 
     if (riderData.active) {
         riderData = { ...riderData, activeRank: numerizeRanking(rankingAlltime.filter(i => i.active == true)).find(i => i.fullName.toLowerCase() == name.toLowerCase()).currentRank }
@@ -56,6 +57,7 @@ async function getRiderById(name) {
         riderData: riderData,
         results: resultsCombined,
         rankingByYears: rankingByYears,
+        alltimeRankByNation: alltimeRankByNation,
     };
 }
 
@@ -64,11 +66,13 @@ export default async function Page(props) {
     const rider = data.riderData;
     const results = data.results;
     const rankingByYears = data.rankingByYears;
+    const alltimeRankByNation = data.alltimeRankByNation;
+
 
     return (
         <div className="rider-page-container">
             <div className="rider-profile-container">
-                <RiderProfile riderData={rider} />
+                <RiderProfile riderData={rider} alltimeRankByNation={alltimeRankByNation} />
                 <RiderResults resultData={results} />
             </div>
 

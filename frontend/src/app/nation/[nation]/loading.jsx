@@ -17,13 +17,13 @@ export default function NationLoading(props) {
                         <h3>{stringDecoder(props.nation).replace("Oe", "Ø").replace("ae", "æ")}</h3>
                         <p>Placering: <span></span></p>
                         <p>Point: <span></span></p>
-                        <p>Placering (Aktive): <span></span></p>
-                        <p>Point (Aktive): <span></span></p>
+                        <p>Placering (Kun aktive): <span></span></p>
+                        <p>Point (Kun aktive): <span></span></p>
                     </div>
                 </div>
 
                 <div className="rider-top-results-container">
-                    <h4>Største ryttere fra {stringDecoder(props.nation).replace("Oe", "Ø").replace("ae", "æ")}</h4>
+                    <h4>Største ryttere fra {stringDecoder(props.nation).replace("Oe", "Ø").replace("ae", "æ")} all time</h4>
                     <ul>
                         {[...Array(6)].map((i, index) => {
                             return (
@@ -38,11 +38,11 @@ export default function NationLoading(props) {
             <div className="nation-evolution-container">
                 <div className="by-year-charts-container charts-container">
                     <div className="chart-container">
-                        <h3 className="light">Point opnået per år</h3>
+                        <h3 className="light">Point opnået pr. år</h3>
                         <span></span>
                     </div>
                     <div className="chart-container">
-                        <h3 className="light">Placering på den årlige Prestigeliste</h3>
+                        <h3 className="light">Placering på listen over nationer med flest optjente point hvert år</h3>
                         <span></span>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ export default function NationLoading(props) {
                         <span></span>
                     </div>
                     <div className="chart-container">
-                        <h3 className="light">Placering på Prestigelisten all time</h3>
+                        <h3 className="light">Placering på listen over største nationer</h3>
                         <span></span>
                     </div>
                 </div>

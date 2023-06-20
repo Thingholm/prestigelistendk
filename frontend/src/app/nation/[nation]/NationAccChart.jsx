@@ -104,7 +104,7 @@ export default function NationAccChart(props) {
                 <Line data={pointsData} options={pointsOptions} />
             </div>
             <div className={props.active == 4 ? "chart-container show" : "chart-container hide"}>
-                <h3 className="light">Placering på Prestigelisten all time</h3>
+                <h3 className="light">Placering på listen over største nationer</h3>
                 <Line data={rankData} options={rankOptions} />
             </div>
         </div>

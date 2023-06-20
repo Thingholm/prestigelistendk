@@ -153,7 +153,7 @@ export default function RiderEvolution(props) {
                 </div>
             </div>
             <div className={graphShowStatus == 1 ? "chart-container show" : "chart-container hide"}>
-                <h3 className="light">Point opnået hvert år</h3>
+                <h3 className="light">Point optjent hvert år</h3>
                 <Bar data={barData} options={chartOptions} />
             </div>
 

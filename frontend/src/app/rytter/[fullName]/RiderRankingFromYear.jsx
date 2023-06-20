@@ -18,19 +18,22 @@ export default async function RiderRankingFromYear(props) {
     const rankingFetch = await getRankingFromNation(riderBirthYear)
     let rankedRanking = 0;
 
-    if (rankingFetch.length > 1) {
-        const sortedRanking = rankingFetch.sort(function (a, b) { return b.points - a.points });
+    if (rankingFetch) {
+        if (rankingFetch.length > 1) {
+            const sortedRanking = rankingFetch.sort(function (a, b) { return b.points - a.points });
 
 
-        rankedRanking = sortedRanking.map((obj, index) => {
-            let rank = index + 1;
-            if (index > 0 && obj.points == sortedRanking[index - 1].points) {
-                rank = sortedRanking.findIndex(i => obj.points == i.points) + 1;
-            }
+            rankedRanking = sortedRanking.map((obj, index) => {
+                let rank = index + 1;
+                if (index > 0 && obj.points == sortedRanking[index - 1].points) {
+                    rank = sortedRanking.findIndex(i => obj.points == i.points) + 1;
+                }
 
-            return ({ ...obj, currentRank: rank });
-        });
+                return ({ ...obj, currentRank: rank });
+            });
+        }
     }
+
 
     return (
         <div className="table-wrapper">

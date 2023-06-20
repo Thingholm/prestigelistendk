@@ -33,7 +33,7 @@ export default async function Page({ searchParams }) {
         <div>
             <NationRankingTable nationsRanking={nationsRanking} alltimeRanking={alltimeRanking} searchParams={searchParams} />
 
-            <NationsRankingEvolution nationsAccRank={nationsAccRank} nationsFlagCode={nationsRanking.map(n => { return { nationFlagCode: n.nationFlagCode, nation: n.nation } })} />
+            <NationsRankingEvolution nationsAccRank={nationsAccRank} nationsFlagCode={nationsRanking.map(n => { return { nationFlagCode: n.flagCode, nation: n.nation } })} />
         </div>
     );
 }

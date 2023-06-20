@@ -62,7 +62,7 @@ export default function NationRanking() {
                         <p>Nr. <span className="table-previous-span">kun aktive</span></p>
                         <p>Point <span className="table-previous-span">kun aktive</span></p>
                         <p>Nation</p>
-                        <p>Pt. pr. rytter</p>
+                        <p>Point pr. rytter</p>
                         <p>Antal ryttere</p>
 
                     </div>

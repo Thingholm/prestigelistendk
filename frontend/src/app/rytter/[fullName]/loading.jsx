@@ -11,7 +11,7 @@ export default function Loading(props) {
                     <div className="rider-profile-info-info-container">
                         <h3>{stringDecoder(props.riderName)}</h3>
                         <p>Nationalitet: <span></span></p>
-                        <p>Placering: <span></span></p>
+                        <p>Placering all time: <span></span></p>
                         <p>Point: <span></span></p>
                         <p>Årgang: <span></span></p>
                     </div>
@@ -29,7 +29,7 @@ export default function Loading(props) {
 
             <div className="rider-evolution-container">
                 <div className="chart-container">
-                    <h3 className="light">Point opnået hvert år</h3>
+                    <h3 className="light">Point optjent hvert år</h3>
                     <span></span>
                 </div>
 

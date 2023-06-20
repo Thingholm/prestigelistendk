@@ -96,11 +96,11 @@ export default async function NationTopResults(props) {
                                 <p>{result.resultAmount}</p>
                                 <p><span className={"fi fi-" + curRaceFlagCode}></span> {result.raceName.includes("<") ? result.raceName.replace("af", "i") : result.raceName.split(" (")[0].replace("af", "i")} <span className="table-previous-span media">x{result.resultAmount}</span> </p>
                                 <p>{result.rider.length > 0 ?
-                                    result.rider.map((name, index) => {
+                                    result.rider.reverse().map((name, index) => {
                                         if (index > 0) {
-                                            return <Link key={index} href={"/rytter/" + stringEncoder(name)}>{", " + name.replace("&#39;", "'") + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
+                                            return <Link key={index} href={"/rytter/" + stringEncoder(name)}>{", " + name.replace("&#39;", "'") + " (" + result.yearArr.filter(j => j.rider == name).reverse().map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
                                         } else {
-                                            return <Link key={index} href={"/rytter/" + stringEncoder(name)}>{name.replace("&#39;", "'") + " (" + result.yearArr.filter(j => j.rider == name).map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
+                                            return <Link key={index} href={"/rytter/" + stringEncoder(name)}>{name.replace("&#39;", "'") + " (" + result.yearArr.filter(j => j.rider == name).reverse().map((j, indexN) => { if (indexN > 0) { return " " + j.year } else { return j.year } }) + ")"}</Link>
                                         }
                                     }) : result.rider}</p>
                             </div>

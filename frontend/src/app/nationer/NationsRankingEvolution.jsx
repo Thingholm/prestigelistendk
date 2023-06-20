@@ -20,7 +20,7 @@ function findNationColor(nation) {
 
 function findFontColor(nation) {
     let fColor = "#ffffff";
-    const darkColorNations = ["Brasilien", "Japan", "Colombia", "Ecuador", "Finland", "Litauen", "Polen", "Rusland", "Slovenien", "Sverige", "Tyskland", "Ukraine", "Venezuela"];
+    const darkColorNations = ["Australien", "Brasilien", "Japan", "Colombia", "Ecuador", "Finland", "Litauen", "New Zealand", "Polen", "Rusland", "Slovakiet", "Slovenien", "Sverige", "Tyskland", "Ukraine", "Venezuela"];
 
     if (darkColorNations.includes(nation)) {
         fColor = "#1c1c1c"
@@ -127,6 +127,7 @@ export default function NationsRankingEvolution(props) {
                                     color: findFontColor(n),
                                 }}
                             >
+
                                 <span className={"fi fi-" + props.nationsFlagCode.find(i => i.nation == n).nationFlagCode}></span>
                                 {n}
                             </li>

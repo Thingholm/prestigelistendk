@@ -83,7 +83,7 @@ export default function NationRankingTable(props) {
                                 checked={rankingFilter.sortBy == "pointPerRytter"}
                                 onChange={e => { setIsLoading(true); setRankingFilter({ ...rankingFilter, sortBy: e.currentTarget.value }) }
                                 } />
-                            <label htmlFor="nation-sort-by-points-per-rider">Point per rytter</label>
+                            <label htmlFor="nation-sort-by-points-per-rider">Point pr. rytter</label>
                         </div>
 
                         <div className="sort-option">
@@ -148,7 +148,7 @@ export default function NationRankingTable(props) {
                     <p>Point</p>
                     <p>Nation</p>
                     <p>Største ryttere</p>
-                    <p>Point per rytter</p>
+                    <p>Point pr. rytter</p>
                     <p>Antal ryttere</p>
                 </div>
                 <div className="table-content">

@@ -39,7 +39,7 @@ export default async function RankingNationsNation(props) {
                 </div>
             </div>
             <div className="table-wrapper">
-                <RankingLinkHeader title="Største nationer (aktive ryttere)" link={"/nationer?filterBy=aktive"} />
+                <RankingLinkHeader title="Største nationer (kun aktive ryttere)" link={"/nationer?filterBy=aktive"} />
                 <div className="rounded-table-container">
                     <div className="table-shadow-container">
                         <div className="table">
