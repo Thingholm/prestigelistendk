@@ -14,6 +14,7 @@ import SectionLinkButton from "@/components/SectionLinkButton"
 import { baseUrl } from "@/utils/baseUrl"
 import Link from "next/link"
 import { ImQuotesRight } from "../../node_modules/react-icons/im"
+import Top10AlltimeEachYear from "./Top10AlltimeEachYear"
 
 export default function Home() {
   return (
@@ -66,6 +67,8 @@ export default function Home() {
       </Suspense>
 
       <ThreeYearRanking />
+
+      <Top10AlltimeEachYear />
 
       <ByDecadeRanking />
     </div>

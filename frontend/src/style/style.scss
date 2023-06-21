@@ -218,6 +218,24 @@ input[type="radio"] {
         position: relative;
         height: 100%;
 
+        &::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $white-darker;
+            border-radius: 50px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $yellow-darker;
+            border-radius: 50px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: $yellow-primary;
+        }
+
         .table-row {
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             padding: 3px 0px;
@@ -1246,6 +1264,117 @@ footer {
             }
 
         }
+    }
+}
+
+.alltime-each-year {
+    padding: 0px 5% 20px;
+
+    .table {
+        display: flex;
+        position: relative;
+        overflow-y: hidden;
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+            height: 7px;
+        }
+
+        .table-header {
+            position: sticky;
+            align-items: start;
+            width: 92px;
+            background-color: $white-primary;
+
+            p {
+                width: 100%;
+            }
+        }
+
+        .table-content {
+            display: flex;
+            padding-right: 40px;
+            position: relative;
+
+            .table-row {
+                padding-top: 0px;
+                margin-top: 0px;
+
+                &:first-of-type {
+                    p {
+                        padding-left: 10px;
+                    }
+                }
+
+                &:last-of-type {
+                    margin-bottom: 0px;
+                }
+
+                p {
+                    width: 300px;
+
+                    span {
+                        position: relative;
+
+                        svg {
+                            position: absolute;
+                            height: 20px;
+                            width: 20px;
+                            right: -22px;
+                            animation: rankMovementIndicatorFlash 2s infinite ease-in-out;
+                        }
+                    }
+
+                    span.down {
+                        color: #db0000;
+                    }
+
+                    span.up {
+                        color: #4dd200;
+                    }
+                }
+            }
+        }
+
+        .table-header,
+        .table-row {
+            flex-direction: column;
+            border: none;
+
+            p {
+                padding: 5px 0px;
+                border-bottom: solid 1px $white-darker;
+                z-index: 1;
+
+                &:first-of-type {
+                    padding: 0px;
+                    border-bottom: solid 2px $black-lighter;
+                }
+            }
+        }
+    }
+
+    .table-wrapper {
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(-90deg, rgba(0, 0, 0, .468), rgba(0, 0, 0, .208) 50%, transparent);
+            opacity: 0.2;
+            bottom: 0px;
+            right: 0px;
+            z-index: 0;
+        }
+    }
+
+    .vertical {
+        position: absolute;
+        right: 10px;
+        height: 97%;
     }
 }
 
