@@ -1211,6 +1211,13 @@ footer .footer-list-container .footer-list-item ul li {
   padding-right: 50px;
 }
 
+.twitter-embed-container {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
 .rider-profile-container {
   background-color: #ffffff;
   padding: 30px 5%;
