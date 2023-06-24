@@ -8,7 +8,6 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-import datetime
 import json
 
 from dotenv import load_dotenv
@@ -28,19 +27,25 @@ SAMPLE_SPREADSHEET_ID = '14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8'
 SAMPLE_RANGE_NAME = 'All time!A1:E'
 SAMPLE_RANGE_RESULTS = 'Resultater!A1:ACD2'
 SAMPLE_RANGE_NATIONS = "Største nationer!A1:E"
+SAMPLE_RANGE_ACTIVE = "Største aktive!A:G"
 
 
 def main():
     nationFlagCodes = json.load(open("backend/scraper/nations.json"))
 
-    alltimeRanking = supabase.table("alltimeRanking").select("fullName", "points").execute()
+    calendar = supabase.table("calendar").select("*").execute()
+    calendarDict = {x["race"]: x["date"] for x in json.loads(calendar.json())["data"]}
+
+    alltimeRanking = supabase.table("alltimeRanking").select("fullName", "points", "currentTeam").execute()
     alltimeRankingFullNames = []
     alltimeRankingDict = {}
+    alltimeDict = {}
     for index, x in enumerate(alltimeRanking):
         if index == 0:
             for y in x[1]:
                 alltimeRankingFullNames.append(y["fullName"])
                 alltimeRankingDict[y["fullName"]] = y["points"]
+                alltimeDict[y["fullName"]] = y
     
     rankingPerYear = supabase.table("alltimeRankingPerYear").select("rider", "2023Points", "2023Rank").execute()
     rankingPerYearFullNames = []
@@ -152,10 +157,11 @@ def main():
              return
         
         for riderIndex, rider in enumerate(values[1]):
+
             if rider and values[0][riderIndex].replace("'", "&#39;").replace(",", "comma") not in resultsCurYearRaceList and values[0][riderIndex]:
-                insertData = supabase.table("results").insert({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": datetime.date.today().strftime("%Y" + "-" + "%m" + "-" + "%d")}).execute()
+                insertData = supabase.table("results").insert({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": calendarDict[values[0][riderIndex]]}).execute()
                 print("INSERTED TO RESULTS: ")
-                print({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": datetime.date.today().strftime("%Y" + "-" + "%m" + "-" + "%d")})
+                print({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": calendarDict[values[0][riderIndex]]})
 
     except HttpError as err:
         print(err)
@@ -187,6 +193,30 @@ def main():
                 insertData = supabase.table("nationsRanking").insert({"nation": nation[1], "flagCode": flagCode, "points": nation[2], "numberOfRiders": nation[3]}).execute()
                 print("INSERTED TO NATIONS: ")
                 print({"nation": nation[1], "flagCode": flagCode, "points": nation[2], "numberOfRiders": nation[3]})
+    except HttpError as err:
+        print(err)
+
+    try:
+        service = build('sheets', 'v4', credentials=creds)
+
+        # Call the Sheets API
+        sheet = service.spreadsheets()
+        result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
+                                     range=SAMPLE_RANGE_ACTIVE).execute()
+        values = result.get('values', [])
+
+        if not values:
+             print('No data found.')
+             return
+        
+        for rider in values[2:]:
+            if len(rider) > 2 and rider[1] != '0':
+                riderName = rider[2].replace("'", "&#39;").replace("van Keirsbulck", "Van Keirsbulck")
+                dbList = alltimeDict[riderName]
+                if dbList["currentTeam"] != rider[5]:
+                    updateData = supabase.table("alltimeRanking").update({"currentTeam": rider[5]}).eq("fullName", riderName).execute()
+                    print(rider)
+
     except HttpError as err:
         print(err)
 if __name__ == '__main__':
