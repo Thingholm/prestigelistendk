@@ -8,6 +8,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
+import itertools
+
 import json
 
 from dotenv import load_dotenv
@@ -28,7 +30,7 @@ SAMPLE_RANGE_NAME = 'All time!A1:E'
 SAMPLE_RANGE_RESULTS = 'Resultater!A1:ACD2'
 SAMPLE_RANGE_NATIONS = "Største nationer!A1:E"
 SAMPLE_RANGE_ACTIVE = "Største aktive!A:G"
-
+SAMPLE = "Resultater!PI:QQ"
 
 def main():
     nationFlagCodes = json.load(open("backend/scraper/nations.json"))
@@ -36,17 +38,18 @@ def main():
     calendar = supabase.table("calendar").select("*").execute()
     calendarDict = {x["race"]: x["date"] for x in json.loads(calendar.json())["data"]}
 
-    alltimeRanking = supabase.table("alltimeRanking").select("fullName", "points", "currentTeam").execute()
+    alltimeRanking = supabase.table("alltimeRanking").select("fullName", "points", "currentTeam", "nation").execute()
     alltimeRankingFullNames = []
     alltimeRankingDict = {}
     alltimeDict = {}
+    riderDict = {x["fullName"]: x for x in json.loads(alltimeRanking.json())["data"]}
     for index, x in enumerate(alltimeRanking):
         if index == 0:
             for y in x[1]:
                 alltimeRankingFullNames.append(y["fullName"])
                 alltimeRankingDict[y["fullName"]] = y["points"]
                 alltimeDict[y["fullName"]] = y
-    
+
     rankingPerYear = supabase.table("alltimeRankingPerYear").select("rider", "2023Points", "2023Rank").execute()
     rankingPerYearFullNames = []
     rankingPerYearDict = {}
@@ -57,8 +60,10 @@ def main():
                 rankingPerYearFullNames.append(y["rider"])
                 rankingPerYearDict[y["rider"]] = y["2023Points"]
                 rankingPerYearRankDict[y["rider"]] = y["2023Rank"]
-    
-    resultsCurYear = supabase.table("results").select("*").eq("year", 2023).execute()
+
+    pointSystem = {x["raceName"]: x["points"] for x in json.loads(supabase.table("pointSystem").select("raceName", "points").execute().json())["data"]}
+
+    resultsCurYear = supabase.table("results").select("*").eq("year", 2023).order("rider").execute()
     resultsCurYearRaceList = []
     resultsCurYearDict = {}
     for index, x in enumerate(resultsCurYear):
@@ -67,15 +72,6 @@ def main():
                 resultsCurYearRaceList.append(y["race"])
                 resultsCurYearDict[y["race"]] = y["raceDate"]
 
-    nationNameList = []
-    nationDict = {}
-    nationsRanking = supabase.table("nationsRanking").select("*").execute()
-    for index, x in enumerate(nationsRanking):
-        if index == 0:
-            for y in x[1]:
-                nationDict[y["nation"]] = y
-                nationNameList.append(y["nation"])
-                
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.
     """
@@ -97,7 +93,7 @@ def main():
         with open('backend/scraper/token.json', 'w') as token:
             token.write(creds.to_json())
 
-    try:
+    """try:
         service = build('sheets', 'v4', credentials=creds)
 
         # Call the Sheets API
@@ -109,7 +105,7 @@ def main():
         if not values:
              print('No data found.')
              return
-        
+
         for row in values:
             if not row[1]:
                 break
@@ -122,7 +118,7 @@ def main():
                         flagCode = nationFlagCodes[row[3]]
                     else:
                         flagCode = row[3][:2].lower()
-                    
+
                     insertData = supabase.table("alltimeRanking").insert({"fullName": row[1].replace("'", "&#39;"), "lastName": lastName, "firstName": firstName, "nation": row[3], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True}).execute()
                     print("INSERTED TO ALLTIMERANKING: ")
                     print({"fullName": row[1].replace("'", "&#39;"), "lastName": lastName, "firstName": firstName, "nation": row[3], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True})
@@ -155,7 +151,7 @@ def main():
         if not values:
              print('No data found.')
              return
-        
+
         for riderIndex, rider in enumerate(values[1]):
 
             if rider and values[0][riderIndex].replace("'", "&#39;").replace(",", "comma") not in resultsCurYearRaceList and values[0][riderIndex]:
@@ -178,7 +174,7 @@ def main():
         if not values:
              print('No data found.')
              return
-        
+
         for nation in values[2:]:
             if nation[1] in nationNameList:
                 if int(nation[2]) != nationDict[nation[1]]["points"] or int(nation[3]) != nationDict[nation[1]]["numberOfRiders"]:
@@ -208,7 +204,7 @@ def main():
         if not values:
              print('No data found.')
              return
-        
+
         for rider in values[2:]:
             if len(rider) > 2 and rider[1] != '0':
                 riderName = rider[2].replace("'", "&#39;").replace("van Keirsbulck", "Van Keirsbulck")
@@ -218,6 +214,6 @@ def main():
                     print(rider)
 
     except HttpError as err:
-        print(err)
+        print(err)"""
 if __name__ == '__main__':
     main()
