@@ -1,6 +1,6 @@
 "use client"
 
-import { Line } from "react-chartjs-2"
+import { Bar, Line } from "react-chartjs-2"
 import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
@@ -8,6 +8,13 @@ import RankingLinkHeader from "@/components/RankingLinkHeader";
 
 export default function NationAccChart(props) {
     const rankingData = props.rankingData;
+    const countData = props.countData;
+    let labels = []
+    let values = []
+    if (countData) {
+        labels = Object.keys(countData).filter(k => !["id", "nation"].includes(k))
+        values = Object.values(countData).slice(0, 140)
+    }
 
     const rankData = {
         labels: rankingData.map(i => i.year),
@@ -30,11 +37,11 @@ export default function NationAccChart(props) {
     }
 
     const pointsData = {
-        labels: rankingData.map(i => i.year),
+        labels: labels,
         datasets: [{
-            label: "Akkumulerede point",
-            data: rankingData.map(i => i.points),
-            backgroundColor: "#fee40250",
+            label: "Antal resultater",
+            data: values,
+            backgroundColor: "#fee402",
             borderColor: "#fee402",
             color: "#ffffff",
             fill: true,
@@ -100,8 +107,8 @@ export default function NationAccChart(props) {
     return (
         <div className="acc-charts-container charts-container">
             <div className={props.active == 3 ? "chart-container show" : "chart-container hide"}>
-                <h3 className="light">Akkumulerede Prestigelisten-point</h3>
-                <Line data={pointsData} options={pointsOptions} />
+                <h3 className="light">Antal resultater</h3>
+                <Bar data={pointsData} options={pointsOptions} />
             </div>
             <div className={props.active == 4 ? "chart-container show" : "chart-container hide"}>
                 <h3 className="light">Placering på listen over største nationer</h3>

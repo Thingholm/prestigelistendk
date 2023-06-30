@@ -14,6 +14,11 @@ async function fetchData(nation) {
         .select('*')
         .eq('nation', nation)
 
+    let { data: nationResultCount } = await supabase
+        .from('nationResultCount')
+        .select('*')
+        .eq('nation', nation)
+
     const filteredAccRanking = Object.keys(accRanking[0])
         .filter(i => i.includes("Rank"))
         .map(i => { return { year: parseInt(i.replace("Rank", "")), rank: accRanking[0][i], points: accRanking[0][i.replace("Rank", "Points")] } })
@@ -26,6 +31,7 @@ async function fetchData(nation) {
     return {
         accRanking: filteredAccRanking,
         yearRanking: filteredYearRanking,
+        resultCount: nationResultCount
     };
 }
 
@@ -38,7 +44,7 @@ export default async function NationEvolution(props) {
                 <MobileChartsContainer rankingData={nationRankingsData.yearRanking} accData={nationRankingsData.accRanking} />
             </div>
             <NationByYearChart rankingData={nationRankingsData.yearRanking} accData={nationRankingsData.accRanking} />
-            <NationAccChart rankingData={nationRankingsData.accRanking} />
+            <NationAccChart rankingData={nationRankingsData.accRanking} countData={nationRankingsData.resultCount[0]} />
         </div>
     )
 }

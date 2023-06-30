@@ -9,32 +9,6 @@ function simplifyResult(result) {
     }
 }
 
-function getPoints(uniques, points, race) {
-    if (race.includes("dag i førertrøjen")) {
-        if (race.includes("Tour de France")) {
-            if (uniques == 1) {
-                return 6;
-            } else if (uniques == 2) {
-                return 9;
-            } else if (uniques == 3) {
-                return 11;
-            } else {
-                return 11 + uniques - 3;
-            }
-        } else {
-            if (uniques == 1) {
-                return 3;
-            } else if (uniques == 2) {
-                return 5;
-            } else {
-                return 5 + uniques - 2;
-            }
-        }
-    } else {
-        return uniques * points;
-    }
-}
-
 export default function RiderResults(props) {
     const resultList = props.resultData.sort(function (a, b) { return b.points - a.points });
 
@@ -56,9 +30,6 @@ export default function RiderResults(props) {
 
         return !duplicate;
     })
-
-    console.log(resultUniques)
-    console.log(filteredResults)
 
     return (
         <div className="rider-top-results-container">
