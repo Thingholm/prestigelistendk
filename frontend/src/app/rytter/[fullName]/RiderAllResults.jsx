@@ -3,6 +3,40 @@
 import { useState } from "react";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
 
+function simplifyResult(result) {
+    if (result.raceName.includes("dag i førertrøjen")) {
+        return { ...result, raceName: result.raceName.split(" da")[1].replace("g i", "dag i") }
+    } else {
+        return result
+    }
+}
+
+function getPoints(uniques, points, race) {
+    if (race.includes("dag i førertrøjen")) {
+        if (race.includes("Tour de France")) {
+            if (uniques == 1) {
+                return 6;
+            } else if (uniques == 2) {
+                return 9;
+            } else if (uniques == 3) {
+                return 11;
+            } else {
+                return 11 + uniques - 3;
+            }
+        } else {
+            if (uniques == 1) {
+                return 3;
+            } else if (uniques == 2) {
+                return 5;
+            } else {
+                return 5 + uniques - 2;
+            }
+        }
+    } else {
+        return uniques * points;
+    }
+}
+
 export default function RiderAllResults(props) {
     const allRiderResults = props.resultData.reduce((allResults, result) => {
         const key = result.year;
@@ -27,6 +61,7 @@ export default function RiderAllResults(props) {
 
 
                     const resultUniques = resultList.reduce((list, result) => {
+                        result = simplifyResult(result)
                         const currCount = list[result.raceName] ?? 0;
                         return {
                             ...list,
@@ -37,8 +72,9 @@ export default function RiderAllResults(props) {
                     const seen = new Set();
 
                     const filteredResults = resultList.filter(e => {
-                        const duplicate = seen.has(e.raceName);
-                        seen.add(e.raceName)
+                        const rName = simplifyResult(e)
+                        const duplicate = seen.has(rName.raceName);
+                        seen.add(rName.raceName)
 
                         return !duplicate;
                     })
@@ -58,13 +94,16 @@ export default function RiderAllResults(props) {
                                 <div>
                                     <h5>Resultater</h5>
                                     <ul>
-                                        {filteredResults && filteredResults.map((result, index) =>
-                                            <li key={index}>
-                                                <span className="result-number-of-span">{resultUniques[result.raceName] > 1 && resultUniques[result.raceName] + "x "}</span>
-                                                <span className="result-race-name">{result.raceName && result.raceName.includes(" (") ? result.raceName.split(" (")[0].replace("af", "i") : result.raceName.replace("af", "i")}</span>
-                                                <span className="result-points-sum"> {resultUniques[result.raceName] > 1 ? (result.points * resultUniques[result.raceName]) + "p" : result.points + "p"}</span>
-                                            </li>
-                                        )}
+                                        {filteredResults && filteredResults.map((result, index) => {
+                                            result = simplifyResult(result)
+                                            return (
+                                                <li key={index}>
+                                                    <span className="result-number-of-span">{resultUniques[result.raceName] > 1 && resultUniques[result.raceName] + "x "}</span>
+                                                    <span className="result-race-name">{result.raceName && result.raceName.includes(" (") ? result.raceName.split(" (")[0].replace("af", "i") : result.raceName.replace("af", "i")}</span>
+                                                    <span className="result-points-sum"> {getPoints(resultUniques[result.raceName], result.points, result.raceName) + "p"}</span>
+                                                </li>
+                                            )
+                                        })}
                                     </ul>
                                 </div>
 
