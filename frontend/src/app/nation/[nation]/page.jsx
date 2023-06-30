@@ -8,17 +8,38 @@ import NationTopResults from "./NationTopResults";
 import RankingNationsNation from "./RankingNations";
 import numerizeRanking from "@/utils/numerizeRanking";
 
+function findNation(nation, alltimeRankingAll) {
+    if (["Moldova", "Sovjetunionen", "Østtyskland"].includes(nation)) {
+        if (nation == "Moldova") {
+            return numerizeRanking(alltimeRankingAll).filter(i => i.fullName == "Andrei Tchmil")
+        } else if (nation == "Sovjetunionen") {
+            return numerizeRanking(alltimeRankingAll).filter(i => ["Vladimir Pulnikov", "Asiat Saitov", "Dmitri Konychev", "Viatcheslav Ekimov", "Djamolidine Abduzhaparov"].includes(i.fullName))
+        } else if (nation == "Østtyskland") {
+            return numerizeRanking(alltimeRankingAll).filter(i => ["Olaf Ludwig", "Uwe Raab", "Uwe Ampler"].includes(i.fullName))
+        }
+    } else {
+        return numerizeRanking(alltimeRankingAll).filter(i => i.nation == nation);
+    }
+}
+
 async function getDataFromNation(nation) {
     let { data: alltimeRankingAll } = await supabase
         .from('alltimeRanking')
         .select('*')
 
-    const alltimeRanking = numerizeRanking(alltimeRankingAll).filter(i => i.nation == nation)
+    let { data: nationsRanking } = await supabase
+        .from('nationsRanking')
+        .select('*')
+
+    const alltimeRanking = findNation(nation, alltimeRankingAll);
+
+    const curNation = nationsRanking.filter(i => i.nation == nation)
 
     return {
-        nationData: { nation: alltimeRanking[0].nation, nationFlagCode: alltimeRanking[0].nationFlagCode },
+        nationData: { nation: curNation[0].nation, nationFlagCode: curNation[0].flagCode },
         ridersFromNation: alltimeRanking,
         alltimeRanking: alltimeRankingAll,
+        nationsRanking: nationsRanking,
     };
 }
 
@@ -45,10 +66,9 @@ export default async function Page(props) {
 
     const alltimeRanking = fetchedData.alltimeRanking;
 
-    const nationsGrouped = groupFunction(alltimeRanking)
     const activeNationsGrouped = groupFunction(alltimeRanking.filter(i => i.active == true))
 
-    const nationsRankings = numerizeRanking(Object.keys(nationsGrouped).map(i => { return { nation: i, ...nationsGrouped[i] } }))
+    const nationsRankings = numerizeRanking(fetchedData.nationsRanking)
     const activeNationsRankings = numerizeRanking(Object.keys(activeNationsGrouped).map(i => { return { nation: i, ...activeNationsGrouped[i] } }))
 
     const currentNationRank = nationsRankings.find(i => i.nation == nationString)

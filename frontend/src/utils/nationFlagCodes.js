@@ -323,5 +323,17 @@ export const nationFlagCodes = [
     {
         nationFlagCodes: 'xx',
         nation: 'Verden'
+    },
+    {
+        nationFlagCodes: 'md',
+        nation: 'Moldova'
+    },
+    {
+        nationFlagCodes: 'xx',
+        nation: 'Sovjetunionen'
+    },
+    {
+        nationFlagCodes: 'xx',
+        nation: 'Østtyskland'
     }
 ]

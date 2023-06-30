@@ -4,8 +4,12 @@ import { useState } from "react";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
 
 function simplifyResult(result) {
-    if (result.raceName.includes("dag i førertrøjen")) {
-        return { ...result, raceName: result.raceName.split(" da")[1].replace("g i", "dag i") }
+    if (result.raceName) {
+        if (result.raceName.includes("dag i førertrøjen")) {
+            return { ...result, raceName: result.raceName.split(" da")[1].replace("g i", "dag i") }
+        } else {
+            return result
+        }
     } else {
         return result
     }
@@ -96,13 +100,15 @@ export default function RiderAllResults(props) {
                                     <ul>
                                         {filteredResults && filteredResults.map((result, index) => {
                                             result = simplifyResult(result)
-                                            return (
-                                                <li key={index}>
-                                                    <span className="result-number-of-span">{resultUniques[result.raceName] > 1 && resultUniques[result.raceName] + "x "}</span>
-                                                    <span className="result-race-name">{result.raceName && result.raceName.includes(" (") ? result.raceName.split(" (")[0].replace("af", "i") : result.raceName.replace("af", "i")}</span>
-                                                    <span className="result-points-sum"> {getPoints(resultUniques[result.raceName], result.points, result.raceName) + "p"}</span>
-                                                </li>
-                                            )
+                                            if (result.raceName) {
+                                                return (
+                                                    <li key={index}>
+                                                        <span className="result-number-of-span">{resultUniques[result.raceName] > 1 && resultUniques[result.raceName] + "x "}</span>
+                                                        <span className="result-race-name">{result.raceName && result.raceName.includes(" (") ? result.raceName.split(" (")[0].replace("af", "i") : result.raceName.replace("af", "i")}</span>
+                                                        <span className="result-points-sum"> {getPoints(resultUniques[result.raceName], result.points, result.raceName) + "p"}</span>
+                                                    </li>
+                                                )
+                                            }
                                         })}
                                     </ul>
                                 </div>
