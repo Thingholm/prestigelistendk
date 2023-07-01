@@ -5,6 +5,39 @@ import numerizeRanking from "@/utils/numerizeRanking";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+function numerizeRankingByPPR(rankingInput) {
+    const rankingList = rankingInput.map(i => { return { ...i, pointsPerRider: Math.round(i.points / i.numberOfRiders * 10) / 10 } })
+
+    const sortedRanking = rankingList.sort(function (a, b) { return b.pointsPerRider - a.pointsPerRider });
+
+    const rankedRanking = sortedRanking.map((obj, index) => {
+        let rank = index + 1;
+
+        if (index > 0 && obj.pointsPerRider == sortedRanking[index - 1].pointsPerRider) {
+            rank = sortedRanking.findIndex(i => obj.pointsPerRider == i.pointsPerRider) + 1;
+        }
+
+        return ({ ...obj, currentRank: rank })
+    });
+
+    return (rankedRanking)
+}
+
+function numerizeRankingByNoR(rankingList) {
+    const sortedRanking = rankingList.sort(function (a, b) { return b.numberOfRiders - a.numberOfRiders });
+
+    const rankedRanking = sortedRanking.map((obj, index) => {
+        let rank = index + 1;
+
+        if (index > 0 && obj.numberOfRiders == sortedRanking[index - 1].numberOfRiders) {
+            rank = sortedRanking.findIndex(i => obj.numberOfRiders == i.numberOfRiders) + 1;
+        }
+
+        return ({ ...obj, currentRank: rank })
+    });
+
+    return (rankedRanking)
+}
 
 export default function NationRankingTable(props) {
     const nationsRanking = props.nationsRanking;
@@ -25,23 +58,7 @@ export default function NationRankingTable(props) {
         let newFilteredRanking = nationsRanking;
 
         if (rankingFilter.filterBy == "aktive") {
-            const nationsGrouped = alltimeRanking.filter(i => i.active == true).reduce((acc, curr) => {
-                const key = curr["nation"];
-                const curPoints = acc[key] ?? { points: 0, numberOfRiders: 0 };
-
-                return { ...acc, [key]: { points: curPoints.points + curr.points, nationFlagCode: curr.nationFlagCode, numberOfRiders: curPoints.numberOfRiders + 1 } };
-            }, {});
-
-            newFilteredRanking = Object.keys(nationsGrouped).map(n => { return { ...nationsGrouped[n], nation: n } })
-        } else if (rankingFilter.filterBy == "inaktive") {
-            const nationsGrouped = alltimeRanking.filter(i => i.active !== true).reduce((acc, curr) => {
-                const key = curr["nation"];
-                const curPoints = acc[key] ?? { points: 0, numberOfRiders: 0 };
-
-                return { ...acc, [key]: { points: curPoints.points + curr.points, nationFlagCode: curr.nationFlagCode, numberOfRiders: curPoints.numberOfRiders + 1 } };
-            }, {});
-
-            newFilteredRanking = Object.keys(nationsGrouped).map(n => { return { ...nationsGrouped[n], nation: n } })
+            newFilteredRanking = nationsRanking.filter(i => i.activePoints !== null).map(i => { return { ...i, points: i.activePoints, numberOfRiders: i.activeNumberOfRiders } })
         }
 
         if (rankingFilter.sortBy == "point") {
@@ -126,18 +143,6 @@ export default function NationRankingTable(props) {
                             />
                             <label htmlFor="nation-filter-active">Aktive ryttere</label>
                         </div>
-
-                        <div className="filter-option">
-                            <input
-                                type="radio"
-                                name="nation-filter-radio"
-                                id="nation-filter-inactive"
-                                value="inaktive"
-                                checked={rankingFilter.filterBy == "inaktive"}
-                                onChange={e => { setIsLoading(true); setRankingFilter({ ...rankingFilter, filterBy: e.currentTarget.value }) }}
-                            />
-                            <label htmlFor="nation-filter-inactive">Inaktive ryttere</label>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -154,13 +159,27 @@ export default function NationRankingTable(props) {
                 <div className="table-content">
                     <span className={"loading-overlay " + String(isLoading)}></span>
                     {filteredRanking.map((nation, index) => {
-                        const greatestRiders = numerizeRanking(alltimeRanking)
+                        let greatestRiders = numerizeRanking(alltimeRanking)
                             .filter(i => i.nation == nation.nation)
                             .filter(i => { if (rankingFilter.filterBy == "aktive") { return i.active == true } else if (rankingFilter.filterBy == "inaktive") { return i.active !== true } else { return i } })
                             .slice(0, 3);
 
+                        let className = "table-row"
+
+                        if (["Moldova", "Sovjetunionen", "Østtyskland"].includes(nation.nation)) {
+                            className = "table-row inactive"
+
+                            if (nation.nation == "Moldova") {
+                                greatestRiders = [{ fullName: "Andrei Tchmil" }]
+                            } else if (nation.nation == "Sovjetunionen") {
+                                greatestRiders = [{ fullName: "Djamolidine Abduzhaparov" }, { fullName: "Dmitri Konychev" }, { fullName: "Viatcheslav Ekimov" }]
+                            } else if (nation.nation == "Østtyskland") {
+                                greatestRiders = [{ fullName: "Olaf Ludwig" }, { fullName: "Uwe Raab" }, { fullName: "Uwe Ampler" }]
+                            }
+                        }
+
                         return (
-                            <div key={index} className="table-row">
+                            <div key={index} className={className}>
                                 <p>{nation.currentRank}</p>
                                 <p>{nation.points}</p>
                                 <p><Link href={"nation/" + nationEncoder(nation.nation)}><span className={"fi fi-" + nation.flagCode}></span>{nation.nation}</Link></p>

@@ -173,6 +173,7 @@ input[type=radio]::before {
   top: 0px;
   background-color: #ffffff;
   z-index: 1;
+  overflow-x: hidden;
 }
 .table .table-content {
   position: relative;
@@ -1211,9 +1212,12 @@ footer .footer-list-container .footer-list-item ul li {
   padding-right: 50px;
 }
 
-.twitter-embed-container {
-  padding-top: 20px;
-  padding-bottom: 40px;
+.twitter-container {
+  padding: 20px 5% 40px;
+  overflow: hidden;
+}
+.twitter-container .twitter-embed-container {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
@@ -2203,6 +2207,9 @@ footer .footer-list-container .footer-list-item ul li {
   .table::after {
     bottom: -20px;
   }
+  header nav ul li a {
+    font-size: 14px;
+  }
   .hero-section .hero-text-container .hero-text-quote {
     font-size: 16px;
     margin-bottom: 5px;
@@ -2257,6 +2264,12 @@ footer .footer-list-container .footer-list-item ul li {
 @media screen and (max-width: 1050px) {
   main {
     padding-top: 45px;
+  }
+  header h1 a {
+    font-size: 50px;
+  }
+  header nav {
+    width: 45%;
   }
   h2 {
     font-size: 25px;
@@ -2437,6 +2450,16 @@ footer .footer-list-container .footer-list-item ul li {
   .copy-to-clipboard-hover-container {
     display: none !important;
   }
+  header nav {
+    width: 45%;
+  }
+  header nav ul li a,
+  header nav ul li p {
+    font-size: 12px;
+  }
+  header nav ul li p.dropdown-button span {
+    left: -2px;
+  }
   .hero-section .hero-ranking-container .rounded-table-container .table .table-header p span {
     display: none;
   }
@@ -2527,6 +2550,14 @@ footer .footer-list-container .footer-list-item ul li {
 @media screen and (max-width: 815px) {
   p {
     font-size: 13px;
+  }
+  header nav {
+    width: 50%;
+  }
+  header nav ul li p,
+  header nav ul li a {
+    font-size: 12px;
+    letter-spacing: -0.5px;
   }
   .table::after {
     bottom: -19px;
@@ -2794,6 +2825,9 @@ footer .footer-list-container .footer-list-item ul li {
   .three-year-ranking-container .table .table-header p:not(:nth-of-type(1)) span:nth-of-type(2),
   .three-year-ranking-container .table .table-row p:not(:nth-of-type(1)) span:nth-of-type(2) {
     margin-right: 4px;
+  }
+  .alltime-each-year .table .table-content .table-row p {
+    width: 200px;
   }
   .ranking-each-decade-container .table-overflow-container .table .table-header p:first-of-type,
   .ranking-each-decade-container .table-overflow-container .table .table-row p:first-of-type {
@@ -3487,6 +3521,9 @@ footer .footer-list-container .footer-list-item ul li {
   .landing-movements-section .table {
     padding-bottom: 14px;
   }
+  .twitter-embed-container > div > div .twitter-timeline.twitter-timeline-rendered {
+    width: 300px !important;
+  }
 }
 @media screen and (max-width: 600px) {
   .rider-all-results-container {
@@ -3510,6 +3547,15 @@ footer .footer-list-container .footer-list-item ul li {
     display: block;
     position: relative;
     left: -3px;
+  }
+  .landing-nations-ranking-section .table .table-row {
+    display: flex;
+    align-items: center;
+  }
+  .landing-nations-ranking-section .table p .table-previous-span {
+    display: block;
+    left: -3px;
+    position: relative;
   }
 }
 @media screen and (max-width: 500px) {

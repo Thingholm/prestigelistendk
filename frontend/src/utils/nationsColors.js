@@ -46,6 +46,9 @@ const colorDict = {
     "Usbekistan": "#0072CE",
     "Venezuela": "#FCE300",
     "Østrig": "#ed2939",
+    "Sovjetunionen": "#DA291C",
+    "Østtyskland": "#DA291C",
+    "Moldova": "#FEDD00",
 }
 
 export default colorDict;

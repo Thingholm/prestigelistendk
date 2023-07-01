@@ -66,10 +66,9 @@ export default async function Page(props) {
 
     const alltimeRanking = fetchedData.alltimeRanking;
 
-    const activeNationsGrouped = groupFunction(alltimeRanking.filter(i => i.active == true))
-
     const nationsRankings = numerizeRanking(fetchedData.nationsRanking)
-    const activeNationsRankings = numerizeRanking(Object.keys(activeNationsGrouped).map(i => { return { nation: i, ...activeNationsGrouped[i] } }))
+
+    const activeNationsRankings = numerizeRanking(fetchedData.nationsRanking.filter(i => i.activePoints !== null).map(i => { return { ...i, points: i.activePoints, numberOfRiders: i.activeNumberOfRiders } }))
 
     const currentNationRank = nationsRankings.find(i => i.nation == nationString)
     const currentNationActiveRank = activeNationsRankings.find(i => i.nation == nationString)

@@ -38,11 +38,10 @@ def main():
     calendar = supabase.table("calendar").select("*").execute()
     calendarDict = {x["race"]: x["date"] for x in json.loads(calendar.json())["data"]}
 
-    alltimeRanking = supabase.table("alltimeRanking").select("fullName", "points", "currentTeam", "nation").execute()
+    alltimeRanking = supabase.table("alltimeRanking").select("fullName", "points", "currentTeam", "nation", "active").execute()
     alltimeRankingFullNames = []
     alltimeRankingDict = {}
     alltimeDict = {}
-    riderDict = {x["fullName"]: x for x in json.loads(alltimeRanking.json())["data"]}
     for index, x in enumerate(alltimeRanking):
         if index == 0:
             for y in x[1]:
@@ -71,6 +70,19 @@ def main():
             for y in x[1]:
                 resultsCurYearRaceList.append(y["race"])
                 resultsCurYearDict[y["race"]] = y["raceDate"]
+
+    riderDict = {x["fullName"]: x for x in json.loads(alltimeRanking.json())["data"]}
+    activeRiders = [x for x in json.loads(alltimeRanking.json())["data"] if x["active"] == True]
+
+    sortedList = sorted(activeRiders, key=lambda x: x["nation"])
+
+    for k, g in itertools.groupby(sortedList, lambda x: x["nation"]):
+        points = sum(x["points"] for x in list(g))
+        number = [x["nation"] for x in sortedList].count(k)
+        updateData = supabase.table("nationsRanking").update({"activePoints": points, "activeNumberOfRiders": number}).eq("nation", k).execute()
+        print(k, points)
+    
+    # print(activeRiders)
 
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.

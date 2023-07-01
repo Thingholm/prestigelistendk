@@ -27,8 +27,8 @@ export default function Top10AlltimeEachYear() {
     }, [])
 
     return (
-        <div className=" alltime-each-year" id="stoerste-per-aarti">
-            <h3>Største ryttere hvert årti <SectionLinkButton link={baseUrl + "/#stoerste-per-aarti"} sectionName={"Største ryttere hvert årti"} /></h3>
+        <div className=" alltime-each-year" id="stoerste-alltime-hvert-aar">
+            <h3>Største all time hvert år <SectionLinkButton link={baseUrl + "/#stoerste-alltime-hvert-aar"} sectionName={"Største all time hvert år"} /></h3>
             <div className="table-wrapper">
                 <div className="table">
                     <div className="table-header">
@@ -54,7 +54,6 @@ export default function Top10AlltimeEachYear() {
 
                                         if (year[index + 1].includes("<")) {
                                             movement = "up";
-                                            console.log(year[index + 1])
                                         } else if (year[index + 1].includes(">")) {
                                             movement = "down";
                                         }

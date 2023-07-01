@@ -212,6 +212,7 @@ input[type="radio"] {
         top: 0px;
         background-color: $white-primary;
         z-index: 1;
+        overflow-x: hidden;
     }
 
     .table-content {
@@ -1470,12 +1471,17 @@ footer {
     }
 }
 
-.twitter-embed-container {
-    padding-top: 20px;
-    padding-bottom: 40px;
-    display: flex;
-    justify-content: center;
+.twitter-container {
+    padding: 20px 5% 40px;
+    overflow: hidden;
+
+    .twitter-embed-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
 }
+
 
 
 
@@ -2861,6 +2867,10 @@ footer {
         }
     }
 
+    header nav ul li a {
+        font-size: 14px;
+    }
+
     .hero-section {
 
         .hero-text-container {
@@ -2945,6 +2955,16 @@ footer {
 @media screen and (max-width: 1050px) {
     main {
         padding-top: 45px;
+    }
+
+    header {
+        h1 a {
+            font-size: 50px;
+        }
+
+        nav {
+            width: 45%;
+        }
     }
 
     h2 {
@@ -3251,6 +3271,26 @@ footer {
         display: none !important;
     }
 
+    header {
+        nav {
+            width: 45%;
+
+            ul li {
+
+                a,
+                p {
+                    font-size: 12px;
+                }
+
+                p.dropdown-button {
+                    span {
+                        left: -2px;
+                    }
+                }
+            }
+        }
+    }
+
     .hero-section {
         .hero-ranking-container {
             .rounded-table-container {
@@ -3421,6 +3461,21 @@ footer {
 @media screen and (max-width: 815px) {
     p {
         font-size: 13px;
+    }
+
+    header {
+        nav {
+            width: 50%;
+
+            ul li {
+
+                p,
+                a {
+                    font-size: 12px;
+                    letter-spacing: -0.5px;
+                }
+            }
+        }
     }
 
     .table {
@@ -3810,6 +3865,10 @@ footer {
                 }
             }
         }
+    }
+
+    .alltime-each-year .table .table-content .table-row p {
+        width: 200px;
     }
 
     .ranking-each-decade-container {
@@ -4823,6 +4882,16 @@ footer {
             padding-bottom: 14px;
         }
     }
+
+    .twitter-embed-container {
+        >div {
+            >div {
+                .twitter-timeline.twitter-timeline-rendered {
+                    width: 300px !important;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -4853,6 +4922,24 @@ footer {
                         position: relative;
                         left: -3px;
                     }
+                }
+            }
+        }
+    }
+
+    .landing-nations-ranking-section {
+        .table {
+
+            .table-row {
+                display: flex;
+                align-items: center;
+            }
+
+            p {
+                .table-previous-span {
+                    display: block;
+                    left: -3px;
+                    position: relative;
                 }
             }
         }

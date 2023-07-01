@@ -20,7 +20,7 @@ function findNationColor(nation) {
 
 function findFontColor(nation) {
     let fColor = "#ffffff";
-    const darkColorNations = ["Australien", "Brasilien", "Japan", "Colombia", "Ecuador", "Finland", "Litauen", "New Zealand", "Polen", "Rusland", "Slovakiet", "Slovenien", "Sverige", "Tyskland", "Ukraine", "Venezuela"];
+    const darkColorNations = ["Moldova", "Australien", "Brasilien", "Japan", "Colombia", "Ecuador", "Finland", "Litauen", "New Zealand", "Polen", "Rusland", "Slovakiet", "Slovenien", "Sverige", "Tyskland", "Ukraine", "Venezuela"];
 
     if (darkColorNations.includes(nation)) {
         fColor = "#1c1c1c"

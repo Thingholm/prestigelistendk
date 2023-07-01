@@ -10,48 +10,34 @@ import { useEffect, useState } from "react";
 import TableSkeleton from "@/components/TableSkeleton";
 import SectionLinkButton from "@/components/SectionLinkButton";
 import { baseUrl } from "@/utils/baseUrl";
+import { supabase } from "@/utils/supabase";
+
+async function fetchData() {
+    let { data: nationsRanking } = await supabase
+        .from("nationsRanking")
+        .select("*");
+
+    return {
+        nationsRanking: numerizeRanking(nationsRanking),
+        activeRanking: numerizeRanking(nationsRanking.filter(i => i.activePoints !== null).map(i => { return { ...i, points: i.activePoints, numberOfRiders: i.activeNumberOfRiders } }))
+    }
+}
 
 export default function NationRanking() {
     const [isLoading, setIsLoading] = useState(true);
-    const [nationRanking, setNationRanking] = useState();
-    const rankingAlltime = useStore((state) => state.rankingAlltime);
+    const [nationsRanking, setNationsRanking] = useState([]);
+    const [activeRanking, setActiveRanking] = useState([]);
+
 
     useEffect(() => {
-        setIsLoading(true);
-        const nationsGrouped = rankingAlltime.reduce((acc, curr) => {
-            const key = curr["nation"];
-            const curPoints = acc[key] ?? { points: 0, numberOfRiders: 0 };
+        setIsLoading(true)
+        fetchData().then(res => {
+            setNationsRanking(res.nationsRanking)
+            setActiveRanking(res.activeRanking)
+        })
+        setIsLoading(false)
+    }, [])
 
-            return { ...acc, [key]: { points: curPoints.points + curr.points, nationFlagCode: curr.nationFlagCode, numberOfRiders: curPoints.numberOfRiders + 1 } };
-        }, {});
-
-        const nationsActiveGroup = rankingAlltime.filter(i => i.active).reduce((acc, curr) => {
-            const key = curr["nation"];
-            const curPoints = acc[key] ?? { points: 0, };
-
-            return { ...acc, [key]: { points: curPoints.points + curr.points, } };
-        }, {});
-
-        const nationsActiveRank = numerizeRanking(Object.keys(nationsActiveGroup).map(n => { return { ...nationsActiveGroup[n], nation: n } }));
-
-        const nationRanking = numerizeRanking(Object.keys(nationsGrouped).map(n => {
-            let activeRank = "-";
-
-            if (nationsActiveRank.find(i => i.nation == n)) {
-                activeRank = nationsActiveRank.find(i => i.nation == n)
-            }
-
-            return {
-                ...nationsGrouped[n],
-                nation: n,
-                activeRank: activeRank.currentRank,
-                activePoints: activeRank.points,
-            }
-        }));
-
-        setNationRanking(nationRanking);
-        setIsLoading(false);
-    }, [rankingAlltime])
 
     return (
         <div className="landing-nations-ranking-section">
@@ -63,19 +49,26 @@ export default function NationRanking() {
                         <p>Point <span className="table-previous-span">kun aktive</span></p>
                         <p>Nation</p>
                         <p>Point pr. rytter</p>
-                        <p>Antal ryttere</p>
+                        <p>Antal ryttere <span className="table-previous-span">kun aktive</span></p>
 
                     </div>
                     {isLoading ? <TableSkeleton /> :
                         <div className="table-content">
-                            {nationRanking.map((nation, index) => {
+                            {nationsRanking.map((nation, index) => {
+                                const activeList = activeRanking.find(i => i.nation == nation.nation)
+
+                                let className = "table-row";
+                                if (["Moldova", "Sovjetunionen", "Østtyskland"].includes(nation.nation)) {
+                                    className = "table-row inactive";
+                                }
+
                                 return (
-                                    <div key={index} className="table-row">
-                                        <p>{nation.currentRank} <span className="table-previous-span">{nation.activeRank}</span></p>
+                                    <div key={index} className={className}>
+                                        <p>{nation.currentRank} <span className="table-previous-span">{activeList && activeList.currentRank}</span></p>
                                         <p>{nation.points} <span className="table-previous-span">{nation.activePoints}</span></p>
-                                        <p><Link href={"/nation/" + nationEncoder(nation.nation)}><span className={"fi fi-" + nation.nationFlagCode}></span>{nation.nation}</Link></p>
+                                        <p><Link href={"/nation/" + nationEncoder(nation.nation)}><span className={"fi fi-" + nation.flagCode}></span>{nation.nation}</Link></p>
                                         <p>{Math.round(nation.points / nation.numberOfRiders * 10) / 10}</p>
-                                        <p>{nation.numberOfRiders}</p>
+                                        <p>{nation.numberOfRiders} <span className="table-previous-span">{activeList && activeList.numberOfRiders}</span></p>
                                     </div>
                                 )
                             })}
