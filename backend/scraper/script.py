@@ -8,6 +8,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
+import datetime
+
 import itertools
 
 import json
@@ -37,6 +39,8 @@ def main():
 
     calendar = supabase.table("calendar").select("*").execute()
     calendarDict = {x["race"]: x["date"] for x in json.loads(calendar.json())["data"]}
+
+    nM = "Colombiansk mesterEcuadoriansk mester (>2020)Australsk mester (1984-1994 + 1996 + >1997)Tysk mester (<1942 + 1947-1956 + 1959-1975 + >1978)Dansk mester (1968 + 1970-1973 + 1981-1985 + >1986)Norsk mester (1990 + >2007)Amerikansk mester (>1998)Portugisisk mester (1975-1979 + 1984 + 2010-2016 + >2019)Schweizisk mester (1904 + 1912-1970 + >1975)Slovensk mester (>2003)Tjekkisk mester (2001-2005 + >2012)Østrigsk mester (1988-1989 + 2006 + 2008 >2017)Britisk mester (1965-1967 + 1970-1976 + 1987-1998 + 2000 + 2002 + >2003)Canadisk mester (2012-2013)Irsk mester (2010-2013 + 2017-2021)Belarusisk mester (2009-2016)Kasakhisk mester (1998-2012)Litauisk mester (2012-2016)Russisk mester (<2022)Svensk mester (1980-1985 + 1999-2003 + 2007-2009 + 2012-2013)Polsk mester (1995-1997 + 1999-2004 + 2012-2022)Ukrainsk mester (1996-2009)Luxembourgsk mester (1936-1940 + 1948 + 1950-1961 + 2005-2010 + 2016)Fransk mesterSpansk mesterBelgisk mesterNederlandsk mesterItaliensk mesterSpansk mester i enkeltstartFransk mester i enkeltstartBelgisk mester i enkeltstartItaliensk mester i enkeltstartNederlandsk mester i enkeltstartColombiansk mester i enkeltstartEcuadoriansk mester i enkeltstart (>2020)Norsk mester i enkeltstart (1990 + >2007)Australsk mester i enkeltstartSchweizisk mester i enkeltstartTjekkisk mester i enkeltstart (2001-2005 + >2012)Tysk mester i enkeltstartDansk mester i enkeltstart (<1974 + 1981-1985 + >1986)Slovensk mester i enkeltstart (>2003)Portugisisk mester i enkeltstart (1975 + 2010-2016 + >2019)Østrigsk mester i enkeltstart (2006 + 2008 + >2017)Amerikansk mester i enkeltstart (1984-1996 + >1998)Britisk mester i enkeltstart (<1999 + 2000 + 2002 + >2003)Litauisk mester i enkeltstart (2012-2016)Polsk mester i enkeltstart (1996-1997 + 1999-2004 + 2012-2022)Russisk mester i enkeltstart (<2022)Ukrainsk mester i enkeltstart (<2010)Belarusisk mester i enkeltstart (2009-2016)Luxembourgsk mester i enkeltstart (1951 + 2005-2010 + 2016)Canadisk mester i enkeltstart (2012-2013)Irsk mester i enkeltstart (2010-2013 + 2017-2021)Kasakhisk mester i enkeltstart (<2013)Svensk mester i enkeltstart (1980-1985 + 1999-2003 + 2007-2009 + 2012-2013)"
 
     alltimeRanking = supabase.table("alltimeRanking").select("fullName", "points", "currentTeam", "nation", "active").execute()
     alltimeRankingFullNames = []
@@ -71,6 +75,15 @@ def main():
                 resultsCurYearRaceList.append(y["race"])
                 resultsCurYearDict[y["race"]] = y["raceDate"]
 
+    nationsList = json.loads(supabase.table("nationsRanking").select("*").execute().json())["data"]
+    nationNameList = [x["nation"] for x in nationsList]
+    nationDict = {x["nation"]: x for x in nationsList}
+    
+    nationResultCount = {x["nation"]: x["2023"] for x in json.loads(supabase.table("nationResultCount").select("nation", "2023").execute().json())["data"]}
+
+    print(nationResultCount)
+
+
     riderDict = {x["fullName"]: x for x in json.loads(alltimeRanking.json())["data"]}
     activeRiders = [x for x in json.loads(alltimeRanking.json())["data"] if x["active"] == True]
 
@@ -80,8 +93,9 @@ def main():
         points = sum(x["points"] for x in list(g))
         number = [x["nation"] for x in sortedList].count(k)
         updateData = supabase.table("nationsRanking").update({"activePoints": points, "activeNumberOfRiders": number}).eq("nation", k).execute()
-        print(k, points)
     
+    newRiders = {}
+
     # print(activeRiders)
 
     """Shows basic usage of the Sheets API.
@@ -105,7 +119,7 @@ def main():
         with open('backend/scraper/token.json', 'w') as token:
             token.write(creds.to_json())
 
-    """try:
+    try:
         service = build('sheets', 'v4', credentials=creds)
 
         # Call the Sheets API
@@ -122,7 +136,7 @@ def main():
             if not row[1]:
                 break
             if not row[1] == "Rytter":
-                if not row[1].replace("'", "&#39;") in alltimeRankingFullNames:
+                if not row[1] in alltimeRankingFullNames:
                     nameArr = row[1].split(" ")
                     firstName = nameArr[0]
                     lastName = " ".join(nameArr[1:])
@@ -130,24 +144,26 @@ def main():
                         flagCode = nationFlagCodes[row[3]]
                     else:
                         flagCode = row[3][:2].lower()
+                    
+                    newRiders[row[1]] = {"fullName": row[1], "nation": row[3]}
 
-                    insertData = supabase.table("alltimeRanking").insert({"fullName": row[1].replace("'", "&#39;"), "lastName": lastName, "firstName": firstName, "nation": row[3], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True}).execute()
+                    insertData = supabase.table("alltimeRanking").insert({"fullName": row[1], "lastName": lastName, "firstName": firstName, "nation": row[3], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True}).execute()
                     print("INSERTED TO ALLTIMERANKING: ")
-                    print({"fullName": row[1].replace("'", "&#39;"), "lastName": lastName, "firstName": firstName, "nation": row[3], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True})
+                    print({"fullName": row[1], "lastName": lastName, "firstName": firstName, "nation": row[3], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True})
                 else:
-                    if str(alltimeRankingDict[row[1].replace("'", "&#39;")]) != str(row[2]):
-                        updateData = supabase.table("alltimeRanking").update({"points": row[2]}).eq("fullName", row[1].replace("'", "&#39;")).execute()
+                    if str(alltimeRankingDict[row[1]]) != str(row[2]):
+                        updateData = supabase.table("alltimeRanking").update({"points": row[2]}).eq("fullName", row[1]).execute()
                         print("UPDATED TO ALLTIMERANKING: ")
-                        print({"points": row[2], "fullName": row[1].replace("'", "&#39;")})
-                if not row[1].replace("'", "&#39;") in rankingPerYearFullNames:
-                    insertData = supabase.table("alltimeRankingPerYear").insert({"rider": row[1].replace("'", "&#39;"), "2023Points": row[2], "2023Rank": row[0]}).execute()
+                        print({"points": row[2], "fullName": row[1]})
+                if not row[1] in rankingPerYearFullNames:
+                    insertData = supabase.table("alltimeRankingPerYear").insert({"rider": row[1], "2023Points": row[2], "2023Rank": row[0]}).execute()
                     print("INSERTED TO ALLTIMERANKINGPERYEAR: ")
-                    print({"rider": row[1].replace("'", "&#39;"), "2023Points": row[2], "2023Rank": row[0]})
+                    print({"rider": row[1], "2023Points": row[2], "2023Rank": row[0]})
                 else:
-                    if str(rankingPerYearDict[row[1].replace("'", "&#39;")]) != str(row[2]) or str(rankingPerYearRankDict[row[1].replace("'", "&#39;")]) != str(row[0]):
-                        updateData = supabase.table("alltimeRankingPerYear").update({"2023Points": row[2], "2023Rank": row[0]}).eq("rider", row[1].replace("'", "&#39;")).execute()
+                    if str(rankingPerYearDict[row[1]]) != str(row[2]) or str(rankingPerYearRankDict[row[1]]) != str(row[0]):
+                        updateData = supabase.table("alltimeRankingPerYear").update({"2023Points": row[2], "2023Rank": row[0]}).eq("rider", row[1]).execute()
                         print("UPDATED TO ALLTIMERANKINGPERYEAR: ")
-                        print({"2023Points": row[2], "2023Rank": row[0], "rider: ": row[1].replace("'", "&#39;")})
+                        print({"2023Points": row[2], "2023Rank": row[0], "rider: ": row[1]})
     except HttpError as err:
         print(err)
 
@@ -166,10 +182,24 @@ def main():
 
         for riderIndex, rider in enumerate(values[1]):
 
-            if rider and values[0][riderIndex].replace("'", "&#39;").replace(",", "comma") not in resultsCurYearRaceList and values[0][riderIndex]:
-                insertData = supabase.table("results").insert({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": calendarDict[values[0][riderIndex]]}).execute()
-                print("INSERTED TO RESULTS: ")
-                print({"year": 2023, "race": values[0][riderIndex].replace("'", "&#39;").replace(",", "comma"), "rider": rider.replace("'", "&#39;"), "raceDate": calendarDict[values[0][riderIndex]]})
+            if rider and values[0][riderIndex] not in resultsCurYearRaceList and values[0][riderIndex]:
+                
+                if "i førertrøjen" in values[0][riderIndex]:
+                    raceDate = datetime.datetime.now().strftime("%Y" + "-" + "%m" + "-" + "%d")
+                else:
+                    raceDate = calendarDict[values[0][riderIndex]]
+                
+                    print("INSERTED TO RESULTS: ")
+                    print({"year": 2023, "race": values[0][riderIndex], "rider": rider, "raceDate": raceDate})
+
+                    if not values[0][riderIndex] in nM:
+                        if rider in alltimeRankingFullNames:
+                            updateData = supabase.table("nationResultCount").update({"nation": alltimeDict[rider]["nation"], "2023": nationResultCount[alltimeDict[rider]["nation"]] + 1}).eq("nation", nationResultCount[alltimeDict[rider]["nation"]]).execute()
+                            print({"nation": alltimeDict[rider]["nation"], "oldNumberOfResults": nationResultCount[alltimeDict[rider]["nation"]], "newNumberOfResults": nationResultCount[alltimeDict[rider]["nation"]] + 1})
+                        else:
+                            updateData = supabase.table("nationResultCount").update({"nation": newRiders[rider]["nation"], "2023": nationResultCount[newRiders[rider]["nation"]] + 1}).eq("nation", newRiders[rider]["nation"]).execute()
+                            print({"nation": newRiders[rider]["nation"], "oldNumberOfResults": nationResultCount[newRiders[rider]["nation"]], "newNumberOfResults": nationResultCount[newRiders[rider]["nation"]] + 1})
+                    insertData = supabase.table("results").insert({"year": 2023, "race": values[0][riderIndex], "rider": rider, "raceDate": raceDate}).execute()
 
     except HttpError as err:
         print(err)
@@ -219,13 +249,14 @@ def main():
 
         for rider in values[2:]:
             if len(rider) > 2 and rider[1] != '0':
-                riderName = rider[2].replace("'", "&#39;").replace("van Keirsbulck", "Van Keirsbulck")
-                dbList = alltimeDict[riderName]
+                riderName = rider[2].replace("van Keirsbulck", "Van Keirsbulck")
+                if riderName in alltimeDict:
+                    dbList = alltimeDict[riderName]
                 if dbList["currentTeam"] != rider[5]:
                     updateData = supabase.table("alltimeRanking").update({"currentTeam": rider[5]}).eq("fullName", riderName).execute()
                     print(rider)
 
     except HttpError as err:
-        print(err)"""
+        print(err)
 if __name__ == '__main__':
     main()

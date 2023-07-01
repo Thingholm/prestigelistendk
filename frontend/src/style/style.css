@@ -33,6 +33,10 @@ h2 {
   font-size: 35px;
 }
 
+p .fi {
+  border-radius: 3px;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 70px;
