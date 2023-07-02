@@ -45,15 +45,6 @@ h2 {
     font-size: 35px;
 }
 
-p {
-    .fi {
-        border-radius: 3px;
-    }
-}
-
-
-
-
 // --------------------- GLOBAL STYLING -------------------------
 
 html {
@@ -108,6 +99,10 @@ input[type="radio"] {
     border-radius: 999px;
     margin-right: 10px;
     margin-left: 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
 
     &:checked::before {
         transform: scale(1);
@@ -3207,6 +3202,17 @@ footer {
                     a {
                         font-size: 14px;
                         padding: 8px 10px;
+                    }
+                }
+            }
+        }
+
+        .ranking-filter-options-container {
+            .ranking-filter-nation-container {
+                .select-container {
+                    button {
+                        right: -45px;
+                        top: -4px;
                     }
                 }
             }

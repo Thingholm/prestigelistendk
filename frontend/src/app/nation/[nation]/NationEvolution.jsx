@@ -41,7 +41,7 @@ export default async function NationEvolution(props) {
     return (
         <div className="nation-evolution-container">
             <div className="media">
-                <MobileChartsContainer rankingData={nationRankingsData.yearRanking} accData={nationRankingsData.accRanking} />
+                <MobileChartsContainer rankingData={nationRankingsData.yearRanking} accData={nationRankingsData.accRanking} countData={nationRankingsData.resultCount[0]} />
             </div>
             <NationByYearChart rankingData={nationRankingsData.yearRanking} accData={nationRankingsData.accRanking} />
             <NationAccChart rankingData={nationRankingsData.accRanking} countData={nationRankingsData.resultCount[0]} />

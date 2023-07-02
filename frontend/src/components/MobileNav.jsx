@@ -44,6 +44,7 @@ export default function MobileNavbar() {
                                 <li><a href="/#3-aarig-rullende" onClick={() => setNavActive(false)}>Største ryttere over en 3-årig periode</a></li>
                                 <li><a href="/#stoerste-per-aarti" onClick={() => setNavActive(false)}>Største pr. årti</a></li>
                                 <li><a href="/#stoerste-saesoner" onClick={() => setNavActive(false)}>Største individuelle sæsoner</a></li>
+                                <li><a href="/#stoerste-alltime-hvert-aar" onClick={() => setNavActive(false)}>Største all time hvert år</a></li>
                                 <li><Link href="/listen?yearFilterRange=single">Største pr. årgang</Link></li>
                             </ul>
                         </div>

@@ -33,10 +33,6 @@ h2 {
   font-size: 35px;
 }
 
-p .fi {
-  border-radius: 3px;
-}
-
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 70px;
@@ -87,6 +83,9 @@ input[type=radio] {
   border-radius: 999px;
   margin-right: 10px;
   margin-left: 5px;
+}
+input[type=radio]:hover {
+  cursor: pointer;
 }
 input[type=radio]:checked::before {
   transform: scale(1);
@@ -2418,6 +2417,10 @@ footer .footer-list-container .footer-list-item ul li {
   .ranking-page-container .search-container ul li a {
     font-size: 14px;
     padding: 8px 10px;
+  }
+  .ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container button {
+    right: -45px;
+    top: -4px;
   }
   .nation-page-container .nation-profile-container .rider-top-results-container {
     padding: 15px 30px;

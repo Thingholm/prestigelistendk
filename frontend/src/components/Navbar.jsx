@@ -22,6 +22,7 @@ export default function Navbar() {
                                 <li><a href="/#3-aarig-rullende">Største ryttere over en 3-årig periode</a></li>
                                 <li><a href="/#stoerste-per-aarti">Største pr. årti</a></li>
                                 <li><a href="/#stoerste-saesoner">Største individuelle sæsoner</a></li>
+                                <li><a href="/#stoerste-alltime-hvert-aar">Største all time hvert år</a></li>
                                 <li><Link href="/listen?yearFilterRange=single">Største pr. årgang</Link></li>
                             </ul>
                         </div>

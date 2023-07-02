@@ -41,7 +41,6 @@ function numerizeRankingByNoR(rankingList) {
 
 export default function NationRankingTable(props) {
     const nationsRanking = props.nationsRanking;
-    const alltimeRanking = props.alltimeRanking;
     const [rankingFilter, setRankingFilter] = useState({
         sortBy: "point",
         filterBy: "alle",
@@ -159,23 +158,19 @@ export default function NationRankingTable(props) {
                 <div className="table-content">
                     <span className={"loading-overlay " + String(isLoading)}></span>
                     {filteredRanking.map((nation, index) => {
-                        let greatestRiders = numerizeRanking(alltimeRanking)
-                            .filter(i => i.nation == nation.nation)
-                            .filter(i => { if (rankingFilter.filterBy == "aktive") { return i.active == true } else if (rankingFilter.filterBy == "inaktive") { return i.active !== true } else { return i } })
-                            .slice(0, 3);
+                        let greatestRiders = [];
+
+
+                        if (rankingFilter.filterBy !== "aktive") {
+                            greatestRiders = nation.greatestRiders.split(", ")
+                        } else if (rankingFilter.filterBy == "aktive" && nation.activeGreatestRiders) {
+                            greatestRiders = nation.activeGreatestRiders.split(", ")
+                        }
 
                         let className = "table-row"
 
                         if (["Moldova", "Sovjetunionen", "Østtyskland"].includes(nation.nation)) {
                             className = "table-row inactive"
-
-                            if (nation.nation == "Moldova") {
-                                greatestRiders = [{ fullName: "Andrei Tchmil" }]
-                            } else if (nation.nation == "Sovjetunionen") {
-                                greatestRiders = [{ fullName: "Djamolidine Abduzhaparov" }, { fullName: "Dmitri Konychev" }, { fullName: "Viatcheslav Ekimov" }]
-                            } else if (nation.nation == "Østtyskland") {
-                                greatestRiders = [{ fullName: "Olaf Ludwig" }, { fullName: "Uwe Raab" }, { fullName: "Uwe Ampler" }]
-                            }
                         }
 
                         return (
@@ -183,7 +178,7 @@ export default function NationRankingTable(props) {
                                 <p>{nation.currentRank}</p>
                                 <p>{nation.points}</p>
                                 <p><Link href={"nation/" + nationEncoder(nation.nation)}><span className={"fi fi-" + nation.flagCode}></span>{nation.nation}</Link></p>
-                                <p>{greatestRiders.map((i, index) => { if (index == 2) { return (<Link key={index} href={"rytter/" + stringEncoder(i.fullName)}>{i.fullName.replace("&#39;", "'")}</Link>) } else { return (<Link key={index} href={"rytter/" + stringEncoder(i.fullName)}>{i.fullName.replace("&#39;", "'") + ", "}</Link>) } })}</p>
+                                <p>{greatestRiders.map((i, index) => { if (index == greatestRiders.length - 1) { return (<Link key={index} href={"rytter/" + stringEncoder(i)}>{i}</Link>) } else { return (<Link key={index} href={"rytter/" + stringEncoder(i)}>{i + ", "}</Link>) } })}</p>
                                 <p>{Math.round(nation.points / nation.numberOfRiders * 10) / 10}</p>
                                 <p>{nation.numberOfRiders}</p>
                             </div>
