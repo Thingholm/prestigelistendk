@@ -29,7 +29,7 @@ export default async function RankingNationsNation(props) {
                                             <p><Link href={"/nation/" + nation.nation.toLowerCase().replace("ø", "oe").replace("æ", "ae").replace("å", "aa").replace(" ", "-")}><span className={"fi fi-" + nation.flagCode}></span>{nation.nation}</Link></p>
                                             <p>{nation.numberOfRiders}</p>
                                             <p>{Math.round(nation.points / nation.numberOfRiders * 10) / 10}</p>
-                                            <p>{nation.points}</p>
+                                            <p>{nation.points.toLocaleString("de-DE")}</p>
                                         </div>
                                     )
                                 })}
@@ -58,7 +58,7 @@ export default async function RankingNationsNation(props) {
                                             <p><Link href={"/nation/" + nation.nation.toLowerCase().replace("ø", "oe").replace("æ", "ae").replace("å", "aa").replace(" ", "-")}><span className={"fi fi-" + nation.flagCode}></span>{nation.nation}</Link></p>
                                             <p>{nation.numberOfRiders}</p>
                                             <p>{Math.round(nation.points / nation.numberOfRiders * 10) / 10}</p>
-                                            <p>{nation.points}</p>
+                                            <p>{nation.points.toLocaleString("de-DE")}</p>
                                         </div>
                                     )
                                 })}

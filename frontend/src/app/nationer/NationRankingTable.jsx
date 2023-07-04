@@ -176,7 +176,7 @@ export default function NationRankingTable(props) {
                         return (
                             <div key={index} className={className}>
                                 <p>{nation.currentRank}</p>
-                                <p>{nation.points}</p>
+                                <p>{nation.points.toLocaleString("de-DE")}</p>
                                 <p><Link href={"nation/" + nationEncoder(nation.nation)}><span className={"fi fi-" + nation.flagCode}></span>{nation.nation}</Link></p>
                                 <p>{greatestRiders.map((i, index) => { if (index == greatestRiders.length - 1) { return (<Link key={index} href={"rytter/" + stringEncoder(i)}>{i}</Link>) } else { return (<Link key={index} href={"rytter/" + stringEncoder(i)}>{i + ", "}</Link>) } })}</p>
                                 <p>{Math.round(nation.points / nation.numberOfRiders * 10) / 10}</p>

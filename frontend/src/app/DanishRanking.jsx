@@ -45,10 +45,10 @@ export default function DanishRanking() {
                             {danishRanking && danishRanking.map((rider, index) => {
                                 return (
                                     <div key={rider.id} className='table-row'>
-                                        <p>{rider.currentRank}</p>
+                                        <p>{rider.currentRank.toLocaleString("de-DE")}</p>
                                         <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className="fi fi-dk"></span><span className='last-name'>{rider.lastName} </span><span className="first-name">{rider.firstName}</span></Link></p>
                                         <p><Link href={"/listen?yearFilterRange=single&bornBefore=" + rider.birthYear}>{rider.birthYear}</Link></p>
-                                        <p>{rider.points}</p>
+                                        <p>{rider.points.toLocaleString("de-DE")}</p>
                                     </div>
                                 )
                             })}

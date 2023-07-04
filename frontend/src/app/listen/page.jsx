@@ -282,9 +282,9 @@ export default function Page() {
                                 const rankAlltime = alltimeRanking.find(i => i.fullName == rider.fullName).currentRank;
                                 return (
                                     <div key={rider.id} className={targetedRiderId == rider.id ? "table-row highlighted" : "table-row"} id={rider.id}>
-                                        <p><span>{rider.currentRank}</span><span className="media">{rankAlltime}</span></p>
-                                        <p><span className="table-previous-span">{rankAlltime}</span> </p>
-                                        <p>{rider.points}</p>
+                                        <p><span>{rider.currentRank}</span><span className="media">{rankAlltime.toLocaleString("de-DE")}</span></p>
+                                        <p><span className="table-previous-span">{rankAlltime.toLocaleString("de-DE")}</span> </p>
+                                        <p>{rider.points.toLocaleString("de-DE")}</p>
                                         <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className={"media fi fi-" + rider.nationFlagCode}></span><span className='last-name'>{rider.lastName.replace("&#39;", "'")} </span><span className="first-name">{rider.firstName}</span></Link></p>
                                         <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span><span className="nation-full-name">{rider.nation}</span> <span className="media">{rider.nation.replace("Nederlandene", "Holland").replace("Storbritannien", "UK")}</span></Link></p>
                                         <p onClick={() => setRankingFilter({ ...rankingFilter, bornBefore: rider.birthYear, yearFilterRange: "single", radioCheck: false })}>{rider.birthYear}</p>

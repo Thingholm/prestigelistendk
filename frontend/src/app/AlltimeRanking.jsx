@@ -46,11 +46,11 @@ export default function AlltimeRanking() {
                             {rankingAlltime.slice(0, 100).map((rider, index) => {
                                 return (
                                     <div key={rider.id} className='table-row'>
-                                        <p>{rider.currentRank}</p>
+                                        <p>{rider.currentRank.toLocaleString("de-DE")}</p>
                                         <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName.replace("&#39;", "'"))}><span className={'media fi fi-' + rider.nationFlagCode}></span><span className='last-name'>{rider.lastName.replace("&#39;", "'")} </span><span className='first-name'>{rider.firstName}</span></Link></p>
                                         <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span>{rider.nation}</Link></p>
                                         <p>{rider.birthYear}</p>
-                                        <p>{rider.points}</p>
+                                        <p>{rider.points.toLocaleString("de-DE")}</p>
                                     </div>
                                 )
                             })}

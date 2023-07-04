@@ -147,12 +147,12 @@ export default function RankingMovements() {
                                 result.race.replace("af", "i").split(" (")[0]);
                             return (
                                 <div key={index} className="table-row">
-                                    <p>{result.newRank} <span className="table-previous-span">{result.oldRank}</span></p>
-                                    <p className={result.oldRank - result.newRank > 0 ? "rank-up" : "no-movement"}>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {result.oldRank - result.newRank}</p>
+                                    <p>{result.newRank.toLocaleString("de-DE")} <span className="table-previous-span">{result.oldRank.toLocaleString("de-DE")}</span></p>
+                                    <p className={result.oldRank - result.newRank > 0 ? "rank-up" : "no-movement"}>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {(result.oldRank - result.newRank).toLocaleString("de-DE")}</p>
                                     <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(result.rider)}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName.replace("&#39;", "'")}</span> {result.firstName}</Link><span className="media">{race} <span className="media-smallest">({result.racePoints} pt.)</span></span></p>
                                     <p>{race}</p>
                                     <p>{result.racePoints}</p>
-                                    <p>{result.newPoints} <span className="table-previous-span">{result.oldPoints}</span></p>
+                                    <p>{result.newPoints.toLocaleString("de-DE")} <span className="table-previous-span">{result.oldPoints.toLocaleString("de-DE")}</span></p>
                                     <p>{result.raceDate.split("-")[2] + "-" + result.raceDate.split("-")[1]}</p>
                                 </div>
                             )

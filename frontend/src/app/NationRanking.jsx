@@ -65,10 +65,10 @@ export default function NationRanking() {
                                 return (
                                     <div key={index} className={className}>
                                         <p>{nation.currentRank} <span className="table-previous-span">{activeList && activeList.currentRank}</span></p>
-                                        <p>{nation.points} <span className="table-previous-span">{nation.activePoints}</span></p>
+                                        <p>{nation.points.toLocaleString("de-DE")} <span className="table-previous-span">{nation.activePoints && nation.activePoints.toLocaleString("de-DE")}</span></p>
                                         <p><Link href={"/nation/" + nationEncoder(nation.nation)}><span className={"fi fi-" + nation.flagCode}></span>{nation.nation}</Link></p>
                                         <p>{Math.round(nation.points / nation.numberOfRiders * 10) / 10}</p>
-                                        <p>{nation.numberOfRiders} <span className="table-previous-span">{activeList && activeList.numberOfRiders}</span></p>
+                                        <p>{nation.numberOfRiders.toLocaleString("de-DE")} <span className="table-previous-span">{activeList && activeList.numberOfRiders.toLocaleString("de-DE")}</span></p>
                                     </div>
                                 )
                             })}
