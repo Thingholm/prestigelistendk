@@ -15,6 +15,7 @@ export default function Footer() {
                         <li><a href="/#3-aarig-rullende">Største ryttere over en 3-årig periode</a></li>
                         <li><a href="/#stoerste-per-aarti">Største pr. årti</a></li>
                         <li><a href="/#stoerste-saesoner">Største individuelle sæsoner</a></li>
+                        <li><a href="/#stoerste-alltime-hvert-aar">Største all time hvert år</a></li>
                         <li><Link href="/listen?yearFilterRange=single">Største pr. årgang</Link></li>
                     </ul>
                 </div>
@@ -35,7 +36,7 @@ export default function Footer() {
                     <h4>Kontakt</h4>
                     <ul>
                         <li>
-                            Mail: <Link href="mailto:prestigelisten@hotmail.dk">prestigelisten@hotmail.com</Link>
+                            Mail: <Link href="mailto:prestigelisten@hotmail.com">prestigelisten@hotmail.com</Link>
                         </li>
                     </ul>
                 </div>

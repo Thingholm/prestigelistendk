@@ -183,9 +183,10 @@ def main():
         for riderIndex, rider in enumerate(values[1]):
 
             if rider and values[0][riderIndex] not in resultsCurYearRaceList and values[0][riderIndex]:
-                
                 if "i førertrøjen" in values[0][riderIndex]:
                     raceDate = datetime.datetime.now().strftime("%Y" + "-" + "%m" + "-" + "%d")
+                    if int(datetime.datetime.now().strftime("%m")) > 6:
+                        insertData = supabase.table("results").insert({"year": 2023, "race": values[0][riderIndex] + " i Tour de France", "rider": rider, "raceDate": raceDate}).execute()
                 else:
                     raceDate = calendarDict[values[0][riderIndex]]
                 
@@ -194,10 +195,10 @@ def main():
 
                     if not values[0][riderIndex] in nM:
                         if rider in alltimeRankingFullNames:
-                            updateData = supabase.table("nationResultCount").update({"nation": alltimeDict[rider]["nation"], "2023": nationResultCount[alltimeDict[rider]["nation"]] + 1}).eq("nation", nationResultCount[alltimeDict[rider]["nation"]]).execute()
+                            updateData = supabase.table("nationResultCount").update({"2023": nationResultCount[alltimeDict[rider]["nation"]] + 1}).eq("nation", alltimeDict[rider]["nation"]).execute()
                             print({"nation": alltimeDict[rider]["nation"], "oldNumberOfResults": nationResultCount[alltimeDict[rider]["nation"]], "newNumberOfResults": nationResultCount[alltimeDict[rider]["nation"]] + 1})
                         else:
-                            updateData = supabase.table("nationResultCount").update({"nation": newRiders[rider]["nation"], "2023": nationResultCount[newRiders[rider]["nation"]] + 1}).eq("nation", newRiders[rider]["nation"]).execute()
+                            updateData = supabase.table("nationResultCount").update({"2023": nationResultCount[newRiders[rider]["nation"]] + 1}).eq("nation", newRiders[rider]["nation"]).execute()
                             print({"nation": newRiders[rider]["nation"], "oldNumberOfResults": nationResultCount[newRiders[rider]["nation"]], "newNumberOfResults": nationResultCount[newRiders[rider]["nation"]] + 1})
                     insertData = supabase.table("results").insert({"year": 2023, "race": values[0][riderIndex], "rider": rider, "raceDate": raceDate}).execute()
 
