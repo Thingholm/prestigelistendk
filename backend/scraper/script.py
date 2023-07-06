@@ -185,22 +185,31 @@ def main():
             if rider and values[0][riderIndex] not in resultsCurYearRaceList and values[0][riderIndex]:
                 if "i førertrøjen" in values[0][riderIndex]:
                     raceDate = datetime.datetime.now().strftime("%Y" + "-" + "%m" + "-" + "%d")
-                    if int(datetime.datetime.now().strftime("%m")) > 6:
-                        insertData = supabase.table("results").insert({"year": 2023, "race": values[0][riderIndex] + " i Tour de France", "rider": rider, "raceDate": raceDate}).execute()
                 else:
                     raceDate = calendarDict[values[0][riderIndex]]
                 
                     print("INSERTED TO RESULTS: ")
                     print({"year": 2023, "race": values[0][riderIndex], "rider": rider, "raceDate": raceDate})
 
-                    if not values[0][riderIndex] in nM:
-                        if rider in alltimeRankingFullNames:
-                            updateData = supabase.table("nationResultCount").update({"2023": nationResultCount[alltimeDict[rider]["nation"]] + 1}).eq("nation", alltimeDict[rider]["nation"]).execute()
-                            print({"nation": alltimeDict[rider]["nation"], "oldNumberOfResults": nationResultCount[alltimeDict[rider]["nation"]], "newNumberOfResults": nationResultCount[alltimeDict[rider]["nation"]] + 1})
-                        else:
-                            updateData = supabase.table("nationResultCount").update({"2023": nationResultCount[newRiders[rider]["nation"]] + 1}).eq("nation", newRiders[rider]["nation"]).execute()
-                            print({"nation": newRiders[rider]["nation"], "oldNumberOfResults": nationResultCount[newRiders[rider]["nation"]], "newNumberOfResults": nationResultCount[newRiders[rider]["nation"]] + 1})
                     insertData = supabase.table("results").insert({"year": 2023, "race": values[0][riderIndex], "rider": rider, "raceDate": raceDate}).execute()
+
+        newResList = []
+        for x in json.loads(resultsCurYear.json())["data"]:
+            if x["rider"] in alltimeRankingFullNames:
+                x["nation"] = riderDict[x["rider"]]["nation"]
+                race = x["race"]
+                if "etape" in race:
+                    race = race.split(". ")[1]
+                x["points"] = pointSystem[race]
+
+                if not race in nM and not "dag i førertrøjen" in race:
+                    newResList.append(x)
+        sortedList = sorted(newResList, key=lambda x: x["nation"])
+
+        for k, g in itertools.groupby(sortedList, lambda x: x["nation"]):
+            resultCount = len(list(g))
+            print(k, resultCount)
+            updateData = supabase.table("nationResultCount").update({"2023": resultCount}).eq("nation", k).execute()
 
     except HttpError as err:
         print(err)

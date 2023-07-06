@@ -19,6 +19,21 @@ $skeleton-base: #DDDBDD;
     font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
 }
 
+.custom-flag {
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    position: relative;
+    display: inline-block;
+    width: 1.33333333em;
+    line-height: 1em;
+
+    &:before {
+        content: '\00a0';
+    }
+}
+
+
 p,
 h1,
 h2,
@@ -256,6 +271,19 @@ input[type="radio"] {
 
             &:last-of-type {
                 margin-bottom: 10px;
+            }
+
+            &.highlight {
+                background-color: $white-darker;
+
+                p a,
+                p {
+                    font-weight: 600;
+                }
+
+                span.last-name {
+                    font-weight: 700 !important;
+                }
             }
 
             .table-name-reversed {
@@ -821,7 +849,7 @@ footer {
         .hero-text-quote {
             margin-bottom: 10px;
             font-weight: 600;
-            font-size: 20px;
+            font-size: 1.25rem;
             text-align: center;
         }
 
@@ -831,6 +859,7 @@ footer {
         }
 
         p {
+            font-size: 1rem;
             margin-bottom: 20px;
             line-height: 25px;
         }
@@ -2362,7 +2391,7 @@ footer {
 
                 .table-content .highlighted-nation {
                     font-weight: 600;
-
+                    background-color: $white-darker;
                 }
 
                 .table-header,

@@ -81,8 +81,8 @@ export default async function Page(props) {
             <RiderAllResults resultData={results} rankingByYearData={rankingByYears} />
 
             <div className="rider-related-rankings-container">
-                <RiderRankingFromNation riderNation={rider.nation} />
-                <RiderRankingFromYear riderBirthYear={rider.birthYear} />
+                <RiderRankingFromNation riderNation={rider.nation} rider={stringDecoder(props.fullName)} />
+                <RiderRankingFromYear riderBirthYear={rider.birthYear} rider={stringDecoder(props.fullName)} />
             </div>
         </div>
 

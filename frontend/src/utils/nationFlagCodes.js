@@ -297,43 +297,43 @@ export const nationFlagCodes = [
         nation: 'Grækenland'
     },
     {
-        nationFlagCodes: 'ae',
+        nationFlagCode: 'ae',
         nation: 'UAE'
     },
     {
-        nationFlagCodes: 'cn',
+        nationFlagCode: 'cn',
         nation: 'Kina'
     },
     {
-        nationFlagCodes: 'tr',
+        nationFlagCode: 'tr',
         nation: 'Tyrkiet'
     },
     {
-        nationFlagCodes: 'jp',
+        nationFlagCode: 'jp',
         nation: 'Japan'
     },
     {
-        nationFlagCodes: 'xx',
+        nationFlagCode: 'be',
         nation: 'Benelux'
     },
     {
-        nationFlagCodes: 'eu',
+        nationFlagCode: 'eu',
         nation: 'Europa'
     },
     {
-        nationFlagCodes: 'xx',
+        nationFlagCode: 'wc',
         nation: 'Verden'
     },
     {
-        nationFlagCodes: 'md',
+        nationFlagCode: 'md',
         nation: 'Moldova'
     },
     {
-        nationFlagCodes: 'xx',
+        nationFlagCode: 'xx',
         nation: 'Sovjetunionen'
     },
     {
-        nationFlagCodes: 'xx',
+        nationFlagCode: 'xx',
         nation: 'Østtyskland'
     }
 ]

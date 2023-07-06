@@ -50,7 +50,7 @@ export default async function RiderRankingFromYear(props) {
                         <div className="table-content">
                             {rankedRanking && rankedRanking.map(rider => {
                                 return (
-                                    <div key={rider.id} className="table-row">
+                                    <div key={rider.id} className={rider.fullName == props.rider ? "table-row highlight" : "table-row"}>
                                         <p>{rider.currentRank.toLocaleString("de-DE")}</p>
                                         <p className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className={'media fi fi-' + rider.nationFlagCode}></span><span className="last-name">{rider.lastName.replace("&#39;", "'")} </span><span>{rider.firstName}</span></Link></p>
                                         <p><Link href={"/nation/" + nationEncoder(rider.nation)}><span className={'fi fi-' + rider.nationFlagCode}></span> {rider.nation}</Link></p>

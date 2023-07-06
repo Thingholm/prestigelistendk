@@ -4,9 +4,6 @@ import { supabase } from "@/utils/supabase"
 import Link from "next/link";
 import "flag-icons/css/flag-icons.min.css";
 
-
-
-
 async function fetchData() {
     let { data: pointSystem } = await supabase
         .from('pointSystem')
@@ -23,10 +20,16 @@ async function fetchData() {
 }
 
 function generateTableRows(r) {
+    let flagCode = "fi fi-" + nationFlagCodes.find(i => i.nation == r.raceNation).nationFlagCode;
+
+    if (r.raceNation == "Verden") {
+        flagCode = "custom-flag f-verden"
+    }
+
     return (
         <div key={r.id} className={!r.active && "inactive-race"}>
             <p>
-                <span className={"fi fi-" + nationFlagCodes.find(i => i.nation == r.raceNation).nationFlagCode}></span>
+                <span className={flagCode}></span>
                 {r.raceName
                     .replace("Verdensmester i enkeltstart", "VM i enkeltstart")
                     .replace("Verdensmester", "VM i linjeløb")
