@@ -329,11 +329,15 @@ export const nationFlagCodes = [
         nation: 'Moldova'
     },
     {
-        nationFlagCode: 'xx',
+        nationFlagCode: 'su',
         nation: 'Sovjetunionen'
     },
     {
         nationFlagCode: 'xx',
         nation: 'Østtyskland'
+    },
+    {
+        nationFlagCode: 'ol',
+        nation: 'OL'
     }
 ]

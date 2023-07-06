@@ -18,6 +18,18 @@ function createLabels(arr) {
     return newData;
 }
 
+function simplifyResult(result) {
+    if (result) {
+        if (result.includes("dag i førertrøjen")) {
+            return result.split(" da")[1].replace("g i", "dag i")
+        } else {
+            return result
+        }
+    } else {
+        return result;
+    }
+}
+
 export default function RiderEvolution(props) {
     const results = props.resultData;
     const [graphShowStatus, setGraphShowStatus] = useState(1);
@@ -68,28 +80,29 @@ export default function RiderEvolution(props) {
                         const resultsByYear = results.filter(i => i.year == contextYear).map(i => i.raceName.split(" (")[0])
 
                         const resultUniques = resultsByYear.reduce((list, result) => {
-                            const currCount = list[result] ?? 0;
+                            const res = simplifyResult(result)
+                            const currCount = list[res] ?? 0;
                             return {
                                 ...list,
-                                [result]: currCount + 1,
+                                [res]: currCount + 1,
                             }
                         }, {})
 
-
                         const seen = new Set();
                         const filteredResults = resultsByYear.filter(e => {
-                            const duplicate = seen.has(e);
-                            seen.add(e)
+                            const newE = simplifyResult(e)
+                            const duplicate = seen.has(newE);
+                            seen.add(newE)
 
                             return !duplicate;
                         }).map(e => {
-                            if (resultUniques[e] > 1) {
-                                return resultUniques[e] + "x " + e.replace("etape", "etaper").replace("Dag", "dage");
+                            const newE = simplifyResult(e)
+                            if (resultUniques[newE] > 1) {
+                                return resultUniques[newE] + "x " + newE.replace("etape", "etaper").replace("Dag", "dage");
                             } else {
-                                return e;
+                                return newE;
                             }
                         })
-
                         return filteredResults;
                     },
                 }

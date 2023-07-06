@@ -3,7 +3,11 @@ import { nationFlagCodes } from "@/utils/nationFlagCodes";
 import Link from "next/link";
 
 export default function NationLoading(props) {
-    const nationFlagCode = nationFlagCodes.find(i => i.nation.toLowerCase() == props.nation.replace("oe", "ø").replace("ae", "æ").replace("aa", "å").replace("-", " ")).nationFlagCode
+    let nationFlagCode = nationFlagCodes.find(i => i.nation.toLowerCase() == props.nation.replace("oe", "ø").replace("ae", "æ").replace("aa", "å").replace("-", " ")).nationFlagCode
+
+    if (props.nation == "oesttyskland") {
+        nationFlagCode = "dd"
+    }
 
     return (
         <div className="nation-page-container loading-ui-container">

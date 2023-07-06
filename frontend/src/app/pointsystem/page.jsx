@@ -24,6 +24,8 @@ function generateTableRows(r) {
 
     if (r.raceNation == "Verden") {
         flagCode = "custom-flag f-verden"
+    } else if (r.raceNation == "OL") {
+        flagCode = "custom-flag f-ol"
     }
 
     return (

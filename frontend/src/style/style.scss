@@ -28,11 +28,45 @@ $skeleton-base: #DDDBDD;
     width: 1.33333333em;
     line-height: 1em;
 
+    box-shadow: 0px 0px 1px 1px #5a5a5a1c;
+    margin-right: 5px;
+
+    &.f-verden {
+        background-image: url(../style/flags/wc.svg);
+    }
+
+    &.f-ol {
+        background-image: url(../style/flags/ol.svg);
+    }
+
+    &.f-sovjet {
+        background-image: url(../style/flags/su.svg);
+    }
+
+    &.f-ddr {
+        background-image: url(../style/flags/dd.svg);
+    }
+
     &:before {
         content: '\00a0';
     }
 }
 
+.fi-su {
+    background-image: url(../style//flags/su.svg) !important;
+}
+
+.fi-dd {
+    background-image: url(../style//flags/dd.svg) !important;
+}
+
+.fi-wc {
+    background-image: url(../style//flags/wc.svg) !important;
+}
+
+.fi-ol {
+    background-image: url(../style//flags/ol.svg) !important;
+}
 
 p,
 h1,
