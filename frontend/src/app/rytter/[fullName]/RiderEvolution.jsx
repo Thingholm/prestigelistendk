@@ -33,7 +33,7 @@ function simplifyResult(result) {
 export default function RiderEvolution(props) {
     const results = props.resultData;
     const [graphShowStatus, setGraphShowStatus] = useState(1);
-    const rankingByYears = props.rankingByYearData[0];
+    const rankingByYears = props.rankingByYearData;
     const rankingByYearsChartData = Object.keys(rankingByYears)
         .filter(i => i.includes("Rank"))
         .filter(i => rankingByYears[i.replace("Rank", "Points")] > 0)

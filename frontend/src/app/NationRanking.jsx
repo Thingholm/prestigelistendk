@@ -4,39 +4,36 @@ import RankingLinkHeader from "@/components/RankingLinkHeader";
 import { nationEncoder } from "@/components/stringHandler";
 import Link from "next/link";
 import numerizeRanking from "@/utils/numerizeRanking";
-import useStore from "@/utils/store";
 import "flag-icons/css/flag-icons.min.css";
 import { useEffect, useState } from "react";
 import TableSkeleton from "@/components/TableSkeleton";
 import SectionLinkButton from "@/components/SectionLinkButton";
 import { baseUrl } from "@/utils/baseUrl";
-import { supabase } from "@/utils/supabase";
-
-async function fetchData() {
-    let { data: nationsRanking } = await supabase
-        .from("nationsRanking")
-        .select("*");
-
-    return {
-        nationsRanking: numerizeRanking(nationsRanking),
-        activeRanking: numerizeRanking(nationsRanking.filter(i => i.activePoints !== null).map(i => { return { ...i, points: i.activePoints, numberOfRiders: i.activeNumberOfRiders } }))
-    }
-}
+import { useNationRanking } from "@/utils/queryHooks";
 
 export default function NationRanking() {
-    const [isLoading, setIsLoading] = useState(true);
     const [nationsRanking, setNationsRanking] = useState([]);
     const [activeRanking, setActiveRanking] = useState([]);
 
+    const nationRankingQuery = useNationRanking();
 
     useEffect(() => {
-        setIsLoading(true)
-        fetchData().then(res => {
-            setNationsRanking(res.nationsRanking)
-            setActiveRanking(res.activeRanking)
-        })
-        setIsLoading(false)
-    }, [])
+        if (nationRankingQuery.isSuccess) {
+            setNationsRanking(
+                numerizeRanking(nationRankingQuery.data)
+            )
+
+            setActiveRanking(
+                numerizeRanking(
+                    nationRankingQuery.data
+                        .filter(i => i.activePoints > 0)
+                        .map(i => {
+                            return { ...i, points: i.activePoints, numberOfRiders: i.activeNumberOfRiders }
+                        })
+                )
+            )
+        }
+    }, [nationRankingQuery])
 
 
     return (
@@ -52,7 +49,7 @@ export default function NationRanking() {
                         <p>Antal ryttere <span className="table-previous-span">kun aktive</span></p>
 
                     </div>
-                    {isLoading ? <TableSkeleton /> :
+                    {nationRankingQuery.isLoading ? <TableSkeleton /> :
                         <div className="table-content">
                             {nationsRanking.map((nation, index) => {
                                 const activeList = activeRanking.find(i => i.nation == nation.nation)

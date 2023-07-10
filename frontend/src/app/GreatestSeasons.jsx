@@ -1,64 +1,33 @@
+"use client";
+
 import SectionLinkButton from "@/components/SectionLinkButton";
 import { nationEncoder, stringEncoder } from "@/components/stringHandler";
 import { baseUrl } from "@/utils/baseUrl";
-import { supabase } from "@/utils/supabase";
+import { useAlltimeRanking, useGreatestSeasons, usePointSystem, useResultsByRiderYear } from "@/utils/queryHooks";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-async function fetchData() {
-    let { data: greatestSeasons } = await supabase
-        .from('greatestSeasons')
-        .select('*');
+export default function GreatestSeasons() {
+    const [loadingStatus, setLoadingStatus] = useState(false);
 
-    let { data: rankingAlltime } = await supabase
-        .from('alltimeRanking')
-        .select('*');
+    const greatestSeasonsQuery = useGreatestSeasons();
+    const greatestSeasons = greatestSeasonsQuery.data?.sort((a, b) => a.place - b.place);
 
-    let { data: pointSystem } = await supabase
-        .from('pointSystem')
-        .select('*')
+    const alltimeRankingQuery = useAlltimeRanking();
 
-    return {
-        greatestSeasons: greatestSeasons.sort((a, b) => a.place - b.place),
-        rankingAlltime: rankingAlltime,
-        pointSystem: pointSystem,
-    };
-}
+    const pointSystemQuery = usePointSystem();
+    const pointSystem = pointSystemQuery.data;
 
-async function fetchResults(riders, years) {
-    let { data: results } = await supabase
-        .from('results')
-        .select('*')
-        .in('year', years)
-        .in('rider', riders);
-    return results;
-}
+    const resultsQuery = useResultsByRiderYear(greatestSeasons?.map(i => i.rider), greatestSeasons?.map(i => i.year));
+    const results = resultsQuery.data;
 
-export default async function GreatestSeasons() {
-    const data = await fetchData();
-    const rankingAlltime = data.rankingAlltime;
-    const pointSystem = data.pointSystem;
-    let greatestSeasons = data.greatestSeasons;
-    let results;
+    useEffect(() => {
+        if (greatestSeasonsQuery.isSuccess && alltimeRankingQuery.isSuccess && pointSystemQuery.isSuccess && resultsQuery.isSuccess) {
+            setLoadingStatus(true)
+        }
+    }, [greatestSeasonsQuery, alltimeRankingQuery, pointSystemQuery, resultsQuery])
+
     let resultsWithPoints;
-
-
-    results = await fetchResults(
-        greatestSeasons.reduce((acc, obj) => {
-            if (!acc.includes(obj.rider)) {
-                acc.push(obj.rider)
-            }
-
-            return acc;
-        }, []),
-
-        greatestSeasons.reduce((acc, obj) => {
-            if (!acc.includes(obj.year)) {
-                acc.push(obj.year)
-            }
-            return acc;
-        }, [])
-    )
-
 
     if (results) {
         const resultsGroupedByRider = results.map(i => {
@@ -120,18 +89,19 @@ export default async function GreatestSeasons() {
                             <p>Point<span className="media table-previous-span">sæson</span></p>
                         </div>
                         <div className="table-content">
-                            {greatestSeasons && greatestSeasons.map((s, index) => {
-                                const rider = rankingAlltime.find(i => i.fullName.toLowerCase() == s.rider.toLowerCase())
+                            {loadingStatus && greatestSeasons.map((s, index) => {
+                                const rider = alltimeRankingQuery.data.find(i => i.fullName.toLowerCase() == s.rider.toLowerCase())
                                 let riderTopResults;
                                 if (resultsWithPoints.length > 10) {
                                     riderTopResults = Object.values(resultsWithPoints.find(i => Object.keys(i) == s.rider))[0][s.year]
                                 }
 
+                                const nameArr = rider.fullName.split(/ (.*)/);
 
                                 return (
                                     <div key={index} className="table-row">
                                         <p>{s.place}</p>
-                                        {rider && <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName.replace("&#39;", "'"))}><span className={'fi fi-' + rider.nationFlagCode}></span><span className='last-name'>{rider.lastName.replace("&#39;", "'")} </span>{rider.firstName}</Link></p>}
+                                        {rider && <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className={'fi fi-' + rider.nationFlagCode}></span><span className='last-name'>{nameArr[1]} </span>{nameArr[0]}</Link></p>}
                                         {riderTopResults &&
                                             <p>{riderTopResults.slice(0, 3).map((i, index) => {
                                                 let race = i.race.replace("&#39;", "'").split(" (")[0]

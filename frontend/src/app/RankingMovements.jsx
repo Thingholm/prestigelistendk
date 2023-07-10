@@ -1,50 +1,32 @@
 "use client";
 
-import { supabase } from "@/utils/supabase";
 import { useEffect, useState } from "react";
 import "../../node_modules/flag-icons/css/flag-icons.min.css"
-import useStore from "@/utils/store";
 import ArrowUpTriangle from "@/components/ArrowUpTriangle";
 import NoChange from "@/components/NoChange";
 import Link from "next/link";
 import numerizeRanking from "@/utils/numerizeRanking";
 import { stringEncoder } from "@/components/stringHandler";
 import TableSkeleton from "@/components/TableSkeleton";
-
-async function getData() {
-    const date = new Date();
-    let { data: results } = await supabase.from('results').select('*').gt('raceDate', date.getFullYear() + "-" + (date.getMonth() - 1) + "-" + date.getDate());
-    return { results: results };
-}
-
-async function getPoints() {
-    let { data: pointSystem } = await supabase.from('pointSystem').select('*');
-    return pointSystem;
-}
+import { useAlltimeRanking, useLatestResults, usePointSystem } from "@/utils/queryHooks";
 
 export default function RankingMovements() {
-    const [isLoading, setIsLoading] = useState(true);
-    const rankingAlltime = useStore((state) => state.rankingAlltime);
-    const latestResults = useStore((state) => state.latestResults);
-    const addLatestResults = useStore((state) => state.addLatestResults);
-    const pointSystem = useStore((state) => state.pointSystem);
-    const addPointSystem = useStore((state) => state.addPointSystem);
+    const [latestResults, setLatestResults] = useState();
+
+    const pointSystemQuery = usePointSystem();
+    const pointSystem = pointSystemQuery.data;
+
+    const alltimeRankingQuery = useAlltimeRanking();
+    const alltimeRanking = alltimeRankingQuery.data;
+
+
+    const latestResultsQuery = useLatestResults()
+    const latestResultsData = latestResultsQuery.data
 
     useEffect(() => {
-        getPoints().then(result => addPointSystem(result));
-    }, [rankingAlltime]);
-
-    useEffect(() => {
-        getData().then(result => {
-            const filteredForRidersOnly = result.results.filter(i => {
-                if (rankingAlltime.map(j => j.fullName).includes(i.rider)) {
-                    return true;
-                }
-            }).map(i => {
-                return { ...i, race: i.race.replace("&#39;", "'") }
-            })
-
-            const resultsGroupedByDateWithPoints = filteredForRidersOnly.reduce((acc, obj) => {
+        if (alltimeRanking && latestResultsData && pointSystem) {
+            const filteredResults = latestResultsData.filter(i => alltimeRanking.map(j => j.fullName).includes(i.rider));
+            const resultsGroupedByDateWithPoints = filteredResults.reduce((acc, obj) => {
                 const key = obj["raceDate"];
                 const curGroup = acc[key] ?? [];
                 const curResult = ((obj.race.includes("etape") ? obj.race.split(". ")[1] : obj.race))
@@ -71,7 +53,7 @@ export default function RankingMovements() {
 
             let finalMovementsList = [];
 
-            let prevRanking = numerizeRanking(rankingAlltime);
+            let prevRanking = numerizeRanking(alltimeRanking);
 
             resultsGroupedArray = resultsGroupedArray.map(i => {
                 let newPrevRanking = prevRanking.map(j => {
@@ -79,8 +61,6 @@ export default function RankingMovements() {
                         currentRank: j.currentRank,
                         fullName: j.fullName,
                         points: j.points,
-                        firstName: j.firstName,
-                        lastName: j.lastName,
                         nationFlagCode: j.nationFlagCode,
                     }
                 });
@@ -113,10 +93,9 @@ export default function RankingMovements() {
                 prevRanking = newPrevRanking;
             })
 
-            addLatestResults(finalMovementsList)
-            setIsLoading(false);
-        });
-    }, [pointSystem])
+            setLatestResults(finalMovementsList)
+        }
+    }, [alltimeRanking, latestResultsData, pointSystem])
 
     return (
         <div className="table-shadow-container">
@@ -130,9 +109,10 @@ export default function RankingMovements() {
                     <p>Point</p>
                     <p>Dato</p>
                 </div>
-                {isLoading ? <TableSkeleton /> :
+                {!latestResults ? <TableSkeleton /> :
                     <div className="table-content">
                         {latestResults.map((result, index) => {
+                            console.log(result)
                             const race = (result.count > 1 ?
                                 result.race.map((i, index) => {
                                     const fR = i.replace("af", "i")
@@ -145,11 +125,14 @@ export default function RankingMovements() {
                                     }
                                 }) :
                                 result.race.replace("af", "i").split(" (")[0]);
+
+                            const nameArr = result.fullName.split(/ (.*)/);
+
                             return (
                                 <div key={index} className="table-row">
                                     <p>{result.newRank.toLocaleString("de-DE")} <span className="table-previous-span">{result.oldRank.toLocaleString("de-DE")}</span></p>
                                     <p className={result.oldRank - result.newRank > 0 ? "rank-up" : "no-movement"}>{result.oldRank - result.newRank > 0 ? <ArrowUpTriangle /> : <NoChange />} {(result.oldRank - result.newRank).toLocaleString("de-DE")}</p>
-                                    <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(result.rider)}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{result.lastName.replace("&#39;", "'")}</span> {result.firstName}</Link><span className="media">{race} <span className="media-smallest">({result.racePoints} pt.)</span></span></p>
+                                    <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(result.rider)}><span className={'fi fi-' + result.nationFlagCode}></span> <span className="last-name">{nameArr[1]}</span> {nameArr[0]}</Link><span className="media">{race} <span className="media-smallest">({result.racePoints} pt.)</span></span></p>
                                     <p>{race}</p>
                                     <p>{result.racePoints}</p>
                                     <p>{result.newPoints.toLocaleString("de-DE")} <span className="table-previous-span">{result.oldPoints.toLocaleString("de-DE")}</span></p>

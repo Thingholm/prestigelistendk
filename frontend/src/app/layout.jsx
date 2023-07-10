@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer"
 import MobileNavbar from "@/components/MobileNav"
 import Navbar from "@/components/Navbar"
+import QueryProvider from "@/components/QueryProvider"
 
 export const metadata = {
   title: 'Prestigelisten - Rangliste over de største cykelryttere',
@@ -11,10 +12,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <MobileNavbar />
-        <main>{children}</main>
-        <Footer />
+        <QueryProvider>
+          <Navbar />
+          <MobileNavbar />
+          <main>{children}</main>
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   )

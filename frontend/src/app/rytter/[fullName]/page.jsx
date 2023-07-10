@@ -1,3 +1,5 @@
+"use client";
+
 import { supabase } from "@/utils/supabase";
 import RiderProfile from "./RiderProfile";
 import RiderResults from "./RiderResults";
@@ -7,83 +9,73 @@ import RiderRankingFromNation from "./RiderRankingFromNation";
 import RiderRankingFromYear from "./RiderRankingFromYear";
 import { stringEncoder, stringDecoder } from "@/components/stringHandler";
 import numerizeRanking from "@/utils/numerizeRanking";
+import { useAlltimeRanking, usePointSystem, useResultsByRider, useRiderRankingPerYear } from "@/utils/queryHooks";
 
-async function getRiderById(name) {
-    let { data: rankingAlltime } = await supabase
-        .from('alltimeRanking')
-        .select('*')
+export default function Page(props) {
+    const name = stringDecoder(props.fullName);
 
-    let { data: results } = await supabase
-        .from('results')
-        .select('*')
-        .ilike('rider', "%" + name + "%");
+    const alltimeRankingQuery = useAlltimeRanking();
+    const alltimeRanking = alltimeRankingQuery.data;
 
-    let { data: pointSystem } = await supabase
-        .from('pointSystem')
-        .select('*');
+    const pointSystemQuery = usePointSystem();
+    const pointSystem = pointSystemQuery.data
 
-    let { data: rankingByYears } = await supabase
-        .from('alltimeRankingPerYear')
-        .select('*')
-        .ilike('rider', "%" + name + "%");
+    const rankingByYearsQuery = useRiderRankingPerYear(name);
+    const rankingByYears = rankingByYearsQuery.data;
 
-    const resultsCombined = results.map(result => {
-        let resultRace = "";
+    const riderResultsQuery = useResultsByRider(name);
 
-        if (result.race.includes("etape")) {
-            resultRace = result.race.split(". ")[1].replace("&#39;", "'").replace(/comma/g, ",")
-        } else {
-            resultRace = result.race.replace("&#39;", "'").replace(/comma/g, ",")
+    let riderResults;
+    let resultRace = "";
+    let riderData;
+    let alltimeRankByNation;
+    let rider;
+
+    if (alltimeRanking && pointSystem && riderResultsQuery.isSuccess) {
+        riderResults = riderResultsQuery.data?.map(result => {
+
+            if (result.race.includes("etape")) {
+                resultRace = result.race.split(". ")[1]
+            } else {
+                resultRace = result.race
+            }
+            const racePointSystem = pointSystem.find(p => p.raceName == resultRace);
+
+            const mergedLists = {
+                ...result,
+                ...racePointSystem,
+            }
+
+            return (mergedLists)
+        });
+
+        riderData = numerizeRanking(alltimeRanking).find(i => i.fullName.toLowerCase() == name.toLowerCase());
+        alltimeRankByNation = numerizeRanking(alltimeRanking.filter(i => i.nation == riderData.nation)).find(i => i.fullName.toLowerCase() == name.toLowerCase())
+
+        if (riderData.active) {
+            riderData = { ...riderData, activeRank: numerizeRanking(alltimeRanking.filter(i => i.active == true)).find(i => i.fullName.toLowerCase() == name.toLowerCase()).currentRank }
         }
-        const racePointSystem = pointSystem.find(p => p.raceName == resultRace);
-
-        const mergedLists = {
-            ...result,
-            ...racePointSystem,
-        }
-
-        return (mergedLists)
-    });
-
-    let riderData = numerizeRanking(rankingAlltime).find(i => i.fullName.toLowerCase() == name.toLowerCase());
-    const alltimeRankByNation = numerizeRanking(rankingAlltime.filter(i => i.nation == riderData.nation)).find(i => i.fullName.toLowerCase() == name.toLowerCase())
-
-    if (riderData.active) {
-        riderData = { ...riderData, activeRank: numerizeRanking(rankingAlltime.filter(i => i.active == true)).find(i => i.fullName.toLowerCase() == name.toLowerCase()).currentRank }
     }
-
-    return {
-        rankingAlltime: rankingAlltime,
-        riderData: riderData,
-        results: resultsCombined,
-        rankingByYears: rankingByYears,
-        alltimeRankByNation: alltimeRankByNation,
-    };
-}
-
-export default async function Page(props) {
-    const data = await getRiderById(stringDecoder(props.fullName));
-    const rider = data.riderData;
-    const results = data.results;
-    const rankingByYears = data.rankingByYears;
-    const alltimeRankByNation = data.alltimeRankByNation;
-
 
     return (
         <div className="rider-page-container">
-            <div className="rider-profile-container">
-                <RiderProfile riderData={rider} alltimeRankByNation={alltimeRankByNation} />
-                <RiderResults resultData={results} />
-            </div>
+            {riderData && <div className="rider-profile-container">
+                <RiderProfile riderData={riderData} alltimeRankByNation={alltimeRankByNation} />
+                <RiderResults resultData={riderResults} />
+            </div>}
 
-            <RiderEvolution resultData={results} rankingByYearData={rankingByYears} />
+            {riderResults && rankingByYearsQuery.isSuccess &&
+                <div>
+                    <RiderEvolution resultData={riderResults} rankingByYearData={rankingByYears[0]} />
 
-            <RiderAllResults resultData={results} rankingByYearData={rankingByYears} />
+                    <RiderAllResults resultData={riderResults} rankingByYearData={rankingByYears[0]} />
+                </div>
+            }
 
-            <div className="rider-related-rankings-container">
-                <RiderRankingFromNation riderNation={rider.nation} rider={stringDecoder(props.fullName)} />
-                <RiderRankingFromYear riderBirthYear={rider.birthYear} rider={stringDecoder(props.fullName)} />
-            </div>
+            {riderData && <div className="rider-related-rankings-container">
+                <RiderRankingFromNation riderNation={riderData.nation} rider={name} />
+                <RiderRankingFromYear riderBirthYear={riderData.birthYear} rider={name} />
+            </div>}
         </div>
 
     )

@@ -8,6 +8,7 @@ import RankingLinkHeader from "@/components/RankingLinkHeader";
 
 export default function NationAccChart(props) {
     const rankingData = props.rankingData;
+    console.log(rankingData)
     const countData = props.countData;
     let labels = []
     let values = []

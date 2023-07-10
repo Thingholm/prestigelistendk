@@ -1,3 +1,5 @@
+"use client";
+
 import { supabase } from "@/utils/supabase"
 import NationProfile from "./NationProfile";
 import NationRidersHighlight from "./NationRidersHighlight";
@@ -7,6 +9,7 @@ import NationTopActiveRiders from "./NationTopActiveRiders";
 import NationTopResults from "./NationTopResults";
 import RankingNationsNation from "./RankingNations";
 import numerizeRanking from "@/utils/numerizeRanking";
+import { useAlltimeRanking, useNationRanking } from "@/utils/queryHooks";
 
 function findNation(nation, alltimeRankingAll) {
     if (["Moldova", "Sovjetunionen", "Østtyskland"].includes(nation)) {
@@ -43,17 +46,8 @@ async function getDataFromNation(nation) {
     };
 }
 
-function groupFunction(obj) {
-    return (obj.reduce((acc, curr) => {
-        const key = curr["nation"];
-        const curPoints = acc[key] ?? { points: 0, numberOfRiders: 0 };
 
-        return { ...acc, [key]: { points: curPoints.points + curr.points, nationFlagCode: curr.nationFlagCode, numberOfRiders: curPoints.numberOfRiders + 1 } };
-    }, {}))
-}
-
-
-export default async function Page(props) {
+export default function Page(props) {
     const nationCapitalized = props.nation.replace("oe", "ø").replace("aa", "å").replace("ae", "æ");
     let nationString;
 
@@ -62,34 +56,39 @@ export default async function Page(props) {
     } else {
         nationString = nationCapitalized.split("-").map(i => i.charAt(0).toUpperCase() + i.slice(1)).join(" ");
     }
-    const fetchedData = await getDataFromNation(nationString);
 
-    const alltimeRanking = fetchedData.alltimeRanking;
+    const alltimeRankingQuery = useAlltimeRanking();
+    const alltimeRanking = alltimeRankingQuery.data;
 
-    const nationsRankings = numerizeRanking(fetchedData.nationsRanking)
+    const ridersFromNation = alltimeRanking && findNation(nationString, alltimeRanking)
 
-    const activeNationsRankings = numerizeRanking(fetchedData.nationsRanking.filter(i => i.activePoints !== null).map(i => { return { ...i, points: i.activePoints, numberOfRiders: i.activeNumberOfRiders } }))
+    const nationRankingQuery = useNationRanking();
+    const nationsRanking = nationRankingQuery.isSuccess && numerizeRanking(nationRankingQuery.data)
 
-    const currentNationRank = nationsRankings.find(i => i.nation == nationString)
-    const currentNationActiveRank = activeNationsRankings.find(i => i.nation == nationString)
+    const activeNationsRanking = nationRankingQuery.isSuccess && numerizeRanking(nationsRanking.filter(i => i.activePoints !== null).map(i => { return { ...i, points: i.activePoints, numberOfRiders: i.activeNumberOfRiders } }))
+
+    const nationData = nationsRanking && { nation: nationsRanking.filter(i => i.nation == nationString)[0].nation, nationFlagCode: nationsRanking.filter(i => i.nation == nationString)[0].flagCode }
+
+    const currentNationRank = nationsRanking && nationsRanking.find(i => i.nation == nationString)
+    const currentNationActiveRank = activeNationsRanking && activeNationsRanking.find(i => i.nation == nationString)
 
     return (
         <div className="nation-page-container">
-            <div className="nation-profile-container rider-profile-container">
-                <NationProfile nationData={fetchedData.nationData} nationRankData={currentNationRank} activeNationRankData={currentNationActiveRank} />
-                <NationRidersHighlight ridersData={fetchedData.ridersFromNation} />
-            </div>
+            {nationData && ridersFromNation && currentNationActiveRank && <div className="nation-profile-container rider-profile-container">
+                <NationProfile nationData={nationData} nationRankData={currentNationRank} activeNationRankData={currentNationActiveRank} />
+                <NationRidersHighlight ridersData={ridersFromNation} />
+            </div>}
 
             <NationEvolution nationData={nationString} />
 
-            <NationTopResults nationData={nationString} ridersData={fetchedData.ridersFromNation} />
+            {ridersFromNation && <NationTopResults nationData={nationString} ridersData={ridersFromNation} />}
 
-            <div className="nation-rankings-container riders-ranked dark">
-                <NationTopRiders ridersData={fetchedData.ridersFromNation} />
-                <NationTopActiveRiders ridersData={fetchedData.ridersFromNation} nationData={nationString} />
-            </div>
+            {ridersFromNation && <div className="nation-rankings-container riders-ranked dark">
+                <NationTopRiders ridersData={ridersFromNation} />
+                <NationTopActiveRiders ridersData={ridersFromNation} nationData={nationString} />
+            </div>}
 
-            <RankingNationsNation currentNation={nationString} rankingNations={nationsRankings} activeRankingNations={activeNationsRankings} />
+            {/* {activeNationsRanking && <RankingNationsNation currentNation={nationString} rankingNations={nationsRanking} activeRankingNations={activeNationsRanking} />} */}
         </div>
     )
 }

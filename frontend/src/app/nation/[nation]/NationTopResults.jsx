@@ -1,5 +1,6 @@
 import { stringEncoder } from "@/components/stringHandler";
 import { nationFlagCodes } from "@/utils/nationFlagCodes";
+import { usePointSystem, useResultsByRider, useResultsByRiders } from "@/utils/queryHooks";
 import { supabase } from "@/utils/supabase";
 import "flag-icons/css/flag-icons.min.css";
 import Link from "next/link";
@@ -30,20 +31,24 @@ function findNationFlagCode(nation) {
     return flagCode;
 }
 
-export default async function NationTopResults(props) {
+export default function NationTopResults(props) {
     const nation = props.nationData;
     const ridersFromNation = props.ridersData;
 
+    const pointSystemQuery = usePointSystem();
+    const pointSystem = pointSystemQuery.data;
+
+
     let results;
+
     if (['Italien', 'Belgien', 'Frankrig', 'Spanien'].includes(nation)) {
-        results = await getResultsData(ridersFromNation.sort((a, b) => b.points - a.points).map(i => i.fullName).slice(0, 300))
+        results = useResultsByRiders(ridersFromNation.sort((a, b) => b.points - a.points).map(i => i.fullName).slice(0, 300)).data
     } else {
-        results = await getResultsData(ridersFromNation.sort((a, b) => b.points - a.points).map(i => i.fullName))
+        results = useResultsByRiders(ridersFromNation.sort((a, b) => b.points - a.points).map(i => i.fullName)).data
     }
 
-    const pointSystem = await getPointSystem();
 
-    const sortedResults = results.map(i => {
+    const sortedResults = results?.map(i => {
         let resultRace = i.race.replace("&#39;", "'");
 
         if (resultRace.includes("etape")) {
@@ -87,7 +92,7 @@ export default async function NationTopResults(props) {
                     <p>Rytter</p>
                 </div>
                 <div className="table-content">
-                    {sortedResults.map(result => {
+                    {sortedResults?.map(result => {
                         const curRaceFlagCode = findNationFlagCode(result.raceNation);
 
                         return (

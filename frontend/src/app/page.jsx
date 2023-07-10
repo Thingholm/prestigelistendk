@@ -8,8 +8,6 @@ import NationRanking from "./NationRanking"
 import ThreeYearRanking from "./ThreeYearRanking"
 import ByDecadeRanking from "./ByDecadeRanking"
 import GreatestSeasons from "./GreatestSeasons"
-import { Suspense } from "react"
-import LoadingGreatestSeasons from "./LoadingGreatestSeasons"
 import SectionLinkButton from "@/components/SectionLinkButton"
 import { baseUrl } from "@/utils/baseUrl"
 import Link from "next/link"
@@ -63,9 +61,7 @@ export default function Home() {
 
       <NationRanking />
 
-      <Suspense fallback={<LoadingGreatestSeasons />}>
-        <GreatestSeasons />
-      </Suspense>
+      <GreatestSeasons />
 
       <ThreeYearRanking />
 

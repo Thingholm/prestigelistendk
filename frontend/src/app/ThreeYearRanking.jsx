@@ -3,27 +3,20 @@
 import SectionLinkButton from "@/components/SectionLinkButton";
 import { stringEncoder } from "@/components/stringHandler";
 import { baseUrl } from "@/utils/baseUrl";
+import { useAlltimeRanking, useThreeYearRanking } from "@/utils/queryHooks";
 import useStore from "@/utils/store";
 import { supabase } from "@/utils/supabase";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-async function getData() {
-    let { data: threeYearRanking } = await supabase
-        .from('greatestPast3Years')
-        .select('*');
-
-    return threeYearRanking.sort((a, b) => b.year - a.year);
-}
-
 export default function ThreeYearRanking() {
-    const rankingAlltime = useStore((state) => state.rankingAlltime)
-    const [threeYearRanking, setThreeYearRanking] = useState([]);
     const [loadedAmount, setLoadedAmount] = useState(10);
 
-    useEffect(() => {
-        getData().then(data => setThreeYearRanking(data));
-    }, [])
+    const alltimeRankingQuery = useAlltimeRanking();
+    const alltimeRanking = alltimeRankingQuery.data
+
+    const threeYearRankingQuery = useThreeYearRanking();
+    const threeYearRanking = threeYearRankingQuery.data?.sort((a, b) => b.year - a.year)
 
     return (
         <div className="three-year-ranking-container" id="3-aarig-rullende">
@@ -45,24 +38,17 @@ export default function ThreeYearRanking() {
                             <p>10.</p>
                         </div>
                         <div className="table-content">
-                            {threeYearRanking.slice(0, loadedAmount).map(year => {
+                            {threeYearRankingQuery.isSuccess && alltimeRankingQuery.isSuccess && threeYearRanking.slice(0, loadedAmount).map(year => {
                                 return (
                                     <div key={year.year} className="table-row">
                                         <p>{year.year}<span className="table-previous-span">{year.year - 2}</span></p>
                                         {[...Array(10)].map((i, index) => {
-                                            const rider = rankingAlltime.find(j => j.fullName.toLowerCase() == year[index + 1].toLowerCase());
-                                            let firstName;
-                                            let lastName;
-                                            let nationFlagCode;
+                                            const rider = alltimeRanking.find(j => j.fullName.toLowerCase() == year[index + 1].toLowerCase());
+                                            const nameArr = rider.fullName.split(/ (.*)/);
 
                                             if (rider) {
-                                                firstName = rider.firstName;
-                                                lastName = rider.lastName;
-                                                nationFlagCode = rider.nationFlagCode
-                                            }
-                                            if (rider) {
                                                 return (
-                                                    <p key={index} className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(firstName + " " + lastName)}><span className={"fi fi-" + nationFlagCode}></span><span className='last-name'>{lastName} </span> <span>{firstName}</span></Link></p>
+                                                    <p key={index} className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className={"fi fi-" + rider.nationFlagCode}></span><span className='last-name'>{nameArr[1]} </span> <span>{nameArr[0]}</span></Link></p>
                                                 )
                                             }
 

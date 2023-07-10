@@ -1,31 +1,16 @@
 import RankingLinkHeader from "@/components/RankingLinkHeader";
 import { nationEncoder, stringEncoder } from "@/components/stringHandler";
+import numerizeRanking from "@/utils/numerizeRanking";
+import { useAlltimeRanking } from "@/utils/queryHooks";
 import { supabase } from "@/utils/supabase";
 import Link from "next/link";
 
-async function getRankingFromNation(nation) {
-    let { data: alltimeRanking } = await supabase
-        .from('alltimeRanking')
-        .select('*')
-        .eq('nation', nation)
-
-    return (alltimeRanking)
-}
-
-export default async function RiderRankingFromNation(props) {
+export default function RiderRankingFromNation(props) {
     const riderNation = props.riderNation;
-    const rankingFetch = await getRankingFromNation(riderNation)
 
-    const sortedRanking = rankingFetch.sort(function (a, b) { return b.points - a.points });
+    const alltimeRankingQuery = useAlltimeRanking();
+    const alltimeRanking = alltimeRankingQuery.isSuccess && numerizeRanking(alltimeRankingQuery.data.filter(i => i.nation == riderNation))
 
-    const rankedRanking = sortedRanking.map((obj, index) => {
-        let rank = index + 1;
-        if (index > 0 && obj.points == sortedRanking[index - 1].points) {
-            rank = sortedRanking.findIndex(i => obj.points == i.points) + 1;
-        }
-
-        return ({ ...obj, currentRank: rank });
-    });
 
     return (
         <div className="table-wrapper">
@@ -40,11 +25,13 @@ export default async function RiderRankingFromNation(props) {
                             <p>Point</p>
                         </div>
                         <div className="table-content">
-                            {rankedRanking.map(rider => {
+                            {alltimeRanking && alltimeRanking.map(rider => {
+                                const nameArr = rider.fullName.split(/ (.*)/);
+
                                 return (
                                     <div key={rider.id} className={rider.fullName == props.rider ? "table-row highlight" : "table-row"}>
                                         <p>{rider.currentRank.toLocaleString("de-DE")}</p>
-                                        <p className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className={'fi fi-' + rider.nationFlagCode}></span><span className="last-name">{rider.lastName.replace("&#39;", "'")} </span><span>{rider.firstName}</span></Link></p>
+                                        <p className="table-name-reversed"><Link href={"/rytter/" + stringEncoder(rider.fullName)}><span className={'fi fi-' + rider.nationFlagCode}></span><span className="last-name">{nameArr[1]} </span><span>{nameArr[0]}</span></Link></p>
                                         <p><Link href={"/listen?yearFilterRange=single&bornBefore=" + rider.birthYear}>{rider.birthYear}</Link></p>
                                         <p>{rider.points.toLocaleString("de-DE")}</p>
                                     </div>

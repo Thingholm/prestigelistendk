@@ -1,6 +1,5 @@
 "use client"
 
-import { supabase } from "@/utils/supabase"
 import { useEffect, useRef, useState } from "react"
 import numerizeRanking from "@/utils/numerizeRanking";
 import Link from "next/link";
@@ -13,14 +12,7 @@ import TableSkeleton from "@/components/TableSkeleton";
 import SectionLinkButton from "@/components/SectionLinkButton";
 import { baseUrl } from "@/utils/baseUrl";
 import { useSearchParams } from "next/navigation";
-
-async function fetchData() {
-    let { data: alltimeRanking } = await supabase
-        .from('alltimeRanking')
-        .select('*');
-
-    return (numerizeRanking(alltimeRanking));
-}
+import { useAlltimeRanking } from "@/utils/queryHooks";
 
 export default function Page() {
     const searchParams = Object.fromEntries(useSearchParams().entries());
@@ -36,6 +28,51 @@ export default function Page() {
     const [targetedRiderId, setTargetedRiderId] = useState();
     const rankingFilter = useStore((state) => state.rankingFilter);
     const setRankingFilter = useStore((state) => state.setRankingFilter);
+
+    const alltimeRankingQuery = useAlltimeRanking();
+    useEffect(() => {
+        if (alltimeRankingQuery.isSuccess) {
+            setalltimeRanking(numerizeRanking(alltimeRankingQuery.data))
+            setFilteredRanking(numerizeRanking(alltimeRankingQuery.data));
+
+            setSearch("");
+
+            if (searchParams) {
+                if (searchParams.nation) {
+                    setRankingFilter({ ...initialFilterState, ...searchParams, nation: [searchParams.nation] });
+                } else {
+                    setRankingFilter({ ...initialFilterState, ...searchParams });
+                }
+            }
+
+            setNationsList(alltimeRankingQuery.data.reduce((acc, curr) => {
+                if (!acc.find((item) => item.nation === curr.nation)) {
+                    acc.push(curr);
+                }
+
+                return acc;
+            }, []).sort((a, b) => {
+                if (a.nation < b.nation) {
+                    return -1;
+                }
+
+                if (a.nation > b.nation) {
+                    return 1;
+                }
+                return 0;
+            }));
+
+            const latestBirthYear = alltimeRankingQuery.data.reduce((acc, curr) => {
+                if (!acc.find((item) => item.birthYear == curr.birthYear)) {
+                    acc.push(curr);
+                }
+
+                return acc;
+            }, []).sort((a, b) => b.birthYear - a.birthYear)[0].birthYear;
+
+            setBirthYearList(Array.from({ length: (latestBirthYear - 1852) + 1 }, (_, i) => 1852 + i))
+        }
+    }, [alltimeRankingQuery.isSuccess])
 
     const containerRef = useRef(null);
 
@@ -53,50 +90,6 @@ export default function Page() {
             document.removeEventListener("mousedown", handleOutsideClick, true);
         }
     }, [containerRef])
-
-    useEffect(() => {
-        setSearch("");
-
-        if (searchParams) {
-            if (searchParams.nation) {
-                setRankingFilter({ ...initialFilterState, ...searchParams, nation: [searchParams.nation] });
-            } else {
-                setRankingFilter({ ...initialFilterState, ...searchParams });
-            }
-        }
-
-        fetchData().then(result => {
-            setalltimeRanking(numerizeRanking(result));
-            setFilteredRanking(numerizeRanking(result));
-
-            setNationsList(result.reduce((acc, curr) => {
-                if (!acc.find((item) => item.nation === curr.nation)) {
-                    acc.push(curr);
-                }
-
-                return acc;
-            }, []).sort((a, b) => {
-                if (a.nation < b.nation) {
-                    return -1;
-                }
-
-                if (a.nation > b.nation) {
-                    return 1;
-                }
-                return 0;
-            }));
-
-            const latestBirthYear = result.reduce((acc, curr) => {
-                if (!acc.find((item) => item.birthYear == curr.birthYear)) {
-                    acc.push(curr);
-                }
-
-                return acc;
-            }, []).sort((a, b) => b.birthYear - a.birthYear)[0].birthYear;
-
-            setBirthYearList(Array.from({ length: (latestBirthYear - 1852) + 1 }, (_, i) => 1852 + i))
-        });
-    }, [])
 
     useEffect(() => {
         setSearch("");

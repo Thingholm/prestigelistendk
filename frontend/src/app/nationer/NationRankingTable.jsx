@@ -2,6 +2,7 @@
 
 import { nationEncoder, stringEncoder } from "@/components/stringHandler";
 import numerizeRanking from "@/utils/numerizeRanking";
+import { useNationRanking } from "@/utils/queryHooks";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -40,13 +41,22 @@ function numerizeRankingByNoR(rankingList) {
 }
 
 export default function NationRankingTable(props) {
-    const nationsRanking = props.nationsRanking;
+    const nationsRankingQuery = useNationRanking();
+    const nationsRanking = nationsRankingQuery.data;
+
     const [rankingFilter, setRankingFilter] = useState({
         sortBy: "point",
         filterBy: "alle",
     });
-    const [filteredRanking, setFilteredRanking] = useState(numerizeRanking(nationsRanking));
+
+    const [filteredRanking, setFilteredRanking] = useState();
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        if (nationsRankingQuery.isSuccess) {
+            setFilteredRanking(numerizeRanking(nationsRanking));
+        }
+    }, [nationsRankingQuery.isSuccess])
 
     useEffect(() => {
         setRankingFilter({ ...rankingFilter, ...props.searchParams })
@@ -54,21 +64,24 @@ export default function NationRankingTable(props) {
 
     useEffect(() => {
         setIsLoading(true);
-        let newFilteredRanking = nationsRanking;
+        if (nationsRankingQuery.isSuccess) {
+            let newFilteredRanking = nationsRanking;
 
-        if (rankingFilter.filterBy == "aktive") {
-            newFilteredRanking = nationsRanking.filter(i => i.activePoints !== null).map(i => { return { ...i, points: i.activePoints, numberOfRiders: i.activeNumberOfRiders } })
+            if (rankingFilter.filterBy == "aktive") {
+                newFilteredRanking = nationsRanking.filter(i => i.activePoints !== null).map(i => { return { ...i, points: i.activePoints, numberOfRiders: i.activeNumberOfRiders } })
+            }
+
+            if (rankingFilter.sortBy == "point") {
+                newFilteredRanking = numerizeRanking(newFilteredRanking);
+            } else if (rankingFilter.sortBy == "pointPerRytter") {
+                newFilteredRanking = numerizeRankingByPPR(newFilteredRanking);
+            } else if (rankingFilter.sortBy == "antalRyttere") {
+                newFilteredRanking = numerizeRankingByNoR(newFilteredRanking);
+            }
+            setFilteredRanking(newFilteredRanking);
+
         }
 
-        if (rankingFilter.sortBy == "point") {
-            newFilteredRanking = numerizeRanking(newFilteredRanking);
-        } else if (rankingFilter.sortBy == "pointPerRytter") {
-            newFilteredRanking = numerizeRankingByPPR(newFilteredRanking);
-        } else if (rankingFilter.sortBy == "antalRyttere") {
-            newFilteredRanking = numerizeRankingByNoR(newFilteredRanking);
-        }
-
-        setFilteredRanking(newFilteredRanking);
         setIsLoading(false);
     }, [rankingFilter])
 
@@ -157,9 +170,8 @@ export default function NationRankingTable(props) {
                 </div>
                 <div className="table-content">
                     <span className={"loading-overlay " + String(isLoading)}></span>
-                    {filteredRanking.map((nation, index) => {
+                    {filteredRanking?.map((nation, index) => {
                         let greatestRiders = [];
-
 
                         if (rankingFilter.filterBy !== "aktive") {
                             greatestRiders = nation.greatestRiders.split(", ")

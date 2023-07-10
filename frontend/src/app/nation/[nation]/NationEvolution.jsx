@@ -1,50 +1,29 @@
-import { supabase } from "@/utils/supabase"
 import NationByYearChart from "./NationByYearChart";
 import NationAccChart from "./NationAccChart";
 import MobileChartsContainer from "./MobileChartsContainer";
+import { useNationResultCount, useNationsAccRankByNation, useNationsRankByYear } from "@/utils/queryHooks";
 
-async function fetchData(nation) {
-    let { data: accRanking } = await supabase
-        .from('nationsAccRank')
-        .select('*')
-        .eq('nation', nation);
-
-    let { data: byYearRanking } = await supabase
-        .from('nationsRankByYear')
-        .select('*')
-        .eq('nation', nation)
-
-    let { data: nationResultCount } = await supabase
-        .from('nationResultCount')
-        .select('*')
-        .eq('nation', nation)
-
-    const filteredAccRanking = Object.keys(accRanking[0])
+export default function NationEvolution(props) {
+    const nationsAccRank = useNationsAccRankByNation(props.nationData)
+    const filteredAccRanking = nationsAccRank.isSuccess && Object.keys(nationsAccRank.data[0])
         .filter(i => i.includes("Rank"))
-        .map(i => { return { year: parseInt(i.replace("Rank", "")), rank: accRanking[0][i], points: accRanking[0][i.replace("Rank", "Points")] } })
+        .map(i => { return { year: parseInt(i.replace("Rank", "")), rank: nationsAccRank.data[0][i], points: nationsAccRank.data[0][i.replace("Rank", "Points")] } })
 
-    const filteredYearRanking = Object.keys(byYearRanking[0])
+    const nationsRankByYear = useNationsRankByYear(props.nationData)
+    const filteredRankByYear = nationsRankByYear.isSuccess && Object.keys(nationsRankByYear.data[0])
         .filter(i => i.includes("Rank"))
-        .map(i => { return { year: parseInt(i.replace("Rank", "")), rank: byYearRanking[0][i], points: byYearRanking[0][i.replace("Rank", "Points")] } })
+        .map(i => { return { year: parseInt(i.replace("Rank", "")), rank: nationsRankByYear.data[0][i], points: nationsRankByYear.data[0][i.replace("Rank", "Points")] } })
 
-
-    return {
-        accRanking: filteredAccRanking,
-        yearRanking: filteredYearRanking,
-        resultCount: nationResultCount
-    };
-}
-
-export default async function NationEvolution(props) {
-    const nationRankingsData = await fetchData(props.nationData)
+    const nationResultCountQuery = useNationResultCount(props.nationData);
+    const nationResultCount = nationResultCountQuery.isSuccess && nationResultCountQuery.data
 
     return (
         <div className="nation-evolution-container">
             <div className="media">
-                <MobileChartsContainer rankingData={nationRankingsData.yearRanking} accData={nationRankingsData.accRanking} countData={nationRankingsData.resultCount[0]} />
+                {filteredRankByYear && filteredAccRanking && nationResultCount && <MobileChartsContainer rankingData={filteredRankByYear} accData={filteredAccRanking} countData={nationResultCount[0]} />}
             </div>
-            <NationByYearChart rankingData={nationRankingsData.yearRanking} accData={nationRankingsData.accRanking} />
-            <NationAccChart rankingData={nationRankingsData.accRanking} countData={nationRankingsData.resultCount[0]} />
+            {filteredRankByYear && filteredAccRanking && nationResultCount && <NationByYearChart rankingData={filteredRankByYear} accData={filteredAccRanking} />}
+            {filteredRankByYear && filteredAccRanking && nationResultCount && <NationAccChart rankingData={filteredAccRanking} countData={nationResultCount[0]} />}
         </div>
     )
 }
