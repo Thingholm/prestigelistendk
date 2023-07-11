@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.13.1",
+    "@tanstack/react-query": "^4.29.19",
+    "@tanstack/react-query-devtools": "^4.29.19",
     "chart.js": "^4.2.1",
     "encoding": "^0.1.13",
     "eslint": "8.37.0",
