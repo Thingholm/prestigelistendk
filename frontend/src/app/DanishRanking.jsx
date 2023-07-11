@@ -9,17 +9,14 @@ import numerizeRanking from "@/utils/numerizeRanking";
 import OverflowButton from "@/components/OverflowButton";
 
 export default function DanishRanking() {
-    const [danishRanking, setDanishRanking] = useState([]);
 
     const alltimeRankingQuery = useAlltimeRanking();
+    let danishRanking
 
-    useEffect(() => {
-        if (alltimeRankingQuery.isSuccess) {
-            const rankedRanking = numerizeRanking(alltimeRankingQuery.data.filter(i => i.nation == "Danmark"))
+    if (alltimeRankingQuery.isSuccess) {
+        danishRanking = numerizeRanking(alltimeRankingQuery.data.filter(i => i.nation == "Danmark"))
+    }
 
-            setDanishRanking(rankedRanking);
-        }
-    }, [alltimeRankingQuery.data])
 
     return (
         <div className="rounded-table-container">

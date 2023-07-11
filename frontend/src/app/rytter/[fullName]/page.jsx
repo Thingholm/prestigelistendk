@@ -10,6 +10,7 @@ import RiderRankingFromYear from "./RiderRankingFromYear";
 import { stringEncoder, stringDecoder } from "@/components/stringHandler";
 import numerizeRanking from "@/utils/numerizeRanking";
 import { useAlltimeRanking, usePointSystem, useResultsByRider, useRiderRankingPerYear } from "@/utils/queryHooks";
+import Loading from "./loading";
 
 export default function Page(props) {
     const name = stringDecoder(props.fullName);
@@ -59,23 +60,27 @@ export default function Page(props) {
 
     return (
         <div className="rider-page-container">
-            {riderData && <div className="rider-profile-container">
-                <RiderProfile riderData={riderData} alltimeRankByNation={alltimeRankByNation} />
-                <RiderResults resultData={riderResults} />
-            </div>}
-
-            {riderResults && rankingByYearsQuery.isSuccess &&
+            {riderData ?
                 <div>
-                    <RiderEvolution resultData={riderResults} rankingByYearData={rankingByYears[0]} />
+                    {riderData && <div className="rider-profile-container">
+                        <RiderProfile riderData={riderData} alltimeRankByNation={alltimeRankByNation} />
+                        <RiderResults resultData={riderResults} />
+                    </div>}
 
-                    <RiderAllResults resultData={riderResults} rankingByYearData={rankingByYears[0]} />
-                </div>
-            }
+                    {riderResults && rankingByYearsQuery.isSuccess &&
+                        <div>
+                            <RiderEvolution resultData={riderResults} rankingByYearData={rankingByYears[0]} />
 
-            {riderData && <div className="rider-related-rankings-container">
-                <RiderRankingFromNation riderNation={riderData.nation} rider={name} />
-                <RiderRankingFromYear riderBirthYear={riderData.birthYear} rider={name} />
-            </div>}
+                            <RiderAllResults resultData={riderResults} rankingByYearData={rankingByYears[0]} />
+                        </div>
+                    }
+
+                    {riderData && <div className="rider-related-rankings-container">
+                        <RiderRankingFromNation riderNation={riderData.nation} rider={name} />
+                        <RiderRankingFromYear riderBirthYear={riderData.birthYear} rider={name} />
+                    </div>}
+                </div> :
+                <Loading riderName={props.fullName} />}
         </div>
 
     )

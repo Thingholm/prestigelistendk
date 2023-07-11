@@ -9,18 +9,14 @@ import numerizeRanking from "@/utils/numerizeRanking";
 import OverflowButton from "@/components/OverflowButton";
 
 export default function ActiveRanking() {
-    const [activeRanking, setActiveRanking] = useState([]);
     const [amountLoaded, setLoadedAmount] = useState(100);
 
     const alltimeRankingQuery = useAlltimeRanking();
 
-    useEffect(() => {
-        if (alltimeRankingQuery.isSuccess) {
-            const rankedRanking = numerizeRanking(alltimeRankingQuery.data.filter(i => i.active == true))
-
-            setActiveRanking(rankedRanking);
-        }
-    }, [alltimeRankingQuery.data])
+    let activeRanking;
+    if (alltimeRankingQuery.isSuccess) {
+        activeRanking = numerizeRanking(alltimeRankingQuery.data.filter(i => i.active == true))
+    }
 
     return (
         <div className="rounded-table-container">

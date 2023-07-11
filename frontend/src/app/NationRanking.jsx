@@ -13,28 +13,21 @@ import { useNationRanking } from "@/utils/queryHooks";
 import OverflowButton from "@/components/OverflowButton";
 
 export default function NationRanking() {
-    const [nationsRanking, setNationsRanking] = useState([]);
-    const [activeRanking, setActiveRanking] = useState([]);
-
     const nationRankingQuery = useNationRanking();
+    let nationsRanking;
+    let activeRanking;
 
-    useEffect(() => {
-        if (nationRankingQuery.isSuccess) {
-            setNationsRanking(
-                numerizeRanking(nationRankingQuery.data)
-            )
+    if (nationRankingQuery.isSuccess) {
 
-            setActiveRanking(
-                numerizeRanking(
-                    nationRankingQuery.data
-                        .filter(i => i.activePoints > 0)
-                        .map(i => {
-                            return { ...i, points: i.activePoints, numberOfRiders: i.activeNumberOfRiders }
-                        })
-                )
-            )
-        }
-    }, [nationRankingQuery])
+        nationsRanking = numerizeRanking(nationRankingQuery.data)
+
+        activeRanking = numerizeRanking(nationRankingQuery.data
+            .filter(i => i.activePoints > 0)
+            .map(i => {
+                return { ...i, points: i.activePoints, numberOfRiders: i.activeNumberOfRiders }
+            })
+        );
+    }
 
 
     return (

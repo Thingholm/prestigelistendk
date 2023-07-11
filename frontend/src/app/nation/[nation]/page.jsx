@@ -10,6 +10,7 @@ import NationTopResults from "./NationTopResults";
 import RankingNationsNation from "./RankingNations";
 import numerizeRanking from "@/utils/numerizeRanking";
 import { useAlltimeRanking, useNationRanking } from "@/utils/queryHooks";
+import NationLoading from "./loading";
 
 function findNation(nation, alltimeRankingAll) {
     if (["Moldova", "Sovjetunionen", "Østtyskland"].includes(nation)) {
@@ -74,21 +75,26 @@ export default function Page(props) {
 
     return (
         <div className="nation-page-container">
-            {nationData && ridersFromNation && currentNationActiveRank && <div className="nation-profile-container rider-profile-container">
-                <NationProfile nationData={nationData} nationRankData={currentNationRank} activeNationRankData={currentNationActiveRank} />
-                <NationRidersHighlight ridersData={ridersFromNation} />
-            </div>}
+            {currentNationActiveRank && nationData && currentNationRank && ridersFromNation ?
+                <div>
+                    {nationData && ridersFromNation && currentNationActiveRank && <div className="nation-profile-container rider-profile-container">
+                        <NationProfile nationData={nationData} nationRankData={currentNationRank} activeNationRankData={currentNationActiveRank} />
+                        <NationRidersHighlight ridersData={ridersFromNation} />
+                    </div>}
 
-            <NationEvolution nationData={nationString} />
+                    <NationEvolution nationData={nationString} />
 
-            {ridersFromNation && <NationTopResults nationData={nationString} ridersData={ridersFromNation} />}
+                    {ridersFromNation && <NationTopResults nationData={nationString} ridersData={ridersFromNation} />}
 
-            {ridersFromNation && <div className="nation-rankings-container riders-ranked dark">
-                <NationTopRiders ridersData={ridersFromNation} />
-                <NationTopActiveRiders ridersData={ridersFromNation} nationData={nationString} />
-            </div>}
+                    {ridersFromNation && <div className="nation-rankings-container riders-ranked dark">
+                        <NationTopRiders ridersData={ridersFromNation} />
+                        <NationTopActiveRiders ridersData={ridersFromNation} nationData={nationString} />
+                    </div>}
 
-            {activeNationsRanking && <RankingNationsNation currentNation={nationString} rankingNations={nationsRanking} activeRankingNations={activeNationsRanking} />}
+                    {activeNationsRanking && <RankingNationsNation currentNation={nationString} rankingNations={nationsRanking} activeRankingNations={activeNationsRanking} />}
+                </div>
+                : <NationLoading nation={props.nation} />}
+
         </div>
     )
 }
