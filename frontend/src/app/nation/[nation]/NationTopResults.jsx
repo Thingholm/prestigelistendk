@@ -5,22 +5,6 @@ import { supabase } from "@/utils/supabase";
 import "flag-icons/css/flag-icons.min.css";
 import Link from "next/link";
 
-async function getResultsData(riders) {
-    let { data: resultData } = await supabase
-        .from('results')
-        .select('*')
-        .in('rider', riders)
-    return resultData;
-}
-
-async function getPointSystem() {
-    let { data: pointSystem } = await supabase
-        .from('pointSystem')
-        .select('*')
-
-    return pointSystem;
-}
-
 function findNationFlagCode(nation) {
     let flagCode = "xx";
 
@@ -39,13 +23,7 @@ export default function NationTopResults(props) {
     const pointSystem = pointSystemQuery.data;
 
 
-    let results;
-
-    if (['Italien', 'Belgien', 'Frankrig', 'Spanien'].includes(nation)) {
-        results = useResultsByRiders(ridersFromNation.sort((a, b) => b.points - a.points).map(i => i.fullName).slice(0, 300)).data
-    } else {
-        results = useResultsByRiders(ridersFromNation.sort((a, b) => b.points - a.points).map(i => i.fullName)).data
-    }
+    const results = useResultsByRiders(ridersFromNation.sort((a, b) => b.points - a.points).map(i => i.fullName).slice(0, 300)).data
 
 
     const sortedResults = results?.map(i => {
