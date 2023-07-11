@@ -227,7 +227,15 @@ input[type="radio"] {
 
 .table {
     position: relative;
-    overflow-y: overlay;
+    overflow-y: hidden;
+
+    &:has(.overflow-button.clicked) {
+        overflow-y: overlay;
+
+        &::before {
+            display: none;
+        }
+    }
 
     &::-webkit-scrollbar {
         width: 5px;
@@ -327,6 +335,50 @@ input[type="radio"] {
                 }
             }
         }
+    }
+
+    &:has(.overflow-button) {
+        &::before {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 100%;
+            height: 70px;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.781), rgba(0, 0, 0, 0.822) 50%, transparent);
+            opacity: 0.2;
+            bottom: -5px;
+            z-index: 0;
+        }
+    }
+
+}
+
+.overflow-button {
+    position: absolute;
+    bottom: 5px;
+    left: 1%;
+    width: 98%;
+    border: none;
+    background-color: $black-lighter;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 0px;
+    z-index: 1;
+    overflow: hidden;
+    transition: 0.2s;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #232323;
+        transform: scale(1.01);
+    }
+
+    &:active {
+        transform: scale(0.99);
+    }
+
+    &.clicked {
+        display: none;
     }
 }
 
@@ -1221,118 +1273,15 @@ footer {
 }
 
 .three-year-ranking-container {
-    padding: 20px 5%;
-    margin-bottom: 30px;
+    margin: 20px 0px;
 
-    .table {
-        height: 70vh;
-
-        .table-row {
-            padding: 10px 0px;
-
-            p:first-of-type {
-                flex-direction: column;
-                align-items: start;
-                text-align: start;
-
-                span {
-                    margin-left: 0px;
-                }
-            }
-
-            p {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                a {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                    justify-content: center;
-
-                    .fi {
-                        margin-right: 0px;
-                        margin-bottom: 3px;
-                    }
-                }
-            }
-        }
-
-        .table-header {
-            p {
-                text-align: center;
-
-                &:first-of-type {
-                    text-align: left;
-                }
-            }
-        }
-
-        .table-header,
-        .table-row {
-            p:nth-of-type(1) {
-                width: 5%;
-            }
-
-            p:nth-of-type(2) {
-                width: 9.5%;
-
-                a {
-                    color: $gold;
-                }
-            }
-
-            p:nth-of-type(3) {
-                width: 9.5%;
-
-                a {
-                    color: $silver;
-                }
-            }
-
-            p:nth-of-type(4) {
-                width: 9.5%;
-
-                a {
-                    color: $bronze;
-                }
-            }
-
-            p:nth-of-type(5) {
-                width: 9.5%;
-            }
-
-            p:nth-of-type(6) {
-                width: 9.5%;
-            }
-
-            p:nth-of-type(7) {
-                width: 9.5%;
-            }
-
-            p:nth-of-type(8) {
-                width: 9.5%;
-            }
-
-            p:nth-of-type(9) {
-                width: 9.5%;
-            }
-
-            p:nth-of-type(10) {
-                width: 9.5%;
-            }
-
-            p:nth-of-type(11) {
-                width: 9.5%;
-            }
-
-        }
+    .table-shadow-container::after {
+        display: none;
     }
 }
 
-.alltime-each-year {
+.alltime-each-year,
+.three-year-ranking-container {
     padding: 0px 5% 20px;
 
     .table {
@@ -1346,13 +1295,15 @@ footer {
         }
 
         .table-header {
-            position: sticky;
+            position: relative;
             align-items: start;
+            overflow-x: unset;
             width: 92px;
             background-color: $white-primary;
 
             p {
                 width: 100%;
+                margin-right: 20px;
             }
         }
 

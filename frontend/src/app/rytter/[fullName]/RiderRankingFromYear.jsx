@@ -4,6 +4,7 @@ import Link from "next/link";
 import { nationEncoder, stringEncoder } from "@/components/stringHandler";
 import { useAlltimeRanking } from "@/utils/queryHooks";
 import numerizeRanking from "@/utils/numerizeRanking";
+import OverflowButton from "@/components/OverflowButton";
 
 export default function RiderRankingFromYear(props) {
     const riderBirthYear = props.riderBirthYear;
@@ -37,6 +38,7 @@ export default function RiderRankingFromYear(props) {
                                 )
                             })}
                         </div>
+                        <OverflowButton />
                     </div>
                 </div>
             </div>

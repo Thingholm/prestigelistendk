@@ -1,3 +1,4 @@
+import OverflowButton from "@/components/OverflowButton";
 import RankingLinkHeader from "@/components/RankingLinkHeader";
 import { nationEncoder, stringEncoder } from "@/components/stringHandler";
 import numerizeRanking from "@/utils/numerizeRanking";
@@ -32,6 +33,7 @@ export default function NationTopActiveRiders(props) {
                                 )
                             })}
                         </div>
+                        <OverflowButton />
                     </div>
                 </div>
             </div>

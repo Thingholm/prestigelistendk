@@ -56,7 +56,7 @@ export default function ThreeYearRanking() {
                                     </div>
                                 )
                             })}
-                            {loadedAmount < 200 && <button className="table-bottom-button" onClick={() => setLoadedAmount(200)}><span>Indlæs alle</span>...</button>}
+                            {loadedAmount < 200 && <button className="table-bottom-button vertical" onClick={() => setLoadedAmount(200)}>...</button>}
                         </div>
                     </div>
                 </div>

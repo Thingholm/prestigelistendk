@@ -6,6 +6,7 @@ import { stringEncoder } from "@/components/stringHandler";
 import TableSkeleton from "@/components/TableSkeleton";
 import { useAlltimeRanking } from "@/utils/queryHooks";
 import numerizeRanking from "@/utils/numerizeRanking";
+import OverflowButton from "@/components/OverflowButton";
 
 export default function DanishRanking() {
     const [danishRanking, setDanishRanking] = useState([]);
@@ -46,6 +47,7 @@ export default function DanishRanking() {
                             })}
                         </div>
                     }
+                    <OverflowButton />
                 </div>
             </div>
         </div>

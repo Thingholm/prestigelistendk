@@ -6,6 +6,7 @@ import { nationEncoder, stringEncoder } from "@/components/stringHandler";
 import TableSkeleton from "@/components/TableSkeleton";
 import { useAlltimeRanking } from "@/utils/queryHooks";
 import numerizeRanking from "@/utils/numerizeRanking";
+import OverflowButton from "@/components/OverflowButton";
 
 export default function ActiveRanking() {
     const [activeRanking, setActiveRanking] = useState([]);
@@ -50,7 +51,7 @@ export default function ActiveRanking() {
                             {amountLoaded < 500 && <button className="table-bottom-button" onClick={() => setLoadedAmount(500)}>Indlæs alle...</button>}
                         </div>
                     }
-
+                    <OverflowButton />
                 </div>
             </div>
         </div>

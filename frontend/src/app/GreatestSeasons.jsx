@@ -1,5 +1,6 @@
 "use client";
 
+import OverflowButton from "@/components/OverflowButton";
 import SectionLinkButton from "@/components/SectionLinkButton";
 import { nationEncoder, stringEncoder } from "@/components/stringHandler";
 import { baseUrl } from "@/utils/baseUrl";
@@ -116,6 +117,7 @@ export default function GreatestSeasons() {
                                 )
                             })}
                         </div>
+                        <OverflowButton />
                     </div>
                 </div>
             </div>

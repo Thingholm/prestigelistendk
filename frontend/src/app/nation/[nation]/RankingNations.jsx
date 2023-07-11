@@ -2,8 +2,9 @@ import RankingLinkHeader from "@/components/RankingLinkHeader";
 import { supabase } from "@/utils/supabase";
 import numerizeRanking from "@/utils/numerizeRanking";
 import Link from "next/link";
+import OverflowButton from "@/components/OverflowButton";
 
-export default async function RankingNationsNation(props) {
+export default function RankingNationsNation(props) {
     const nationsRankings = props.rankingNations;
     const activeNationsRankings = props.activeRankingNations;
 
@@ -34,6 +35,7 @@ export default async function RankingNationsNation(props) {
                                     )
                                 })}
                             </div>
+                            <OverflowButton />
                         </div>
                     </div>
                 </div>
@@ -63,6 +65,7 @@ export default async function RankingNationsNation(props) {
                                     )
                                 })}
                             </div>
+                            <OverflowButton />
                         </div>
                     </div>
                 </div>

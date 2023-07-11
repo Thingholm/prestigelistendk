@@ -10,6 +10,7 @@ import TableSkeleton from "@/components/TableSkeleton";
 import SectionLinkButton from "@/components/SectionLinkButton";
 import { baseUrl } from "@/utils/baseUrl";
 import { useNationRanking } from "@/utils/queryHooks";
+import OverflowButton from "@/components/OverflowButton";
 
 export default function NationRanking() {
     const [nationsRanking, setNationsRanking] = useState([]);
@@ -79,6 +80,7 @@ export default function NationRanking() {
                             })}
                         </div>
                     }
+                    <OverflowButton />
                 </div>
             </div>
         </div>

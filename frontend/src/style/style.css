@@ -191,7 +191,13 @@ input[type=radio]::before {
 
 .table {
   position: relative;
+  overflow-y: hidden;
+}
+.table:has(.overflow-button.clicked) {
   overflow-y: overlay;
+}
+.table:has(.overflow-button.clicked)::before {
+  display: none;
 }
 .table::-webkit-scrollbar {
   width: 5px;
@@ -270,6 +276,43 @@ input[type=radio]::before {
 .table .table-content .table-row .table-name-reversed span.last-name {
   text-transform: uppercase;
   font-weight: 600;
+}
+.table:has(.overflow-button)::before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.781), rgba(0, 0, 0, 0.822) 50%, transparent);
+  opacity: 0.2;
+  bottom: -5px;
+  z-index: 0;
+}
+
+.overflow-button {
+  position: absolute;
+  bottom: 5px;
+  left: 1%;
+  width: 98%;
+  border: none;
+  background-color: #1c1c1c;
+  color: white;
+  border-radius: 8px;
+  padding: 5px 0px;
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.2s;
+}
+.overflow-button:hover {
+  cursor: pointer;
+  background-color: #232323;
+  transform: scale(1.01);
+}
+.overflow-button:active {
+  transform: scale(0.99);
+}
+.overflow-button.clicked {
+  display: none;
 }
 
 .table-previous-span {
@@ -1011,177 +1054,111 @@ footer .footer-list-container .footer-list-item ul li {
 }
 
 .three-year-ranking-container {
-  padding: 20px 5%;
-  margin-bottom: 30px;
+  margin: 20px 0px;
 }
-.three-year-ranking-container .table {
-  height: 70vh;
-}
-.three-year-ranking-container .table .table-row {
-  padding: 10px 0px;
-}
-.three-year-ranking-container .table .table-row p:first-of-type {
-  flex-direction: column;
-  align-items: start;
-  text-align: start;
-}
-.three-year-ranking-container .table .table-row p:first-of-type span {
-  margin-left: 0px;
-}
-.three-year-ranking-container .table .table-row p {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.three-year-ranking-container .table .table-row p a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-}
-.three-year-ranking-container .table .table-row p a .fi {
-  margin-right: 0px;
-  margin-bottom: 3px;
-}
-.three-year-ranking-container .table .table-header p {
-  text-align: center;
-}
-.three-year-ranking-container .table .table-header p:first-of-type {
-  text-align: left;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(1),
-.three-year-ranking-container .table .table-row p:nth-of-type(1) {
-  width: 5%;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(2),
-.three-year-ranking-container .table .table-row p:nth-of-type(2) {
-  width: 9.5%;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(2) a,
-.three-year-ranking-container .table .table-row p:nth-of-type(2) a {
-  color: goldenrod;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(3),
-.three-year-ranking-container .table .table-row p:nth-of-type(3) {
-  width: 9.5%;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(3) a,
-.three-year-ranking-container .table .table-row p:nth-of-type(3) a {
-  color: #7b8ea1;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(4),
-.three-year-ranking-container .table .table-row p:nth-of-type(4) {
-  width: 9.5%;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(4) a,
-.three-year-ranking-container .table .table-row p:nth-of-type(4) a {
-  color: rgb(153, 81, 30);
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(5),
-.three-year-ranking-container .table .table-row p:nth-of-type(5) {
-  width: 9.5%;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(6),
-.three-year-ranking-container .table .table-row p:nth-of-type(6) {
-  width: 9.5%;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(7),
-.three-year-ranking-container .table .table-row p:nth-of-type(7) {
-  width: 9.5%;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(8),
-.three-year-ranking-container .table .table-row p:nth-of-type(8) {
-  width: 9.5%;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(9),
-.three-year-ranking-container .table .table-row p:nth-of-type(9) {
-  width: 9.5%;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(10),
-.three-year-ranking-container .table .table-row p:nth-of-type(10) {
-  width: 9.5%;
-}
-.three-year-ranking-container .table .table-header p:nth-of-type(11),
-.three-year-ranking-container .table .table-row p:nth-of-type(11) {
-  width: 9.5%;
+.three-year-ranking-container .table-shadow-container::after {
+  display: none;
 }
 
-.alltime-each-year {
+.alltime-each-year,
+.three-year-ranking-container {
   padding: 0px 5% 20px;
 }
-.alltime-each-year .table {
+.alltime-each-year .table,
+.three-year-ranking-container .table {
   display: flex;
   position: relative;
   overflow-y: hidden;
   overflow-x: scroll;
 }
-.alltime-each-year .table::-webkit-scrollbar {
+.alltime-each-year .table::-webkit-scrollbar,
+.three-year-ranking-container .table::-webkit-scrollbar {
   height: 7px;
 }
-.alltime-each-year .table .table-header {
-  position: sticky;
+.alltime-each-year .table .table-header,
+.three-year-ranking-container .table .table-header {
+  position: relative;
   align-items: start;
+  overflow-x: unset;
   width: 92px;
   background-color: #ffffff;
 }
-.alltime-each-year .table .table-header p {
+.alltime-each-year .table .table-header p,
+.three-year-ranking-container .table .table-header p {
   width: 100%;
+  margin-right: 20px;
 }
-.alltime-each-year .table .table-content {
+.alltime-each-year .table .table-content,
+.three-year-ranking-container .table .table-content {
   display: flex;
   padding-right: 40px;
   position: relative;
 }
-.alltime-each-year .table .table-content .table-row {
+.alltime-each-year .table .table-content .table-row,
+.three-year-ranking-container .table .table-content .table-row {
   padding-top: 0px;
   margin-top: 0px;
 }
-.alltime-each-year .table .table-content .table-row:first-of-type p {
+.alltime-each-year .table .table-content .table-row:first-of-type p,
+.three-year-ranking-container .table .table-content .table-row:first-of-type p {
   padding-left: 10px;
 }
-.alltime-each-year .table .table-content .table-row:last-of-type {
+.alltime-each-year .table .table-content .table-row:last-of-type,
+.three-year-ranking-container .table .table-content .table-row:last-of-type {
   margin-bottom: 0px;
 }
-.alltime-each-year .table .table-content .table-row p {
+.alltime-each-year .table .table-content .table-row p,
+.three-year-ranking-container .table .table-content .table-row p {
   width: 300px;
 }
-.alltime-each-year .table .table-content .table-row p span {
+.alltime-each-year .table .table-content .table-row p span,
+.three-year-ranking-container .table .table-content .table-row p span {
   position: relative;
 }
-.alltime-each-year .table .table-content .table-row p span svg {
+.alltime-each-year .table .table-content .table-row p span svg,
+.three-year-ranking-container .table .table-content .table-row p span svg {
   position: absolute;
   height: 20px;
   width: 20px;
   right: -22px;
   animation: rankMovementIndicatorFlash 2s infinite ease-in-out;
 }
-.alltime-each-year .table .table-content .table-row p span.down {
+.alltime-each-year .table .table-content .table-row p span.down,
+.three-year-ranking-container .table .table-content .table-row p span.down {
   color: #db0000;
 }
-.alltime-each-year .table .table-content .table-row p span.up {
+.alltime-each-year .table .table-content .table-row p span.up,
+.three-year-ranking-container .table .table-content .table-row p span.up {
   color: #4dd200;
 }
 .alltime-each-year .table .table-header,
-.alltime-each-year .table .table-row {
+.alltime-each-year .table .table-row,
+.three-year-ranking-container .table .table-header,
+.three-year-ranking-container .table .table-row {
   flex-direction: column;
   border: none;
 }
 .alltime-each-year .table .table-header p,
-.alltime-each-year .table .table-row p {
+.alltime-each-year .table .table-row p,
+.three-year-ranking-container .table .table-header p,
+.three-year-ranking-container .table .table-row p {
   padding: 5px 0px;
   border-bottom: solid 1px #ededed;
   z-index: 1;
 }
 .alltime-each-year .table .table-header p:first-of-type,
-.alltime-each-year .table .table-row p:first-of-type {
+.alltime-each-year .table .table-row p:first-of-type,
+.three-year-ranking-container .table .table-header p:first-of-type,
+.three-year-ranking-container .table .table-row p:first-of-type {
   padding: 0px;
   border-bottom: solid 2px #1c1c1c;
 }
-.alltime-each-year .table-wrapper {
+.alltime-each-year .table-wrapper,
+.three-year-ranking-container .table-wrapper {
   position: relative;
 }
-.alltime-each-year .table-wrapper::after {
+.alltime-each-year .table-wrapper::after,
+.three-year-ranking-container .table-wrapper::after {
   position: absolute;
   content: "";
   display: block;
@@ -1193,7 +1170,8 @@ footer .footer-list-container .footer-list-item ul li {
   right: 0px;
   z-index: 0;
 }
-.alltime-each-year .vertical {
+.alltime-each-year .vertical,
+.three-year-ranking-container .vertical {
   position: absolute;
   right: 10px;
   height: 97%;

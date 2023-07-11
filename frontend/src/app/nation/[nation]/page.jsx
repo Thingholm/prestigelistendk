@@ -88,7 +88,7 @@ export default function Page(props) {
                 <NationTopActiveRiders ridersData={ridersFromNation} nationData={nationString} />
             </div>}
 
-            {/* {activeNationsRanking && <RankingNationsNation currentNation={nationString} rankingNations={nationsRanking} activeRankingNations={activeNationsRanking} />} */}
+            {activeNationsRanking && <RankingNationsNation currentNation={nationString} rankingNations={nationsRanking} activeRankingNations={activeNationsRanking} />}
         </div>
     )
 }

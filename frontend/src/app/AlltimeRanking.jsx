@@ -7,6 +7,7 @@ import { nationEncoder, stringEncoder } from '@/components/stringHandler';
 import numerizeRanking from '@/utils/numerizeRanking';
 import TableSkeleton from '@/components/TableSkeleton';
 import { useAlltimeRanking } from '@/utils/queryHooks';
+import OverflowButton from '@/components/OverflowButton';
 
 export default function AlltimeRanking() {
     const alltimeRankingQuery = useAlltimeRanking();
@@ -45,6 +46,7 @@ export default function AlltimeRanking() {
                             <button className="table-bottom-button" onClick={() => location.href = "/listen"} >Se hele listen</button>
                         </div>
                     }
+                    <OverflowButton />
                 </div>
             </div>
         </div>

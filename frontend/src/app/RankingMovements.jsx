@@ -9,6 +9,7 @@ import numerizeRanking from "@/utils/numerizeRanking";
 import { stringEncoder } from "@/components/stringHandler";
 import TableSkeleton from "@/components/TableSkeleton";
 import { useAlltimeRanking, useLatestResults, usePointSystem } from "@/utils/queryHooks";
+import OverflowButton from "@/components/OverflowButton";
 
 export default function RankingMovements() {
     const [latestResults, setLatestResults] = useState();
@@ -142,7 +143,7 @@ export default function RankingMovements() {
                         })}
                     </div>
                 }
-
+                <OverflowButton />
             </div>
 
         </div>
