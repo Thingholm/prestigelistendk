@@ -2427,12 +2427,6 @@ footer .footer-list-container .footer-list-item ul li {
   .landing-nations-ranking-section .table .table-row p:nth-of-type(1) {
     width: 15%;
   }
-  .three-year-ranking-container .table p {
-    font-size: 12px;
-  }
-  .three-year-ranking-container .table p span {
-    font-size: 12px;
-  }
   .ranking-each-decade-container .table-overflow-container .table-row {
     padding: 5px 0px;
   }
@@ -2755,120 +2749,6 @@ footer .footer-list-container .footer-list-item ul li {
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(3),
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(3) {
     display: none;
-  }
-  .three-year-ranking-container .table-wrapper {
-    position: relative;
-  }
-  .three-year-ranking-container .table-wrapper::after {
-    position: absolute;
-    content: "";
-    width: 10px;
-    height: 100%;
-    background: rgb(0, 0, 0);
-    background: linear-gradient(270deg, rgba(0, 0, 0, 0.4682466737) 0%, rgba(0, 0, 0, 0.207742472) 50%, rgba(0, 0, 0, 0) 100%);
-    opacity: 0.2;
-    top: 0px;
-    right: 0px;
-    z-index: 1;
-  }
-  .three-year-ranking-container .table {
-    display: flex;
-    height: auto;
-    overflow-x: overlay;
-    overflow-y: hidden;
-  }
-  .three-year-ranking-container .table ::-webkit-scrollbar {
-    height: 5px;
-  }
-  .three-year-ranking-container .table .table-content {
-    overflow: auto;
-    overflow-y: hidden;
-  }
-  .three-year-ranking-container .table .table-content ::-webkit-scrollbar {
-    height: 5px;
-  }
-  .three-year-ranking-container .table p {
-    font-size: 13px;
-  }
-  .three-year-ranking-container .table p span {
-    font-size: 13px;
-  }
-  .three-year-ranking-container .table .table-header {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    width: -moz-fit-content;
-    width: fit-content;
-    border-bottom: none;
-  }
-  .three-year-ranking-container .table .table-header p {
-    padding-right: 10px;
-  }
-  .three-year-ranking-container .table .table-header p:first-of-type, .three-year-ranking-container .table .table-header p:nth-last-of-type(2), .three-year-ranking-container .table .table-header p:nth-last-of-type(3), .three-year-ranking-container .table .table-header p:nth-last-of-type(4), .three-year-ranking-container .table .table-header p:nth-last-of-type(5), .three-year-ranking-container .table .table-header p:nth-last-of-type(6), .three-year-ranking-container .table .table-header p:nth-last-of-type(7), .three-year-ranking-container .table .table-header p:nth-last-of-type(8), .three-year-ranking-container .table .table-header p:nth-last-of-type(9), .three-year-ranking-container .table .table-header p:nth-last-of-type(10), .three-year-ranking-container .table .table-header p:nth-last-of-type(11) {
-    width: 100%;
-    text-align: start;
-  }
-  .three-year-ranking-container .table .table-content {
-    display: flex;
-  }
-  .three-year-ranking-container .table .table-content .table-row {
-    display: flex;
-    flex-direction: column;
-    border-bottom: none;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-  .three-year-ranking-container .table .table-content .table-row:first-of-type {
-    margin: 0px;
-  }
-  .three-year-ranking-container .table .table-content .table-row p {
-    width: 250px;
-    align-items: start;
-    justify-content: start;
-  }
-  .three-year-ranking-container .table .table-content .table-row p a {
-    flex-direction: row;
-    font-size: 12px;
-    align-items: start;
-    justify-content: start;
-  }
-  .three-year-ranking-container .table .table-content .table-row p:first-of-type {
-    flex-direction: row;
-  }
-  .three-year-ranking-container .table .table-content .table-row p:first-of-type span {
-    margin-left: 5px;
-  }
-  .three-year-ranking-container .table .table-content .table-bottom-button {
-    padding: 0px 10px;
-    margin-left: 15px;
-    margin-right: 5px;
-  }
-  .three-year-ranking-container .table .table-content .table-bottom-button span {
-    display: none;
-  }
-  .three-year-ranking-container .table .table-header p:first-of-type,
-  .three-year-ranking-container .table .table-row p:first-of-type {
-    border-bottom: solid 2px #1c1c1c;
-    margin-bottom: 5px;
-  }
-  .three-year-ranking-container .table .table-header p:not(:nth-of-type(1)),
-  .three-year-ranking-container .table .table-row p:not(:nth-of-type(1)) {
-    height: 18px;
-    padding: 8px 0px 4px;
-    border-bottom: solid 1px #ededed;
-    display: flex;
-    align-items: center;
-  }
-  .three-year-ranking-container .table .table-header p:not(:nth-of-type(1)) span,
-  .three-year-ranking-container .table .table-row p:not(:nth-of-type(1)) span {
-    margin-right: 5px;
-  }
-  .three-year-ranking-container .table .table-header p:not(:nth-of-type(1)) span:nth-of-type(2),
-  .three-year-ranking-container .table .table-row p:not(:nth-of-type(1)) span:nth-of-type(2) {
-    margin-right: 4px;
-  }
-  .alltime-each-year .table .table-content .table-row p {
-    width: 200px;
   }
   .ranking-each-decade-container .table-overflow-container .table .table-header p:first-of-type,
   .ranking-each-decade-container .table-overflow-container .table .table-row p:first-of-type {
