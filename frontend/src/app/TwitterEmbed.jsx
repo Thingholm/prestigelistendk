@@ -1,7 +1,10 @@
 "use client";
 
 import RankingLinkHeader from "@/components/RankingLinkHeader";
-import { Timeline } from "react-twitter-widgets";
+import Image from "next/image";
+import icon from "@/app/icon.png"
+import { Follow } from "react-twitter-widgets";
+import Link from "next/link";
 
 export default function TwitterEmbed() {
     return (
@@ -9,17 +12,12 @@ export default function TwitterEmbed() {
             <RankingLinkHeader link="https://twitter.com/prestigelisten" title="Følg os på Twitter" />
 
             <div className="twitter-embed-container">
-                <Timeline
-                    dataSource={{
-                        sourceType: 'profile',
-                        screenName: 'prestigelisten'
-                    }}
-                    options={{
-                        height: '600',
-                        width: '600',
-                        lang: 'da'
-                    }}
-                />
+                <Image src={icon} alt="Prestigelisten Twitter" height={200} width={200} />
+                <div>
+                    <Link href="https://twitter.com/prestigelisten">@prestigelisten</Link>
+                    <p>Følg med på Twitter, hvor vi skriver om udvikling på Prestigelisten, statistik, quiz og meget mere.</p>
+                    <Follow username="prestigelisten" options={{ size: "large" }} />
+                </div>
             </div>
         </div>
     )

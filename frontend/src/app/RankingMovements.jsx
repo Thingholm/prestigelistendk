@@ -113,7 +113,6 @@ export default function RankingMovements() {
                 {!latestResults ? <TableSkeleton /> :
                     <div className="table-content">
                         {latestResults.map((result, index) => {
-                            console.log(result)
                             const race = (result.count > 1 ?
                                 result.race.map((i, index) => {
                                     const fR = i.replace("af", "i")

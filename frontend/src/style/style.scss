@@ -900,6 +900,10 @@ footer {
             margin-right: 200px;
         }
     }
+
+    p {
+        color: $white-primary;
+    }
 }
 
 
@@ -1489,11 +1493,51 @@ footer {
 .twitter-container {
     padding: 20px 5% 40px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+        width: 100%;
+    }
 
     .twitter-embed-container {
-        margin-top: 20px;
+        width: fit-content;
+        margin-top: 50px;
         display: flex;
-        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: 1px solid #4343436f;
+        border-radius: 25px;
+        position: relative;
+
+        img {
+            position: absolute;
+            transform: translateY(-25%);
+            top: 0px;
+            border-radius: 9999px;
+            border: 10px solid $white-primary;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0px 20px 10px;
+
+            >a {
+                font-size: 20px;
+                font-weight: 600;
+                margin-top: 170px;
+                margin-bottom: 10px;
+            }
+
+            p {
+                margin-bottom: 20px;
+                width: 80%;
+                text-align: center;
+            }
+        }
     }
 }
 
@@ -4742,16 +4786,6 @@ footer {
     .landing-movements-section {
         .table {
             padding-bottom: 14px;
-        }
-    }
-
-    .twitter-embed-container {
-        >div {
-            >div {
-                .twitter-timeline.twitter-timeline-rendered {
-                    width: 300px !important;
-                }
-            }
         }
     }
 }

@@ -740,6 +740,9 @@ footer .footer-list-container .footer-list-item h4 {
 footer .footer-list-container .footer-list-item ul li {
   margin-bottom: 5px;
 }
+footer p {
+  color: #ffffff;
+}
 
 .hero-section {
   background: rgb(255, 233, 39);
@@ -1251,11 +1254,47 @@ footer .footer-list-container .footer-list-item ul li {
 .twitter-container {
   padding: 20px 5% 40px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.twitter-container h3 {
+  width: 100%;
 }
 .twitter-container .twitter-embed-container {
-  margin-top: 20px;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 50px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid rgba(67, 67, 67, 0.4352941176);
+  border-radius: 25px;
+  position: relative;
+}
+.twitter-container .twitter-embed-container img {
+  position: absolute;
+  transform: translateY(-25%);
+  top: 0px;
+  border-radius: 9999px;
+  border: 10px solid #ffffff;
+}
+.twitter-container .twitter-embed-container div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px 10px;
+}
+.twitter-container .twitter-embed-container div > a {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 170px;
+  margin-bottom: 10px;
+}
+.twitter-container .twitter-embed-container div p {
+  margin-bottom: 20px;
+  width: 80%;
+  text-align: center;
 }
 
 .rider-profile-container {
@@ -3441,9 +3480,6 @@ footer .footer-list-container .footer-list-item ul li {
   }
   .landing-movements-section .table {
     padding-bottom: 14px;
-  }
-  .twitter-embed-container > div > div .twitter-timeline.twitter-timeline-rendered {
-    width: 300px !important;
   }
 }
 @media screen and (max-width: 600px) {
