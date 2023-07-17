@@ -1618,6 +1618,10 @@ footer p {
   opacity: 0.5;
 }
 
+.table-row.inactive {
+  text-decoration: none;
+}
+
 .ranking-page-container h2 {
   margin-left: 5%;
   margin-top: 20px;

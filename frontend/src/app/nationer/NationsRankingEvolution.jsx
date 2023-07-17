@@ -107,7 +107,7 @@ export default function NationsRankingEvolution(props) {
                 }
             });
         }
-    }, [nationsAccRankQuery.isSuccess, nationsRanking.isSuccess])
+    }, [nationsAccRankQuery.isSuccess, nationsRanking.isSuccess, chartSelectedNations])
 
     return (
         <div className="nations-ranking-chart-container">

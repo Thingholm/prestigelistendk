@@ -2000,6 +2000,10 @@ footer {
     opacity: 0.5;
 }
 
+.table-row.inactive {
+    text-decoration: none;
+}
+
 .ranking-page-container {
     h2 {
         margin-left: 5%;

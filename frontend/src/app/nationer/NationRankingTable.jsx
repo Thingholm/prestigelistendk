@@ -178,7 +178,7 @@ export default function NationRankingTable(props) {
 
                         let className = "table-row"
 
-                        if (["Moldova", "Sovjetunionen", "Østtyskland"].includes(nation.nation)) {
+                        if (["Sovjetunionen", "Østtyskland"].includes(nation.nation)) {
                             className = "table-row inactive"
                         }
 
