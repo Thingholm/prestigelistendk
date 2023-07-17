@@ -10,7 +10,7 @@ export const metadata = {
 export default function PointSystemLayout() {
     return (
         <div className="pointsystem-page">
-            <h2>Poinsystemet <SectionLinkButton link={baseUrl + "/pointsystem"} sectionName={"Pointsystemet"} /></h2>
+            <h2>Pointsystemet <SectionLinkButton link={baseUrl + "/pointsystem"} sectionName={"Pointsystemet"} /></h2>
             <p>Pointsystemet er baseret på en subjektiv vurdering, men en gennemdiskuteret og - mener vi selv - kvalificeret en af slagsen.</p>
             <Page />
         </div>
