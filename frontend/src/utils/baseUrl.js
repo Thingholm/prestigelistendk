@@ -1,1 +1,1 @@
-export const baseUrl = "http://prestigelistendk.vercel.app";
+export const baseUrl = "https://prestigelisten.dk/";
