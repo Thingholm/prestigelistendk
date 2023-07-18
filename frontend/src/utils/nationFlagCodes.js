@@ -287,6 +287,18 @@ export const nationFlagCodes = [
         points: 3,
     },
     {
+        nation: 'Kroatien',
+        nationFlagCode: 'hr'
+    },
+    {
+        nation: 'Algeriet',
+        nationFlagCode: 'dz'
+    },
+    {
+        nation: 'Finland',
+        nationFlagCode: 'fi'
+    },
+    {
         nationFlagCode: 'bg',
         numberOfRiders: 1,
         nation: 'Bulgarien',

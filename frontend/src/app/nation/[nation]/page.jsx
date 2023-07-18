@@ -58,6 +58,8 @@ export default function Page(props) {
         nationString = nationCapitalized.split("-").map(i => i.charAt(0).toUpperCase() + i.slice(1)).join(" ");
     }
 
+    let isLoaded = false;
+
     const alltimeRankingQuery = useAlltimeRanking();
     const alltimeRanking = alltimeRankingQuery.data;
 
@@ -73,11 +75,17 @@ export default function Page(props) {
     const currentNationRank = nationsRanking && nationsRanking.find(i => i.nation == nationString)
     const currentNationActiveRank = activeNationsRanking && activeNationsRanking.find(i => i.nation == nationString)
 
+    if (currentNationActiveRank) {
+        isLoaded = true
+    } else if (currentNationRank) {
+        isLoaded = true
+    }
+
     return (
         <div className="nation-page-container">
-            {currentNationActiveRank && nationData && currentNationRank && ridersFromNation ?
+            {isLoaded && nationData && currentNationRank && ridersFromNation ?
                 <div>
-                    {nationData && ridersFromNation && currentNationActiveRank && <div className="nation-profile-container rider-profile-container">
+                    {nationData && ridersFromNation && isLoaded && <div className="nation-profile-container rider-profile-container">
                         <NationProfile nationData={nationData} nationRankData={currentNationRank} activeNationRankData={currentNationActiveRank} />
                         <NationRidersHighlight ridersData={ridersFromNation} />
                     </div>}

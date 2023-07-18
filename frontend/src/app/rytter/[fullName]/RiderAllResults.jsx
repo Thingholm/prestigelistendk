@@ -118,7 +118,7 @@ export default function RiderAllResults(props) {
                                     <h5>Højdepunkter</h5>
                                     <ul>
                                         <li>Point i {key}: <span>{sum}</span></li>
-                                        <li>Point i hele karrierien: <span>{props.rankingByYearData[key + "Points"].toLocaleString("de-DE")}</span></li>
+                                        <li>Point i hele karrieren: <span>{props.rankingByYearData[key + "Points"].toLocaleString("de-DE")}</span></li>
                                         <li>Placering på Prestigelisten: <span>{props.rankingByYearData[key + "Rank"].toLocaleString("de-DE")}</span></li>
                                     </ul>
                                 </div>
