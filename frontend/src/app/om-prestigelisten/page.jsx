@@ -22,7 +22,7 @@ export default function AboutPage() {
                 <li><Link href="/nationer" target="_blank"> En rangering af de nationer, hvis ryttere gennem tiden har optjent flest point</Link></li>
                 <li><Link href="/listen?nation=Danmark" target="_blank">En rangering af de største danskere, som har opnået point</Link></li>
                 <li><a href="/#3-aarig-rullende" target="_blank">En tre-årig rullende oversigt over de ryttere, der har optjent flest point over de seneste tre sæsoner - dog på et meget begrænset grundlag før år 1900</a></li>
-                <li><a href="#" target="_blank">En oversigt over top 10 all time, som den har set ud hvert år gennem tiden - dog på et meget begrænset grundlag før år 1900</a></li>
+                <li><a href="#stoerste-alltime-hvert-aar" target="_blank">En oversigt over top 10 all time, som den har set ud hvert år gennem tiden - dog på et meget begrænset grundlag før år 1900</a></li>
                 <li><a href="/#stoerste-per-aarti" target="_blank">En oversigt over, hvilke ryttere der har optjent flest point i hvert årti - dog på et meget begrænset grundlag før 1900</a></li>
                 <li><a href="/#stoerste-saesoner" target="_blank">En rangering af de sæsoner, hvori en enkelt rytter har opnået de mest prestigefyldte resultater</a></li>
                 <li><Link href="/listen?yearFilterRange=single" target="_blank">En rangering af de største ryttere fra hver årgang</Link></li>

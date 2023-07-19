@@ -14,7 +14,7 @@ export default function TwitterEmbed() {
             <div className="twitter-embed-container">
                 <Image src={icon} alt="Prestigelisten Twitter" height={200} width={200} />
                 <div>
-                    <Link href="https://twitter.com/prestigelisten">@prestigelisten</Link>
+                    <Link href="https://twitter.com/prestigelisten" target="_blank">@prestigelisten</Link>
                     <p>Følg med på Twitter, hvor vi skriver om udvikling på Prestigelisten, statistik, quiz og meget mere.</p>
                     <Follow username="prestigelisten" options={{ size: "large" }} />
                 </div>
