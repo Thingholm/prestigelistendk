@@ -49,7 +49,7 @@ export default function NationRanking() {
                                 const activeList = activeRanking.find(i => i.nation == nation.nation)
 
                                 let className = "table-row";
-                                if (["Moldova", "Sovjetunionen", "Østtyskland"].includes(nation.nation)) {
+                                if (["Sovjetunionen", "Østtyskland"].includes(nation.nation)) {
                                     className = "table-row inactive";
                                 }
 
