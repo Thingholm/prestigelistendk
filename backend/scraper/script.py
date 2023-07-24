@@ -146,8 +146,8 @@ def main():
                         flagCode = row[3][:2].lower()
                     
                     newRiders[row[1]] = {"fullName": row[1], "nation": row[3]}
-
-                    insertData = supabase.table("alltimeRanking").insert({"fullName": row[1], "lastName": lastName, "firstName": firstName, "nation": row[3], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True}).execute()
+                    print({"fullName": row[1], "lastName": lastName, "firstName": firstName, "nation": row[3], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True})
+                    insertData = supabase.table("alltimeRanking").insert({"fullName": row[1], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True}).execute()
                     print("INSERTED TO ALLTIMERANKING: ")
                     print({"fullName": row[1], "lastName": lastName, "firstName": firstName, "nation": row[3], "nationFlagCode": flagCode, "birthYear": row[4], "points": row[2], "active": True})
                 else:
