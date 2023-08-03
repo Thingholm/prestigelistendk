@@ -3,7 +3,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { useState } from "react";
 import Dashboard from "./Dashboard";
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ5b29ueGJ2Y2NvY2dxa3huanFzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY3ODE3NzQ3OSwiZXhwIjoxOTkzNzUzNDc5fQ.j0PjXdEKhckfPJga8GiyyDei3Hh4JRcIKFKNfpgw_yY
 async function handleBtnClick(key) {
     let success;
     const supabase = createClient("https://fyoonxbvccocgqkxnjqs.supabase.co", key)
