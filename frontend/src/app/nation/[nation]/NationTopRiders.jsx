@@ -9,7 +9,7 @@ export default function NationTopRiders(props) {
 
     return (
         <div className="table-wrapper">
-            <RankingLinkHeader title={"Største ryttere fra " + ridersData[0].nation} link={"/listen?nation=" + nationEncoder(ridersData[0].nation)} mode="light" />
+            <RankingLinkHeader title={"Største ryttere fra " + props.nationData} link={"/listen?nation=" + nationEncoder(ridersData[0].nation)} mode="light" />
             <div className="rounded-table-container">
                 <div className="table-shadow-container">
                     <div className="table ">

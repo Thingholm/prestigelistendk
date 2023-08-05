@@ -143,8 +143,6 @@ export default function Dashboard(props) {
   const nM = "Colombiansk mesterEcuadoriansk mester (>2020)Australsk mester (1984-1994 + 1996 + >1997)Tysk mester (<1942 + 1947-1956 + 1959-1975 + >1978)Dansk mester (1968 + 1970-1973 + 1981-1985 + >1986)Norsk mester (1990 + >2007)Amerikansk mester (>1998)Portugisisk mester (1975-1979 + 1984 + 2010-2016 + >2019)Schweizisk mester (1904 + 1912-1970 + >1975)Slovensk mester (>2003)Tjekkisk mester (2001-2005 + >2012)Østrigsk mester (1988-1989 + 2006 + 2008 >2017)Britisk mester (1965-1967 + 1970-1976 + 1987-1998 + 2000 + 2002 + >2003)Canadisk mester (2012-2013)Irsk mester (2010-2013 + 2017-2021)Belarusisk mester (2009-2016)Kasakhisk mester (1998-2012)Litauisk mester (2012-2016)Russisk mester (<2022)Svensk mester (1980-1985 + 1999-2003 + 2007-2009 + 2012-2013)Polsk mester (1995-1997 + 1999-2004 + 2012-2022)Ukrainsk mester (1996-2009)Luxembourgsk mester (1936-1940 + 1948 + 1950-1961 + 2005-2010 + 2016)Fransk mesterSpansk mesterBelgisk mesterNederlandsk mesterItaliensk mesterSpansk mester i enkeltstartFransk mester i enkeltstartBelgisk mester i enkeltstartItaliensk mester i enkeltstartNederlandsk mester i enkeltstartColombiansk mester i enkeltstartEcuadoriansk mester i enkeltstart (>2020)Norsk mester i enkeltstart (1990 + >2007)Australsk mester i enkeltstartSchweizisk mester i enkeltstartTjekkisk mester i enkeltstart (2001-2005 + >2012)Tysk mester i enkeltstartDansk mester i enkeltstart (<1974 + 1981-1985 + >1986)Slovensk mester i enkeltstart (>2003)Portugisisk mester i enkeltstart (1975 + 2010-2016 + >2019)Østrigsk mester i enkeltstart (2006 + 2008 + >2017)Amerikansk mester i enkeltstart (1984-1996 + >1998)Britisk mester i enkeltstart (<1999 + 2000 + 2002 + >2003)Litauisk mester i enkeltstart (2012-2016)Polsk mester i enkeltstart (1996-1997 + 1999-2004 + 2012-2022)Russisk mester i enkeltstart (<2022)Ukrainsk mester i enkeltstart (<2010)Belarusisk mester i enkeltstart (2009-2016)Luxembourgsk mester i enkeltstart (1951 + 2005-2010 + 2016)Canadisk mester i enkeltstart (2012-2013)Irsk mester i enkeltstart (2010-2013 + 2017-2021)Kasakhisk mester i enkeltstart (<2013)Svensk mester i enkeltstart (1980-1985 + 1999-2003 + 2007-2009 + 2012-2013)"
   const [status, setStatus] = useState("");
 
-  console.log(process.env.NEXT_PUBLIC_SUPABASE_URL)
-
   const CLIENT_ID = '1008152836160-1fl7hhkb0fg29782ojh6ap9islv6839n.apps.googleusercontent.com';
   const API_KEY = 'AIzaSyDWYapUXymPyhDLqqRla2MkmIrvO0WTyZc';
 
@@ -438,12 +436,11 @@ export default function Dashboard(props) {
     })
 
     activeRanking.map(rider => {
-      const supabaseRider = supabaseActiveRanking.find(i => i.fullName == rider.Rytter);
-      if (!rider.Hold == supabaseRider?.currentTeam) {
-        updateActiveTeam(rider.Hold, rider.Rytter)
-        console.log("Opdaterde rytters hold:")
-        console.log("Rytter: " + rider.Rytter + " Hold: " + rider.Hold)
-      }
+      console.log(rider)
+      const supabaseRider = alltimeRanking.find(i => i.fullName == rider.Rytter);
+      updateActiveTeam(rider.Hold, rider.Rytter, supabase)
+      console.log("Opdaterede rytters hold:")
+      console.log("Rytter: " + rider.Rytter + " Hold: " + rider.Hold)
     })
 
   }

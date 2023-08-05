@@ -38,13 +38,36 @@ export default function NationTopResults(props) {
             ...i,
         };
     }).reduce((acc, curr) => {
-        if (!acc.find((item) => item.raceName == curr.raceName)) {
-            acc.push({ ...curr, resultAmount: 1, yearArr: [{ year: curr.year, rider: curr.rider }] });
-        } else {
-            const currentEleInAcc = acc[acc.map(i => i.raceName).indexOf(curr.raceName)]
-            currentEleInAcc.rider += "?" + curr.rider;
-            currentEleInAcc.yearArr.push({ year: curr.year, rider: curr.rider });
-            currentEleInAcc.resultAmount++;
+        if (
+            curr.year >= 1992
+            && nation == "Sovjetunionen"
+
+            ||
+
+            ["Djamolidine Abduzhaparov", "Dmitri Konychev", "Viatcheslav Ekimov", "Vladimir Pulnikov", "Asiat Saitov"].includes(curr.rider)
+            && curr.year > 1992
+            && nation !== "Sovjetunionen"
+
+            ||
+
+            curr.rider == "Andrei Tchmil"
+            && curr.year >= 1995
+            && nation == "Moldova"
+
+            ||
+
+            curr.year >= 1991
+            && nation == "Østtyskland"
+
+        ) { } else {
+            if (!acc.find((item) => item.raceName == curr.raceName)) {
+                acc.push({ ...curr, resultAmount: 1, yearArr: [{ year: curr.year, rider: curr.rider }] });
+            } else {
+                const currentEleInAcc = acc[acc.map(i => i.raceName).indexOf(curr.raceName)]
+                currentEleInAcc.rider += "?" + curr.rider;
+                currentEleInAcc.yearArr.push({ year: curr.year, rider: curr.rider });
+                currentEleInAcc.resultAmount++;
+            }
         }
 
         return acc;

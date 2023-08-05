@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function RiderImage(props) {
     const rider = props.riderInfo;
-    const [imgSrc, setImgSrc] = useState("https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/riderPortraits/" + rider.fullName.replace(" ", "").toLowerCase() + ".jpg");
+    const [imgSrc, setImgSrc] = useState("https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/riderPortraits/" + rider.fullName.replace(/ /g, "").toLowerCase().replace(/ø/g, "oe").replace(/å/g, "aa").replace(/æ/g, "ae") + ".jpg");
 
     return (
         <Image

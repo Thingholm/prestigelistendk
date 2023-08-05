@@ -6,7 +6,7 @@ export default function NationRidersHighlight(props) {
 
     return (
         <div className="rider-top-results-container">
-            <h4>Største ryttere fra {ridersFromNation[0].nation} all time</h4>
+            <h4>Største ryttere fra {props.nationData.nation} all time</h4>
             <ul>
                 {ridersFromNation.slice(0, 6).map(r => {
                     return (

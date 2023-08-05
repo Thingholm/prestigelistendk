@@ -270,8 +270,6 @@ export const useNationResultCount = (nation) => {
     return query
 }
 
-
-
 export const usePointSystemGrouped = () => {
     const queryClient = useQueryClient({})
 
@@ -282,6 +280,22 @@ export const usePointSystemGrouped = () => {
                 .from('pointSystemByCategory')
                 .select('*');
             return pointSystemGrouped
+        }
+    })
+
+    return query
+}
+
+export const useCalendar = () => {
+    const queryClient = useQueryClient({})
+
+    const query = useQuery({
+        queryKey: ['calendar',],
+        queryFn: async () => {
+            let { data: calendar } = await supabase
+                .from('calendar')
+                .select('*');
+            return calendar
         }
     })
 

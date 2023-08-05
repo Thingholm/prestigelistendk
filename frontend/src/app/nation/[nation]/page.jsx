@@ -87,7 +87,7 @@ export default function Page(props) {
                 <div>
                     {nationData && ridersFromNation && isLoaded && <div className="nation-profile-container rider-profile-container">
                         <NationProfile nationData={nationData} nationRankData={currentNationRank} activeNationRankData={currentNationActiveRank} />
-                        <NationRidersHighlight ridersData={ridersFromNation} />
+                        <NationRidersHighlight ridersData={ridersFromNation} nationData={nationData} />
                     </div>}
 
                     <NationEvolution nationData={nationString} />
@@ -95,7 +95,7 @@ export default function Page(props) {
                     {ridersFromNation && <NationTopResults nationData={nationString} ridersData={ridersFromNation} />}
 
                     {ridersFromNation && <div className="nation-rankings-container riders-ranked dark">
-                        <NationTopRiders ridersData={ridersFromNation} />
+                        <NationTopRiders ridersData={ridersFromNation} nationData={nationString} />
                         <NationTopActiveRiders ridersData={ridersFromNation} nationData={nationString} />
                     </div>}
 

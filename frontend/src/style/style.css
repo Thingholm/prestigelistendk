@@ -2248,6 +2248,13 @@ footer p {
   opacity: 0.5;
 }
 
+.calendar {
+  display: flex;
+}
+.calendar .month ul {
+  display: flex;
+}
+
 @media only screen and (max-width: 1350px) {
   .hero-section .hero-ranking-container {
     width: 50%;

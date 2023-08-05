@@ -2844,6 +2844,16 @@ footer {
     }
 }
 
+.calendar {
+    display: flex;
+
+    .month {
+        ul {
+            display: flex;
+        }
+    }
+}
+
 
 
 
