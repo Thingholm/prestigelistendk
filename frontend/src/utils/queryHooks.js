@@ -287,3 +287,19 @@ export const usePointSystemGrouped = () => {
 
     return query
 }
+
+export const useCalendar = () => {
+    const queryClient = useQueryClient({})
+
+    const query = useQuery({
+        queryKey: ['calendar'],
+        queryFn: async () => {
+            let { data: calendar } = await supabase
+                .from('calendarForShow')
+                .select('*');
+            return calendar
+        }
+    })
+
+    return query
+}
