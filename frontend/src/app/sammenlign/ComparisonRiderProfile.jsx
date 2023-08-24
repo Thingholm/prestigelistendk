@@ -16,7 +16,7 @@ export default function ComparisonRiderProfile(props) {
             <p>Placering i {riderData.nation}: <span>{props.rankingByNation.find(i => i.fullName == props.riderName).currentRank}</span></p>
             {props.groupedPoints && Object.keys(props.groupedPoints).map(cat => {
                 return (
-                    <p>{cat}: <span>{props.groupedPoints[cat]}</span></p>
+                    <p key={cat}>{cat}: <span>{props.groupedPoints[cat]}</span></p>
                 )
             })}
         </div>

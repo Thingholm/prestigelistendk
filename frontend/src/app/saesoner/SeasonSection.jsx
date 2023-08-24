@@ -62,7 +62,7 @@ export default function SeasonSection() {
 
                             if (riderNationData !== undefined) {
                                 return (
-                                    <div className="table-row">
+                                    <div key={index} className="table-row">
                                         <div className="row-content">
                                             <p>{i.currentRank}</p>
                                             <p>{riderNationData.currentRank}</p>
@@ -74,9 +74,9 @@ export default function SeasonSection() {
                                         <div className={index == resultsSpoiler ? "row-expansion show" : "row-expansion"}>
                                             <h4>Resultater:</h4>
                                             <div>
-                                                {riderResults && Object.keys(riderResults).sort((a, b) => riderResults[b]["points"] - riderResults[a]["points"]).map(res => {
+                                                {riderResults && Object.keys(riderResults).sort((a, b) => riderResults[b]["points"] - riderResults[a]["points"]).map((res, resIndex) => {
                                                     return (
-                                                        <p>{riderResults[res]["amount"] > 1 && <span>{riderResults[res]["amount"] + "x"}</span>}{res.split(" (")[0]}</p>
+                                                        <p key={resIndex}>{riderResults[res]["amount"] > 1 && <span>{riderResults[res]["amount"] + "x"}</span>}{res.split(" (")[0]}</p>
                                                     )
                                                 })}
                                             </div>

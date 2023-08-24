@@ -14,7 +14,7 @@ export default function SeasonSelect() {
                 {[...Array(year - 1875)].map((i, index) => {
                     const season = index + 1876
                     return (
-                        <option value={season} selected={searchParams == season && "selected"}>{season}</option>
+                        <option key={index} value={season} selected={searchParams == season && "selected"}>{season}</option>
                     )
                 })}
             </select>
