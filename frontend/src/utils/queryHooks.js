@@ -1,6 +1,6 @@
 "use client";
 
-import { useQueryClient, useQuery } from '@tanstack/react-query';
+import { useQueryClient, useQuery, useQueries } from '@tanstack/react-query';
 import { supabase } from './supabase';
 
 
@@ -211,7 +211,7 @@ export const useResultsByRiders = (riders) => {
             let { data: results } = await supabase
                 .from('results')
                 .select('*')
-                .in('rider', riders)
+                .in('rider', riders);
             return results
         }
     })

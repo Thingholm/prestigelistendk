@@ -2415,6 +2415,174 @@ footer p {
   top: auto;
 }
 
+.compare-page-container {
+  margin: 20px 0px;
+  text-align: center;
+}
+.compare-page-container h2 {
+  margin-bottom: 10px;
+}
+.compare-page-container .compare-search-container {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 20px;
+}
+.compare-page-container .compare-search-container input {
+  width: 50%;
+  background-color: #ededed;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 5px;
+  z-index: 1;
+}
+.compare-page-container .compare-search-container input:disabled {
+  opacity: 0.5;
+}
+.compare-page-container .compare-search-container ul {
+  position: absolute;
+  width: calc(50% + 32px);
+  left: calc(25% - 16px);
+  top: 50%;
+  background-color: #dbdbdb;
+  z-index: -1;
+  max-height: 60vh;
+  overflow-y: scroll;
+  border-radius: 5px;
+  display: none;
+}
+.compare-page-container .compare-search-container ul.show {
+  display: block;
+}
+.compare-page-container .compare-search-container ul::-webkit-scrollbar {
+  width: 5px;
+}
+.compare-page-container .compare-search-container ul::-webkit-scrollbar-track {
+  background: #ededed;
+  border-radius: 50px;
+}
+.compare-page-container .compare-search-container ul::-webkit-scrollbar-thumb {
+  background: #fdca00;
+  border-radius: 50px;
+}
+.compare-page-container .compare-search-container ul::-webkit-scrollbar-thumb:hover {
+  background: #fee402;
+}
+.compare-page-container .compare-search-container ul li {
+  text-align: start;
+  padding: 8px 16px;
+}
+.compare-page-container .compare-search-container ul li:not(:last-of-type) {
+  border-bottom: 1px solid rgba(124, 124, 124, 0.1764705882);
+}
+.compare-page-container .compare-search-container ul li:first-of-type {
+  margin-top: 20px;
+}
+.compare-page-container .compare-search-container ul li:hover {
+  background-color: #ececec;
+  cursor: pointer;
+}
+.compare-page-container .comparison-container h4 {
+  margin-top: 20px;
+}
+.compare-page-container .comparison-container p:not(:last-of-type) {
+  padding: 3px 0px;
+  border-bottom: 1px solid #ededed;
+}
+.compare-page-container .comparison-container > div {
+  margin: 0px 5%;
+}
+.compare-page-container .comparison-container > div > div {
+  display: flex;
+  justify-content: center;
+}
+.compare-page-container .comparison-container > div > div > div {
+  width: 25%;
+}
+.compare-page-container .comparison-container > div > div > div:first-of-type {
+  text-align: right;
+}
+.compare-page-container .comparison-container > div > div > div:last-of-type {
+  text-align: left;
+}
+.compare-page-container .comparison-container > div > div > div .higher {
+  color: rgb(120, 201, 0);
+}
+.compare-page-container .comparison-container > div > div > div .lower {
+  color: rgb(240, 0, 0);
+}
+.compare-page-container .comparison-container .greatest-results-comparison {
+  background-color: #ededed;
+  padding: 1px 0px 20px;
+  border-radius: 25px;
+  margin-top: 20px;
+}
+.compare-page-container .comparison-container .greatest-results-comparison > div > div:first-of-type, .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type {
+  width: 35%;
+}
+.compare-page-container .comparison-container .greatest-results-comparison > div > div p {
+  font-weight: 600;
+  margin-bottom: 5px;
+  border-bottom: none;
+}
+.compare-page-container .comparison-container .greatest-results-comparison > div > div p span {
+  font-weight: 400;
+  opacity: 0.5;
+  margin: 0px 3px;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div > div {
+  display: flex;
+  flex-direction: column;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div > div img {
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div > div button {
+  background-color: unset;
+  border: none;
+  margin-bottom: 10px;
+  width: 200px;
+  transition: 0.2s;
+  opacity: 0.5;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div > div button:hover {
+  color: red;
+  cursor: pointer;
+  opacity: 1;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div > div button svg {
+  margin-right: 5px;
+  height: 15px;
+  width: 15px;
+  position: relative;
+  top: 3px;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div:first-of-type div {
+  align-items: end;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div:last-of-type div {
+  align-items: start;
+}
+.compare-page-container .comparison-container .chart-container {
+  margin: 0px 0%;
+  padding: 0px 5%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+}
+.compare-page-container .comparison-container .chart-container h3 {
+  margin-top: 20px;
+}
+.compare-page-container .comparison-container .chart-container p {
+  margin-bottom: 10px;
+}
+.compare-page-container .comparison-container .chart-container div {
+  position: relative;
+  width: 80%;
+}
+
 @media only screen and (max-width: 1350px) {
   .hero-section .hero-ranking-container {
     width: 50%;
@@ -3145,6 +3313,57 @@ footer p {
   .nation-rankings-container.nations-ranked .table-wrapper .table {
     padding-bottom: 0px;
   }
+  .compare-page-container .compare-search-container input {
+    width: 90%;
+  }
+  .compare-page-container .compare-search-container ul {
+    width: calc(90% + 32px);
+    left: calc(5% - 16px);
+  }
+  .compare-page-container .comparison-container > div > div > div {
+    width: 33%;
+  }
+  .compare-page-container .comparison-container .greatest-results-comparison > div {
+    flex-direction: column;
+    align-items: center;
+  }
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div {
+    text-align: left !important;
+  }
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div:first-of-type, .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div .media {
+    display: inline-block;
+  }
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div h4 {
+    margin-bottom: 10px;
+  }
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div p {
+    text-align: left;
+    position: relative;
+  }
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div p span {
+    position: absolute;
+    right: calc(100% + 5px);
+  }
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type span {
+    display: none;
+  }
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type .media {
+    display: inline-block;
+  }
+  .compare-page-container .comparison-container .chart-container div {
+    width: 100%;
+  }
+  .compare-page-container .comparison-rider-profile > div > div > div img {
+    height: 150px;
+    width: 150px;
+  }
+  .compare-page-container .comparison-rider-profile > div > div > div button {
+    width: 150px !important;
+  }
 }
 @media screen and (max-width: 717px) {
   .landing-nations-ranking-section .table {
@@ -3685,6 +3904,40 @@ footer p {
     left: -3px;
     position: relative;
   }
+  .compare-page-container .comparison-container > div > div > div:first-of-type {
+    text-align: start;
+    width: 25%;
+  }
+  .compare-page-container .comparison-container > div > div > div:nth-of-type(2) {
+    text-overflow: clip;
+    white-space: nowrap;
+    width: 50%;
+  }
+  .compare-page-container .comparison-container > div > div > div:last-of-type {
+    text-align: end;
+    width: 25%;
+  }
+  .compare-page-container .comparison-container .rider-info {
+    white-space: nowrap;
+  }
+  .compare-page-container .comparison-container .rider-info > div > div > div > p:nth-of-type(2) {
+    display: none;
+  }
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div:first-of-type {
+    width: 50%;
+  }
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div:first-of-type div {
+    align-items: start;
+  }
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div:last-of-type {
+    width: 50%;
+  }
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div:last-of-type div {
+    align-items: end;
+  }
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div:nth-last-of-type(2) {
+    width: 0%;
+  }
 }
 @media screen and (max-width: 500px) {
   .landing-movements-section .table .table-row p:nth-of-type(2),
@@ -3942,6 +4195,14 @@ footer p {
   }
   .rider-all-results-container > div .btn-container:last-of-type button {
     right: -10px;
+  }
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div img {
+    width: 90%;
+    aspect-ratio: 1;
+    height: auto;
+  }
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div button {
+    width: 90% !important;
   }
 }
 @media screen and (max-width: 375px) {

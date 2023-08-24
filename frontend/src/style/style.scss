@@ -2844,7 +2844,7 @@ footer {
     }
 }
 
-// --------------------------- POINTSYSTEM PAGE --------------------------------
+// --------------------------- CALENDAR PAGE --------------------------------
 
 .calendar-container {
     width: 90%;
@@ -3044,6 +3044,231 @@ footer {
                         top: auto;
                     }
                 }
+            }
+        }
+    }
+}
+
+// --------------------------- COMPARISON PAGE --------------------------------
+
+.compare-page-container {
+    margin: 20px 0px;
+    text-align: center;
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .compare-search-container {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 20px;
+
+
+        input {
+            width: 50%;
+            background-color: $white-darker;
+            border: none;
+            padding: 8px 16px;
+            font-size: 16px;
+            border-radius: 5px;
+            z-index: 1;
+
+            &:disabled {
+                opacity: 0.5;
+            }
+        }
+
+        ul {
+            position: absolute;
+            width: calc(50% + 32px);
+            left: calc(25% - 16px);
+            top: 50%;
+            background-color: #dbdbdb;
+            z-index: -1;
+            max-height: 60vh;
+            overflow-y: scroll;
+            border-radius: 5px;
+            display: none;
+
+            &.show {
+                display: block;
+            }
+
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: $white-darker;
+                border-radius: 50px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $yellow-darker;
+                border-radius: 50px;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background: $yellow-primary;
+            }
+
+            li {
+                text-align: start;
+                padding: 8px 16px;
+
+                &:not(:last-of-type) {
+                    border-bottom: 1px solid #7c7c7c2d;
+                }
+
+                &:first-of-type {
+                    margin-top: 20px;
+                }
+
+                &:hover {
+                    background-color: #ececec;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .comparison-container {
+        h4 {
+            margin-top: 20px;
+        }
+
+        p:not(:last-of-type) {
+            padding: 3px 0px;
+            border-bottom: 1px solid $white-darker;
+        }
+
+        >div {
+            margin: 0px 5%;
+
+            >div {
+                display: flex;
+                justify-content: center;
+
+                >div {
+                    width: 25%;
+
+                    &:first-of-type {
+                        text-align: right;
+                    }
+
+                    &:last-of-type {
+                        text-align: left;
+                    }
+
+                    .higher {
+                        color: rgb(120, 201, 0);
+                    }
+
+                    .lower {
+                        color: rgb(240, 0, 0);
+                    }
+                }
+            }
+        }
+
+        .greatest-results-comparison {
+            background-color: $white-darker;
+            padding: 1px 0px 20px;
+            border-radius: 25px;
+            margin-top: 20px;
+
+            >div {
+                >div {
+
+                    &:first-of-type,
+                    &:last-of-type {
+                        width: 35%;
+                    }
+
+                    p {
+                        font-weight: 600;
+                        margin-bottom: 5px;
+                        border-bottom: none;
+
+                        span {
+                            font-weight: 400;
+                            opacity: 0.5;
+                            margin: 0px 3px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .comparison-rider-profile {
+            >div {
+                >div {
+                    >div {
+                        display: flex;
+                        flex-direction: column;
+
+                        img {
+                            border-radius: 15px;
+                            margin-bottom: 10px;
+                        }
+
+                        button {
+                            background-color: unset;
+                            border: none;
+                            margin-bottom: 10px;
+                            width: 200px;
+                            transition: 0.2s;
+                            opacity: 0.5;
+
+                            &:hover {
+                                color: red;
+                                cursor: pointer;
+                                opacity: 1;
+                            }
+
+                            svg {
+                                margin-right: 5px;
+                                height: 15px;
+                                width: 15px;
+                                position: relative;
+                                top: 3px;
+                            }
+                        }
+
+
+                    }
+
+                    &:first-of-type div {
+                        align-items: end;
+                    }
+
+                    &:last-of-type div {
+                        align-items: start;
+                    }
+                }
+            }
+        }
+
+        .chart-container {
+            margin: 0px 0%;
+            padding: 0px 5%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: center;
+
+            h3 {
+                margin-top: 20px;
+            }
+
+            p {
+                margin-bottom: 10px;
+            }
+
+            div {
+                position: relative;
+                width: 80%;
             }
         }
     }
@@ -4304,6 +4529,98 @@ footer {
             }
         }
     }
+
+    .compare-page-container {
+        .compare-search-container {
+            input {
+                width: 90%;
+            }
+
+            ul {
+                width: calc(90% + 32px);
+                left: calc(5% - 16px);
+            }
+        }
+
+        .comparison-container {
+            >div {
+                >div {
+                    >div {
+                        width: 33%;
+                    }
+                }
+            }
+
+            .greatest-results-comparison {
+                >div {
+                    flex-direction: column;
+                    align-items: center;
+
+                    >div {
+                        text-align: left !important;
+
+                        &:first-of-type,
+                        &:last-of-type {
+                            width: fit-content;
+                        }
+
+                        .media {
+                            display: inline-block;
+                        }
+
+                        h4 {
+                            margin-bottom: 10px;
+                        }
+
+                        p {
+                            text-align: left;
+                            position: relative;
+
+                            span {
+                                position: absolute;
+                                right: calc(100% + 5px);
+                            }
+                        }
+
+                        &:last-of-type {
+                            span {
+                                display: none;
+                            }
+
+                            .media {
+                                display: inline-block;
+                            }
+                        }
+
+
+                    }
+                }
+            }
+
+            .chart-container {
+                div {
+                    width: 100%;
+                }
+            }
+        }
+
+        .comparison-rider-profile {
+            >div {
+                >div {
+                    >div {
+                        img {
+                            height: 150px;
+                            width: 150px;
+                        }
+
+                        button {
+                            width: 150px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 717px) {
@@ -5051,6 +5368,68 @@ footer {
             }
         }
     }
+
+    .compare-page-container {
+        .comparison-container {
+            >div {
+                >div {
+                    >div {
+                        &:first-of-type {
+                            text-align: start;
+                            width: 25%;
+                        }
+
+                        &:nth-of-type(2) {
+                            text-overflow: clip;
+                            white-space: nowrap;
+                            width: 50%;
+                        }
+
+                        &:last-of-type {
+                            text-align: end;
+                            width: 25%;
+
+                        }
+                    }
+                }
+            }
+
+            .rider-info {
+                >div>div>div>p:nth-of-type(2) {
+                    display: none;
+                }
+
+                white-space: nowrap;
+            }
+
+            .comparison-rider-profile {
+                >div {
+                    >div {
+                        &:first-of-type {
+                            width: 50%;
+
+                            div {
+                                align-items: start;
+                            }
+                        }
+
+
+                        &:last-of-type {
+                            width: 50%;
+
+                            div {
+                                align-items: end;
+                            }
+                        }
+
+                        &:nth-last-of-type(2) {
+                            width: 0%;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -5474,6 +5853,26 @@ footer {
                 &:last-of-type {
                     button {
                         right: -10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .compare-page-container {
+        .comparison-container {
+            .comparison-rider-profile {
+                >div {
+                    >div {
+                        img {
+                            width: 90%;
+                            aspect-ratio: 1;
+                            height: auto;
+                        }
+
+                        button {
+                            width: 90% !important;
+                        }
                     }
                 }
             }

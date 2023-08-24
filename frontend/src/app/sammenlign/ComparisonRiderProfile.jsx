@@ -3,6 +3,7 @@ import "@/../flag-icons/css/flag-icons.min.css"
 
 export default function ComparisonRiderProfile(props) {
     const riderData = props.alltimeRanking.find(i => i.fullName == props.riderName)
+
     return (
         <div className="comparison-rider-profile-container">
             <RiderImage riderInfo={riderData} />
@@ -13,6 +14,11 @@ export default function ComparisonRiderProfile(props) {
             <p>Placering all time: <span>{riderData.currentRank}</span></p>
             <p>Placering blandt aktive: <span>{props.activeRanking.find(i => i.fullName == props.riderName).currentRank}</span></p>
             <p>Placering i {riderData.nation}: <span>{props.rankingByNation.find(i => i.fullName == props.riderName).currentRank}</span></p>
+            {props.groupedPoints && Object.keys(props.groupedPoints).map(cat => {
+                return (
+                    <p>{cat}: <span>{props.groupedPoints[cat]}</span></p>
+                )
+            })}
         </div>
     )
 }
