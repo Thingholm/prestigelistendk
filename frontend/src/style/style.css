@@ -2583,6 +2583,104 @@ footer p {
   width: 80%;
 }
 
+.seasons-page {
+  padding: 20px 5%;
+}
+.seasons-page .select-container {
+  margin: 20px 0px;
+}
+.seasons-page .select-container label {
+  margin-bottom: 5px;
+  display: block;
+}
+.seasons-page .select-container select {
+  display: block;
+  font-size: 16px;
+  width: 200px;
+}
+.seasons-page .table {
+  overflow-x: hidden;
+}
+.seasons-page .table .row-content {
+  display: flex;
+  width: 100%;
+}
+.seasons-page .table .table-row {
+  flex-direction: column;
+}
+.seasons-page .table .table-header p:nth-of-type(1),
+.seasons-page .table .table-row .row-content p:nth-of-type(1) {
+  width: 10%;
+}
+.seasons-page .table .table-header p:nth-of-type(2),
+.seasons-page .table .table-row .row-content p:nth-of-type(2) {
+  width: 10%;
+}
+.seasons-page .table .table-header p:nth-of-type(3),
+.seasons-page .table .table-row .row-content p:nth-of-type(3) {
+  width: 30%;
+}
+.seasons-page .table .table-header p:nth-of-type(4),
+.seasons-page .table .table-row .row-content p:nth-of-type(4) {
+  width: 35%;
+}
+.seasons-page .table .table-header p:nth-of-type(5),
+.seasons-page .table .table-row .row-content p:nth-of-type(5) {
+  width: 10%;
+}
+.seasons-page .table .table-header p:nth-of-type(6),
+.seasons-page .table .table-row .row-content p:nth-of-type(6) {
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+.seasons-page .table .table-header p:nth-of-type(6) svg,
+.seasons-page .table .table-row .row-content p:nth-of-type(6) svg {
+  margin-top: 2px;
+  transition: 0.2s;
+}
+.seasons-page .table .table-header p:nth-of-type(6):hover,
+.seasons-page .table .table-row .row-content p:nth-of-type(6):hover {
+  background-color: #ededed;
+  cursor: pointer;
+}
+.seasons-page .table .table-header p:nth-of-type(6).show svg,
+.seasons-page .table .table-row .row-content p:nth-of-type(6).show svg {
+  transform: rotate(-180deg);
+}
+.seasons-page .table .row-expansion {
+  position: relative;
+  max-height: 0px;
+  overflow-x: hidden;
+  transition: 0.3s;
+  width: 100%;
+}
+.seasons-page .table .row-expansion h4 {
+  margin: 10px 0px 5px;
+  position: relative;
+}
+.seasons-page .table .row-expansion h4,
+.seasons-page .table .row-expansion p {
+  left: 20%;
+}
+.seasons-page .table .row-expansion p {
+  position: relative;
+  margin-bottom: 2px;
+}
+.seasons-page .table .row-expansion p span {
+  position: absolute;
+  right: calc(100% + 10px);
+  opacity: 0.5;
+}
+.seasons-page .table .row-expansion p:last-of-type {
+  margin-bottom: 10px;
+}
+.seasons-page .table .row-expansion.show {
+  max-height: 500px;
+}
+
 @media only screen and (max-width: 1350px) {
   .hero-section .hero-ranking-container {
     width: 50%;
@@ -3871,6 +3969,38 @@ footer p {
   .landing-movements-section .table {
     padding-bottom: 14px;
   }
+  .seasons-page .select-container select {
+    font-size: 14px;
+    width: 120px;
+  }
+  .seasons-page .table .table-header p:nth-of-type(1),
+  .seasons-page .table .table-row .row-content p:nth-of-type(1) {
+    width: 15%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(2),
+  .seasons-page .table .table-row .row-content p:nth-of-type(2) {
+    display: none;
+  }
+  .seasons-page .table .table-header p:nth-of-type(3),
+  .seasons-page .table .table-row .row-content p:nth-of-type(3) {
+    width: 35%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(4),
+  .seasons-page .table .table-row .row-content p:nth-of-type(4) {
+    width: 35%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(5),
+  .seasons-page .table .table-row .row-content p:nth-of-type(5) {
+    width: 10%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(6),
+  .seasons-page .table .table-row .row-content p:nth-of-type(6) {
+    width: 5%;
+  }
+  .seasons-page .table .row-expansion h4,
+  .seasons-page .table .row-expansion p {
+    left: 15%;
+  }
 }
 @media screen and (max-width: 600px) {
   .rider-all-results-container {
@@ -4064,6 +4194,46 @@ footer p {
   }
   ul.slick-dots {
     bottom: -40px;
+  }
+  .seasons-page .table .table-header p,
+  .seasons-page .table .table-row .row-content p {
+    padding: 5px 0px;
+  }
+  .seasons-page .table .table-header p:nth-of-type(1),
+  .seasons-page .table .table-row .row-content p:nth-of-type(1) {
+    width: 15%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(1) span,
+  .seasons-page .table .table-row .row-content p:nth-of-type(1) span {
+    display: none;
+  }
+  .seasons-page .table .table-header p:nth-of-type(1) span.media,
+  .seasons-page .table .table-row .row-content p:nth-of-type(1) span.media {
+    display: inline;
+  }
+  .seasons-page .table .table-header p:nth-of-type(2),
+  .seasons-page .table .table-row .row-content p:nth-of-type(2) {
+    display: none;
+  }
+  .seasons-page .table .table-header p:nth-of-type(3),
+  .seasons-page .table .table-row .row-content p:nth-of-type(3) {
+    width: 60%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(3) .media,
+  .seasons-page .table .table-row .row-content p:nth-of-type(3) .media {
+    display: inline-block;
+  }
+  .seasons-page .table .table-header p:nth-of-type(4),
+  .seasons-page .table .table-row .row-content p:nth-of-type(4) {
+    display: none;
+  }
+  .seasons-page .table .table-header p:nth-of-type(5),
+  .seasons-page .table .table-row .row-content p:nth-of-type(5) {
+    width: 10%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(6),
+  .seasons-page .table .table-row .row-content p:nth-of-type(6) {
+    width: 15%;
   }
 }
 @media screen and (max-width: 470px) {

@@ -303,3 +303,20 @@ export const useCalendar = () => {
 
     return query
 }
+
+export const useResultsByYear = (year) => {
+    const queryClient = useQueryClient({})
+
+    const query = useQuery({
+        queryKey: ['resultsByYear', year],
+        queryFn: async () => {
+            let { data: resultsByYear } = await supabase
+                .from('results')
+                .select('*')
+                .eq('year', year);
+            return resultsByYear
+        }
+    })
+
+    return query
+}
