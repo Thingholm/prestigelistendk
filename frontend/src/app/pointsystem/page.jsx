@@ -1,11 +1,8 @@
-"use client"
-
 import { nationEncoder } from "@/components/stringHandler";
 import { nationFlagCodes } from "@/utils/nationFlagCodes";
 import { supabase } from "@/utils/supabase"
 import Link from "next/link";
 import "flag-icons/css/flag-icons.min.css";
-import { usePointSystem, usePointSystemGrouped } from "@/utils/queryHooks";
 
 async function fetchData() {
     let { data: pointSystem } = await supabase
@@ -49,55 +46,43 @@ function generateTableRows(r) {
     )
 }
 
-export default function Page() {
+export default async function Page() {
+    const data = await fetchData();
+    const pointSystem = data.pointSystem;
+    const pointSystemGrouped = data.pointSystemGrouped.reduce((acc, obj) => {
+        const key = obj["category"];
+        const curGroup = acc[key] ?? [];
 
-    const pointSystemQuery = usePointSystem();
-    const pointSystemGroupedQuery = usePointSystemGrouped();
-
-    let pointSystem;
-    let pointSystemGrouped;
-    if (pointSystemGroupedQuery?.isSuccess && pointSystemQuery?.isSuccess) {
-        pointSystemGrouped = pointSystemGroupedQuery.data.reduce((acc, obj) => {
-            const key = obj["category"];
-            const curGroup = acc[key] ?? [];
-
-            return { ...acc, [key]: [...curGroup, obj] }
-        }, {});
-
-        pointSystem = pointSystemQuery.data
-    }
-
+        return { ...acc, [key]: [...curGroup, obj] }
+    }, {});
 
     return (
         <div className="table-content">
             {["Tour de France", "Grand Tour", "Monument", "WTT A", "WTC A", "WTT B", "WTC B", "WTT C", "WTC C", "WTT D", "WTC D", "VM", "VM ITT", "EM", "EM ITT", "Nationale mesterskaber A", "Nationale mesterskaber i ITT A", "Nationale mesterskaber B", "Nationale mesterskaber i ITT B", "OL", "OL ITT", "OL (amatør)", "OL ITT (amatør)", "Parløb"].map((category, index) => {
+                return (
+                    <div key={index}>
+                        <div className="table-row category-row">
+                            <h4>{category}</h4>
+                        </div>
 
-                if (pointSystem && pointSystemGrouped) {
-                    return (
-                        <div key={index}>
-                            <div className="table-row category-row">
-                                <h4>{category}</h4>
-                            </div>
+                        <div className="race-points-list">
+                            {pointSystemGrouped[category].sort((a, b) => a.id - b.id).map(r => {
+                                return (
+                                    <p key={r.id} className="result-and-points-container"><span>{r.result}</span><span>{r.points}p</span></p>
+                                )
+                            })}
+                        </div>
 
-                            <div className="race-points-list">
-                                {pointSystemGrouped[category].sort((a, b) => a.id - b.id).map(r => {
-                                    return (
-                                        <p key={r.id} className="result-and-points-container"><span>{r.result}</span><span>{r.points}p</span></p>
-                                    )
+                        <div className="category-content">
+                            <div className="race-name-list">
+                                {pointSystem.filter(i => i.category == category).filter(i => !i.raceName.includes("plads") && !i.raceName.includes("sølv") && !i.raceName.includes("bronze") && !i.raceName.includes("etape") && !i.raceName.includes("trøje")).sort((a, b) => b.active - a.active).map(r => {
+                                    return generateTableRows(r)
                                 })}
                             </div>
 
-                            <div className="category-content">
-                                <div className="race-name-list">
-                                    {pointSystem.filter(i => i.category == category).filter(i => !i.raceName.includes("plads") && !i.raceName.includes("sølv") && !i.raceName.includes("bronze") && !i.raceName.includes("etape") && !i.raceName.includes("trøje")).sort((a, b) => b.active - a.active).map(r => {
-                                        return generateTableRows(r)
-                                    })}
-                                </div>
-
-                            </div>
                         </div>
-                    )
-                }
+                    </div>
+                )
             })}
         </div>
     )

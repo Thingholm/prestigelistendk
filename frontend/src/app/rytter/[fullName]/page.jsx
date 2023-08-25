@@ -1,5 +1,6 @@
 "use client";
 
+import { supabase } from "@/utils/supabase";
 import RiderProfile from "./RiderProfile";
 import RiderResults from "./RiderResults";
 import RiderEvolution from "./RiderEvolution";
@@ -10,7 +11,6 @@ import { stringEncoder, stringDecoder } from "@/components/stringHandler";
 import numerizeRanking from "@/utils/numerizeRanking";
 import { useAlltimeRanking, usePointSystem, useResultsByRider, useRiderRankingPerYear } from "@/utils/queryHooks";
 import Loading from "./loading";
-import CompareFloat from "./CompareFloat";
 
 export default function Page(props) {
     const name = stringDecoder(props.fullName);
@@ -79,8 +79,6 @@ export default function Page(props) {
                         <RiderRankingFromNation riderNation={riderData.nation} rider={name} />
                         <RiderRankingFromYear riderBirthYear={riderData.birthYear} rider={name} />
                     </div>}
-
-                    <CompareFloat rider={riderData} />
                 </div> :
                 <Loading riderName={props.fullName} />}
         </div>

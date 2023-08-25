@@ -75,7 +75,6 @@ h6 {
 
 h2 {
   font-size: 35px;
-  position: relative;
 }
 
 html {
@@ -875,7 +874,7 @@ footer p {
 
 .landing-movements-section {
   position: relative;
-  padding: 20px 5% 0px;
+  padding: 20px 5% 50px;
   background-color: #ffffff;
 }
 .landing-movements-section .table {
@@ -1614,53 +1613,6 @@ footer p {
   border-radius: 15px;
 }
 
-.float {
-  position: fixed;
-  right: 2%;
-  bottom: 2vw;
-  border-radius: 99px;
-  border: none;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  box-shadow: 0px 0px 15px 0px rgba(17, 17, 17, 0.3137254902);
-  transition: 0.4s;
-}
-.float svg {
-  height: 20px;
-  width: auto;
-}
-.float span {
-  opacity: 0;
-  transition: 0.3s;
-  position: absolute;
-  right: calc(100% + 10px);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0px;
-  background-color: rgba(17, 17, 17, 0.8862745098);
-  color: #ffffff;
-  padding: 5px 0px;
-  border-radius: 5px;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.float:hover {
-  cursor: pointer;
-  background-color: #fee402;
-}
-.float:hover span {
-  opacity: 1;
-  width: 200px;
-  padding: 5px 10px;
-}
-.float:active {
-  transform: scale(0.95);
-}
-
 .inactive {
   text-decoration: line-through;
   opacity: 0.5;
@@ -2296,437 +2248,11 @@ footer p {
   opacity: 0.5;
 }
 
-.calendar-container {
-  width: 90%;
-  margin: 40px 5%;
-  position: relative;
-}
-.calendar-container .scroll-to-view-btn {
-  position: absolute;
-  background-color: #ededed;
-  border: none;
-  right: 0px;
-  padding: 8px 16px;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-.calendar-container .scroll-to-view-btn:hover {
-  cursor: pointer;
-  transform: scale(1.05);
-}
-.calendar-container .scroll-to-view-btn:active {
-  transform: scale(0.95);
-}
-.calendar-container .calendar-shadow-container {
-  position: relative;
-}
-.calendar-container .calendar-shadow-container::after, .calendar-container .calendar-shadow-container::before {
-  content: "";
-  display: block;
-  position: absolute;
-  height: 100%;
-  width: 10px;
-  right: 0px;
-  top: 0px;
-  background: linear-gradient(-90deg, rgba(0, 0, 0, 0.781), transparent);
-  opacity: 0.08;
-}
-.calendar-container .calendar-shadow-container::before {
-  left: 0px;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.781), transparent);
-}
-.calendar-container .calendar {
-  overflow-x: auto;
-  overflow-y: hidden;
-  height: 376px;
-  padding: 0px 15px;
-  position: relative;
-  scroll-behavior: smooth;
-}
-.calendar-container .calendar::-webkit-scrollbar {
-  height: 7px;
-}
-.calendar-container .calendar::-webkit-scrollbar-track {
-  background: #ededed;
-}
-.calendar-container .calendar::-webkit-scrollbar-thumb {
-  background: #fdca00;
-  border-radius: 50px;
-}
-.calendar-container .calendar::-webkit-scrollbar-thumb:hover {
-  background: #fee402;
-}
-.calendar-container .calendar .months {
+.calendar {
   display: flex;
 }
-.calendar-container .calendar .months .month {
-  position: relative;
-}
-.calendar-container .calendar .months .month > p {
-  font-size: 24px;
-  font-weight: 600;
-  padding: 10px 0px;
-}
-.calendar-container .calendar .months .month .date {
+.calendar .month ul {
   display: flex;
-}
-.calendar-container .calendar .months .month .date li {
-  position: relative;
-}
-.calendar-container .calendar .months .month .date li::after {
-  display: block;
-  content: "";
-  position: absolute;
-  width: 1px;
-  height: calc(300px + 100%);
-  top: 0px;
-  left: -3px;
-  background-color: #ededed;
-}
-.calendar-container .calendar .current-date-line {
-  content: "";
-  position: absolute;
-  display: block;
-  height: 100%;
-  width: 2px;
-  background-color: #fdca00;
-  top: 0px;
-}
-.calendar-container .calendar .races {
-  display: flex;
-  position: relative;
-  height: 250px;
-}
-.calendar-container .calendar .races > li {
-  position: absolute;
-  padding: 5px;
-  border-radius: 5px;
-}
-.calendar-container .calendar .races > li .tooltip {
-  opacity: 0;
-  transition: 0.2s;
-  position: absolute;
-  transform: scaleY(0) translateX(-50%) scaleX(0);
-  top: 0px;
-  padding-top: 5px;
-  left: 50%;
-  z-index: 1;
-  max-width: 80vw;
-}
-.calendar-container .calendar .races > li .tooltip.top {
-  top: auto;
-  bottom: 100%;
-  padding-top: 0px;
-  padding-bottom: 5px;
-}
-.calendar-container .calendar .races > li .tooltip div {
-  background-color: #1c1c1c;
-  padding: 10px 20px;
-  display: block;
-  border-radius: 5px;
-  text-align: center;
-}
-.calendar-container .calendar .races > li .tooltip div h4,
-.calendar-container .calendar .races > li .tooltip div h5 {
-  white-space: nowrap;
-}
-.calendar-container .calendar .races > li .tooltip div h5 {
-  opacity: 0.5;
-  margin-top: 2px;
-}
-.calendar-container .calendar .races > li .tooltip * {
-  color: white;
-}
-.calendar-container .calendar .races > li .tooltip ul {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-.calendar-container .calendar .races > li .tooltip ul li {
-  display: flex;
-  flex-direction: column;
-  margin: 5px 10px;
-}
-.calendar-container .calendar .races > li .tooltip ul li span:last-of-type {
-  opacity: 0.6;
-}
-.calendar-container .calendar .races > li:hover .tooltip {
-  opacity: 1;
-  transform: scaleY(1) translateX(-50%) scaleX(1);
-  top: 100%;
-  z-index: 1;
-}
-.calendar-container .calendar .races > li:hover .tooltip.top {
-  top: auto;
-}
-
-.compare-page-container {
-  margin: 20px 0px;
-  text-align: center;
-}
-.compare-page-container h2 {
-  margin-bottom: 10px;
-}
-.compare-page-container .compare-search-container {
-  position: relative;
-  z-index: 2;
-  margin-bottom: 20px;
-}
-.compare-page-container .compare-search-container input {
-  width: 50%;
-  background-color: #ededed;
-  border: none;
-  padding: 8px 16px;
-  font-size: 16px;
-  border-radius: 5px;
-  z-index: 1;
-}
-.compare-page-container .compare-search-container input:disabled {
-  opacity: 0.5;
-}
-.compare-page-container .compare-search-container ul {
-  position: absolute;
-  width: calc(50% + 32px);
-  left: calc(25% - 16px);
-  top: 50%;
-  background-color: #dbdbdb;
-  z-index: -1;
-  max-height: 60vh;
-  overflow-y: scroll;
-  border-radius: 5px;
-  display: none;
-}
-.compare-page-container .compare-search-container ul.show {
-  display: block;
-}
-.compare-page-container .compare-search-container ul::-webkit-scrollbar {
-  width: 5px;
-}
-.compare-page-container .compare-search-container ul::-webkit-scrollbar-track {
-  background: #ededed;
-  border-radius: 50px;
-}
-.compare-page-container .compare-search-container ul::-webkit-scrollbar-thumb {
-  background: #fdca00;
-  border-radius: 50px;
-}
-.compare-page-container .compare-search-container ul::-webkit-scrollbar-thumb:hover {
-  background: #fee402;
-}
-.compare-page-container .compare-search-container ul li {
-  text-align: start;
-  padding: 8px 16px;
-}
-.compare-page-container .compare-search-container ul li:not(:last-of-type) {
-  border-bottom: 1px solid rgba(124, 124, 124, 0.1764705882);
-}
-.compare-page-container .compare-search-container ul li:first-of-type {
-  margin-top: 20px;
-}
-.compare-page-container .compare-search-container ul li:hover {
-  background-color: #ececec;
-  cursor: pointer;
-}
-.compare-page-container .comparison-container h4 {
-  margin-top: 20px;
-}
-.compare-page-container .comparison-container p:not(:last-of-type) {
-  padding: 3px 0px;
-  border-bottom: 1px solid #ededed;
-}
-.compare-page-container .comparison-container > div {
-  margin: 0px 5%;
-}
-.compare-page-container .comparison-container > div > div {
-  display: flex;
-  justify-content: center;
-}
-.compare-page-container .comparison-container > div > div > div {
-  width: 25%;
-}
-.compare-page-container .comparison-container > div > div > div:first-of-type {
-  text-align: right;
-}
-.compare-page-container .comparison-container > div > div > div:last-of-type {
-  text-align: left;
-}
-.compare-page-container .comparison-container > div > div > div .higher {
-  color: rgb(120, 201, 0);
-}
-.compare-page-container .comparison-container > div > div > div .lower {
-  color: rgb(240, 0, 0);
-}
-.compare-page-container .comparison-container .greatest-results-comparison {
-  background-color: #ededed;
-  padding: 1px 0px 20px;
-  border-radius: 25px;
-  margin-top: 20px;
-}
-.compare-page-container .comparison-container .greatest-results-comparison > div > div:first-of-type, .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type {
-  width: 35%;
-}
-.compare-page-container .comparison-container .greatest-results-comparison > div > div p {
-  font-weight: 600;
-  margin-bottom: 5px;
-  border-bottom: none;
-}
-.compare-page-container .comparison-container .greatest-results-comparison > div > div p span {
-  font-weight: 400;
-  opacity: 0.5;
-  margin: 0px 3px;
-}
-.compare-page-container .comparison-container .comparison-rider-profile > div > div > div {
-  display: flex;
-  flex-direction: column;
-}
-.compare-page-container .comparison-container .comparison-rider-profile > div > div > div img {
-  border-radius: 15px;
-  margin-bottom: 10px;
-}
-.compare-page-container .comparison-container .comparison-rider-profile > div > div > div button {
-  background-color: unset;
-  border: none;
-  margin-bottom: 10px;
-  width: 200px;
-  transition: 0.2s;
-  opacity: 0.5;
-}
-.compare-page-container .comparison-container .comparison-rider-profile > div > div > div button:hover {
-  color: red;
-  cursor: pointer;
-  opacity: 1;
-}
-.compare-page-container .comparison-container .comparison-rider-profile > div > div > div button svg {
-  margin-right: 5px;
-  height: 15px;
-  width: 15px;
-  position: relative;
-  top: 3px;
-}
-.compare-page-container .comparison-container .comparison-rider-profile > div > div:first-of-type div {
-  align-items: end;
-}
-.compare-page-container .comparison-container .comparison-rider-profile > div > div:last-of-type div {
-  align-items: start;
-}
-.compare-page-container .comparison-container .chart-container {
-  margin: 0px 0%;
-  padding: 0px 5%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-}
-.compare-page-container .comparison-container .chart-container h3 {
-  margin-top: 20px;
-}
-.compare-page-container .comparison-container .chart-container p {
-  margin-bottom: 10px;
-}
-.compare-page-container .comparison-container .chart-container div {
-  position: relative;
-  width: 80%;
-}
-
-.seasons-page {
-  padding: 20px 5%;
-}
-.seasons-page .select-container {
-  margin: 20px 0px;
-}
-.seasons-page .select-container label {
-  margin-bottom: 5px;
-  display: block;
-}
-.seasons-page .select-container select {
-  display: block;
-  font-size: 16px;
-  width: 200px;
-}
-.seasons-page .table {
-  overflow-x: hidden;
-}
-.seasons-page .table .row-content {
-  display: flex;
-  width: 100%;
-}
-.seasons-page .table .table-row {
-  flex-direction: column;
-}
-.seasons-page .table .table-header p:nth-of-type(1),
-.seasons-page .table .table-row .row-content p:nth-of-type(1) {
-  width: 10%;
-}
-.seasons-page .table .table-header p:nth-of-type(2),
-.seasons-page .table .table-row .row-content p:nth-of-type(2) {
-  width: 10%;
-}
-.seasons-page .table .table-header p:nth-of-type(3),
-.seasons-page .table .table-row .row-content p:nth-of-type(3) {
-  width: 30%;
-}
-.seasons-page .table .table-header p:nth-of-type(4),
-.seasons-page .table .table-row .row-content p:nth-of-type(4) {
-  width: 35%;
-}
-.seasons-page .table .table-header p:nth-of-type(5),
-.seasons-page .table .table-row .row-content p:nth-of-type(5) {
-  width: 10%;
-}
-.seasons-page .table .table-header p:nth-of-type(6),
-.seasons-page .table .table-row .row-content p:nth-of-type(6) {
-  width: 5%;
-  display: flex;
-  justify-content: center;
-  border-radius: 5px;
-  transition: 0.2s;
-}
-.seasons-page .table .table-header p:nth-of-type(6) svg,
-.seasons-page .table .table-row .row-content p:nth-of-type(6) svg {
-  margin-top: 2px;
-  transition: 0.2s;
-}
-.seasons-page .table .table-header p:nth-of-type(6):hover,
-.seasons-page .table .table-row .row-content p:nth-of-type(6):hover {
-  background-color: #ededed;
-  cursor: pointer;
-}
-.seasons-page .table .table-header p:nth-of-type(6).show svg,
-.seasons-page .table .table-row .row-content p:nth-of-type(6).show svg {
-  transform: rotate(-180deg);
-}
-.seasons-page .table .row-expansion {
-  position: relative;
-  max-height: 0px;
-  overflow-x: hidden;
-  transition: 0.3s;
-  width: 100%;
-}
-.seasons-page .table .row-expansion h4 {
-  margin: 10px 0px 5px;
-  position: relative;
-}
-.seasons-page .table .row-expansion h4,
-.seasons-page .table .row-expansion p {
-  left: 20%;
-}
-.seasons-page .table .row-expansion p {
-  position: relative;
-  margin-bottom: 2px;
-}
-.seasons-page .table .row-expansion p span {
-  position: absolute;
-  right: calc(100% + 10px);
-  opacity: 0.5;
-}
-.seasons-page .table .row-expansion p:last-of-type {
-  margin-bottom: 10px;
-}
-.seasons-page .table .row-expansion.show {
-  max-height: 500px;
 }
 
 @media only screen and (max-width: 1350px) {
@@ -2764,12 +2290,6 @@ footer p {
 @media screen and (max-width: 1200px) {
   p {
     font-size: 14px;
-  }
-  .calendar li {
-    font-size: 14px;
-  }
-  .calendar .month p {
-    font-size: 20px !important;
   }
   .table::after {
     bottom: -20px;
@@ -3465,57 +2985,6 @@ footer p {
   .nation-rankings-container.nations-ranked .table-wrapper .table {
     padding-bottom: 0px;
   }
-  .compare-page-container .compare-search-container input {
-    width: 90%;
-  }
-  .compare-page-container .compare-search-container ul {
-    width: calc(90% + 32px);
-    left: calc(5% - 16px);
-  }
-  .compare-page-container .comparison-container > div > div > div {
-    width: 33%;
-  }
-  .compare-page-container .comparison-container .greatest-results-comparison > div {
-    flex-direction: column;
-    align-items: center;
-  }
-  .compare-page-container .comparison-container .greatest-results-comparison > div > div {
-    text-align: left !important;
-  }
-  .compare-page-container .comparison-container .greatest-results-comparison > div > div:first-of-type, .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type {
-    width: -moz-fit-content;
-    width: fit-content;
-  }
-  .compare-page-container .comparison-container .greatest-results-comparison > div > div .media {
-    display: inline-block;
-  }
-  .compare-page-container .comparison-container .greatest-results-comparison > div > div h4 {
-    margin-bottom: 10px;
-  }
-  .compare-page-container .comparison-container .greatest-results-comparison > div > div p {
-    text-align: left;
-    position: relative;
-  }
-  .compare-page-container .comparison-container .greatest-results-comparison > div > div p span {
-    position: absolute;
-    right: calc(100% + 5px);
-  }
-  .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type span {
-    display: none;
-  }
-  .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type .media {
-    display: inline-block;
-  }
-  .compare-page-container .comparison-container .chart-container div {
-    width: 100%;
-  }
-  .compare-page-container .comparison-rider-profile > div > div > div img {
-    height: 150px;
-    width: 150px;
-  }
-  .compare-page-container .comparison-rider-profile > div > div > div button {
-    width: 150px !important;
-  }
 }
 @media screen and (max-width: 717px) {
   .landing-nations-ranking-section .table {
@@ -4023,44 +3492,6 @@ footer p {
   .landing-movements-section .table {
     padding-bottom: 14px;
   }
-  .seasons-page .select-container select {
-    font-size: 14px;
-    width: 120px;
-  }
-  .seasons-page .table .table-header p:nth-of-type(1),
-  .seasons-page .table .table-row .row-content p:nth-of-type(1) {
-    width: 15%;
-  }
-  .seasons-page .table .table-header p:nth-of-type(2),
-  .seasons-page .table .table-row .row-content p:nth-of-type(2) {
-    display: none;
-  }
-  .seasons-page .table .table-header p:nth-of-type(3),
-  .seasons-page .table .table-row .row-content p:nth-of-type(3) {
-    width: 35%;
-  }
-  .seasons-page .table .table-header p:nth-of-type(4),
-  .seasons-page .table .table-row .row-content p:nth-of-type(4) {
-    width: 35%;
-  }
-  .seasons-page .table .table-header p:nth-of-type(5),
-  .seasons-page .table .table-row .row-content p:nth-of-type(5) {
-    width: 10%;
-  }
-  .seasons-page .table .table-header p:nth-of-type(6),
-  .seasons-page .table .table-row .row-content p:nth-of-type(6) {
-    width: 5%;
-  }
-  .seasons-page .table .row-expansion h4,
-  .seasons-page .table .row-expansion p {
-    left: 15%;
-  }
-  .calendar-container .calendar .months .month p {
-    font-size: 18px !important;
-  }
-  .tooltip {
-    display: none !important;
-  }
 }
 @media screen and (max-width: 600px) {
   .rider-all-results-container {
@@ -4093,40 +3524,6 @@ footer p {
     display: block;
     left: -3px;
     position: relative;
-  }
-  .compare-page-container .comparison-container > div > div > div:first-of-type {
-    text-align: start;
-    width: 25%;
-  }
-  .compare-page-container .comparison-container > div > div > div:nth-of-type(2) {
-    text-overflow: clip;
-    white-space: nowrap;
-    width: 50%;
-  }
-  .compare-page-container .comparison-container > div > div > div:last-of-type {
-    text-align: end;
-    width: 25%;
-  }
-  .compare-page-container .comparison-container .rider-info {
-    white-space: nowrap;
-  }
-  .compare-page-container .comparison-container .rider-info > div > div > div > p:nth-of-type(2) {
-    display: none;
-  }
-  .compare-page-container .comparison-container .comparison-rider-profile > div > div:first-of-type {
-    width: 50%;
-  }
-  .compare-page-container .comparison-container .comparison-rider-profile > div > div:first-of-type div {
-    align-items: start;
-  }
-  .compare-page-container .comparison-container .comparison-rider-profile > div > div:last-of-type {
-    width: 50%;
-  }
-  .compare-page-container .comparison-container .comparison-rider-profile > div > div:last-of-type div {
-    align-items: end;
-  }
-  .compare-page-container .comparison-container .comparison-rider-profile > div > div:nth-last-of-type(2) {
-    width: 0%;
   }
 }
 @media screen and (max-width: 500px) {
@@ -4254,49 +3651,6 @@ footer p {
   }
   ul.slick-dots {
     bottom: -40px;
-  }
-  .seasons-page .table .table-header p,
-  .seasons-page .table .table-row .row-content p {
-    padding: 5px 0px;
-  }
-  .seasons-page .table .table-header p:nth-of-type(1),
-  .seasons-page .table .table-row .row-content p:nth-of-type(1) {
-    width: 15%;
-  }
-  .seasons-page .table .table-header p:nth-of-type(1) span,
-  .seasons-page .table .table-row .row-content p:nth-of-type(1) span {
-    display: none;
-  }
-  .seasons-page .table .table-header p:nth-of-type(1) span.media,
-  .seasons-page .table .table-row .row-content p:nth-of-type(1) span.media {
-    display: inline;
-  }
-  .seasons-page .table .table-header p:nth-of-type(2),
-  .seasons-page .table .table-row .row-content p:nth-of-type(2) {
-    display: none;
-  }
-  .seasons-page .table .table-header p:nth-of-type(3),
-  .seasons-page .table .table-row .row-content p:nth-of-type(3) {
-    width: 60%;
-  }
-  .seasons-page .table .table-header p:nth-of-type(3) .media,
-  .seasons-page .table .table-row .row-content p:nth-of-type(3) .media {
-    display: inline-block;
-  }
-  .seasons-page .table .table-header p:nth-of-type(4),
-  .seasons-page .table .table-row .row-content p:nth-of-type(4) {
-    display: none;
-  }
-  .seasons-page .table .table-header p:nth-of-type(5),
-  .seasons-page .table .table-row .row-content p:nth-of-type(5) {
-    width: 10%;
-  }
-  .seasons-page .table .table-header p:nth-of-type(6),
-  .seasons-page .table .table-row .row-content p:nth-of-type(6) {
-    width: 15%;
-  }
-  .calendar li {
-    font-size: 13px;
   }
 }
 @media screen and (max-width: 470px) {
@@ -4428,14 +3782,6 @@ footer p {
   }
   .rider-all-results-container > div .btn-container:last-of-type button {
     right: -10px;
-  }
-  .compare-page-container .comparison-container .comparison-rider-profile > div > div img {
-    width: 90%;
-    aspect-ratio: 1;
-    height: auto;
-  }
-  .compare-page-container .comparison-container .comparison-rider-profile > div > div button {
-    width: 90% !important;
   }
 }
 @media screen and (max-width: 375px) {

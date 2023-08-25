@@ -24,21 +24,11 @@ export default function Navbar() {
                                 <li><a href="/#stoerste-saesoner">Største individuelle sæsoner</a></li>
                                 <li><a href="/#stoerste-alltime-hvert-aar">Største all time hvert år</a></li>
                                 <li><Link href="/listen?yearFilterRange=single">Største pr. årgang</Link></li>
-                                <li><Link href={"/saesoner"}>Største hvert år</Link></li>
                             </ul>
                         </div>
                     </li>
-                    <li className="nav-item-with-dropdown">
-                        <p className="dropdown-button">Mere <span><IoChevronDownOutline className="down-icon" /></span></p>
-                        <div className="nav-dropdown-menu">
-                            <ul>
-                                <li><Link href="https://docs.google.com/spreadsheets/d/14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8/edit#gid=1348170666" target="_blank">Rådata</Link></li>
-                                <li><Link href="https://docs.google.com/spreadsheets/d/14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8/edit#gid=768297916" target="_blank">Quiz</Link></li>
-                                <li><Link href={"/kalender"}>Løbskalender</Link></li>
-                                <li><Link href={"/sammenlign"}>Sammenlign ryttere</Link></li>
-                            </ul>
-                        </div>
-                    </li>
+                    <li><Link href="https://docs.google.com/spreadsheets/d/14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8/edit#gid=1348170666" target="_blank">Rådata</Link></li>
+                    <li><Link href="https://docs.google.com/spreadsheets/d/14JS3ioc3jaFTDX2wuHRniE3g3S2yyg1QkfJ7FiNgAE8/edit#gid=768297916" target="_blank">Quiz</Link></li>
 
                 </ul>
             </nav>

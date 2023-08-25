@@ -14,7 +14,6 @@ import Link from "next/link"
 import { ImQuotesRight } from "../../node_modules/react-icons/im"
 import Top10AlltimeEachYear from "./Top10AlltimeEachYear"
 import TwitterEmbed from "./TwitterEmbed"
-import Calendar from "./kalender/Calendar"
 
 export default function Home() {
   return (
@@ -47,8 +46,6 @@ export default function Home() {
         <h3>Seneste pointgivende resultater <SectionLinkButton link={baseUrl + "/#seneste-resultater"} sectionName={"Pointgivende resultater seneste måned"} /></h3>
         <RankingMovements />
       </div>
-
-      <Calendar />
 
       <div className="landing-split-rankings-section">
         <div className="active-ranking-table-container split-ranking-table">

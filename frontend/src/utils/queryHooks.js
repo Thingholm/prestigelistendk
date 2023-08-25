@@ -1,6 +1,6 @@
 "use client";
 
-import { useQueryClient, useQuery, useQueries } from '@tanstack/react-query';
+import { useQueryClient, useQuery } from '@tanstack/react-query';
 import { supabase } from './supabase';
 
 
@@ -211,7 +211,7 @@ export const useResultsByRiders = (riders) => {
             let { data: results } = await supabase
                 .from('results')
                 .select('*')
-                .in('rider', riders);
+                .in('rider', riders)
             return results
         }
     })
@@ -290,29 +290,12 @@ export const useCalendar = () => {
     const queryClient = useQueryClient({})
 
     const query = useQuery({
-        queryKey: ['calendar'],
+        queryKey: ['calendar',],
         queryFn: async () => {
             let { data: calendar } = await supabase
-                .from('calendarForShow')
+                .from('calendar')
                 .select('*');
             return calendar
-        }
-    })
-
-    return query
-}
-
-export const useResultsByYear = (year) => {
-    const queryClient = useQueryClient({})
-
-    const query = useQuery({
-        queryKey: ['resultsByYear', year],
-        queryFn: async () => {
-            let { data: resultsByYear } = await supabase
-                .from('results')
-                .select('*')
-                .eq('year', year);
-            return resultsByYear
         }
     })
 
