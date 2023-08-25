@@ -1,4 +1,5 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 export default function SeasonSelect() {
     const pathname = usePathname();
@@ -6,6 +7,12 @@ export default function SeasonSelect() {
     const searchParams = useSearchParams().toString().replace("=", "")
 
     const year = new Date().getFullYear()
+
+    useEffect(() => {
+        if (!searchParams) {
+            router.push(pathname + "?" + year)
+        }
+    }, [])
 
     return (
         <div className="select-container">

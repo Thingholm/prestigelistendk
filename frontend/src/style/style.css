@@ -75,6 +75,7 @@ h6 {
 
 h2 {
   font-size: 35px;
+  position: relative;
 }
 
 html {
@@ -874,7 +875,7 @@ footer p {
 
 .landing-movements-section {
   position: relative;
-  padding: 20px 5% 50px;
+  padding: 20px 5% 0px;
   background-color: #ffffff;
 }
 .landing-movements-section .table {
@@ -1611,6 +1612,53 @@ footer p {
   width: 100%;
   height: 40vh;
   border-radius: 15px;
+}
+
+.float {
+  position: fixed;
+  right: 2%;
+  bottom: 2vw;
+  border-radius: 99px;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  box-shadow: 0px 0px 15px 0px rgba(17, 17, 17, 0.3137254902);
+  transition: 0.4s;
+}
+.float svg {
+  height: 20px;
+  width: auto;
+}
+.float span {
+  opacity: 0;
+  transition: 0.3s;
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0px;
+  background-color: rgba(17, 17, 17, 0.8862745098);
+  color: #ffffff;
+  padding: 5px 0px;
+  border-radius: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.float:hover {
+  cursor: pointer;
+  background-color: #fee402;
+}
+.float:hover span {
+  opacity: 1;
+  width: 200px;
+  padding: 5px 10px;
+}
+.float:active {
+  transform: scale(0.95);
 }
 
 .inactive {
@@ -2716,6 +2764,12 @@ footer p {
 @media screen and (max-width: 1200px) {
   p {
     font-size: 14px;
+  }
+  .calendar li {
+    font-size: 14px;
+  }
+  .calendar .month p {
+    font-size: 20px !important;
   }
   .table::after {
     bottom: -20px;
@@ -4001,6 +4055,12 @@ footer p {
   .seasons-page .table .row-expansion p {
     left: 15%;
   }
+  .calendar-container .calendar .months .month p {
+    font-size: 18px !important;
+  }
+  .tooltip {
+    display: none !important;
+  }
 }
 @media screen and (max-width: 600px) {
   .rider-all-results-container {
@@ -4234,6 +4294,9 @@ footer p {
   .seasons-page .table .table-header p:nth-of-type(6),
   .seasons-page .table .table-row .row-content p:nth-of-type(6) {
     width: 15%;
+  }
+  .calendar li {
+    font-size: 13px;
   }
 }
 @media screen and (max-width: 470px) {

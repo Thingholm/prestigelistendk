@@ -5,6 +5,8 @@ import { calendarDates } from "./calendarDates";
 import { raceColors } from "./raceColors";
 import { racesWithDarkTextArr } from "./raceColors";
 import { useEffect, useRef } from "react";
+import SectionLinkButton from "@/components/SectionLinkButton";
+import { baseUrl } from "@/utils/baseUrl";
 
 function formatDates(prevMonth, prevDate) {
     let year = "2023";
@@ -51,7 +53,7 @@ export default function Calendar() {
 
     return (
         <div className="calendar-container">
-            <h3>Løbskalender</h3>
+            <h3>Løbskalender <SectionLinkButton link={baseUrl + "/kalender"} sectionName={"Løbskalender"} /></h3>
             <button className="scroll-to-view-btn" onClick={() => handleScrollClick()}>Scroll til i dag</button>
             <div className="calendar-shadow-container">
                 <div className="calendar" ref={currentDateRef}>

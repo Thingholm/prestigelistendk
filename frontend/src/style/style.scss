@@ -92,6 +92,7 @@ h6 {
 
 h2 {
     font-size: 35px;
+    position: relative;
 }
 
 // --------------------- GLOBAL STYLING -------------------------
@@ -1066,7 +1067,7 @@ footer {
 
 .landing-movements-section {
     position: relative;
-    padding: 20px 5% 50px;
+    padding: 20px 5% 0px;
     background-color: $white-primary;
 
     .table {
@@ -1985,6 +1986,58 @@ footer {
             height: 40vh;
             border-radius: 15px;
         }
+    }
+}
+
+.float {
+    position: fixed;
+    right: 2%;
+    bottom: 2vw;
+    border-radius: 99px;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    box-shadow: 0px 0px 15px 0px #11111150;
+    transition: 0.4s;
+
+    svg {
+        height: 20px;
+        width: auto;
+    }
+
+    span {
+        opacity: 0;
+        transition: 0.3s;
+        position: absolute;
+        right: calc(100% + 10px);
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0px;
+        background-color: #111111e2;
+        color: $white-primary;
+        padding: 5px 0px;
+        border-radius: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: $yellow-primary;
+
+        span {
+            opacity: 1;
+            width: 200px;
+            padding: 5px 10px;
+        }
+    }
+
+    &:active {
+        transform: scale(0.95);
     }
 }
 
@@ -3478,6 +3531,14 @@ footer {
 @media screen and (max-width: 1200px) {
     p {
         font-size: 14px;
+    }
+
+    .calendar li {
+        font-size: 14px;
+    }
+
+    .calendar .month p {
+        font-size: 20px !important;
     }
 
     .table {
@@ -5490,6 +5551,22 @@ footer {
             }
         }
     }
+
+    .calendar-container {
+        .calendar {
+            .months {
+                .month {
+                    p {
+                        font-size: 18px !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .tooltip {
+        display: none !important;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -5866,6 +5943,16 @@ footer {
                     }
                 }
             }
+        }
+    }
+
+    .calendar li {
+        font-size: 13px;
+    }
+
+    .calendar-container {
+        .calendar {
+            .months {}
         }
     }
 }

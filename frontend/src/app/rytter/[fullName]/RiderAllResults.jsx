@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import { useState } from "react";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
 
@@ -94,7 +95,7 @@ export default function RiderAllResults(props) {
 
                     return (
                         <div key={key} className="rider-result-year-container">
-                            <h4>{key}</h4>
+                            <h4><Link href={"saesoner?" + key}>{key}</Link></h4>
                             <div>
                                 <div>
                                     <h5>Resultater</h5>

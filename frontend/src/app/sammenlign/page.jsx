@@ -11,6 +11,8 @@ import RiderImage from "../rytter/[fullName]/RiderImage";
 import RadarChart from "./RadarChart";
 import AgeChart from "./AgeChart";
 import { IoRemoveCircleOutline } from "react-icons/io5";
+import SectionLinkButton from "@/components/SectionLinkButton";
+import { baseUrl } from "@/utils/baseUrl";
 // import RadarChart from "./RadarChart";
 
 function searchOutputClickHandler(state, rider, pathname) {
@@ -168,7 +170,7 @@ export default function Page({ searchParams }) {
 
     return (
         <div className="compare-page-container">
-            <h2>Sammenlign ryttere</h2>
+            <h2>Sammenlign ryttere <SectionLinkButton link={baseUrl + "/sammenlign"} sectionName={"Sammenlign ryttere"} /></h2>
             <div className="compare-search-container" ref={containerRef}>
                 <input type="text" name="compare-rider-nation-search" id="compare-search-input" placeholder="Søg efter ryttere..." value={searchInput} onChange={e => setSearchInput(e.target.value)} disabled={Object.keys(searchParams).length > 1} />
                 <ul className={searchBarActive ? "search-output-container show" : "search-output-container"}>
