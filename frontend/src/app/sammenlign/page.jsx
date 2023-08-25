@@ -174,9 +174,9 @@ export default function Page({ searchParams }) {
             <div className="compare-search-container" ref={containerRef}>
                 <input type="text" name="compare-rider-nation-search" id="compare-search-input" placeholder="Søg efter ryttere..." value={searchInput} onChange={e => setSearchInput(e.target.value)} disabled={Object.keys(searchParams).length > 1} />
                 <ul className={searchBarActive ? "search-output-container show" : "search-output-container"}>
-                    {alltimeRankingQuery.isSuccess && Object.keys(searchParams).length < 2 && searchInput.length > 2 && alltimeRankingQuery.data.filter(i => i.fullName.toLowerCase().includes(searchInput.toLowerCase())).sort((a, b) => b.points - a.points).map(rider => {
+                    {alltimeRankingQuery.isSuccess && Object.keys(searchParams).length < 2 && searchInput.length > 2 && alltimeRankingQuery.data.filter(i => i.fullName.toLowerCase().includes(searchInput.toLowerCase())).sort((a, b) => b.points - a.points).map((rider, index) => {
                         return (
-                            <li onClick={() => setPathnameState(e => searchOutputClickHandler(chosenRiders, rider.fullName, pathname))}>{rider.fullName}</li>
+                            <li key={index} onClick={() => setPathnameState(e => searchOutputClickHandler(chosenRiders, rider.fullName, pathname))}>{rider.fullName}</li>
                         )
                     })}
                 </ul>
@@ -351,18 +351,18 @@ export default function Page({ searchParams }) {
                     <div className="comparison-flex-container">
                         <div>
                             <h4 className="media">{ridersObject[0]?.riderData.fullName}</h4>
-                            {greatestResults[0].slice(0, 10).map(i => {
+                            {greatestResults[0].slice(0, 10).map((i, k) => {
                                 return (
-                                    <p><span>{i.amount > 1 && i.amount + "x"}</span> {i.race.split(" (")[0]}</p>
+                                    <p key={k}><span>{i.amount > 1 && i.amount + "x"}</span> {i.race.split(" (")[0]}</p>
                                 )
                             })}
                         </div>
                         <div></div>
                         <div>
                             <h4 className="media">{ridersObject[1]?.riderData.fullName}</h4>
-                            {greatestResults[1].slice(0, 10).map(i => {
+                            {greatestResults[1].slice(0, 10).map((i, k) => {
                                 return (
-                                    <p><span className="media">{i.amount > 1 && i.amount + "x"}</span>{i.race.split(" (")[0]} <span>{i.amount > 1 && "x" + i.amount}</span></p>
+                                    <p key={k}><span className="media">{i.amount > 1 && i.amount + "x"}</span>{i.race.split(" (")[0]} <span>{i.amount > 1 && "x" + i.amount}</span></p>
                                 )
                             })}
                         </div>

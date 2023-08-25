@@ -68,7 +68,7 @@ export default function Calendar() {
                                                 {calendarDates[month].map((date, index) => {
                                                     const formattedDate = formatDates((monthIndex + 1).toString(), (index + 1).toString())
                                                     return (
-                                                        <li style={{ width: "100px" }}>{index + 1}</li>
+                                                        <li key={index} style={{ width: "100px" }}>{index + 1}</li>
                                                     )
                                                 })}
                                             </ul>
@@ -80,7 +80,7 @@ export default function Calendar() {
                             {currentDate && <div className="current-date-line" style={{ left: currentDate * 100 + 10 + currentHour * 4 + "px" }}></div>}
 
                             <ul className="races">
-                                {calendarQuery.data.map(race => {
+                                {calendarQuery.data.map((race, k) => {
                                     const startDate = datesArr.indexOf((race["start"]).toString());
                                     const length = (datesArr.indexOf((race["end"]).toString()) + 1) - startDate;
                                     const color = raceColors[race.race]
@@ -91,7 +91,7 @@ export default function Calendar() {
 
                                     if (race.yIndex < 3) {
                                         return (
-                                            <li style={{ left: startDate * 100 + "px", width: length * 100 - 15 + "px", top: race.yIndex * 80 + "px", backgroundColor: color, color: textColor }}>
+                                            <li key={k} style={{ left: startDate * 100 + "px", width: length * 100 - 15 + "px", top: race.yIndex * 80 + "px", backgroundColor: color, color: textColor }}>
                                                 {race.race.split(" (")[0]}
 
                                                 <div className={race.yIndex < 2 ? "tooltip" : "tooltip top"}>
@@ -99,9 +99,9 @@ export default function Calendar() {
                                                         <h4>{race.race.split(" (")[0]}</h4>
                                                         <h5>{race.category}</h5>
                                                         <ul>
-                                                            {pointsObject.map(p => {
+                                                            {pointsObject.map((p, k1) => {
                                                                 return (
-                                                                    <li><span>{p.result}</span><span>{p.points}p</span></li>
+                                                                    <li key={k1}><span>{p.result}</span><span>{p.points}p</span></li>
                                                                 )
                                                             })}
                                                         </ul>
@@ -111,7 +111,7 @@ export default function Calendar() {
                                         )
                                     } else if (race.yIndex == 3) {
                                         return (
-                                            <li style={{ left: startDate * 100 + "px", width: length * 100 - 15 + "px", top: race.yIndex * 80 + "px", backgroundColor: "#2c2c2c", color: "#ffffff" }}>...</li>
+                                            <li key={k} style={{ left: startDate * 100 + "px", width: length * 100 - 15 + "px", top: race.yIndex * 80 + "px", backgroundColor: "#2c2c2c", color: "#ffffff" }}>...</li>
                                         )
                                     }
 
