@@ -66,11 +66,11 @@ export default function SeasonSection() {
                                 return (
                                     <div key={index} className="table-row">
                                         <div className="row-content">
-                                            <p>{i.currentRank}</p>
-                                            <p>{riderNationData.currentRank}</p>
+                                            <p>{i.currentRank.toLocaleString("de-DE")}</p>
+                                            <p>{riderNationData.currentRank.toLocaleString("de-DE")}</p>
                                             <p className='table-name-reversed'><Link href={"/rytter/" + stringEncoder(i.fullName)}><span className={'media fi fi-' + riderNationData.nationFlagCode}></span><span className='last-name'>{nameArr[1]} </span><span className='first-name'>{nameArr[0]}</span></Link></p>
                                             <p><Link href={"/nation/" + nationEncoder(riderNationData.nation)}><span className={"fi fi-" + riderNationData.nationFlagCode}></span>{riderNationData.nation}</Link></p>
-                                            <p>{i.points}</p>
+                                            <p>{i.points.toLocaleString("de-DE")}</p>
                                             <p onClick={() => setResultsSpoiler(e => e == index ? null : index)} className={index == resultsSpoiler ? "expand-btn show" : "expand-btn"}><IoChevronDownOutline /></p>
                                         </div>
                                         <div className={index == resultsSpoiler ? "row-expansion show" : "row-expansion"}>

@@ -3,13 +3,14 @@
 import { nationEncoder, stringDecoder, stringEncoder } from "@/components/stringHandler";
 import { useAlltimeRanking, usePointSystem, useResultsByRider, useResultsByRiders } from "@/utils/queryHooks"
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import numerizeRanking from "@/utils/numerizeRanking";
 import RiderImage from "../rytter/[fullName]/RiderImage";
 import RadarChart from "./RadarChart";
 import AgeChart from "./AgeChart";
 import { IoRemoveCircleOutline } from "react-icons/io5";
+import "@/../node_modules/flag-icons/css/flag-icons.min.css";
 import SectionLinkButton from "@/components/SectionLinkButton";
 import { baseUrl } from "@/utils/baseUrl";
 // import RadarChart from "./RadarChart";
@@ -34,22 +35,33 @@ function higherOrLowerHandler(cur, other) {
     }
 }
 
-export default function Page({ searchParams }) {
+export default function Page() {
     const pathname = usePathname();
     const router = useRouter();
+    const searchParamsHook = useSearchParams();
 
     const containerRef = useRef(null);
 
     const [searchInput, setSearchInput] = useState("");
     const [pathnameState, setPathnameState] = useState("");
     const [chosenRiders, setChosenRiders] = useState([]);
-    const [searchBarActive, setSearchBarActive] = useState(false)
+    const [searchBarActive, setSearchBarActive] = useState(false);
+    const [searchParams, setSearchParams] = useState();
 
     const alltimeRankingQuery = useAlltimeRanking();
     const pointSystemQuery = usePointSystem();
 
+    useEffect(() => {
+        console.log("RERENDER")
+    })
 
-    const resultsByRidersQuery = useResultsByRiders(Object.keys(searchParams).map(i => alltimeRankingQuery?.data?.find(j => j.fullName.toLowerCase() == stringDecoder(i).toLowerCase()).fullName))
+    useEffect(() => {
+        setSearchParams(searchParamsHook.toString().replace(/=/g, "").split("&"))
+    }, [searchParamsHook])
+
+
+    const resultsByRidersQuery = useResultsByRiders(searchParams?.map(i => alltimeRankingQuery?.data?.find(j => j.fullName.toLowerCase() == stringDecoder(i).toLowerCase())?.fullName))
+
 
     useEffect(() => {
         if (pathnameState) {
@@ -61,7 +73,7 @@ export default function Page({ searchParams }) {
 
     useEffect(() => {
         if (searchParams) {
-            setChosenRiders(Object.keys(searchParams).map(i => stringDecoder(i)))
+            setChosenRiders(searchParams.map(i => stringDecoder(i)))
         }
         console.log("searchParams")
         console.log(searchParams)
@@ -86,8 +98,8 @@ export default function Page({ searchParams }) {
     let greatestResults;
     const riderNoR = [0, 0]
 
-    if (Object.keys(searchParams)?.length == 2 && resultsByRidersQuery?.isSuccess && pointSystemQuery.isSuccess) {
-        const riderNames = Object.keys(searchParams).map(i => stringDecoder(i));
+    if (searchParams?.length == 2 && resultsByRidersQuery?.isSuccess && pointSystemQuery.isSuccess) {
+        const riderNames = searchParams.map(i => stringDecoder(i));
         var rider1Results = resultsByRidersQuery.data.filter(i => i.rider.toLowerCase() == riderNames[0].toLowerCase())
         var rider2Results = resultsByRidersQuery.data.filter(i => i.rider.toLowerCase() == riderNames[1].toLowerCase())
 
@@ -175,9 +187,9 @@ export default function Page({ searchParams }) {
         <div className="compare-page-container">
             <h2>Sammenlign ryttere <SectionLinkButton link={baseUrl + "/sammenlign"} sectionName={"Sammenlign ryttere"} /></h2>
             <div className="compare-search-container" ref={containerRef}>
-                <input type="text" name="compare-rider-nation-search" id="compare-search-input" placeholder="Søg efter ryttere..." value={searchInput} onChange={e => setSearchInput(e.target.value)} disabled={Object.keys(searchParams).length > 1} />
+                <input type="text" name="compare-rider-nation-search" id="compare-search-input" placeholder="Søg efter ryttere..." value={searchInput} onChange={e => setSearchInput(e.target.value)} disabled={searchParams?.length > 1} />
                 <ul className={searchBarActive ? "search-output-container show" : "search-output-container"}>
-                    {alltimeRankingQuery.isSuccess && Object.keys(searchParams).length < 2 && searchInput.length > 2 && alltimeRankingQuery.data.filter(i => i.fullName.toLowerCase().includes(searchInput.toLowerCase())).sort((a, b) => b.points - a.points).map((rider, index) => {
+                    {alltimeRankingQuery.isSuccess && searchParams?.length < 2 && searchInput.length > 2 && alltimeRankingQuery.data.filter(i => i.fullName.toLowerCase().includes(searchInput.toLowerCase())).sort((a, b) => b.points - a.points).map((rider, index) => {
                         return (
                             <li key={index} onClick={() => setPathnameState(e => searchOutputClickHandler(chosenRiders, rider.fullName, pathname))}>{rider.fullName}</li>
                         )
@@ -251,15 +263,15 @@ export default function Page({ searchParams }) {
                             {ridersObject[0] &&
                                 <div>
                                     <p className={higherOrLowerHandler(ridersObject[0].riderData.points, ridersObject[1].riderData.points)}>
-                                        {ridersObject[0].riderData.points}
+                                        {ridersObject[0].riderData.points.toLocaleString("de-DE")}
                                     </p>
                                     <p className={higherOrLowerHandler(ridersObject[1].riderData.currentRank, ridersObject[0].riderData.currentRank)}>
-                                        {ridersObject[0].riderData.currentRank}
+                                        {ridersObject[0].riderData.currentRank.toLocaleString("de-DE")}
                                     </p>
                                     <p className={ridersObject[1].riderData.active && ridersObject[0].riderData.active && higherOrLowerHandler(ridersObject[1].riderData.active ? ridersObject[1].activeRanking.find(i => i.fullName.toLowerCase() == ridersObject[1].riderData.fullName.toLowerCase()).currentRank : "-", ridersObject[1].riderData.active ? ridersObject[1].activeRanking.find(i => i.fullName == ridersObject[0].riderData.fullName).currentRank : "-")}>
-                                        {ridersObject[0].riderData.active ? ridersObject[0].activeRanking.find(i => i.fullName == ridersObject[0].riderData.fullName).currentRank : "-"}</p>
+                                        {ridersObject[0].riderData.active ? ridersObject[0].activeRanking.find(i => i.fullName == ridersObject[0].riderData.fullName).currentRank.toLocaleString("de-DE") : "-"}</p>
                                     <p className={higherOrLowerHandler(riderNoR[0], riderNoR[1])}>
-                                        {riderNoR[0]}
+                                        {riderNoR[0].toLocaleString("de-DE")}
                                     </p>
                                 </div>
                             }
@@ -276,15 +288,15 @@ export default function Page({ searchParams }) {
                             {ridersObject[1] &&
                                 <div>
                                     <p className={higherOrLowerHandler(ridersObject[1].riderData.points, ridersObject[0].riderData.points)}>
-                                        {ridersObject[1].riderData.points}
+                                        {ridersObject[1].riderData.points.toLocaleString("de-DE")}
                                     </p>
                                     <p className={higherOrLowerHandler(ridersObject[0].riderData.currentRank, ridersObject[1].riderData.currentRank)}>
-                                        {ridersObject[1].riderData.currentRank}
+                                        {ridersObject[1].riderData.currentRank.toLocaleString("de-DE")}
                                     </p>
                                     <p className={ridersObject[1].riderData.active && ridersObject[0].riderData.active && higherOrLowerHandler(ridersObject[0].riderData.active ? ridersObject[0].activeRanking.find(i => i.fullName.toLowerCase() == ridersObject[0].riderData.fullName.toLowerCase()).currentRank : "-", ridersObject[0].riderData.active ? ridersObject[0].activeRanking.find(i => i.fullName.toLowerCase() == ridersObject[1].riderData.fullName.toLowerCase()).currentRank : "-")}>
-                                        {ridersObject[1].riderData.active ? ridersObject[1].activeRanking.find(i => i.fullName.toLowerCase() == ridersObject[1].riderData.fullName.toLowerCase()).currentRank : "-"}</p>
+                                        {ridersObject[1].riderData.active ? ridersObject[1].activeRanking.find(i => i.fullName.toLowerCase() == ridersObject[1].riderData.fullName.toLowerCase()).currentRank.toLocaleString("de-DE") : "-"}</p>
                                     <p className={higherOrLowerHandler(riderNoR[1], riderNoR[0])}>
-                                        {riderNoR[1]}
+                                        {riderNoR[1].toLocaleString("de-DE")}
                                     </p>
                                 </div>
                             }
@@ -299,19 +311,19 @@ export default function Page({ searchParams }) {
                             {ridersObject[0] &&
                                 <div>
                                     <p className={higherOrLowerHandler(ridersObject[0].groupedPoints["Klassement"], ridersObject[1].groupedPoints["Klassement"])}>
-                                        {ridersObject[0].groupedPoints["Klassement"]}
+                                        {ridersObject[0].groupedPoints["Klassement"].toLocaleString("de-DE")}
                                     </p>
                                     <p className={higherOrLowerHandler(ridersObject[0].groupedPoints["Etapesejre"], ridersObject[1].groupedPoints["Etapesejre"])}>
-                                        {ridersObject[0].groupedPoints["Etapesejre"]}
+                                        {ridersObject[0].groupedPoints["Etapesejre"].toLocaleString("de-DE")}
                                     </p>
                                     <p className={higherOrLowerHandler(ridersObject[0].groupedPoints["Endagsløb"], ridersObject[1].groupedPoints["Endagsløb"])}>
-                                        {ridersObject[0].groupedPoints["Endagsløb"]}
+                                        {ridersObject[0].groupedPoints["Endagsløb"].toLocaleString("de-DE")}
                                     </p>
                                     <p className={higherOrLowerHandler(ridersObject[0].groupedPoints["Mesterskaber"], ridersObject[1].groupedPoints["Mesterskaber"])}>
-                                        {ridersObject[0].groupedPoints["Mesterskaber"]}
+                                        {ridersObject[0].groupedPoints["Mesterskaber"].toLocaleString("de-DE")}
                                     </p>
                                     <p className={higherOrLowerHandler(ridersObject[0].groupedPoints["Bjerg-/pointtrøje"], ridersObject[1].groupedPoints["Bjerg-/pointtrøje"])}>
-                                        {ridersObject[0].groupedPoints["Bjerg-/pointtrøje"]}
+                                        {ridersObject[0].groupedPoints["Bjerg-/pointtrøje"].toLocaleString("de-DE")}
                                     </p>
                                 </div>
                             }
@@ -329,19 +341,19 @@ export default function Page({ searchParams }) {
                             {ridersObject[1] &&
                                 <div>
                                     <p className={higherOrLowerHandler(ridersObject[1].groupedPoints["Klassement"], ridersObject[0].groupedPoints["Klassement"])}>
-                                        {ridersObject[1].groupedPoints["Klassement"]}
+                                        {ridersObject[1].groupedPoints["Klassement"].toLocaleString("de-DE")}
                                     </p>
                                     <p className={higherOrLowerHandler(ridersObject[1].groupedPoints["Etapesejre"], ridersObject[0].groupedPoints["Etapesejre"])}>
-                                        {ridersObject[1].groupedPoints["Etapesejre"]}
+                                        {ridersObject[1].groupedPoints["Etapesejre"].toLocaleString("de-DE")}
                                     </p>
                                     <p className={higherOrLowerHandler(ridersObject[1].groupedPoints["Endagsløb"], ridersObject[0].groupedPoints["Endagsløb"])}>
-                                        {ridersObject[1].groupedPoints["Endagsløb"]}
+                                        {ridersObject[1].groupedPoints["Endagsløb"].toLocaleString("de-DE")}
                                     </p>
                                     <p className={higherOrLowerHandler(ridersObject[1].groupedPoints["Mesterskaber"], ridersObject[0].groupedPoints["Mesterskaber"])}>
-                                        {ridersObject[1].groupedPoints["Mesterskaber"]}
+                                        {ridersObject[1].groupedPoints["Mesterskaber"].toLocaleString("de-DE")}
                                     </p>
                                     <p className={higherOrLowerHandler(ridersObject[1].groupedPoints["Bjerg-/pointtrøje"], ridersObject[0].groupedPoints["Bjerg-/pointtrøje"])}>
-                                        {ridersObject[1].groupedPoints["Bjerg-/pointtrøje"]}
+                                        {ridersObject[1].groupedPoints["Bjerg-/pointtrøje"].toLocaleString("de-DE")}
                                     </p>
                                 </div>
                             }
