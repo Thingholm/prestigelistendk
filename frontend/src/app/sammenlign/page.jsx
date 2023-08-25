@@ -5,7 +5,6 @@ import { useAlltimeRanking, usePointSystem, useResultsByRider, useResultsByRider
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import ComparisonRiderProfile from "./ComparisonRiderProfile";
 import numerizeRanking from "@/utils/numerizeRanking";
 import RiderImage from "../rytter/[fullName]/RiderImage";
 import RadarChart from "./RadarChart";
