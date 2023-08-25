@@ -5,7 +5,6 @@ import { useAlltimeRanking, usePointSystem, useResultsByRider, useResultsByRider
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import ComparisonRiderProfile from "./ComparisonRiderProfile";
 import numerizeRanking from "@/utils/numerizeRanking";
 import RiderImage from "../rytter/[fullName]/RiderImage";
 import RadarChart from "./RadarChart";
@@ -56,12 +55,14 @@ export default function Page({ searchParams }) {
         if (pathnameState) {
             router.push(pathnameState)
         }
+        console.log(pathnameState)
     }, [pathnameState])
 
     useEffect(() => {
         if (searchParams) {
             setChosenRiders(Object.keys(searchParams).map(i => stringDecoder(i)))
         }
+        console.log(searchParams)
     }, [searchParams])
 
     useEffect(() => {
