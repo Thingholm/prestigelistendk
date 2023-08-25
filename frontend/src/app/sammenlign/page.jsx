@@ -55,14 +55,14 @@ export default function Page({ searchParams }) {
         if (pathnameState) {
             router.push(pathnameState)
         }
-        console.log(pathnameState)
+        console.log("pathname" + pathnameState)
     }, [pathnameState])
 
     useEffect(() => {
         if (searchParams) {
             setChosenRiders(Object.keys(searchParams).map(i => stringDecoder(i)))
         }
-        console.log(searchParams)
+        console.log("searchParams" + searchParams)
     }, [searchParams])
 
     useEffect(() => {
