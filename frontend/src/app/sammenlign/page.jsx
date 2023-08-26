@@ -191,7 +191,7 @@ export default function Page() {
                 <ul className={searchBarActive ? "search-output-container show" : "search-output-container"}>
                     {alltimeRankingQuery.isSuccess && searchParams?.length < 2 && searchInput.length > 2 && alltimeRankingQuery.data.filter(i => i.fullName.toLowerCase().includes(searchInput.toLowerCase())).sort((a, b) => b.points - a.points).map((rider, index) => {
                         return (
-                            <li key={index} onClick={() => setPathnameState(e => searchOutputClickHandler(chosenRiders, rider.fullName, pathname))}>{rider.fullName}</li>
+                            <li key={index} onClick={() => { setPathnameState(e => searchOutputClickHandler(chosenRiders, rider.fullName, pathname)); setSearchInput("") }}>{rider.fullName}</li>
                         )
                     })}
                 </ul>

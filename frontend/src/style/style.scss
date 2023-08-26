@@ -4746,7 +4746,7 @@ footer {
 
                         &:first-of-type,
                         &:last-of-type {
-                            width: fit-content;
+                            width: 80%;
                         }
 
                         .media {
@@ -4755,11 +4755,13 @@ footer {
 
                         h4 {
                             margin-bottom: 10px;
+                            margin-left: 20px;
                         }
 
                         p {
                             text-align: left;
                             position: relative;
+                            margin-left: 20px;
 
                             span {
                                 position: absolute;
@@ -5650,6 +5652,20 @@ footer {
                     display: none;
                 }
 
+                >div {
+                    >div {
+
+                        &:first-of-type,
+                        &:last-of-type {
+                            width: 40%;
+                        }
+
+                        &:nth-of-type(2) {
+                            width: 20%;
+                        }
+                    }
+                }
+
                 white-space: nowrap;
             }
 
@@ -5948,12 +5964,6 @@ footer {
 
     .calendar li {
         font-size: 13px;
-    }
-
-    .calendar-container {
-        .calendar {
-            .months {}
-        }
     }
 }
 

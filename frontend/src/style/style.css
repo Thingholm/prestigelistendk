@@ -3483,18 +3483,19 @@ footer p {
     text-align: left !important;
   }
   .compare-page-container .comparison-container .greatest-results-comparison > div > div:first-of-type, .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type {
-    width: -moz-fit-content;
-    width: fit-content;
+    width: 80%;
   }
   .compare-page-container .comparison-container .greatest-results-comparison > div > div .media {
     display: inline-block;
   }
   .compare-page-container .comparison-container .greatest-results-comparison > div > div h4 {
     margin-bottom: 10px;
+    margin-left: 20px;
   }
   .compare-page-container .comparison-container .greatest-results-comparison > div > div p {
     text-align: left;
     position: relative;
+    margin-left: 20px;
   }
   .compare-page-container .comparison-container .greatest-results-comparison > div > div p span {
     position: absolute;
@@ -4112,6 +4113,12 @@ footer p {
   }
   .compare-page-container .comparison-container .rider-info > div > div > div > p:nth-of-type(2) {
     display: none;
+  }
+  .compare-page-container .comparison-container .rider-info > div > div:first-of-type, .compare-page-container .comparison-container .rider-info > div > div:last-of-type {
+    width: 40%;
+  }
+  .compare-page-container .comparison-container .rider-info > div > div:nth-of-type(2) {
+    width: 20%;
   }
   .compare-page-container .comparison-container .comparison-rider-profile > div > div:first-of-type {
     width: 50%;
