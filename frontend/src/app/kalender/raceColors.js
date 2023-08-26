@@ -74,7 +74,7 @@ export const raceColors = {
     "VM i linjeløb": "#ededed",
     "VM i enkeltstart": "#ededed",
     "EM i linjeløb": "#004494",
-    "Renewi Tour (>2004)": "#78BE20",
+    "Benelux Tour (>2004)": "#78BE20",
     "Vuelta a España": "#da291c",
     "Deutschland Tour (1949-2004 + >2017)": "#e01021",
     "Grand Prix Cycliste de Montreal": "#ccd93e",
