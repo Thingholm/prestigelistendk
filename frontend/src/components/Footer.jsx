@@ -17,6 +17,7 @@ export default function Footer() {
                         <li><a href="/#stoerste-saesoner">Største individuelle sæsoner</a></li>
                         <li><a href="/#stoerste-alltime-hvert-aar">Største all time hvert år</a></li>
                         <li><Link href="/listen?yearFilterRange=single">Største pr. årgang</Link></li>
+                        <li><Link href="/saesoner">Største hvert år</Link></li>
                     </ul>
                 </div>
 
@@ -28,6 +29,12 @@ export default function Footer() {
                         </li>
                         <li>
                             <Link href="/pointsystem">Pointsystemet</Link>
+                        </li>
+                        <li>
+                            <Link href="/kalender">Løbskalender</Link>
+                        </li>
+                        <li>
+                            <Link href="/sammenlign">Sammenlign ryttere</Link>
                         </li>
                     </ul>
                 </div>

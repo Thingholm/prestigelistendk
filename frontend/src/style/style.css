@@ -1,6 +1,5 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -20,23 +19,18 @@
   box-shadow: 0px 0px 1px 1px rgba(90, 90, 90, 0.1098039216);
   margin-right: 5px;
 }
-
 .custom-flag.f-verden {
   background-image: url(../style/flags/wc.svg);
 }
-
 .custom-flag.f-ol {
   background-image: url(../style/flags/ol.svg);
 }
-
 .custom-flag.f-sovjet {
   background-image: url(../style/flags/su.svg);
 }
-
 .custom-flag.f-ddr {
   background-image: url(../style/flags/dd.svg);
 }
-
 .custom-flag:before {
   content: " ";
 }
@@ -81,6 +75,7 @@ h6 {
 
 h2 {
   font-size: 35px;
+  position: relative;
 }
 
 html {
@@ -103,7 +98,6 @@ h3 {
   position: relative;
   display: inline-block;
 }
-
 h3.light {
   color: #ffffff;
 }
@@ -111,10 +105,9 @@ h3.light {
 a {
   color: #1c1c1c;
 }
-
 a:hover {
   -webkit-text-decoration: underline 2px solid #1c1c1c;
-  text-decoration: underline 2px solid #1c1c1c;
+          text-decoration: underline 2px solid #1c1c1c;
 }
 
 .no-underline a:hover {
@@ -125,7 +118,7 @@ input[type=radio] {
   position: relative;
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
+       appearance: none;
   /* For iOS to remove gradient background */
   background-color: #fff;
   margin: 0;
@@ -136,15 +129,12 @@ input[type=radio] {
   margin-right: 10px;
   margin-left: 5px;
 }
-
 input[type=radio]:hover {
   cursor: pointer;
 }
-
 input[type=radio]:checked::before {
   transform: scale(1);
 }
-
 input[type=radio]::before {
   display: flex;
   position: absolute;
@@ -163,28 +153,22 @@ input[type=radio]::before {
   display: flex;
   align-items: center;
 }
-
 .ranking-link-header .copy-to-clipboard-hover-container {
   top: 3px;
 }
-
 .ranking-link-header.light a {
   color: #ffffff;
 }
-
 .ranking-link-header.light a svg g g {
   fill: #ffffff;
 }
-
 .ranking-link-header.light a::after {
   background-color: #ffffff;
 }
-
 .ranking-link-header a {
   color: #1c1c1c;
   position: relative;
 }
-
 .ranking-link-header a::after {
   position: absolute;
   content: "";
@@ -196,11 +180,9 @@ input[type=radio]::before {
   left: 0px;
   transition: 0.2s ease-out;
 }
-
 .ranking-link-header a:hover::after {
   width: 100%;
 }
-
 .ranking-link-header a svg {
   position: relative;
   top: 5px;
@@ -212,39 +194,31 @@ input[type=radio]::before {
   position: relative;
   overflow-y: hidden;
 }
-
 .table:has(.overflow-button.clicked) {
   overflow-y: overlay;
 }
-
 .table:has(.overflow-button.clicked)::before {
   display: none;
 }
-
 .table::-webkit-scrollbar {
   width: 5px;
 }
-
 .table::-webkit-scrollbar-track {
   background: #ededed;
   border-radius: 50px;
 }
-
 .table::-webkit-scrollbar-thumb {
   background: #fdca00;
   border-radius: 50px;
 }
-
 .table::-webkit-scrollbar-thumb:hover {
   background: #fee402;
 }
-
 .table .table-header,
 .table .table-row {
   display: flex;
   width: 100%;
 }
-
 .table .table-header {
   border-bottom: 2px solid black;
   align-items: end;
@@ -255,70 +229,55 @@ input[type=radio]::before {
   z-index: 1;
   overflow-x: hidden;
 }
-
 .table .table-content {
   position: relative;
   height: 100%;
 }
-
 .table .table-content::-webkit-scrollbar {
   height: 5px;
 }
-
 .table .table-content::-webkit-scrollbar-track {
   background: #ededed;
   border-radius: 50px;
 }
-
 .table .table-content::-webkit-scrollbar-thumb {
   background: #fdca00;
   border-radius: 50px;
 }
-
 .table .table-content::-webkit-scrollbar-thumb:hover {
   background: #fee402;
 }
-
 .table .table-content .table-row {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 3px 0px;
 }
-
 .table .table-content .table-row p a {
   color: #111111;
 }
-
 .table .table-content .table-row p a:hover {
   -webkit-text-decoration: underline solid 2px #111111;
-  text-decoration: underline solid 2px #111111;
+          text-decoration: underline solid 2px #111111;
 }
-
 .table .table-content .table-row:first-of-type {
   margin-top: 5px;
 }
-
 .table .table-content .table-row:last-of-type {
   margin-bottom: 10px;
 }
-
 .table .table-content .table-row.highlight {
   background-color: #ededed;
 }
-
 .table .table-content .table-row.highlight p a,
 .table .table-content .table-row.highlight p {
   font-weight: 600;
 }
-
 .table .table-content .table-row.highlight span.last-name {
   font-weight: 700 !important;
 }
-
 .table .table-content .table-row .table-name-reversed span.last-name {
   text-transform: uppercase;
   font-weight: 600;
 }
-
 .table:has(.overflow-button)::before {
   position: absolute;
   content: "";
@@ -345,17 +304,14 @@ input[type=radio]::before {
   overflow: hidden;
   transition: 0.2s;
 }
-
 .overflow-button:hover {
   cursor: pointer;
   background-color: #232323;
   transform: scale(1.01);
 }
-
 .overflow-button:active {
   transform: scale(0.99);
 }
-
 .overflow-button.clicked {
   display: none;
 }
@@ -379,7 +335,6 @@ input[type=radio]::before {
   font-weight: 600;
   transition: 0.3s;
 }
-
 .table-bottom-button.vertical {
   position: absolute;
   right: 10px;
@@ -389,12 +344,10 @@ input[type=radio]::before {
   padding: 0px 7px;
   height: calc(100% - 15px);
 }
-
 .table-bottom-button:hover {
   cursor: pointer;
   background-color: #fdca00;
 }
-
 .table-bottom-button:active {
   transform: scale(0.98);
 }
@@ -403,16 +356,13 @@ input[type=radio]::before {
   0% {
     transform: translateX(-100%);
   }
-
   100% {
     transform: translateX(250%);
   }
 }
-
 .loading-table-skeleton-container {
   overflow: hidden !important;
 }
-
 .loading-table-skeleton-container .table-row span {
   display: block;
   position: relative;
@@ -422,7 +372,6 @@ input[type=radio]::before {
   height: 20px;
   border-radius: 5px;
 }
-
 .loading-table-skeleton-container .table-row span::after {
   animation: skeleton 2s infinite;
   position: absolute;
@@ -448,7 +397,6 @@ input[type=radio]::before {
 .table-shadow-container {
   position: relative;
 }
-
 .table-shadow-container::after {
   position: absolute;
   content: "";
@@ -465,17 +413,14 @@ h3:hover .copy-to-clipboard-button,
 h2:hover .copy-to-clipboard-button {
   background-color: #ededed;
 }
-
 h3:hover .copy-to-clipboard-button.dark,
 h2:hover .copy-to-clipboard-button.dark {
   background-color: #383838;
 }
-
 h3:hover .copy-to-clipboard-button.grey,
 h2:hover .copy-to-clipboard-button.grey {
   background-color: #cfcfcf;
 }
-
 h3:hover .copy-to-clipboard-button svg,
 h2:hover .copy-to-clipboard-button svg {
   opacity: 0.6;
@@ -503,16 +448,13 @@ h2 .copy-to-clipboard-hover-container {
   align-items: center;
   transition: 0.2s;
 }
-
 .copy-to-clipboard-button:hover {
   cursor: pointer;
 }
-
 .copy-to-clipboard-button:active {
   transform: scale(0.95);
   opacity: 0.5;
 }
-
 .copy-to-clipboard-button svg {
   transition: 0.2s;
   position: relative;
@@ -544,15 +486,12 @@ header {
   padding: 0px 5%;
   z-index: 10;
 }
-
 header.mobile-header {
   display: none;
 }
-
 header a {
   position: relative;
 }
-
 header a::after {
   content: "";
   display: block;
@@ -562,25 +501,20 @@ header a::after {
   background-color: #fee402;
   transition: 0.3s;
 }
-
 header a:hover::after {
   width: 100%;
 }
-
 header h1 a {
   color: #fee402;
   text-transform: uppercase;
 }
-
 header h1 a::after {
   display: none;
 }
-
 header nav {
   width: 40%;
   position: relative;
 }
-
 header nav ul {
   display: flex;
   justify-content: space-between;
@@ -590,58 +524,46 @@ header nav ul {
   position: relative;
   z-index: 1;
 }
-
 header nav ul li {
   position: relative;
 }
-
 header nav ul li a {
   color: #fee402;
   padding: 20px 0px;
 }
-
 header nav ul li p {
   color: #fee402;
 }
-
 header nav ul li p:hover {
   cursor: default;
 }
-
 header nav ul .nav-item-with-dropdown {
   position: relative;
   z-index: -1;
 }
-
 header nav ul .nav-item-with-dropdown .dropdown-button::after {
   display: none;
 }
-
 header nav ul .nav-item-with-dropdown span {
   position: relative;
   top: 3px;
 }
-
 header nav ul .nav-item-with-dropdown span .down-icon {
   transition: 0.2s;
 }
-
 header nav ul .nav-item-with-dropdown:hover .down-icon {
   transform: rotate(-180deg);
 }
-
 header nav ul .nav-item-with-dropdown:hover .nav-dropdown-menu {
   top: 20px;
   visibility: visible;
   opacity: 1;
 }
-
 header nav ul .nav-item-with-dropdown:hover .nav-dropdown-menu ul li {
   opacity: 1;
   transition: 0.3s;
   transition-delay: 0s;
 }
-
 header nav ul li .nav-dropdown-menu {
   visibility: hidden;
   transition: 0.2s;
@@ -650,7 +572,6 @@ header nav ul li .nav-dropdown-menu {
   right: 0px;
   z-index: -1;
 }
-
 header nav ul li .nav-dropdown-menu ul {
   display: grid;
   position: relative;
@@ -662,7 +583,6 @@ header nav ul li .nav-dropdown-menu ul {
   margin-top: 25px;
   z-index: -1;
 }
-
 header nav ul li .nav-dropdown-menu ul li {
   padding: 20px;
   z-index: -1;
@@ -670,12 +590,10 @@ header nav ul li .nav-dropdown-menu ul li {
   transition: 0.1s;
   transition-delay: 0s;
 }
-
 header .nav-right-container {
   display: flex;
   align-items: center;
 }
-
 header .nav-right-container .nav-search-container {
   color: #fee402;
   margin-right: 10px;
@@ -684,24 +602,20 @@ header .nav-right-container .nav-search-container {
   position: relative;
   z-index: 100;
 }
-
 header .nav-right-container .nav-search-container .nav-search-icon-container {
   padding: 8px;
   position: relative;
   z-index: 1;
   border-radius: 5px;
 }
-
 header .nav-right-container .nav-search-container .nav-search-icon-container svg,
 header .nav-right-container .nav-search-container .nav-search-icon-container path {
   color: #fee402;
 }
-
 header .nav-right-container .nav-search-container .nav-search-icon-container:hover {
   cursor: pointer;
   background-color: #434343;
 }
-
 header .nav-right-container .nav-search-container #nav-search-bar-input {
   position: absolute;
   right: 5px;
@@ -716,13 +630,11 @@ header .nav-right-container .nav-search-container #nav-search-bar-input {
   transition: 0.3s;
   color: #434343;
 }
-
 header .nav-right-container .nav-search-container #nav-search-bar-input.visible {
   width: 50vw;
   padding-left: 10px;
   color: #ededed;
 }
-
 header .nav-right-container .nav-search-container .nav-search-input-delete-container {
   opacity: 0;
   display: none;
@@ -737,16 +649,13 @@ header .nav-right-container .nav-search-container .nav-search-input-delete-conta
   z-index: 2;
   transition: 0.2s;
 }
-
 header .nav-right-container .nav-search-container .nav-search-input-delete-container:hover {
   cursor: pointer;
 }
-
 header .nav-right-container .nav-search-container .nav-search-input-delete-container.visible {
   display: flex;
   opacity: 0.6;
 }
-
 header .nav-right-container .nav-search-container .search-results-container {
   position: absolute;
   right: 0px;
@@ -759,11 +668,9 @@ header .nav-right-container .nav-search-container .search-results-container {
   z-index: -1;
   display: none;
 }
-
 header .nav-right-container .nav-search-container .search-results-container.visible {
   display: block;
 }
-
 header .nav-right-container .nav-search-container .search-results-container h4 {
   padding-left: 10px;
   margin-top: 10px;
@@ -771,22 +678,18 @@ header .nav-right-container .nav-search-container .search-results-container h4 {
   text-transform: uppercase;
   opacity: 0.5;
 }
-
 header .nav-right-container .nav-search-container .search-results-container ul li a {
   color: #ededed;
   display: block;
   padding: 10px;
 }
-
 header .nav-right-container .nav-search-container .search-results-container ul li a:hover {
   text-decoration: none;
   background-color: #434343;
 }
-
 header .nav-right-container .nav-search-container .search-results-container ul li a::after {
   display: none;
 }
-
 header .nav-highlighted-item {
   background: rgb(255, 233, 39);
   background: linear-gradient(45deg, rgb(255, 235, 57) 0%, rgb(254, 228, 2) 100%);
@@ -795,20 +698,16 @@ header .nav-highlighted-item {
   transition: 0.2s;
   color: #1c1c1c;
 }
-
 header .nav-highlighted-item::after {
   display: none;
 }
-
 header .nav-highlighted-item:hover {
   transform: scale(1.05);
   filter: brightness(1.05);
 }
-
 header .nav-highlighted-item:active {
   transform: scale(0.95);
 }
-
 header .nav-highlighted-item:hover {
   text-decoration: none;
 }
@@ -818,37 +717,30 @@ footer {
   padding: 20px 5%;
   color: #ededed;
 }
-
 footer a {
   color: #ededed;
 }
-
 footer a:hover {
   color: #fee402;
   -webkit-text-decoration: underline solid 2px #fee402;
-  text-decoration: underline solid 2px #fee402;
+          text-decoration: underline solid 2px #fee402;
 }
-
 footer .footer-list-container {
   margin-bottom: 50px;
   display: flex;
 }
-
 footer .footer-list-container .footer-list-item {
   margin-right: 200px;
 }
-
 footer .footer-list-container .footer-list-item h4 {
   color: #ededed;
   margin-bottom: 20px;
   font-size: 18px;
   opacity: 0.7;
 }
-
 footer .footer-list-container .footer-list-item ul li {
   margin-bottom: 5px;
 }
-
 footer p {
   color: #ffffff;
 }
@@ -864,11 +756,9 @@ footer p {
   justify-content: space-between;
   align-items: center;
 }
-
 .hero-section .hero-text-container {
   width: 45%;
 }
-
 .hero-section .hero-text-container .quote-icon-container {
   color: #1c1c1c;
   width: 100%;
@@ -876,99 +766,80 @@ footer p {
   justify-content: center;
   margin-bottom: 10px;
 }
-
 .hero-section .hero-text-container .hero-text-quote {
   margin-bottom: 10px;
   font-weight: 600;
   font-size: 1.25rem;
   text-align: center;
 }
-
 .hero-section .hero-text-container .hero-text-quote-byline {
   font-style: italic;
   text-align: center;
 }
-
 .hero-section .hero-text-container p {
   font-size: 1rem;
   margin-bottom: 20px;
   line-height: 25px;
 }
-
 .hero-section .hero-text-container .btn-container {
   position: relative;
 }
-
 .hero-section .hero-text-container .btn-container a {
   position: relative;
   padding: 10px 20px;
   border-radius: 5px;
   display: inline-block;
 }
-
 .hero-section .hero-text-container .btn-container a:first-of-type {
   background-color: #1c1c1c;
   color: #ffffff;
   transition: 0.2s;
 }
-
 .hero-section .hero-text-container .btn-container a:first-of-type:hover {
   text-decoration: none;
   transform: scale(1.03);
 }
-
 .hero-section .hero-text-container .btn-container a:first-of-type:active {
   transform: scale(0.97);
 }
-
 .hero-section .hero-text-container .btn-container a:last-of-type {
   margin-left: 10px;
   transition: 0.2s;
 }
-
 .hero-section .hero-text-container .btn-container a:last-of-type:hover {
   transform: scale(1.03);
 }
-
 .hero-section .hero-text-container .btn-container a:last-of-type:active {
   transform: scale(0.97);
 }
-
 .hero-section .hero-ranking-container {
   width: 45%;
   position: relative;
   margin: 20px 0px;
 }
-
 .hero-section .hero-ranking-container .table {
   height: 65vh;
 }
-
 .hero-section .hero-ranking-container .table .table-header p:nth-of-type(1),
 .hero-section .hero-ranking-container .table .table-row p:nth-of-type(1) {
   width: 10%;
 }
-
 .hero-section .hero-ranking-container .table .table-header p:nth-of-type(2),
 .hero-section .hero-ranking-container .table .table-row p:nth-of-type(2) {
   width: 40%;
 }
-
 .hero-section .hero-ranking-container .table .table-header p:nth-of-type(3),
 .hero-section .hero-ranking-container .table .table-row p:nth-of-type(3) {
   width: 30%;
 }
-
 .hero-section .hero-ranking-container .table .table-header p:nth-of-type(4),
 .hero-section .hero-ranking-container .table .table-row p:nth-of-type(4) {
   width: 13%;
 }
-
 .hero-section .hero-ranking-container .table .table-header p:nth-of-type(5),
 .hero-section .hero-ranking-container .table .table-row p:nth-of-type(5) {
   width: 12%;
 }
-
 .hero-section .scroll-indicator-icon {
   content: "";
   display: block;
@@ -980,18 +851,15 @@ footer p {
   height: 25px;
   border: 2px solid #1c1c1c;
 }
-
 @keyframes scroll-indicator-animation {
   from {
     opacity: 1;
   }
-
   to {
     opacity: 0;
     top: 80%;
   }
 }
-
 .hero-section .scroll-indicator-icon::after {
   content: "";
   display: block;
@@ -1007,33 +875,27 @@ footer p {
 
 .landing-movements-section {
   position: relative;
-  padding: 20px 5% 50px;
+  padding: 20px 5% 0px;
   background-color: #ffffff;
 }
-
 .landing-movements-section .table {
   height: 50vh;
 }
-
 .landing-movements-section .table .table-row {
   display: flex;
   align-items: center;
 }
-
 @keyframes rankMovementIndicatorFlash {
   0% {
     opacity: 0;
   }
-
   50% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
   }
 }
-
 .landing-movements-section .table .table-header svg,
 .landing-movements-section .table .table-row svg {
   height: 12px;
@@ -1042,44 +904,36 @@ footer p {
   fill: rgb(53, 189, 0);
   animation: rankMovementIndicatorFlash 2s infinite ease-in-out;
 }
-
 .landing-movements-section .table .table-header svg.no-change,
 .landing-movements-section .table .table-row svg.no-change {
   fill: #a5a5a5;
 }
-
 .landing-movements-section .table .table-header p:nth-of-type(2),
 .landing-movements-section .table .table-row p:nth-of-type(2) {
   width: 10%;
   display: flex;
   align-items: center;
 }
-
 .landing-movements-section .table .table-header p:nth-of-type(1),
 .landing-movements-section .table .table-row p:nth-of-type(1) {
   width: 12%;
 }
-
 .landing-movements-section .table .table-header p:nth-of-type(3),
 .landing-movements-section .table .table-row p:nth-of-type(3) {
   width: 25%;
 }
-
 .landing-movements-section .table .table-header p:nth-of-type(4),
 .landing-movements-section .table .table-row p:nth-of-type(4) {
   width: 30%;
 }
-
 .landing-movements-section .table .table-header p:nth-of-type(5),
 .landing-movements-section .table .table-row p:nth-of-type(5) {
   width: 10%;
 }
-
 .landing-movements-section .table .table-header p:nth-of-type(6),
 .landing-movements-section .table .table-row p:nth-of-type(6) {
   width: 12%;
 }
-
 .landing-movements-section .table .table-header p:nth-of-type(7),
 .landing-movements-section .table .table-row p:nth-of-type(7) {
   width: 10%;
@@ -1092,59 +946,47 @@ footer p {
   justify-content: space-between;
   position: relative;
 }
-
 .landing-split-rankings-section .table {
   height: 60vh;
 }
-
 .landing-split-rankings-section .active-ranking-table-container {
   width: 55%;
 }
-
 .landing-split-rankings-section .active-ranking-table-container .table-header p:nth-of-type(1),
 .landing-split-rankings-section .active-ranking-table-container .table-row p:nth-of-type(1) {
   width: 5%;
 }
-
 .landing-split-rankings-section .active-ranking-table-container .table-header p:nth-of-type(2),
 .landing-split-rankings-section .active-ranking-table-container .table-row p:nth-of-type(2) {
   width: 35%;
 }
-
 .landing-split-rankings-section .active-ranking-table-container .table-header p:nth-of-type(3),
 .landing-split-rankings-section .active-ranking-table-container .table-row p:nth-of-type(3) {
   width: 25%;
 }
-
 .landing-split-rankings-section .active-ranking-table-container .table-header p:nth-of-type(4),
 .landing-split-rankings-section .active-ranking-table-container .table-row p:nth-of-type(4) {
   width: 35%;
 }
-
 .landing-split-rankings-section .active-ranking-table-container .table-header p:nth-of-type(5),
 .landing-split-rankings-section .active-ranking-table-container .table-row p:nth-of-type(5) {
   width: 10%;
 }
-
 .landing-split-rankings-section .danish-ranking-table-container {
   width: 40%;
 }
-
 .landing-split-rankings-section .danish-ranking-table-container .table-header p:nth-of-type(1),
 .landing-split-rankings-section .danish-ranking-table-container .table-row p:nth-of-type(1) {
   width: 10%;
 }
-
 .landing-split-rankings-section .danish-ranking-table-container .table-header p:nth-of-type(2),
 .landing-split-rankings-section .danish-ranking-table-container .table-row p:nth-of-type(2) {
   width: 60%;
 }
-
 .landing-split-rankings-section .danish-ranking-table-container .table-header p:nth-of-type(3),
 .landing-split-rankings-section .danish-ranking-table-container .table-row p:nth-of-type(3) {
   width: 25%;
 }
-
 .landing-split-rankings-section .danish-ranking-table-container .table-header p:nth-of-type(4),
 .landing-split-rankings-section .danish-ranking-table-container .table-row p:nth-of-type(4) {
   width: 15%;
@@ -1153,36 +995,29 @@ footer p {
 .landing-nations-ranking-section {
   padding: 20px 5% 60px;
 }
-
 .landing-nations-ranking-section .table {
   height: 70vh;
 }
-
 .landing-nations-ranking-section .table .table-header p:nth-of-type(1),
 .landing-nations-ranking-section .table .table-row p:nth-of-type(1) {
   width: 10%;
 }
-
 .landing-nations-ranking-section .table .table-header p:nth-of-type(2),
 .landing-nations-ranking-section .table .table-row p:nth-of-type(2) {
   width: 20%;
 }
-
 .landing-nations-ranking-section .table .table-header p:nth-of-type(3),
 .landing-nations-ranking-section .table .table-row p:nth-of-type(3) {
   width: 55%;
 }
-
 .landing-nations-ranking-section .table .table-header p:nth-of-type(4),
 .landing-nations-ranking-section .table .table-row p:nth-of-type(4) {
   width: 20%;
 }
-
 .landing-nations-ranking-section .table .table-header p:nth-of-type(5),
 .landing-nations-ranking-section .table .table-row p:nth-of-type(5) {
   width: 15%;
 }
-
 .landing-nations-ranking-section .table .table-row p:nth-last-of-type(3) {
   font-weight: 500;
 }
@@ -1192,40 +1027,32 @@ footer p {
   background-color: #ededed;
   position: relative;
 }
-
 .greatest-seasons-container .table {
   height: 60vh;
 }
-
 .greatest-seasons-container .table .table-content {
   margin-bottom: 50px;
 }
-
 .greatest-seasons-container .table .table-header p:nth-of-type(1),
 .greatest-seasons-container .table .table-row p:nth-of-type(1) {
   width: 5%;
 }
-
 .greatest-seasons-container .table .table-header p:nth-of-type(2),
 .greatest-seasons-container .table .table-row p:nth-of-type(2) {
   width: 25%;
 }
-
 .greatest-seasons-container .table .table-header p:nth-of-type(3),
 .greatest-seasons-container .table .table-row p:nth-of-type(3) {
   width: 60%;
 }
-
 .greatest-seasons-container .table .table-header p:nth-of-type(4),
 .greatest-seasons-container .table .table-row p:nth-of-type(4) {
   width: 10%;
 }
-
 .greatest-seasons-container .table .table-header p:nth-of-type(5),
 .greatest-seasons-container .table .table-row p:nth-of-type(5) {
   width: 10%;
 }
-
 .greatest-seasons-container .table .table-row {
   padding: 7px 0px;
 }
@@ -1233,7 +1060,6 @@ footer p {
 .three-year-ranking-container {
   margin: 20px 0px;
 }
-
 .three-year-ranking-container .table-shadow-container::after {
   display: none;
 }
@@ -1242,7 +1068,6 @@ footer p {
 .three-year-ranking-container {
   padding: 0px 5% 20px;
 }
-
 .alltime-each-year .table,
 .three-year-ranking-container .table {
   display: flex;
@@ -1250,12 +1075,10 @@ footer p {
   overflow-y: hidden;
   overflow-x: scroll;
 }
-
 .alltime-each-year .table::-webkit-scrollbar,
 .three-year-ranking-container .table::-webkit-scrollbar {
   height: 7px;
 }
-
 .alltime-each-year .table .table-header,
 .three-year-ranking-container .table .table-header {
   position: relative;
@@ -1264,46 +1087,38 @@ footer p {
   width: 92px;
   background-color: #ffffff;
 }
-
 .alltime-each-year .table .table-header p,
 .three-year-ranking-container .table .table-header p {
   width: 100%;
   margin-right: 20px;
 }
-
 .alltime-each-year .table .table-content,
 .three-year-ranking-container .table .table-content {
   display: flex;
   padding-right: 40px;
   position: relative;
 }
-
 .alltime-each-year .table .table-content .table-row,
 .three-year-ranking-container .table .table-content .table-row {
   padding-top: 0px;
   margin-top: 0px;
 }
-
 .alltime-each-year .table .table-content .table-row:first-of-type p,
 .three-year-ranking-container .table .table-content .table-row:first-of-type p {
   padding-left: 10px;
 }
-
 .alltime-each-year .table .table-content .table-row:last-of-type,
 .three-year-ranking-container .table .table-content .table-row:last-of-type {
   margin-bottom: 0px;
 }
-
 .alltime-each-year .table .table-content .table-row p,
 .three-year-ranking-container .table .table-content .table-row p {
   width: 300px;
 }
-
 .alltime-each-year .table .table-content .table-row p span,
 .three-year-ranking-container .table .table-content .table-row p span {
   position: relative;
 }
-
 .alltime-each-year .table .table-content .table-row p span svg,
 .three-year-ranking-container .table .table-content .table-row p span svg {
   position: absolute;
@@ -1312,17 +1127,14 @@ footer p {
   right: -22px;
   animation: rankMovementIndicatorFlash 2s infinite ease-in-out;
 }
-
 .alltime-each-year .table .table-content .table-row p span.down,
 .three-year-ranking-container .table .table-content .table-row p span.down {
   color: #db0000;
 }
-
 .alltime-each-year .table .table-content .table-row p span.up,
 .three-year-ranking-container .table .table-content .table-row p span.up {
   color: #4dd200;
 }
-
 .alltime-each-year .table .table-header,
 .alltime-each-year .table .table-row,
 .three-year-ranking-container .table .table-header,
@@ -1330,7 +1142,6 @@ footer p {
   flex-direction: column;
   border: none;
 }
-
 .alltime-each-year .table .table-header p,
 .alltime-each-year .table .table-row p,
 .three-year-ranking-container .table .table-header p,
@@ -1339,7 +1150,6 @@ footer p {
   border-bottom: solid 1px #ededed;
   z-index: 1;
 }
-
 .alltime-each-year .table .table-header p:first-of-type,
 .alltime-each-year .table .table-row p:first-of-type,
 .three-year-ranking-container .table .table-header p:first-of-type,
@@ -1347,12 +1157,10 @@ footer p {
   padding: 0px;
   border-bottom: solid 2px #1c1c1c;
 }
-
 .alltime-each-year .table-wrapper,
 .three-year-ranking-container .table-wrapper {
   position: relative;
 }
-
 .alltime-each-year .table-wrapper::after,
 .three-year-ranking-container .table-wrapper::after {
   position: absolute;
@@ -1366,7 +1174,6 @@ footer p {
   right: 0px;
   z-index: 0;
 }
-
 .alltime-each-year .vertical,
 .three-year-ranking-container .vertical {
   position: absolute;
@@ -1377,11 +1184,9 @@ footer p {
 .ranking-each-decade-container {
   padding: 20px 5%;
 }
-
 .ranking-each-decade-container .table-wrapper {
   position: relative;
 }
-
 .ranking-each-decade-container .table-wrapper::after {
   position: absolute;
   content: "";
@@ -1394,69 +1199,55 @@ footer p {
   right: 0px;
   z-index: 1;
 }
-
 .ranking-each-decade-container .table-overflow-container {
   width: 100%;
   overflow-x: overlay;
   position: relative;
 }
-
 .ranking-each-decade-container .table-overflow-container::-webkit-scrollbar {
   height: 7px;
 }
-
 .ranking-each-decade-container .table-overflow-container::-webkit-scrollbar-track {
   background: #ededed;
 }
-
 .ranking-each-decade-container .table-overflow-container::-webkit-scrollbar-thumb {
   background: #fdca00;
   border-radius: 50px;
 }
-
 .ranking-each-decade-container .table-overflow-container::-webkit-scrollbar-thumb:hover {
   background: #fee402;
 }
-
 .ranking-each-decade-container .table-overflow-container .table-row {
   padding: 10px 0px;
 }
-
 .ranking-each-decade-container .table-overflow-container .table {
   width: -moz-fit-content;
   width: fit-content;
   position: relative;
 }
-
 .ranking-each-decade-container .table-overflow-container .table::after {
   display: none;
 }
-
 .ranking-each-decade-container .table-overflow-container .table .table-header p:first-of-type,
 .ranking-each-decade-container .table-overflow-container .table .table-row p:first-of-type {
   width: 150px;
 }
-
 .ranking-each-decade-container .table-overflow-container .table .table-header p,
 .ranking-each-decade-container .table-overflow-container .table .table-row p {
   width: 300px;
 }
-
 .ranking-each-decade-container .table-overflow-container .table .table-header p:nth-of-type(2) a,
 .ranking-each-decade-container .table-overflow-container .table .table-row p:nth-of-type(2) a {
   color: goldenrod;
 }
-
 .ranking-each-decade-container .table-overflow-container .table .table-header p:nth-of-type(3) a,
 .ranking-each-decade-container .table-overflow-container .table .table-row p:nth-of-type(3) a {
   color: #7b8ea1;
 }
-
 .ranking-each-decade-container .table-overflow-container .table .table-header p:nth-of-type(4) a,
 .ranking-each-decade-container .table-overflow-container .table .table-row p:nth-of-type(4) a {
   color: rgb(153, 81, 30);
 }
-
 .ranking-each-decade-container .table-overflow-container .table .table-content {
   padding-right: 50px;
 }
@@ -1468,11 +1259,9 @@ footer p {
   flex-direction: column;
   align-items: center;
 }
-
 .twitter-container h3 {
   width: 100%;
 }
-
 .twitter-container .twitter-embed-container {
   width: -moz-fit-content;
   width: fit-content;
@@ -1484,7 +1273,6 @@ footer p {
   border-radius: 25px;
   position: relative;
 }
-
 .twitter-container .twitter-embed-container img {
   position: absolute;
   transform: translateY(-25%);
@@ -1492,21 +1280,18 @@ footer p {
   border-radius: 9999px;
   border: 10px solid #ffffff;
 }
-
 .twitter-container .twitter-embed-container div {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0px 20px 10px;
 }
-
-.twitter-container .twitter-embed-container div>a {
+.twitter-container .twitter-embed-container div > a {
   font-size: 20px;
   font-weight: 600;
   margin-top: 170px;
   margin-bottom: 10px;
 }
-
 .twitter-container .twitter-embed-container div p {
   margin-bottom: 20px;
   width: 80%;
@@ -1519,74 +1304,60 @@ footer p {
   display: flex;
   justify-content: space-between;
 }
-
 .rider-profile-container .rider-profile-info-container {
   display: flex;
   align-items: center;
 }
-
 .rider-profile-container .rider-profile-info-container .rider-profile-info-image-container {
   height: 200px;
   width: 200px;
   border-radius: 15px;
 }
-
 .rider-profile-container .rider-profile-info-container .rider-profile-info-image-container.rider-only {
   background-color: rgb(56, 56, 56);
   display: block;
   content: "";
 }
-
 .rider-profile-container .rider-profile-info-container .rider-profile-info-image-container img {
   border-radius: 15px;
 }
-
 .rider-profile-container .rider-profile-info-container .rider-profile-info-info-container {
   margin-left: 20px;
 }
-
 .rider-profile-container .rider-profile-info-container .rider-profile-info-info-container h3 {
   font-size: 30px;
   margin-bottom: 15px;
 }
-
 .rider-profile-container .rider-profile-info-container .rider-profile-info-info-container p {
   margin-bottom: 5px;
 }
-
 .rider-profile-container .rider-profile-info-container .rider-profile-info-info-container p .profile-value-span {
   font-weight: 600;
 }
-
 .rider-profile-container .rider-top-results-container {
   width: 30%;
   background-color: #ededed;
   padding: 15px 20px 15px 55px;
   border-radius: 15px;
 }
-
 .rider-profile-container .rider-top-results-container h4 {
   font-size: 20px;
   margin-bottom: 10px;
 }
-
 .rider-profile-container .rider-top-results-container ul li {
   position: relative;
   margin-bottom: 2px;
 }
-
 .rider-profile-container .rider-top-results-container ul li .rider-top-result-racename-span {
   font-weight: 600;
 }
-
 .rider-profile-container .rider-top-results-container p {
   margin-top: 10px;
 }
-
 .rider-profile-container .rider-top-results-container p a {
   color: #111111;
   -webkit-text-decoration: underline solid 2px;
-  text-decoration: underline solid 2px;
+          text-decoration: underline solid 2px;
 }
 
 .result-number-of-span {
@@ -1604,12 +1375,10 @@ footer p {
   background-color: #1c1c1c;
   min-height: 22.05vw;
 }
-
 .rider-evolution-container .chart-container {
   position: relative;
   width: 45%;
 }
-
 .rider-evolution-container .chart-container canvas {
   position: relative;
 }
@@ -1619,18 +1388,15 @@ footer p {
   position: relative;
   overflow: hidden;
 }
-
-.rider-all-results-container>div {
+.rider-all-results-container > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-.rider-all-results-container>div .btn-container {
+.rider-all-results-container > div .btn-container {
   position: relative;
 }
-
-.rider-all-results-container>div .btn-container button {
+.rider-all-results-container > div .btn-container button {
   position: absolute;
   height: 1000px;
   top: -500px;
@@ -1638,77 +1404,61 @@ footer p {
   background-color: unset;
   border: none;
 }
-
-.rider-all-results-container>div .btn-container button:hover {
+.rider-all-results-container > div .btn-container button:hover {
   cursor: pointer;
 }
-
-.rider-all-results-container>div .btn-container button:hover>svg {
+.rider-all-results-container > div .btn-container button:hover > svg {
   transform: scale(1.2);
 }
-
-.rider-all-results-container>div .btn-container button svg {
+.rider-all-results-container > div .btn-container button svg {
   transition: 0.2s;
   color: #1c1c1c;
   width: 30px;
   height: 30px;
 }
-
-.rider-all-results-container>div .btn-container:first-of-type button {
+.rider-all-results-container > div .btn-container:first-of-type button {
   left: 0px;
 }
-
-.rider-all-results-container>div .btn-container:last-of-type button {
+.rider-all-results-container > div .btn-container:last-of-type button {
   right: 0px;
 }
-
-.rider-all-results-container>div .btn-container.disabled {
+.rider-all-results-container > div .btn-container.disabled {
   opacity: 0.2;
 }
-
-.rider-all-results-container>div .btn-container.disabled button:hover {
+.rider-all-results-container > div .btn-container.disabled button:hover {
   cursor: default;
 }
-
-.rider-all-results-container>div .btn-container.disabled button:hover>svg {
+.rider-all-results-container > div .btn-container.disabled button:hover > svg {
   transform: none;
 }
-
 .rider-all-results-container .rider-result-year-container {
   margin-right: 60px;
   padding-left: 50px;
   width: 60%;
 }
-
 .rider-all-results-container .rider-result-year-container h4 {
   margin-bottom: 10px;
   font-size: 22px;
   text-align: center;
 }
-
-.rider-all-results-container .rider-result-year-container>div {
+.rider-all-results-container .rider-result-year-container > div {
   display: flex;
   justify-content: space-between;
 }
-
-.rider-all-results-container .rider-result-year-container>div>div h5 {
+.rider-all-results-container .rider-result-year-container > div > div h5 {
   font-size: 16px;
   margin-bottom: 10px;
 }
-
-.rider-all-results-container .rider-result-year-container>div>div:last-of-type span {
+.rider-all-results-container .rider-result-year-container > div > div:last-of-type span {
   font-weight: 500;
 }
-
 .rider-all-results-container .rider-result-year-container ul li {
   position: relative;
   margin-bottom: 5px;
 }
-
 .rider-all-results-container .rider-result-year-container ul li .result-race-name {
   font-weight: 500;
 }
-
 .rider-all-results-container .rider-result-year-container ul li .result-points-sum {
   margin-left: 5px;
   opacity: 0.5;
@@ -1720,55 +1470,44 @@ footer p {
   padding: 20px 5%;
   justify-content: space-between;
 }
-
 .rider-related-rankings-container .table-wrapper {
   width: 48%;
 }
-
 .rider-related-rankings-container .table-wrapper .table {
   height: 80vh;
 }
-
 .rider-related-rankings-container .table-wrapper:first-of-type .table .table-header p:nth-of-type(1),
 .rider-related-rankings-container .table-wrapper:first-of-type .table .table-row p:nth-of-type(1) {
   width: 10%;
 }
-
 .rider-related-rankings-container .table-wrapper:first-of-type .table .table-header p:nth-of-type(2),
 .rider-related-rankings-container .table-wrapper:first-of-type .table .table-row p:nth-of-type(2) {
   width: 60%;
 }
-
 .rider-related-rankings-container .table-wrapper:first-of-type .table .table-header p:nth-of-type(2) .fi,
 .rider-related-rankings-container .table-wrapper:first-of-type .table .table-row p:nth-of-type(2) .fi {
   margin-right: 5px;
 }
-
 .rider-related-rankings-container .table-wrapper:first-of-type .table .table-header p:nth-of-type(3),
 .rider-related-rankings-container .table-wrapper:first-of-type .table .table-row p:nth-of-type(3) {
   width: 20%;
 }
-
 .rider-related-rankings-container .table-wrapper:first-of-type .table .table-header p:nth-of-type(4),
 .rider-related-rankings-container .table-wrapper:first-of-type .table .table-row p:nth-of-type(4) {
   width: 15%;
 }
-
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-header p:nth-of-type(1),
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-row p:nth-of-type(1) {
   width: 10%;
 }
-
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-header p:nth-of-type(2),
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-row p:nth-of-type(2) {
   width: 50%;
 }
-
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-header p:nth-of-type(3),
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-row p:nth-of-type(3) {
   width: 30%;
 }
-
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-header p:nth-of-type(4),
 .rider-related-rankings-container .table-wrapper:nth-of-type(2) .table .table-row p:nth-of-type(4) {
   width: 15%;
@@ -1781,7 +1520,6 @@ footer p {
   position: relative;
   overflow: hidden;
 }
-
 .rider-page-container.loading-ui-container span::after {
   animation: skeleton 2s infinite;
   position: absolute;
@@ -1796,40 +1534,32 @@ footer p {
   background: rgb(255, 255, 255);
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4682466737) 25%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.501860119) 75%, rgba(255, 255, 255, 0) 100%);
 }
-
 .rider-page-container.loading-ui-container .rider-profile-info-container {
   position: relative;
 }
-
 .rider-page-container.loading-ui-container .rider-profile-info-container span {
   position: relative;
   height: 100%;
   width: 100%;
   border-radius: 15px;
 }
-
 .rider-page-container.loading-ui-container .rider-profile-info-info-container p {
   position: relative;
   display: flex;
   align-items: center;
 }
-
 .rider-page-container.loading-ui-container .rider-profile-info-info-container p:first-of-type span {
   width: 150px;
 }
-
 .rider-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(2) span {
   width: 50px;
 }
-
 .rider-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(3) span {
   width: 100px;
 }
-
 .rider-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(4) span {
   width: 100px;
 }
-
 .rider-page-container.loading-ui-container .rider-profile-info-info-container p span {
   position: relative;
   display: inline-block;
@@ -1837,64 +1567,98 @@ footer p {
   border-radius: 5px;
   margin-left: 5px;
 }
-
 .rider-page-container.loading-ui-container .rider-top-results-container ul li {
   position: relative;
   margin-bottom: 2px;
 }
-
 .rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(1) span {
   width: 200px;
 }
-
 .rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(2) span {
   width: 300px;
 }
-
 .rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(3) span {
   width: 250px;
 }
-
 .rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(4) span {
   width: 150px;
 }
-
 .rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(5) span {
   width: 200px;
 }
-
 .rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(6) span {
   width: 150px;
 }
-
 .rider-page-container.loading-ui-container .rider-top-results-container ul li:nth-last-of-type(7) span {
   width: 250px;
 }
-
 .rider-page-container.loading-ui-container .rider-top-results-container ul li span {
   position: relative;
   height: 20px;
   border-radius: 5px;
 }
-
 .rider-page-container.loading-ui-container .chart-container {
   position: relative;
 }
-
 .rider-page-container.loading-ui-container .chart-container span {
   height: 90%;
   aspect-ratio: 2/1;
   border-radius: 15px;
 }
-
 .rider-page-container.loading-ui-container .rider-all-results-container {
   position: relative;
 }
-
 .rider-page-container.loading-ui-container .rider-all-results-container span {
   width: 100%;
   height: 40vh;
   border-radius: 15px;
+}
+
+.float {
+  position: fixed;
+  right: 2%;
+  bottom: 2vw;
+  border-radius: 99px;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  box-shadow: 0px 0px 15px 0px rgba(17, 17, 17, 0.3137254902);
+  transition: 0.4s;
+}
+.float svg {
+  height: 20px;
+  width: auto;
+}
+.float span {
+  opacity: 0;
+  transition: 0.3s;
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0px;
+  background-color: rgba(17, 17, 17, 0.8862745098);
+  color: #ffffff;
+  padding: 5px 0px;
+  border-radius: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.float:hover {
+  cursor: pointer;
+  background-color: #fee402;
+}
+.float:hover span {
+  opacity: 1;
+  width: 200px;
+  padding: 5px 10px;
+}
+.float:active {
+  transform: scale(0.95);
 }
 
 .inactive {
@@ -1911,58 +1675,47 @@ footer p {
   margin-top: 20px;
   position: relative;
 }
-
 .ranking-page-container .ranking-filter-options-container {
   padding: 20px 5%;
   display: flex;
   justify-content: space-between;
 }
-
 .ranking-page-container .ranking-filter-options-container select {
   padding: 2px;
   border-radius: 4px;
 }
-
 .ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-birth-year-radio-container {
   display: flex;
   padding-bottom: 5px;
   border-bottom: 1px solid #1c1c1c;
 }
-
 .ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-birth-year-radio-container .ranking-filter-birth-year-radio {
   display: flex;
   align-items: center;
 }
-
 .ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-birth-year-radio-container .ranking-filter-birth-year-radio label {
   margin-right: 5px;
 }
-
-.ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container>div {
+.ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container > div {
   margin-bottom: 10px;
 }
-
 .ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container .ranking-filter-born label {
   margin-right: 5px;
 }
-
-.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container>button {
+.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container > button {
   background-color: unset;
   border: none;
   margin-top: 5px;
   padding: 5px 0px;
 }
-
-.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container>button:hover {
+.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container > button:hover {
   -webkit-text-decoration: underline solid 2px #1c1c1c;
-  text-decoration: underline solid 2px #1c1c1c;
+          text-decoration: underline solid 2px #1c1c1c;
   cursor: pointer;
 }
-
 .ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container {
   position: relative;
 }
-
 .ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container button {
   background-color: unset;
   border: none;
@@ -1970,33 +1723,27 @@ footer p {
   top: 8px;
   right: -25px;
 }
-
 .ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container button:hover {
   cursor: pointer;
 }
-
-.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container button:hover>svg {
+.ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container button:hover > svg {
   opacity: 0.9;
 }
-
 .ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container button svg {
   height: 20px;
   width: 20px;
   opacity: 0.5;
   transition: 0.4s;
 }
-
 .ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container select {
   width: 100%;
   margin-top: 5px;
 }
-
 .ranking-page-container .ranking-filter-options-container .ranking-filter-active-container .ranking-filter-active-radio-container {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
-
 .ranking-page-container .ranking-filter-options-container .reset-filter-btn {
   background-color: #fee402;
   border: none;
@@ -2010,31 +1757,25 @@ footer p {
   transition: 0.3s;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.0901960784);
 }
-
 .ranking-page-container .ranking-filter-options-container .reset-filter-btn:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.0901960784);
 }
-
 .ranking-page-container .ranking-filter-options-container .reset-filter-btn:active {
   transform: scale(0.95);
 }
-
 .ranking-page-container .ranking-filter-options-container .reset-filter-btn span {
   margin-left: 5px;
 }
-
 .ranking-page-container .search-container {
   position: relative;
   padding: 10px 5%;
 }
-
 .ranking-page-container .search-container .search-input-container {
   position: relative;
   width: 500px;
   z-index: 3;
 }
-
 .ranking-page-container .search-container .search-input-container input {
   position: relative;
   width: 100%;
@@ -2044,11 +1785,9 @@ footer p {
   border: none;
   outline: none;
 }
-
 .ranking-page-container .search-container .search-input-container input:focus {
   background-color: #f0f0f0;
 }
-
 .ranking-page-container .search-container .search-input-container div {
   position: absolute;
   display: flex;
@@ -2058,7 +1797,6 @@ footer p {
   right: -20px;
   color: #1c1c1c;
 }
-
 .ranking-page-container .search-container ul {
   position: absolute;
   top: 35px;
@@ -2069,77 +1807,62 @@ footer p {
   z-index: 2;
   width: 540px;
 }
-
 .ranking-page-container .search-container ul.visible-false {
   display: none;
 }
-
 .ranking-page-container .search-container ul li a {
   display: block;
   padding: 10px 10px;
   margin: 0px 10px;
   border-bottom: solid 1px #cfcfcf;
 }
-
 .ranking-page-container .search-container ul li a:hover {
   background-color: #f8f8f8;
   text-decoration: none;
 }
-
 .ranking-page-container .search-container ul li:first-of-type a {
   padding-top: 20px;
 }
-
 .ranking-page-container .search-container ul li:last-of-type a {
   border-bottom: 0px;
 }
-
 .ranking-page-container .ranking-page-table-container {
   padding: 20px 5%;
 }
-
 .ranking-page-container .ranking-page-table-container .table::after {
   display: none;
 }
-
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) {
   width: 5%;
 }
-
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(2),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(2) {
   width: 5%;
 }
-
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(3),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(3) {
   width: 10%;
 }
-
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) {
   width: 40%;
 }
-
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) {
   width: 30%;
 }
-
 .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(6),
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(6) {
   width: 15%;
 }
-
 .ranking-page-container .ranking-page-table-container .table .table-row.highlighted {
   background-color: #fee402;
 }
-
 .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(6):hover {
   cursor: pointer;
   -webkit-text-decoration: underline 2px solid #1c1c1c;
-  text-decoration: underline 2px solid #1c1c1c;
+          text-decoration: underline 2px solid #1c1c1c;
 }
 
 .load-more-results-button {
@@ -2153,13 +1876,11 @@ footer p {
   border-radius: 5px;
   transition: 0.2s;
 }
-
 .load-more-results-button:hover {
   transform: scale(1.01);
   opacity: 0.9;
   cursor: pointer;
 }
-
 .load-more-results-button:active {
   transform: scale(0.99);
   border: none;
@@ -2188,7 +1909,6 @@ footer p {
   overflow: hidden;
   box-shadow: 0px 0px 10px 0px rgba(17, 17, 17, 0.3137254902);
 }
-
 .nation-profile-info-image-container span {
   height: 100%;
   width: 100%;
@@ -2199,13 +1919,11 @@ footer p {
   padding: 20px 5%;
   background-color: #1c1c1c;
 }
-
 .nation-evolution-container .charts-container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
-
 .nation-evolution-container .charts-container .chart-container {
   width: 48%;
 }
@@ -2213,22 +1931,18 @@ footer p {
 .nation-top-results-container {
   padding: 20px 5% 40px;
 }
-
 .nation-top-results-container .table .table-header p:nth-of-type(1),
 .nation-top-results-container .table .table-row p:nth-of-type(1) {
   width: 5%;
 }
-
 .nation-top-results-container .table .table-header p:nth-of-type(2),
 .nation-top-results-container .table .table-row p:nth-of-type(2) {
   width: 5%;
 }
-
 .nation-top-results-container .table .table-header p:nth-of-type(3),
 .nation-top-results-container .table .table-row p:nth-of-type(3) {
   width: 30%;
 }
-
 .nation-top-results-container .table .table-header p:nth-of-type(4),
 .nation-top-results-container .table .table-row p:nth-of-type(4) {
   width: 60%;
@@ -2241,81 +1955,64 @@ footer p {
   justify-content: space-between;
   padding: 20px 5% 40px;
 }
-
 .nation-rankings-container .table {
   height: 70vh;
 }
-
 .nation-rankings-container .table-wrapper {
   width: 48%;
 }
-
 .nation-rankings-container .table-wrapper .fi {
   margin-right: 5px;
 }
-
 .nation-rankings-container.riders-ranked {
   background-color: #1c1c1c;
 }
-
 .nation-rankings-container.riders-ranked .table-wrapper .table .table-header p:nth-of-type(1),
 .nation-rankings-container.riders-ranked .table-wrapper .table .table-row p:nth-of-type(1) {
   width: 10%;
 }
-
 .nation-rankings-container.riders-ranked .table-wrapper .table .table-header p:nth-of-type(2),
 .nation-rankings-container.riders-ranked .table-wrapper .table .table-row p:nth-of-type(2) {
   width: 65%;
 }
-
 .nation-rankings-container.riders-ranked .table-wrapper .table .table-header p:nth-of-type(3),
 .nation-rankings-container.riders-ranked .table-wrapper .table .table-row p:nth-of-type(3) {
   width: 15%;
 }
-
 .nation-rankings-container.riders-ranked .table-wrapper .table .table-header p:nth-of-type(4),
 .nation-rankings-container.riders-ranked .table-wrapper .table .table-row p:nth-of-type(4) {
   width: 10%;
   padding-right: 10px;
 }
-
 .nation-rankings-container.nations-ranked {
   background-color: #ededed;
 }
-
 .nation-rankings-container.nations-ranked .table-wrapper .table {
   padding-bottom: 19px;
 }
-
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-header {
   align-items: flex-end;
 }
-
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-content .highlighted-nation {
   font-weight: 600;
   background-color: #ededed;
 }
-
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(1),
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(1) {
   width: 8%;
 }
-
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(2),
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(2) {
   width: 40%;
 }
-
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(3),
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(3) {
   width: 20%;
 }
-
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(4),
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(4) {
   width: 15%;
 }
-
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(5),
 .nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(5) {
   width: 15%;
@@ -2329,7 +2026,6 @@ footer p {
   position: relative;
   overflow: hidden;
 }
-
 .nation-page-container.loading-ui-container span::after {
   animation: skeleton 2s infinite;
   position: absolute;
@@ -2344,140 +2040,112 @@ footer p {
   background: rgb(255, 255, 255);
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4682466737) 25%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.501860119) 75%, rgba(255, 255, 255, 0) 100%);
 }
-
 .nation-page-container.loading-ui-container span.fi::after {
   display: none;
 }
-
 .nation-page-container.loading-ui-container .rider-profile-info-info-container p {
   position: relative;
   display: flex;
   align-items: center;
 }
-
 .nation-page-container.loading-ui-container .rider-profile-info-info-container p span {
   display: inline-block;
   height: 20px;
   border-radius: 5px;
   margin-left: 5px;
 }
-
 .nation-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(1) span {
   width: 50px;
 }
-
 .nation-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(2) span {
   width: 100px;
 }
-
 .nation-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(3) span {
   width: 50px;
 }
-
 .nation-page-container.loading-ui-container .rider-profile-info-info-container p:nth-of-type(4) span {
   width: 100px;
 }
-
 .nation-page-container.loading-ui-container .rider-top-results-container ul li {
   position: relative;
 }
-
 .nation-page-container.loading-ui-container .rider-top-results-container ul li span {
   height: 20px;
   border-radius: 5px;
   margin-bottom: 2px;
 }
-
 .nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(1) span {
   width: 150px;
 }
-
 .nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(2) span {
   width: 200px;
 }
-
 .nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(3) span {
   width: 125px;
 }
-
 .nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(4) span {
   width: 250px;
 }
-
 .nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(5) span {
   width: 200px;
 }
-
 .nation-page-container.loading-ui-container .rider-top-results-container ul li:nth-of-type(6) span {
   width: 150px;
 }
-
 .nation-page-container.loading-ui-container .chart-container span {
   width: 100%;
   aspect-ratio: 2/1;
   border-radius: 15px;
 }
 
-.nation-ranking-page>h2 {
+.nation-ranking-page > h2 {
   position: relative;
   margin: 20px 5% 10px;
 }
-
 .nation-ranking-page .nation-table-wrapper {
   padding: 20px 5%;
 }
-
 .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
   margin-top: 10px;
 }
-
 .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container div {
   display: flex;
   align-items: center;
 }
-
 .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container div input {
   margin-left: 15px;
   margin-right: 5px;
 }
-
 .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(1),
 .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(1) {
   width: 5%;
 }
-
 .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(2),
 .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(2) {
   width: 10%;
 }
-
 .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(3),
 .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(3) {
   width: 15%;
 }
-
 .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(4),
 .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(4) {
   width: 50%;
 }
-
 .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(5),
 .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(5) {
   width: 10%;
 }
-
 .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(6),
 .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(6) {
   width: 10%;
 }
-
 .nation-ranking-page .nation-table-wrapper .table .table-content {
   position: relative;
 }
-
 .nation-ranking-page .nation-table-wrapper .table .table-content span.loading-overlay {
   position: absolute;
   display: block;
@@ -2487,11 +2155,9 @@ footer p {
   background-color: rgba(242, 242, 242, 0.647);
   z-index: 2;
 }
-
 .nation-ranking-page .nation-table-wrapper .table .table-content span.loading-overlay.false {
   display: none;
 }
-
 .nation-ranking-page .nation-table-wrapper .table .table-content span.loading-overlay::after {
   animation: skeleton 1.5s infinite;
   position: absolute;
@@ -2506,32 +2172,26 @@ footer p {
   background: rgb(255, 255, 255);
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4682466737) 25%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.501860119) 75%, rgba(255, 255, 255, 0) 100%);
 }
-
 .nation-ranking-page .nation-table-wrapper .table::after {
   display: none;
 }
-
 .nation-ranking-page .nations-ranking-chart-container {
   background-color: #1c1c1c;
   padding: 20px 5%;
 }
-
 .nation-ranking-page .nations-ranking-chart-container h3 {
   position: relative;
   color: #ffffff;
   margin-bottom: 15px;
 }
-
 .nation-ranking-page .nations-ranking-chart-container .chart-custom-legend h4 {
   color: #ffffff;
   margin: 5px 0px 10px;
 }
-
 .nation-ranking-page .nations-ranking-chart-container .chart-custom-legend ul {
   display: flex;
   flex-wrap: wrap;
 }
-
 .nation-ranking-page .nations-ranking-chart-container .chart-custom-legend ul li {
   padding: 5px 10px;
   margin: 10px 5px;
@@ -2539,16 +2199,13 @@ footer p {
   border-radius: 5px;
   transition: 0.3s;
 }
-
 .nation-ranking-page .nations-ranking-chart-container .chart-custom-legend ul li:hover {
   transform: scale(1.05);
 }
-
 .nation-ranking-page .nations-ranking-chart-container .chart-custom-legend ul li span {
   margin-right: 5px;
   box-shadow: 0px 0px 5px 1px rgba(105, 105, 105, 0.432);
 }
-
 .nation-ranking-page .loading-ui-container .sort-option,
 .nation-ranking-page .loading-ui-container .filter-option {
   opacity: 0.5;
@@ -2557,34 +2214,28 @@ footer p {
 .about-page {
   padding: 20px 5%;
 }
-
 .about-page h2 {
   position: relative;
   margin-bottom: 10px;
 }
-
 .about-page ul {
   margin-bottom: 20px;
 }
-
 .about-page ul li {
   list-style-type: disc;
   list-style-position: inside;
   margin-bottom: 10px;
 }
-
 .about-page ul li a,
 .about-page p a {
   -webkit-text-decoration: underline dotted 2px #a5a5a5;
-  text-decoration: underline dotted 2px #a5a5a5;
+          text-decoration: underline dotted 2px #a5a5a5;
 }
-
 .about-page ul li a:hover,
 .about-page p a:hover {
   -webkit-text-decoration: underline solid 2px #1c1c1c;
-  text-decoration: underline solid 2px #1c1c1c;
+          text-decoration: underline solid 2px #1c1c1c;
 }
-
 .about-page p {
   margin-bottom: 20px;
 }
@@ -2592,27 +2243,22 @@ footer p {
 .pointsystem-page {
   padding: 20px 5%;
 }
-
 .pointsystem-page h2 {
   position: relative;
   margin-bottom: 10px;
 }
-
 .pointsystem-page .table-content {
   margin-top: 20px;
 }
-
 .pointsystem-page .table-content .category-row {
   border-bottom: none;
   display: block;
   margin: 30px 0px 10px;
 }
-
 .pointsystem-page .table-content .category-row h4 {
   font-weight: 600;
   font-size: 20px;
 }
-
 .pointsystem-page .table-content .race-points-list {
   display: flex;
   padding: 15px 30px 0px;
@@ -2624,7 +2270,6 @@ footer p {
   background-color: #ededed;
   margin-bottom: 10px;
 }
-
 .pointsystem-page .table-content .race-points-list p {
   display: flex;
   flex-direction: column;
@@ -2632,841 +2277,1091 @@ footer p {
   margin-right: 50px;
   padding-bottom: 15px;
 }
-
 .pointsystem-page .table-content .race-points-list p:last-of-type {
   margin-right: 0px;
 }
-
 .pointsystem-page .table-content .race-points-list p span:last-of-type {
   margin-top: 5px;
   font-weight: 600;
 }
-
 .pointsystem-page .table-content .category-content {
   display: flex;
   justify-content: space-between;
 }
-
 .pointsystem-page .table-content .category-content .race-name-list p {
   font-size: 17px;
   padding-bottom: 5px;
 }
-
 .pointsystem-page .table-content .category-content .race-name-list .inactive-race {
   opacity: 0.5;
 }
 
-.calendar {
+.calendar-container {
+  width: 90%;
+  margin: 40px 5%;
+  position: relative;
+}
+.calendar-container .scroll-to-view-btn {
+  position: absolute;
+  background-color: #ededed;
+  border: none;
+  right: 0px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.calendar-container .scroll-to-view-btn:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.calendar-container .scroll-to-view-btn:active {
+  transform: scale(0.95);
+}
+.calendar-container .calendar-shadow-container {
+  position: relative;
+}
+.calendar-container .calendar-shadow-container::after, .calendar-container .calendar-shadow-container::before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 10px;
+  right: 0px;
+  top: 0px;
+  background: linear-gradient(-90deg, rgba(0, 0, 0, 0.781), transparent);
+  opacity: 0.08;
+}
+.calendar-container .calendar-shadow-container::before {
+  left: 0px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.781), transparent);
+}
+.calendar-container .calendar {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 376px;
+  padding: 0px 15px;
+  position: relative;
+  scroll-behavior: smooth;
+}
+.calendar-container .calendar::-webkit-scrollbar {
+  height: 7px;
+}
+.calendar-container .calendar::-webkit-scrollbar-track {
+  background: #ededed;
+}
+.calendar-container .calendar::-webkit-scrollbar-thumb {
+  background: #fdca00;
+  border-radius: 50px;
+}
+.calendar-container .calendar::-webkit-scrollbar-thumb:hover {
+  background: #fee402;
+}
+.calendar-container .calendar .months {
   display: flex;
 }
-
-.calendar .month ul {
+.calendar-container .calendar .months .month {
+  position: relative;
+}
+.calendar-container .calendar .months .month > p {
+  font-size: 24px;
+  font-weight: 600;
+  padding: 10px 0px;
+}
+.calendar-container .calendar .months .month .date {
   display: flex;
+}
+.calendar-container .calendar .months .month .date li {
+  position: relative;
+}
+.calendar-container .calendar .months .month .date li::after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: calc(300px + 100%);
+  top: 0px;
+  left: -3px;
+  background-color: #ededed;
+}
+.calendar-container .calendar .current-date-line {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 2px;
+  background-color: #fdca00;
+  top: 0px;
+}
+.calendar-container .calendar .races {
+  display: flex;
+  position: relative;
+  height: 250px;
+}
+.calendar-container .calendar .races > li {
+  position: absolute;
+  padding: 5px;
+  border-radius: 5px;
+}
+.calendar-container .calendar .races > li .tooltip {
+  opacity: 0;
+  transition: 0.2s;
+  position: absolute;
+  transform: scaleY(0) translateX(-50%) scaleX(0);
+  top: 0px;
+  padding-top: 5px;
+  left: 50%;
+  z-index: 1;
+  max-width: 80vw;
+}
+.calendar-container .calendar .races > li .tooltip.top {
+  top: auto;
+  bottom: 100%;
+  padding-top: 0px;
+  padding-bottom: 5px;
+}
+.calendar-container .calendar .races > li .tooltip div {
+  background-color: #1c1c1c;
+  padding: 10px 20px;
+  display: block;
+  border-radius: 5px;
+  text-align: center;
+}
+.calendar-container .calendar .races > li .tooltip div h4,
+.calendar-container .calendar .races > li .tooltip div h5 {
+  white-space: nowrap;
+}
+.calendar-container .calendar .races > li .tooltip div h5 {
+  opacity: 0.5;
+  margin-top: 2px;
+}
+.calendar-container .calendar .races > li .tooltip * {
+  color: white;
+}
+.calendar-container .calendar .races > li .tooltip ul {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.calendar-container .calendar .races > li .tooltip ul li {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 10px;
+}
+.calendar-container .calendar .races > li .tooltip ul li span:last-of-type {
+  opacity: 0.6;
+}
+.calendar-container .calendar .races > li:hover .tooltip {
+  opacity: 1;
+  transform: scaleY(1) translateX(-50%) scaleX(1);
+  top: 100%;
+  z-index: 1;
+}
+.calendar-container .calendar .races > li:hover .tooltip.top {
+  top: auto;
+}
+
+.compare-page-container {
+  margin: 20px 0px;
+  text-align: center;
+}
+.compare-page-container h2 {
+  margin-bottom: 10px;
+}
+.compare-page-container .compare-search-container {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 20px;
+}
+.compare-page-container .compare-search-container input {
+  width: 50%;
+  background-color: #ededed;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 5px;
+  z-index: 1;
+}
+.compare-page-container .compare-search-container input:disabled {
+  opacity: 0.5;
+}
+.compare-page-container .compare-search-container ul {
+  position: absolute;
+  width: calc(50% + 32px);
+  left: calc(25% - 16px);
+  top: 50%;
+  background-color: #dbdbdb;
+  z-index: -1;
+  max-height: 60vh;
+  overflow-y: scroll;
+  border-radius: 5px;
+  display: none;
+}
+.compare-page-container .compare-search-container ul.show {
+  display: block;
+}
+.compare-page-container .compare-search-container ul::-webkit-scrollbar {
+  width: 5px;
+}
+.compare-page-container .compare-search-container ul::-webkit-scrollbar-track {
+  background: #ededed;
+  border-radius: 50px;
+}
+.compare-page-container .compare-search-container ul::-webkit-scrollbar-thumb {
+  background: #fdca00;
+  border-radius: 50px;
+}
+.compare-page-container .compare-search-container ul::-webkit-scrollbar-thumb:hover {
+  background: #fee402;
+}
+.compare-page-container .compare-search-container ul li {
+  text-align: start;
+  padding: 8px 16px;
+}
+.compare-page-container .compare-search-container ul li:not(:last-of-type) {
+  border-bottom: 1px solid rgba(124, 124, 124, 0.1764705882);
+}
+.compare-page-container .compare-search-container ul li:first-of-type {
+  margin-top: 20px;
+}
+.compare-page-container .compare-search-container ul li:hover {
+  background-color: #ececec;
+  cursor: pointer;
+}
+.compare-page-container .comparison-container h4 {
+  margin-top: 20px;
+}
+.compare-page-container .comparison-container p:not(:last-of-type) {
+  padding: 3px 0px;
+  border-bottom: 1px solid #ededed;
+}
+.compare-page-container .comparison-container > div {
+  margin: 0px 5%;
+}
+.compare-page-container .comparison-container > div > div {
+  display: flex;
+  justify-content: center;
+}
+.compare-page-container .comparison-container > div > div > div {
+  width: 25%;
+}
+.compare-page-container .comparison-container > div > div > div:first-of-type {
+  text-align: right;
+}
+.compare-page-container .comparison-container > div > div > div:last-of-type {
+  text-align: left;
+}
+.compare-page-container .comparison-container > div > div > div .higher {
+  color: rgb(120, 201, 0);
+}
+.compare-page-container .comparison-container > div > div > div .lower {
+  color: rgb(240, 0, 0);
+}
+.compare-page-container .comparison-container .greatest-results-comparison {
+  background-color: #ededed;
+  padding: 1px 0px 20px;
+  border-radius: 25px;
+  margin-top: 20px;
+}
+.compare-page-container .comparison-container .greatest-results-comparison > div > div:first-of-type, .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type {
+  width: 35%;
+}
+.compare-page-container .comparison-container .greatest-results-comparison > div > div p {
+  font-weight: 600;
+  margin-bottom: 5px;
+  border-bottom: none;
+}
+.compare-page-container .comparison-container .greatest-results-comparison > div > div p span {
+  font-weight: 400;
+  opacity: 0.5;
+  margin: 0px 3px;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div > div {
+  display: flex;
+  flex-direction: column;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div > div img {
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div > div button {
+  background-color: unset;
+  border: none;
+  margin-bottom: 10px;
+  width: 200px;
+  transition: 0.2s;
+  opacity: 0.5;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div > div button:hover {
+  color: red;
+  cursor: pointer;
+  opacity: 1;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div > div button svg {
+  margin-right: 5px;
+  height: 15px;
+  width: 15px;
+  position: relative;
+  top: 3px;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div:first-of-type div {
+  align-items: end;
+}
+.compare-page-container .comparison-container .comparison-rider-profile > div > div:last-of-type div {
+  align-items: start;
+}
+.compare-page-container .comparison-container .chart-container {
+  margin: 0px 0%;
+  padding: 0px 5%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+}
+.compare-page-container .comparison-container .chart-container h3 {
+  margin-top: 20px;
+}
+.compare-page-container .comparison-container .chart-container p {
+  margin-bottom: 10px;
+}
+.compare-page-container .comparison-container .chart-container div {
+  position: relative;
+  width: 80%;
+}
+
+.seasons-page {
+  padding: 20px 5%;
+}
+.seasons-page .select-container {
+  margin: 20px 0px;
+}
+.seasons-page .select-container label {
+  margin-bottom: 5px;
+  display: block;
+}
+.seasons-page .select-container select {
+  display: block;
+  font-size: 16px;
+  width: 200px;
+}
+.seasons-page .table {
+  overflow-x: hidden;
+}
+.seasons-page .table .row-content {
+  display: flex;
+  width: 100%;
+}
+.seasons-page .table .table-row {
+  flex-direction: column;
+}
+.seasons-page .table .table-header p:nth-of-type(1),
+.seasons-page .table .table-row .row-content p:nth-of-type(1) {
+  width: 10%;
+}
+.seasons-page .table .table-header p:nth-of-type(2),
+.seasons-page .table .table-row .row-content p:nth-of-type(2) {
+  width: 10%;
+}
+.seasons-page .table .table-header p:nth-of-type(3),
+.seasons-page .table .table-row .row-content p:nth-of-type(3) {
+  width: 30%;
+}
+.seasons-page .table .table-header p:nth-of-type(4),
+.seasons-page .table .table-row .row-content p:nth-of-type(4) {
+  width: 35%;
+}
+.seasons-page .table .table-header p:nth-of-type(5),
+.seasons-page .table .table-row .row-content p:nth-of-type(5) {
+  width: 10%;
+}
+.seasons-page .table .table-header p:nth-of-type(6),
+.seasons-page .table .table-row .row-content p:nth-of-type(6) {
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+.seasons-page .table .table-header p:nth-of-type(6) svg,
+.seasons-page .table .table-row .row-content p:nth-of-type(6) svg {
+  margin-top: 2px;
+  transition: 0.2s;
+}
+.seasons-page .table .table-header p:nth-of-type(6):hover,
+.seasons-page .table .table-row .row-content p:nth-of-type(6):hover {
+  background-color: #ededed;
+  cursor: pointer;
+}
+.seasons-page .table .table-header p:nth-of-type(6).show svg,
+.seasons-page .table .table-row .row-content p:nth-of-type(6).show svg {
+  transform: rotate(-180deg);
+}
+.seasons-page .table .row-expansion {
+  position: relative;
+  max-height: 0px;
+  overflow-x: hidden;
+  transition: 0.3s;
+  width: 100%;
+}
+.seasons-page .table .row-expansion h4 {
+  margin: 10px 0px 5px;
+  position: relative;
+}
+.seasons-page .table .row-expansion h4,
+.seasons-page .table .row-expansion p {
+  left: 20%;
+}
+.seasons-page .table .row-expansion p {
+  position: relative;
+  margin-bottom: 2px;
+}
+.seasons-page .table .row-expansion p span {
+  position: absolute;
+  right: calc(100% + 10px);
+  opacity: 0.5;
+}
+.seasons-page .table .row-expansion p:last-of-type {
+  margin-bottom: 10px;
+}
+.seasons-page .table .row-expansion.show {
+  max-height: 500px;
 }
 
 @media only screen and (max-width: 1350px) {
   .hero-section .hero-ranking-container {
     width: 50%;
   }
-
   .active-ranking-table-container .media {
     display: inline-block;
   }
-
   .active-ranking-table-container .table .table-header p:nth-of-type(1),
   .active-ranking-table-container .table .table-row p:nth-of-type(1) {
     width: 8%;
   }
-
   .active-ranking-table-container .table .table-header p:nth-of-type(2),
   .active-ranking-table-container .table .table-row p:nth-of-type(2) {
     width: 45%;
   }
-
   .active-ranking-table-container .table .table-header p:nth-of-type(3),
   .active-ranking-table-container .table .table-row p:nth-of-type(3) {
     display: none;
     width: 0%;
   }
-
   .active-ranking-table-container .table .table-header p:nth-of-type(4),
   .active-ranking-table-container .table .table-row p:nth-of-type(4) {
     width: 40%;
   }
-
   .active-ranking-table-container .table .table-header p:nth-of-type(5),
   .active-ranking-table-container .table .table-row p:nth-of-type(5) {
     width: 10%;
   }
-
   footer .footer-list-container .footer-list-item {
     margin-right: 50px;
   }
 }
-
 @media screen and (max-width: 1200px) {
   p {
     font-size: 14px;
   }
-
+  .calendar li {
+    font-size: 14px;
+  }
+  .calendar .month p {
+    font-size: 20px !important;
+  }
   .table::after {
     bottom: -20px;
   }
-
   header nav ul li a {
     font-size: 14px;
   }
-
   .hero-section .hero-text-container .hero-text-quote {
     font-size: 16px;
     margin-bottom: 5px;
   }
-
   .hero-section .hero-text-container p {
     line-height: 23px;
     margin-bottom: 10px;
   }
-
   .hero-section .hero-text-container .btn-container {
     margin-top: 20px;
   }
-
   .hero-section .scroll-indicator-icon {
     width: 6px;
     height: 15px;
   }
-
   .hero-section .scroll-indicator-icon::after {
     height: 4px;
     width: 4px;
     left: 1px;
   }
-
   .rider-profile-container {
     padding: 20px 5%;
   }
-
   .rider-profile-container .rider-top-results-container h4 {
     font-size: 16px;
   }
-
   .rider-profile-container .rider-top-results-container ul li {
     font-size: 14px;
   }
-
   .rider-all-results-container {
     font-size: 14px;
   }
-
   .rider-all-results-container h4 {
     font-size: 16px;
   }
-
   .rider-related-rankings-container {
     flex-direction: column;
   }
-
   .rider-related-rankings-container .table-wrapper {
     width: 100%;
   }
-
   .rider-related-rankings-container .table-wrapper:last-of-type {
     margin-top: 20px;
   }
-
   .rider-related-rankings-container .table-wrapper .table {
     height: 60vh;
   }
-
   .nation-rankings-container.nations-ranked .table-wrapper .table {
     padding-bottom: 16px;
   }
 }
-
 @media screen and (max-width: 1050px) {
   main {
     padding-top: 45px;
   }
-
   header h1 a {
     font-size: 50px;
   }
-
   header nav {
     width: 45%;
   }
-
   h2 {
     font-size: 25px;
   }
-
   h2 .copy-to-clipboard-hover-container {
     top: 2px;
   }
-
   .copy-to-clipboard-hover-container {
     top: -2px;
   }
-
   h3 {
     font-size: 18px;
   }
-
   .ranking-link-header .copy-to-clipboard-hover-container {
     top: 6px;
   }
-
   .ranking-link-header a svg {
     margin-left: 5px;
     top: 7px;
   }
-
   header h1 a {
     font-size: 20px;
   }
-
   header h1 {
     font-size: 22px;
   }
-
   header nav ul {
     padding: 16px 0px;
   }
-
   header nav ul li a {
     font-size: 14px;
     padding: 10px 0px;
   }
-
   header nav ul li .nav-dropdown-menu ul {
     width: 500px;
   }
-
   header .nav-right-container .nav-search-container .nav-search-icon-container {
     padding: 6px;
   }
-
   header .nav-right-container .nav-search-container .nav-search-icon-container svg {
     height: 18px;
   }
-
   header .nav-right-container .nav-search-container #nav-search-bar-input.visible {
     width: 55vw;
   }
-
   header .nav-right-container .nav-search-container .nav-search-input-delete-container {
     top: 7px;
     padding-right: 8px;
     right: 44px;
   }
-
   header .nav-right-container .nav-search-container .search-results-container {
     width: calc(55vw + 10px);
     padding-top: 40px;
   }
-
   header .nav-right-container .nav-search-container .search-results-container h4 {
     font-size: 16px;
   }
-
   header .nav-right-container .nav-search-container .search-results-container ul li {
     font-size: 14px;
   }
-
   header .nav-right-container .nav-highlighted-item {
     font-size: 14px;
     padding: 8px 18px;
   }
-
   .hero-section {
     height: calc(100vh - 45px);
   }
-
   .hero-section .hero-text-container .quote-icon-container {
     margin-bottom: 5px;
   }
-
   .hero-section .hero-text-container .quote-icon-container svg {
     height: 14px;
   }
-
   .hero-section .hero-text-container .hero-text-quote {
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 5px;
   }
-
   .hero-section .hero-text-container p {
     font-size: 12px;
     line-height: 18px;
   }
-
   .hero-section .hero-text-container .btn-container a {
     font-size: 13px;
   }
-
   .hero-section .scroll-indicator-icon {
     display: none;
   }
-
   .hero-section .hero-ranking-container .table .table-header .media,
   .hero-section .hero-ranking-container .table .table-row .media {
     display: inline-block;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(2),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(2) {
     width: 60%;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(3),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(3) {
     display: none;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(4),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(4) {
     width: 15%;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(3),
   .landing-movements-section .table .table-row p:nth-of-type(3) {
     width: 30%;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(4),
   .landing-movements-section .table .table-row p:nth-of-type(4) {
     width: 35%;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(6),
   .landing-movements-section .table .table-row p:nth-of-type(6) {
     display: none;
   }
-
   .landing-nations-ranking-section .table .table-header p:nth-of-type(1),
   .landing-nations-ranking-section .table .table-row p:nth-of-type(1) {
     width: 15%;
   }
-
   .ranking-each-decade-container .table-overflow-container .table-row {
     padding: 5px 0px;
   }
-
   .ranking-page-container .ranking-filter-options-container {
     font-size: 14px;
   }
-
   .ranking-page-container .ranking-filter-options-container button {
     padding: 12px 16px;
   }
-
   .ranking-page-container .search-container {
     padding: 5px 5%;
   }
-
   .ranking-page-container .search-container ul {
     top: 31px;
   }
-
   .ranking-page-container .search-container ul li a {
     font-size: 14px;
     padding: 8px 10px;
   }
-
   .ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container .select-container button {
     right: -45px;
     top: -4px;
   }
-
   .nation-page-container .nation-profile-container .rider-top-results-container {
     padding: 15px 30px;
   }
-
   .nation-ranking-page .nation-table-wrapper {
     padding-top: 0px;
   }
-
   .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container {
     margin-top: 10px;
     margin-bottom: 5px;
     flex-direction: column;
   }
-
   .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container .sort-container {
     margin-bottom: 10px;
   }
-
   .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container label {
     font-size: 14px;
   }
-
   .pointsystem-page .table-content .category-row h4 {
     font-size: 18px;
   }
 }
-
 @media screen and (max-width: 1020px) {
   .landing-movements-section .table {
     padding-bottom: 16px;
   }
 }
-
 @media screen and (max-width: 978px) {
   .nation-rankings-container.nations-ranked .table-wrapper .table {
     padding-bottom: 33px;
   }
 }
-
 @media screen and (max-width: 950px) {
   .copy-to-clipboard-hover-container {
     display: none !important;
   }
-
   header nav {
     width: 45%;
   }
-
   header nav ul li a,
   header nav ul li p {
     font-size: 12px;
   }
-
   header nav ul li p.dropdown-button span {
     left: -2px;
   }
-
   .hero-section .hero-ranking-container .rounded-table-container .table .table-header p span {
     display: none;
   }
-
   .landing-split-rankings-section .active-ranking-table-container {
     width: 48%;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .table .cur-team-span {
     display: block;
     opacity: 0.4;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .table .table-row p:nth-of-type(2),
   .landing-split-rankings-section .active-ranking-table-container .table .table-header p:nth-of-type(2) {
     width: 75%;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .table .table-row p:nth-of-type(4),
   .landing-split-rankings-section .active-ranking-table-container .table .table-header p:nth-of-type(4) {
     display: none;
     width: 0%;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container {
     width: 48%;
   }
-
   footer .footer-list-container {
     flex-direction: column;
   }
-
   footer .footer-list-container .footer-list-item h4 {
     font-size: 16px;
     margin-bottom: 10px;
     margin-top: 20px;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) {
     width: 5%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(2),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(2) {
     width: 10%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(3),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(3) {
     width: 10%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) {
     width: 40%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) {
     width: 30%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(6),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(6) {
     width: 10%;
   }
-
   .rider-profile-container .rider-profile-info-container .rider-profile-info-image-container,
   .rider-profile-container .rider-profile-info-container .rider-profile-info-image-container img {
     height: 150px;
     width: 150px;
   }
-
   .rider-profile-container .rider-profile-info-container .rider-profile-info-info-container h3 {
     font-size: 24px;
     margin-bottom: 10px;
   }
-
-  .rider-all-results-container>div .btn-container:first-of-type {
+  .rider-all-results-container > div .btn-container:first-of-type {
     left: -40px;
   }
-
-  .rider-all-results-container>div .btn-container:last-of-type {
+  .rider-all-results-container > div .btn-container:last-of-type {
     right: -40px;
   }
-
   .rider-all-results-container .rider-result-year-container {
     width: 80%;
   }
-
   .rider-all-results-container .rider-result-year-container h4 {
     font-size: 20px;
   }
-
   .nation-page-container .nation-profile-container .nation-profile-info-container .nation-profile-info-image-container {
     width: 200px;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(3),
   .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(3) {
     width: 20%;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(6),
   .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(6) {
     width: 5%;
   }
 }
-
 @media screen and (max-width: 815px) {
   p {
     font-size: 13px;
   }
-
   header nav {
     width: 50%;
   }
-
   header nav ul li p,
   header nav ul li a {
     font-size: 12px;
     letter-spacing: -0.5px;
   }
-
   .table::after {
     bottom: -19px;
   }
-
   main {
     padding-top: 40px;
   }
-
   html {
     scroll-padding-top: 40px;
   }
-
   .table-previous-span {
     font-size: 12px;
   }
-
   h2 {
     font-size: 20px;
   }
-
   header h1 a {
     font-size: 18px;
   }
-
   header h1 {
     font-size: 18px;
   }
-
   header nav ul {
     padding: 14px 0px;
   }
-
   header nav ul li a {
     font-size: 12px;
   }
-
   header nav ul li .nav-dropdown-menu ul {
     width: 450px;
     margin-top: 20px;
   }
-
   header nav ul li .nav-dropdown-menu ul li {
     padding: 10px;
   }
-
   header .nav-right-container .nav-search-container #nav-search-bar-input.visible {
     width: 50vw;
   }
-
   header .nav-right-container .nav-search-container .nav-search-icon-container {
     padding: 4px 4px 3px;
   }
-
   header .nav-right-container .nav-search-container .nav-search-input-delete-container {
     top: 6px;
     height: 16px;
     right: 40px;
   }
-
   header .nav-right-container .nav-search-container .search-results-container {
     width: calc(50vw + 10px);
   }
-
   header .nav-right-container .nav-search-container .search-results-container h4 {
     font-size: 14px;
   }
-
-  header .nav-right-container .nav-search-container .search-results-container ul li:nth-of-type(10),
-  header .nav-right-container .nav-search-container .search-results-container ul li:nth-of-type(9) {
+  header .nav-right-container .nav-search-container .search-results-container ul li:nth-of-type(10), header .nav-right-container .nav-search-container .search-results-container ul li:nth-of-type(9) {
     display: none;
   }
-
   header .nav-right-container .nav-search-container .search-results-container ul li a {
     font-size: 13px;
   }
-
   header .nav-right-container .nav-highlighted-item {
     font-size: 13px;
     font-weight: 500;
     padding: 7px 16px;
   }
-
   .hero-section {
     flex-direction: column;
     height: -moz-fit-content;
     height: fit-content;
   }
-
   .hero-section .hero-text-container {
     width: 100%;
     margin-top: 20px;
   }
-
   .hero-section .hero-text-container .quote-container {
     padding: 0px 10%;
     margin-bottom: 20px;
   }
-
   .hero-section .hero-text-container .hero-text-quote {
     font-size: 12px;
   }
-
   .hero-section .hero-text-container .btn-container {
     margin-top: 10px;
   }
-
   .hero-section .hero-text-container .btn-container a {
     font-size: 12px;
   }
-
   .hero-section .hero-ranking-container {
     width: 100%;
   }
-
   .hero-section .hero-ranking-container .table {
     height: 50vh;
   }
-
   .hero-section .hero-ranking-container .table .table-header .media,
   .hero-section .hero-ranking-container .table .table-row .media {
     display: none;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(1),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(1) {
     width: 10%;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(2),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(2) {
     width: 40%;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(3),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(3) {
     display: inline-block;
     width: 25%;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(4),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(4) {
     width: 15%;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(5),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(5) {
     width: 10%;
   }
-
   .landing-movements-section .table .table-header p span:first-of-type {
     display: none;
   }
-
   .landing-movements-section .table .table-header .media {
     display: inline-block;
   }
-
   .landing-movements-section .table .table-content .table-row p:first-of-type svg {
     display: none;
   }
-
   .landing-movements-section .table .table-content .table-row p:first-of-type.rank-up {
     color: #46ac17;
     font-weight: 600;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(2),
   .landing-movements-section .table .table-row p:nth-of-type(2) {
     width: 7%;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(2) svg,
   .landing-movements-section .table .table-row p:nth-of-type(2) svg {
     display: none;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(4),
   .landing-movements-section .table .table-row p:nth-of-type(4) {
     width: 40%;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(5),
   .landing-movements-section .table .table-row p:nth-of-type(5) {
     width: 5%;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(7),
   .landing-movements-section .table .table-row p:nth-of-type(7) {
     width: 8%;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(2),
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(2) {
     width: 75%;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(3),
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(3) {
     display: none;
   }
-
   .ranking-each-decade-container .table-overflow-container .table .table-header p:first-of-type,
   .ranking-each-decade-container .table-overflow-container .table .table-row p:first-of-type {
     width: 100px;
   }
-
   .ranking-each-decade-container .table-overflow-container .table .table-header p,
   .ranking-each-decade-container .table-overflow-container .table .table-row p {
     width: 200px;
   }
-
   .ranking-page-container .ranking-filter-options-container {
     padding: 10px 5%;
     font-size: 13px;
     flex-wrap: wrap;
   }
-
   .ranking-page-container .ranking-filter-options-container .btn-container {
     margin-right: 150px;
     margin-top: 10px;
     margin-bottom: 10px;
   }
-
   .ranking-page-container .ranking-filter-options-container .btn-container button {
     padding: 8px 16px;
   }
-
   .ranking-page-container .search-container .search-input-container {
     width: calc(100% - 40px);
   }
-
   .ranking-page-container .search-container ul {
     width: 90%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) {
     width: 10%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(2),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(2) {
     width: 10%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(3),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(3) {
     width: 10%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) {
     width: 40%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) {
     width: 30%;
   }
-
   .rider-profile-container .rider-profile-info-container .rider-profile-info-info-container h3 {
     font-size: 22px;
     margin-bottom: 7px;
   }
-
   .rider-profile-container .rider-top-results-container {
     padding-left: 45px;
   }
-
   .rider-profile-container .rider-top-results-container h4 {
     margin-bottom: 8px;
   }
-
   .rider-profile-container .rider-top-results-container ul li {
     font-size: 13px;
   }
-
   .rider-all-results-container .rider-result-year-container {
     padding-left: 40px;
   }
-
   .rider-all-results-container .rider-result-year-container h4 {
     font-size: 16px;
   }
-
   .rider-all-results-container .rider-result-year-container ul li {
     font-size: 13px;
   }
-
   .nation-page-container .nation-evolution-container {
     padding: 10px 5% 5px;
   }
-
   .nation-page-container .nation-evolution-container .media {
     display: block;
   }
-
   .nation-page-container .nation-evolution-container .media .mobile-charts-container .mobile-charts-header-and-options-container h3 {
     color: #ffffff;
   }
-
   .nation-page-container .nation-evolution-container .media .mobile-charts-container .mobile-charts-header-and-options-container .btn-container {
     display: flex;
     flex-wrap: wrap;
   }
-
   .nation-page-container .nation-evolution-container .media .mobile-charts-container .mobile-charts-header-and-options-container .btn-container button {
     background-color: #ffffff;
     border: none;
@@ -3476,225 +3371,176 @@ footer p {
     margin-right: 5px;
     margin-bottom: 5px;
   }
-
   .nation-page-container .nation-evolution-container .media .mobile-charts-container .mobile-charts-header-and-options-container .btn-container button.btn-active {
     background-color: #fee402;
   }
-
   .nation-page-container .nation-evolution-container .media .mobile-charts-container .charts-container .chart-container.hide {
     display: none;
   }
-
   .nation-page-container .nation-evolution-container .media .mobile-charts-container .charts-container .chart-container.show {
     display: block;
     width: 100%;
     margin-top: 10px;
   }
-
   .nation-page-container .nation-evolution-container .media .mobile-charts-container .charts-container .chart-container h3 {
     display: none;
   }
-
-  .nation-page-container .nation-evolution-container>.charts-container {
+  .nation-page-container .nation-evolution-container > .charts-container {
     display: none;
   }
-
   .nation-page-container .nation-top-results-container .table .table-header p:nth-of-type(1) span:first-of-type {
     display: none;
   }
-
   .nation-page-container .nation-top-results-container .table .table-header p:nth-of-type(2),
   .nation-page-container .nation-top-results-container .table .table-row p:nth-of-type(2) {
     display: none;
   }
-
   .nation-page-container .nation-top-results-container .table .table-header p:nth-of-type(4),
   .nation-page-container .nation-top-results-container .table .table-row p:nth-of-type(4) {
     padding-right: 0px;
     width: 70%;
   }
-
   .nation-page-container .nation-top-results-container .table .table-header .media,
   .nation-page-container .nation-top-results-container .table .table-row .media {
     display: inline-block;
   }
-
   .nation-page-container .nation-rankings-container {
     flex-direction: column;
   }
-
   .nation-page-container .nation-rankings-container .table-wrapper {
     width: 100%;
   }
-
   .nation-page-container .nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(2),
   .nation-page-container .nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(2) {
     width: 50%;
   }
-
   .nation-page-container .nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(3),
   .nation-page-container .nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(3) {
     display: none;
   }
-
   .nation-page-container .nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(4),
   .nation-page-container .nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(4) {
     width: 23%;
   }
-
   .nation-page-container .nation-rankings-container.nations-ranked .table-wrapper .table .table-header p:nth-of-type(5),
   .nation-page-container .nation-rankings-container.nations-ranked .table-wrapper .table .table-row p:nth-of-type(5) {
     width: 10%;
   }
-
   .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container label {
     font-size: 13px;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-row {
     display: flex;
     align-items: center;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(2),
   .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(2) {
     width: 12%;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(3),
   .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(3) {
     width: 27%;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(4),
   .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(4) {
     width: 34%;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(4) a,
   .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(4) a {
     display: block;
   }
-
   .nation-ranking-page .nations-ranking-chart-container .chart-custom-legend ul li {
     font-size: 14px;
     margin: 5px;
   }
-
   .pointsystem-page .table-content .race-points-list p {
     font-size: 14px;
   }
-
   .pointsystem-page .table-content .category-content .race-name-list p {
     font-size: 14px;
   }
-
   .landing-movements-section .table {
     padding-bottom: 0px;
   }
-
   .nation-rankings-container.nations-ranked .table-wrapper .table {
     padding-bottom: 0px;
   }
-
   .compare-page-container .compare-search-container input {
     width: 90%;
   }
-
   .compare-page-container .compare-search-container ul {
     width: calc(90% + 32px);
     left: calc(5% - 16px);
   }
-
-  .compare-page-container .comparison-container>div>div>div {
+  .compare-page-container .comparison-container > div > div > div {
     width: 33%;
   }
-
-  .compare-page-container .comparison-container .greatest-results-comparison>div {
+  .compare-page-container .comparison-container .greatest-results-comparison > div {
     flex-direction: column;
     align-items: center;
   }
-
-  .compare-page-container .comparison-container .greatest-results-comparison>div>div {
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div {
     text-align: left !important;
   }
-
-  .compare-page-container .comparison-container .greatest-results-comparison>div>div:first-of-type,
-  .compare-page-container .comparison-container .greatest-results-comparison>div>div:last-of-type {
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div:first-of-type, .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type {
     width: 80%;
   }
-
-  .compare-page-container .comparison-container .greatest-results-comparison>div>div .media {
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div .media {
     display: inline-block;
   }
-
-  .compare-page-container .comparison-container .greatest-results-comparison>div>div h4 {
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div h4 {
     margin-bottom: 10px;
     margin-left: 20px;
   }
-
-  .compare-page-container .comparison-container .greatest-results-comparison>div>div p {
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div p {
     text-align: left;
     position: relative;
     margin-left: 20px;
   }
-
-  .compare-page-container .comparison-container .greatest-results-comparison>div>div p span {
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div p span {
     position: absolute;
     right: calc(100% + 5px);
   }
-
-  .compare-page-container .comparison-container .greatest-results-comparison>div>div:last-of-type span {
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type span {
     display: none;
   }
-
-  .compare-page-container .comparison-container .greatest-results-comparison>div>div:last-of-type .media {
+  .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type .media {
     display: inline-block;
   }
-
   .compare-page-container .comparison-container .chart-container div {
     width: 100%;
   }
-
-  .compare-page-container .comparison-rider-profile>div>div>div img {
+  .compare-page-container .comparison-rider-profile > div > div > div img {
     height: 150px;
     width: 150px;
   }
-
-  .compare-page-container .comparison-rider-profile>div>div>div button {
+  .compare-page-container .comparison-rider-profile > div > div > div button {
     width: 150px !important;
   }
 }
-
 @media screen and (max-width: 717px) {
   .landing-nations-ranking-section .table {
     padding-bottom: 14px;
   }
 }
-
 @media screen and (max-width: 680px) {
   .table .table-content::-webkit-scrollbar {
     width: 5px;
   }
-
   .rounded-table-container {
     padding: 20px;
   }
-
   header.non-mobile-header {
     display: none;
   }
-
   header.mobile-header {
     display: flex;
   }
-
   header.mobile-header .menu-icon-container {
     position: relative;
     height: 40px;
     width: 30px;
   }
-
   header.mobile-header .menu-icon-container::after {
     content: "";
     display: block;
@@ -3706,7 +3552,6 @@ footer p {
     background-color: #fee402;
     transition: 0.3s;
   }
-
   header.mobile-header .menu-icon-container::before {
     content: "";
     display: block;
@@ -3719,18 +3564,15 @@ footer p {
     background-color: #fee402;
     transition: 0.3s;
   }
-
   header.mobile-header .menu-icon-container.show::after {
     transform: rotate(-225deg);
     top: 45%;
   }
-
   header.mobile-header .menu-icon-container.show::before {
     transform: rotate(225deg);
     width: 100%;
     top: 45%;
   }
-
   header.mobile-header .nav-bg {
     content: "";
     position: absolute;
@@ -3742,11 +3584,9 @@ footer p {
     background-color: black;
     opacity: 0.4;
   }
-
   header.mobile-header .nav-bg.show {
     display: block;
   }
-
   header.mobile-header nav {
     opacity: 0;
     background-color: #ffffff;
@@ -3764,49 +3604,40 @@ footer p {
     z-index: -1;
     transition: 0.3s;
   }
-
   header.mobile-header nav.show {
     opacity: 1;
     right: 0px;
   }
-
   header.mobile-header nav .dropdown-button {
     color: #1c1c1c;
     font-size: 14px;
     position: relative;
   }
-
   header.mobile-header nav .dropdown-button .down-icon {
     position: absolute;
     left: -85px;
     transform: rotate(90deg);
     top: -1px;
   }
-
   header.mobile-header nav ul {
     flex-direction: column;
     align-items: end;
   }
-
   header.mobile-header nav ul li {
     padding: 10px 0px;
   }
-
   header.mobile-header nav ul li a {
     color: #1c1c1c;
     font-size: 14px;
     padding: 10px 0px;
   }
-
   header.mobile-header nav ul li a::after {
     display: none;
   }
-
   header.mobile-header nav ul li.nav-item-with-dropdown {
     position: static;
     z-index: 30;
   }
-
   header.mobile-header nav ul li.nav-item-with-dropdown .nav-expand-list {
     position: absolute;
     background-color: #ededed;
@@ -3816,15 +3647,12 @@ footer p {
     z-index: 30;
     transition: 0.2s;
   }
-
   header.mobile-header nav ul li.nav-item-with-dropdown .nav-expand-list.hideList {
     right: -200%;
   }
-
   header.mobile-header nav ul li.nav-item-with-dropdown .nav-expand-list.showList {
     right: -5vw;
   }
-
   header.mobile-header nav ul li.nav-item-with-dropdown .nav-expand-list p {
     display: block;
     position: relative;
@@ -3836,48 +3664,39 @@ footer p {
     font-weight: 600;
     color: #1c1c1c;
   }
-
   header.mobile-header nav ul li.nav-item-with-dropdown .nav-expand-list p svg {
     position: relative;
     top: 3px;
   }
-
   header.mobile-header nav ul li.nav-item-with-dropdown .nav-expand-list ul li {
     padding-right: 5vw;
     padding-top: 5px;
     padding-bottom: 5px;
   }
-
   header.mobile-header nav ul li.nav-item-with-dropdown .nav-expand-list ul li a {
     padding: 5px 0px;
   }
-
   header.mobile-header .nav-search.show {
     opacity: 1;
   }
-
   header.mobile-header .nav-search.hide {
     opacity: 0;
   }
-
   header.mobile-header .nav-search-container {
     position: relative;
     margin-top: 10px;
     z-index: 10;
   }
-
   header.mobile-header .nav-search-container .nav-search-icon-container {
     position: absolute;
     right: 10px;
     top: 5px;
     padding: 0px;
   }
-
   header.mobile-header .nav-search-container .nav-search-icon-container svg {
     color: #1c1c1c;
     opacity: 0.6;
   }
-
   header.mobile-header .nav-search-container .nav-search-input-delete-container {
     position: absolute;
     right: 0px;
@@ -3888,17 +3707,14 @@ footer p {
     z-index: -1;
     border-radius: 5px;
   }
-
   header.mobile-header .nav-search-container .nav-search-input-delete-container#search-close-container {
     z-index: 1;
     background-color: #ededed;
   }
-
   header.mobile-header .nav-search-container .nav-search-input-delete-container svg {
     height: 35px;
     opacity: 0.6;
   }
-
   header.mobile-header .nav-search-container input {
     background-color: #ededed;
     outline: none;
@@ -3906,7 +3722,6 @@ footer p {
     padding: 10px 50px 10px 10px;
     border-radius: 5px;
   }
-
   header.mobile-header .nav-search-container .search-results-container {
     position: absolute;
     background-color: #e2e2e2;
@@ -3916,282 +3731,225 @@ footer p {
     padding-top: 40px;
     width: 100%;
   }
-
   header.mobile-header .nav-search-container .search-results-container h4 {
     padding-left: 10px;
   }
-
   header.mobile-header .nav-search-container .search-results-container ul {
     padding-top: 0px;
     align-items: start;
   }
-
   header.mobile-header .nav-search-container .search-results-container ul li {
     padding: 5px 0px;
   }
-
   header.mobile-header .nav-search-container .search-results-container ul li a {
     padding: 10px 10px;
   }
-
   .hero-section .hero-ranking-container .table .table-header .media,
   .hero-section .hero-ranking-container .table .table-row .media {
     display: inline-block;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(1),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(1) {
     width: 10%;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(2),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(2) {
     width: 60%;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(3),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(3) {
     display: none;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(4),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(4) {
     width: 15%;
   }
-
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(5),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(5) {
     width: 10%;
   }
-
   .landing-movements-section .table .table-row .media {
     margin-top: 2px;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(2),
   .landing-movements-section .table .table-header p:nth-of-type(2) {
     width: 10%;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(1),
   .landing-movements-section .table .table-header p:nth-of-type(1) {
     width: 14%;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(3),
   .landing-movements-section .table .table-header p:nth-of-type(3) {
     width: 60%;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(3) .media,
   .landing-movements-section .table .table-header p:nth-of-type(3) .media {
     display: block;
     opacity: 0.6;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(4),
   .landing-movements-section .table .table-header p:nth-of-type(4) {
     display: none;
     width: 0%;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(5),
   .landing-movements-section .table .table-header p:nth-of-type(5) {
     width: 8%;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(7),
   .landing-movements-section .table .table-header p:nth-of-type(7) {
     width: -moz-fit-content;
     width: fit-content;
   }
-
   .landing-split-rankings-section {
     flex-direction: column;
   }
-
   .landing-split-rankings-section .active-ranking-table-container {
     width: 100%;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .table .table-header .cur-team-span,
   .landing-split-rankings-section .active-ranking-table-container .table .table-row .cur-team-span {
     display: none;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .table .table-header p:nth-of-type(3),
   .landing-split-rankings-section .active-ranking-table-container .table .table-row p:nth-of-type(3) {
     width: 30%;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .table .table-header p:nth-of-type(4),
   .landing-split-rankings-section .active-ranking-table-container .table .table-row p:nth-of-type(4) {
     display: block;
     width: 50%;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container {
     padding-top: 20px;
     width: 100%;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(4),
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(4) {
     width: 10%;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(3),
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(3) {
     display: inline-block;
     width: 17%;
   }
-
   .landing-nations-ranking-section .table .table-row p:nth-of-type(2),
   .landing-nations-ranking-section .table .table-header p:nth-of-type(2) {
     width: 25%;
   }
-
   .landing-nations-ranking-section .table .table-row p:nth-of-type(3),
   .landing-nations-ranking-section .table .table-header p:nth-of-type(3) {
     width: 35%;
   }
-
   .landing-nations-ranking-section .table .table-row p:nth-of-type(4),
   .landing-nations-ranking-section .table .table-header p:nth-of-type(4) {
     width: 15%;
   }
-
   .landing-nations-ranking-section .table .table-row p:nth-of-type(5),
   .landing-nations-ranking-section .table .table-header p:nth-of-type(5) {
     width: 10%;
   }
-
   .greatest-seasons-container .rounded-table-container .table {
     padding-bottom: 13px;
   }
-
   .greatest-seasons-container .rounded-table-container .table .table-row .race-name-span,
   .greatest-seasons-container .rounded-table-container .table .table-header .race-name-span {
     display: block;
   }
-
   .greatest-seasons-container .rounded-table-container .table .table-row .media,
   .greatest-seasons-container .rounded-table-container .table .table-header .media {
     display: block;
     position: relative;
     left: -3px;
   }
-
   .greatest-seasons-container .rounded-table-container .table .table-row p:nth-of-type(2),
   .greatest-seasons-container .rounded-table-container .table .table-header p:nth-of-type(2) {
     width: 40%;
   }
-
   .greatest-seasons-container .rounded-table-container .table .table-row p:nth-of-type(3),
   .greatest-seasons-container .rounded-table-container .table .table-header p:nth-of-type(3) {
     width: 50%;
   }
-
   .greatest-seasons-container .rounded-table-container .table .table-row p:nth-of-type(4),
   .greatest-seasons-container .rounded-table-container .table .table-header p:nth-of-type(4) {
     display: none;
   }
-
   .greatest-seasons-container .rounded-table-container .table .table-row {
     display: flex;
     align-items: center;
   }
-
   .ranking-each-decade-container .table-wrapper .table-overflow-container::-webkit-scrollbar {
     height: 5px;
   }
-
   .ranking-page-container .ranking-filter-options-container {
     display: grid;
     justify-content: space-between;
     grid-template-columns: auto 30%;
   }
-
   .ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container {
     grid-column: 1;
     grid-row: 1;
   }
-
   .ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container {
     grid-column: 1;
     grid-row: 2;
   }
-
   .ranking-page-container .ranking-filter-options-container .ranking-filter-active-container {
     grid-column: 2;
     grid-row: 1;
   }
-
   .ranking-page-container .btn-container button {
     padding: 10px;
   }
-
   .ranking-page-container .btn-container button span {
     display: none;
   }
-
   .ranking-page-container .search-container .search-input-container input {
     font-size: 12px;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(2),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(2) {
     width: 10%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) {
     width: 30%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5) span.nation-full-name,
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) span.nation-full-name {
     display: none;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5) .media,
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) .media {
     display: inline-block;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(6),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(6) {
     width: 10%;
   }
-
   .rider-profile-container {
     flex-direction: column;
     padding: 15px 5%;
   }
-
   .rider-profile-container .rider-top-results-container {
     margin-top: 10px;
     width: calc(90vw - 55px);
   }
-
   .rider-evolution-container {
     flex-direction: column;
     padding: 15px 5% 20px;
   }
-
   .rider-evolution-container .media {
     display: inline-block;
   }
-
   .rider-evolution-container .media h3 {
     color: #ffffff;
   }
-
   .rider-evolution-container .media .btn-container {
     display: flex;
     flex-wrap: wrap;
   }
-
   .rider-evolution-container .media .btn-container button {
     border: none;
     background-color: #ededed;
@@ -4200,402 +3958,400 @@ footer p {
     font-size: 12px;
     margin-bottom: 5px;
   }
-
   .rider-evolution-container .media .btn-container button:not(:last-of-type) {
     margin-right: 10px;
   }
-
   .rider-evolution-container .media .btn-container button.btn-active {
     background-color: #fee402;
   }
-
   .rider-evolution-container .chart-container {
     margin-top: 5px;
     width: 90vw;
     position: relative;
   }
-
   .rider-evolution-container .chart-container h3 {
     display: none;
   }
-
   .rider-evolution-container .chart-container canvas {
     position: relative;
     width: 90vw;
     height: -moz-fit-content;
     height: fit-content;
   }
-
   .rider-evolution-container .hide {
     display: none;
   }
-
   .rider-all-results-container .rider-result-year-container {
     width: 70%;
   }
-
-  .rider-all-results-container .rider-result-year-container>div {
+  .rider-all-results-container .rider-result-year-container > div {
     flex-direction: column;
   }
-
-  .rider-all-results-container .rider-result-year-container>div>div:first-of-type {
+  .rider-all-results-container .rider-result-year-container > div > div:first-of-type {
     margin-bottom: 20px;
   }
-
   .nation-page-container .nation-profile-container .nation-profile-info-container .nation-profile-info-image-container {
     width: 175px;
   }
-
   .nation-page-container .nation-top-results-container .table .table-header {
     display: none;
   }
-
   .nation-page-container .nation-top-results-container .table .table-row {
     display: flex;
     flex-direction: column;
     border-bottom: none;
     margin-bottom: 10px;
   }
-
   .nation-page-container .nation-top-results-container .table .table-row p:nth-of-type(3) {
     width: 100%;
     padding-bottom: 5px;
     margin-bottom: 5px;
     border-bottom: 1px solid #1c1c1c;
   }
-
   .nation-page-container .nation-top-results-container .table .table-row p:nth-of-type(4) {
     width: 100%;
   }
-
   .nation-page-container .nation-top-results-container .table .table-row p:first-of-type {
     display: none;
   }
-
   .pointsystem-page .table-content .race-points-list {
     padding: 10px 20px 0px;
   }
-
   .pointsystem-page .table-content .race-points-list p {
     margin-right: 25px;
     padding-bottom: 10px;
   }
-
   .landing-movements-section .table {
     padding-bottom: 14px;
   }
+  .seasons-page .select-container select {
+    font-size: 14px;
+    width: 120px;
+  }
+  .seasons-page .table .table-header p:nth-of-type(1),
+  .seasons-page .table .table-row .row-content p:nth-of-type(1) {
+    width: 15%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(2),
+  .seasons-page .table .table-row .row-content p:nth-of-type(2) {
+    display: none;
+  }
+  .seasons-page .table .table-header p:nth-of-type(3),
+  .seasons-page .table .table-row .row-content p:nth-of-type(3) {
+    width: 35%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(4),
+  .seasons-page .table .table-row .row-content p:nth-of-type(4) {
+    width: 35%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(5),
+  .seasons-page .table .table-row .row-content p:nth-of-type(5) {
+    width: 10%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(6),
+  .seasons-page .table .table-row .row-content p:nth-of-type(6) {
+    width: 5%;
+  }
+  .seasons-page .table .row-expansion h4,
+  .seasons-page .table .row-expansion p {
+    left: 15%;
+  }
+  .calendar-container .calendar .months .month p {
+    font-size: 18px !important;
+  }
+  .tooltip {
+    display: none !important;
+  }
 }
-
 @media screen and (max-width: 600px) {
   .rider-all-results-container {
     justify-content: center;
   }
-
   .rider-all-results-container .rider-result-year-container {
     width: -moz-fit-content;
     width: fit-content;
     margin-right: 0px;
   }
-
   .rider-all-results-container .rider-result-year-container h4 {
     position: relative;
     left: -20px;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(1),
   .landing-movements-section .table .table-header p:nth-of-type(1) {
     width: 13%;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(1) span,
   .landing-movements-section .table .table-header p:nth-of-type(1) span {
     display: block;
     position: relative;
     left: -3px;
   }
-
   .landing-nations-ranking-section .table .table-row {
     display: flex;
     align-items: center;
   }
-
   .landing-nations-ranking-section .table p .table-previous-span {
     display: block;
     left: -3px;
     position: relative;
   }
-
-  .compare-page-container .comparison-container>div>div>div:first-of-type {
+  .compare-page-container .comparison-container > div > div > div:first-of-type {
     text-align: start;
     width: 25%;
   }
-
-  .compare-page-container .comparison-container>div>div>div:nth-of-type(2) {
+  .compare-page-container .comparison-container > div > div > div:nth-of-type(2) {
     text-overflow: clip;
     white-space: nowrap;
     width: 50%;
   }
-
-  .compare-page-container .comparison-container>div>div>div:last-of-type {
+  .compare-page-container .comparison-container > div > div > div:last-of-type {
     text-align: end;
     width: 25%;
   }
-
   .compare-page-container .comparison-container .rider-info {
     white-space: nowrap;
   }
-
-  .compare-page-container .comparison-container .rider-info>div>div>div>p:nth-of-type(2) {
+  .compare-page-container .comparison-container .rider-info > div > div > div > p:nth-of-type(2) {
     display: none;
   }
-
-  .compare-page-container .comparison-container .rider-info>div>div:first-of-type,
-  .compare-page-container .comparison-container .rider-info>div>div:last-of-type {
+  .compare-page-container .comparison-container .rider-info > div > div:first-of-type, .compare-page-container .comparison-container .rider-info > div > div:last-of-type {
     width: 40%;
   }
-
-  .compare-page-container .comparison-container .rider-info>div>div:nth-of-type(2) {
+  .compare-page-container .comparison-container .rider-info > div > div:nth-of-type(2) {
     width: 20%;
   }
-
-  .compare-page-container .comparison-container .comparison-rider-profile>div>div:first-of-type {
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div:first-of-type {
     width: 50%;
   }
-
-  .compare-page-container .comparison-container .comparison-rider-profile>div>div:first-of-type div {
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div:first-of-type div {
     align-items: start;
   }
-
-  .compare-page-container .comparison-container .comparison-rider-profile>div>div:last-of-type {
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div:last-of-type {
     width: 50%;
   }
-
-  .compare-page-container .comparison-container .comparison-rider-profile>div>div:last-of-type div {
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div:last-of-type div {
     align-items: end;
   }
-
-  .compare-page-container .comparison-container .comparison-rider-profile>div>div:nth-last-of-type(2) {
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div:nth-last-of-type(2) {
     width: 0%;
   }
 }
-
 @media screen and (max-width: 500px) {
-
   .landing-movements-section .table .table-row p:nth-of-type(2),
   .landing-movements-section .table .table-header p:nth-of-type(2) {
     width: 13%;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(1),
   .landing-movements-section .table .table-header p:nth-of-type(1) {
     width: 15%;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(1) span,
   .landing-movements-section .table .table-header p:nth-of-type(1) span {
     display: block;
     position: relative;
     left: -3px;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(3),
   .landing-movements-section .table .table-header p:nth-of-type(3) {
     width: 65%;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(5),
   .landing-movements-section .table .table-header p:nth-of-type(5) {
     width: -moz-fit-content;
     width: fit-content;
     padding-right: 7px;
   }
-
   .landing-movements-section .table .table-row p:nth-of-type(7),
   .landing-movements-section .table .table-header p:nth-of-type(7) {
     display: none;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-row {
     align-items: center;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-header .cur-team-span,
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-row .cur-team-span {
     display: block;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(2),
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(2) {
     width: 75%;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(4),
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(4) {
     display: none;
     width: 0%;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(5),
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(5) {
     width: 5%;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(4),
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(4) {
     padding-right: 7px;
   }
-
   .greatest-seasons-container .rounded-table-container .table .table-header p:nth-of-type(1),
   .greatest-seasons-container .rounded-table-container .table .table-row p:nth-of-type(1) {
     width: 10%;
   }
-
   .greatest-seasons-container .rounded-table-container .table .table-header p:nth-of-type(2),
   .greatest-seasons-container .rounded-table-container .table .table-row p:nth-of-type(2) {
     width: 75%;
   }
-
   .greatest-seasons-container .rounded-table-container .table .table-header p:nth-of-type(3),
   .greatest-seasons-container .rounded-table-container .table .table-row p:nth-of-type(3) {
     display: none;
   }
-
   .greatest-seasons-container .rounded-table-container .table .table-header p:nth-of-type(4),
   .greatest-seasons-container .rounded-table-container .table .table-row p:nth-of-type(4) {
     width: 15%;
   }
-
   .rider-related-rankings-container .table-wrapper:first-of-type .rounded-table-container .table .table-header p:nth-of-type(2),
   .rider-related-rankings-container .table-wrapper:first-of-type .rounded-table-container .table .table-row p:nth-of-type(2) {
     width: 80%;
   }
-
   .rider-related-rankings-container .table-wrapper:first-of-type .rounded-table-container .table .table-header p:nth-of-type(3),
   .rider-related-rankings-container .table-wrapper:first-of-type .rounded-table-container .table .table-row p:nth-of-type(3) {
     display: none;
   }
-
   .rider-related-rankings-container .table-wrapper:last-of-type .rounded-table-container .table .table-header p:nth-of-type(2),
   .rider-related-rankings-container .table-wrapper:last-of-type .rounded-table-container .table .table-row p:nth-of-type(2) {
     width: 80%;
   }
-
   .rider-related-rankings-container .table-wrapper:last-of-type .rounded-table-container .table .table-header p:nth-of-type(2) .media,
   .rider-related-rankings-container .table-wrapper:last-of-type .rounded-table-container .table .table-row p:nth-of-type(2) .media {
     display: inline-block;
   }
-
   .rider-related-rankings-container .table-wrapper:last-of-type .rounded-table-container .table .table-header p:nth-of-type(3),
   .rider-related-rankings-container .table-wrapper:last-of-type .rounded-table-container .table .table-row p:nth-of-type(3) {
     display: none;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(1),
   .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(1) {
     width: 10%;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(2),
   .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(2) {
     width: 20%;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(3),
   .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(3) {
     width: 45%;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(4),
   .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(4) {
     display: none;
   }
-
   .nation-ranking-page .nation-table-wrapper .table .table-header p:nth-of-type(5),
   .nation-ranking-page .nation-table-wrapper .table .table-row p:nth-of-type(5) {
     width: 15%;
   }
-
   .pointsystem-page .table-content .category-content h4 {
     font-size: 14px;
   }
-
   .pointsystem-page .table-content .race-points-list {
     padding: 10px 15px 0px;
   }
-
   .pointsystem-page .table-content .race-points-list p {
     font-size: 13px;
     margin-right: 0px;
     margin: 0px 10px;
   }
-
   .pointsystem-page .table-content .race-points-list p:last-of-type {
     margin-right: 10px;
   }
-
   ul.slick-dots {
     bottom: -40px;
   }
+  .seasons-page .table .table-header p,
+  .seasons-page .table .table-row .row-content p {
+    padding: 5px 0px;
+  }
+  .seasons-page .table .table-header p:nth-of-type(1),
+  .seasons-page .table .table-row .row-content p:nth-of-type(1) {
+    width: 15%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(1) span,
+  .seasons-page .table .table-row .row-content p:nth-of-type(1) span {
+    display: none;
+  }
+  .seasons-page .table .table-header p:nth-of-type(1) span.media,
+  .seasons-page .table .table-row .row-content p:nth-of-type(1) span.media {
+    display: inline;
+  }
+  .seasons-page .table .table-header p:nth-of-type(2),
+  .seasons-page .table .table-row .row-content p:nth-of-type(2) {
+    display: none;
+  }
+  .seasons-page .table .table-header p:nth-of-type(3),
+  .seasons-page .table .table-row .row-content p:nth-of-type(3) {
+    width: 60%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(3) .media,
+  .seasons-page .table .table-row .row-content p:nth-of-type(3) .media {
+    display: inline-block;
+  }
+  .seasons-page .table .table-header p:nth-of-type(4),
+  .seasons-page .table .table-row .row-content p:nth-of-type(4) {
+    display: none;
+  }
+  .seasons-page .table .table-header p:nth-of-type(5),
+  .seasons-page .table .table-row .row-content p:nth-of-type(5) {
+    width: 10%;
+  }
+  .seasons-page .table .table-header p:nth-of-type(6),
+  .seasons-page .table .table-row .row-content p:nth-of-type(6) {
+    width: 15%;
+  }
+  .calendar li {
+    font-size: 13px;
+  }
 }
-
 @media screen and (max-width: 470px) {
   .nation-rankings-container.nations-ranked .table-wrapper .table {
     padding-bottom: 14px;
   }
 }
-
 @media screen and (max-width: 450px) {
-
   .landing-movements-section .table .table-header p:nth-of-type(2),
   .landing-movements-section .table .table-row p:nth-of-type(2) {
     display: none;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(1),
   .landing-movements-section .table .table-row p:nth-of-type(1) {
     width: 20%;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(3),
   .landing-movements-section .table .table-row p:nth-of-type(3) {
     padding-right: 5px;
   }
-
   .ranking-page-container .ranking-filter-options-container {
     grid-template-columns: auto calc(30px + 5vw);
   }
-
   .ranking-page-container .ranking-filter-options-container .ranking-filter-birth-year-container {
     grid-column: 1;
     grid-row: 1;
   }
-
   .ranking-page-container .ranking-filter-options-container .ranking-filter-nation-container {
     grid-column: 1;
     grid-row: 3;
   }
-
   .ranking-page-container .ranking-filter-options-container .ranking-filter-active-container {
     grid-column: 1;
     grid-row: 2;
   }
-
   .ranking-page-container .ranking-filter-options-container .btn-container {
     grid-column: 2;
     grid-row: 1;
     margin-top: 0px;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-row {
     display: flex;
     align-items: center;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) {
     width: 20%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1) .media,
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) .media {
     display: inline-block;
@@ -4603,175 +4359,147 @@ footer p {
     font-weight: 300;
     padding-left: 5px;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(2),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(2) {
     display: none;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(3),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(3) {
     width: 20%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) {
     width: 70%;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4) .media,
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) .media {
     display: inline-block;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) {
     display: none;
   }
-
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(6),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(6) {
     display: none;
   }
-
   .rider-profile-container .rider-profile-info-container {
     flex-direction: column;
   }
-
   .rider-profile-container .rider-profile-info-container .rider-profile-info-info-container {
     text-align: center;
     margin-left: 0px;
   }
-
   .rider-profile-container .rider-profile-info-container .rider-profile-info-info-container h3 {
     margin-top: 10px;
   }
-
   .nation-page-container .nation-profile-container .nation-profile-info-container .nation-profile-info-image-container {
     width: 150px;
   }
-
   .nation-page-container .nation-rankings-container .table-wrapper .table .table-header p:nth-of-type(3) span {
     display: none;
   }
-
   .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container {
     flex-direction: row;
   }
-
-  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container>div {
+  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container > div {
     display: flex;
     flex-direction: column;
     align-items: start;
   }
-
-  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container>div:last-of-type {
+  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container > div:last-of-type {
     padding-right: 20px;
   }
-
-  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container>div p {
+  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container > div p {
     margin-bottom: 5px;
   }
-
-  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container>div>div {
+  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container > div > div {
     display: flex;
     flex-direction: column;
     align-items: start;
   }
-
-  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container>div>div>div {
+  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container > div > div > div {
     margin-bottom: 5px;
   }
-
-  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container>div>div>div input {
+  .nation-ranking-page .nation-table-wrapper .nation-ranking-table-filter-container > div > div > div input {
     margin-left: 0px;
   }
 }
-
 @media screen and (max-width: 400px) {
-  .rider-all-results-container>div .btn-container button svg {
+  .rider-all-results-container > div .btn-container button svg {
     width: 25px;
     height: 25px;
   }
-
-  .rider-all-results-container>div .btn-container:first-of-type button {
+  .rider-all-results-container > div .btn-container:first-of-type button {
     left: -10px;
   }
-
-  .rider-all-results-container>div .btn-container:last-of-type button {
+  .rider-all-results-container > div .btn-container:last-of-type button {
     right: -10px;
   }
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div img {
+    width: 90%;
+    aspect-ratio: 1;
+    height: auto;
+  }
+  .compare-page-container .comparison-container .comparison-rider-profile > div > div button {
+    width: 90% !important;
+  }
 }
-
 @media screen and (max-width: 375px) {
   h3 {
     font-size: 16px;
   }
-
   .hero-section .hero-text-container .btn-container {
     display: flex;
     flex-direction: column;
   }
-
   .hero-section .hero-text-container .btn-container a {
     width: -moz-fit-content;
     width: fit-content;
   }
-
   .hero-section .hero-text-container .btn-container a:last-of-type {
     padding-left: 0px;
     margin-left: 0px;
   }
-
   .landing-split-rankings-section {
     padding-top: 10px;
   }
-
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(1),
   .landing-split-rankings-section .active-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(1) {
     width: 14%;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container {
     padding-top: 15px;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row {
     display: flex;
     align-items: center;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(2) a .fi {
     position: relative;
     top: 7px;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(2) a .first-name {
     display: block;
     position: relative;
     left: 22px;
     opacity: 0.8;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(2),
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(2) {
     width: 55%;
   }
-
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-header p:nth-of-type(3),
   .landing-split-rankings-section .danish-ranking-table-container .rounded-table-container .table .table-row p:nth-of-type(3) {
     width: 20%;
   }
-
   .landing-nations-ranking-section {
     padding-top: 10px;
   }
-
   .landing-nations-ranking-section .table .table-row {
     display: flex;
     align-items: center;
   }
-
   .landing-nations-ranking-section .table .table-header p:nth-of-type(1) .table-previous-span,
   .landing-nations-ranking-section .table .table-header p:nth-of-type(2) .table-previous-span,
   .landing-nations-ranking-section .table .table-row p:nth-of-type(1) .table-previous-span,
@@ -4780,74 +4508,59 @@ footer p {
     position: relative;
     left: -3px;
   }
-
   .landing-nations-ranking-section .table .table-header p:nth-of-type(1),
   .landing-nations-ranking-section .table .table-row p:nth-of-type(1) {
     width: 12%;
   }
-
   .landing-nations-ranking-section .table .table-header p:nth-of-type(2),
   .landing-nations-ranking-section .table .table-row p:nth-of-type(2) {
     width: 20%;
   }
-
   .landing-nations-ranking-section .table .table-header p:nth-of-type(3),
   .landing-nations-ranking-section .table .table-row p:nth-of-type(3) {
     width: 45%;
   }
-
   .three-year-ranking-container {
     margin-bottom: 0px;
   }
 }
-
 @media screen and (max-width: 340px) {
   .hero-section .hero-ranking-container .rounded-table-container .table .table-row {
     display: flex;
     align-items: center;
   }
-
   .hero-section .hero-ranking-container .rounded-table-container .table .table-row p:nth-of-type(2) a .first-name {
     display: block;
     opacity: 0.7;
     position: relative;
     left: 22px;
   }
-
   .hero-section .hero-ranking-container .rounded-table-container .table .table-header p:nth-of-type(2),
   .hero-section .hero-ranking-container .rounded-table-container .table .table-row p:nth-of-type(2) {
     width: 54%;
   }
-
   .hero-section .hero-ranking-container .rounded-table-container .table .table-header p:nth-of-type(4),
   .hero-section .hero-ranking-container .rounded-table-container .table .table-row p:nth-of-type(4) {
     width: 20%;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(2),
   .landing-movements-section .table .table-row p:nth-of-type(2) {
     width: 15%;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(1),
   .landing-movements-section .table .table-row p:nth-of-type(1) {
     width: 15%;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(3),
   .landing-movements-section .table .table-row p:nth-of-type(3) {
     width: 70%;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(3) .media-smallest,
   .landing-movements-section .table .table-row p:nth-of-type(3) .media-smallest {
     display: inline;
   }
-
   .landing-movements-section .table .table-header p:nth-of-type(5),
   .landing-movements-section .table .table-row p:nth-of-type(5) {
     display: none;
   }
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
