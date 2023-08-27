@@ -46,7 +46,7 @@ export default function MobileNavbar() {
                                 <li><a href="/#stoerste-saesoner" onClick={() => setNavActive(false)}>Største individuelle sæsoner</a></li>
                                 <li><a href="/#stoerste-alltime-hvert-aar" onClick={() => setNavActive(false)}>Største all time hvert år</a></li>
                                 <li><Link href="/listen?yearFilterRange=single">Største pr. årgang</Link></li>
-                                <li><Link href={"/saesoner"}>Flest poin hvert år</Link></li>
+                                <li><Link href={"/saesoner"}>Flest point hvert år</Link></li>
 
                             </ul>
                         </div>
