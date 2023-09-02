@@ -360,7 +360,7 @@ export default function Dashboard(props) {
           }
         }, []);
         if (!indexArr.includes(index)) {
-          postResult(race.replace("Øvrige", "Øvrig"), rider, formattedDate, supabase, index)
+          postResult(race.replace("Øvrige dage", "Øvrig dag"), rider, formattedDate, supabase, index)
           console.log(race + ": " + rider + ", date: " + formattedDate)
         }
       }
