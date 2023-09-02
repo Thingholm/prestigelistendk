@@ -87,6 +87,7 @@ export const raceColors = {
     "Paris-Tours (>2007)": "#009790",
     "Tour of Guangxi": "#e4362d",
     "Bretagne Classic - Quest-France (>1996)": "#ffff00",
+    "Grand Prix Cycliste de Quebec": "#cbdb2a",
 }
 
 export const racesWithDarkTextArr = [
@@ -100,4 +101,5 @@ export const racesWithDarkTextArr = [
     "VM i enkeltstart",
     "Grand Prix Cycliste de Montreal",
     "Bretagne Classic - Quest-France (>1996)",
+    "Grand Prix Cycliste de Quebec"
 ]
