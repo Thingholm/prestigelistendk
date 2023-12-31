@@ -38,8 +38,10 @@ export default function Calendar() {
     const datesArr = []
     Object.keys(calendarDates).map((i, index) => calendarDates[i].map((j, jIndex) => datesArr.push((index + 1).toString() + ((jIndex + 1).toString().length == 1 ? "0" + (jIndex + 1).toString() : (jIndex + 1).toString()))))
 
-    const currentDate = (datesArr.indexOf(parseInt(date.getMonth() + 1).toString() + (date.getDate().length == 2 ? date.getDate().toString() : "0" + date.getDate().toString())))
+    const currentDate = (datesArr.indexOf(parseInt(date.getMonth() + 1).toString() + (date.getDate() > 9 ? date.getDate().toString() : "0" + date.getDate().toString())))
     const currentHour = date.getHours()
+    console.log(currentDate)
+    console.log(date.getDate())
 
     function handleScrollClick() {
         if (currentDateRef.current) {

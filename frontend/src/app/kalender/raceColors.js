@@ -73,6 +73,8 @@ export const raceColors = {
     "Tour de Pologne (>2004)": "#2c2c2c",
     "VM i linjeløb": "#ededed",
     "VM i enkeltstart": "#ededed",
+    "OL i linjeløb (>1994)": "#ededed",
+    "OL i enkeltstart (>1994)": "#ededed",
     "EM i linjeløb": "#004494",
     "Renewi Tour (>2004)": "#78BE20",
     "Vuelta a España": "#da291c",
@@ -99,6 +101,8 @@ export const racesWithDarkTextArr = [
     "Tour de France",
     "VM i linjeløb",
     "VM i enkeltstart",
+    "OL i linjeløb (>1994)",
+    "OL i enkeltstart (>1994)",
     "Grand Prix Cycliste de Montreal",
     "Bretagne Classic - Quest-France (>1996)",
     "Grand Prix Cycliste de Quebec"
