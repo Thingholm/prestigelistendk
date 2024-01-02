@@ -93,7 +93,7 @@ export default function Calendar() {
 
                                     if (race.yIndex < 3) {
                                         return (
-                                            <li key={k} style={{ left: startDate * 100 + "px", width: length * 100 - 15 + "px", top: race.yIndex * 80 + "px", backgroundColor: color, color: textColor }}>
+                                            <li key={k} style={{ left: startDate * 100 + "px", width: length * 100 - 15 + "px", top: race.yIndex * 80 + "px", backgroundColor: color, color: textColor, display: (race.yIndex == -1 ? "none" : "block") }}>
                                                 {race.race.split(" (")[0]}
 
                                                 <div className={race.yIndex < 2 ? "tooltip" : "tooltip top"}>

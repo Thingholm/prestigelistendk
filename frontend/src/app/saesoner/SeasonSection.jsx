@@ -22,7 +22,7 @@ export default function SeasonSection() {
 
     let seasonResults;
     let seasonRidersRanked;
-    if (resultsQuery?.isSuccess && pointSystemQuery?.isSuccess) {
+    if (alltimeRanking && resultsQuery?.isSuccess && pointSystemQuery?.isSuccess) {
         seasonResults = resultsQuery?.data?.reduce((acc, res) => {
             const race = res.race.includes("etape") ? res.race.split(". ")[1] : res.race;
             const rider = res.rider;
@@ -33,8 +33,7 @@ export default function SeasonSection() {
         }, {})
 
         seasonRidersRanked = seasonResults &&
-
-            numerizeRanking(Object.keys(seasonResults).sort((a, b) => seasonResults[b].points - seasonResults[a].points).map(i => { return { fullName: i, points: seasonResults[i]["points"] } }))
+            numerizeRanking(Object.keys(seasonResults).sort((a, b) => seasonResults[b].points - seasonResults[a].points).map(i => { return { fullName: i, points: seasonResults[i]["points"] } }).filter(i => alltimeRanking.find(j => j.fullName == i.fullName) !== undefined))
     }
 
     return (

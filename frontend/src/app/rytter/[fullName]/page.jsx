@@ -33,7 +33,7 @@ export default function Page(props) {
     let rider;
 
     if (alltimeRanking && pointSystem && riderResultsQuery.isSuccess) {
-        riderResults = riderResultsQuery.data?.map(result => {
+        riderResults = riderResultsQuery.data.filter(i => (name == "Emilio Rodriguez" ? i.rider == "Emilio Rodriguez" : true))?.map(result => {
 
             if (result.race.includes("etape")) {
                 resultRace = result.race.split(". ")[1]
