@@ -142,7 +142,7 @@ export const useLatestResults = () => {
             let { data: results } = await supabase
                 .from('results')
                 .select('*')
-                .eq('year', 2023)
+                .eq('year', 2024)
                 .order('raceDate', { ascending: false })
                 .range(0, 100)
             return results;
