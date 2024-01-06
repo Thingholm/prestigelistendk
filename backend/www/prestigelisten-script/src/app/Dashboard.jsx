@@ -54,9 +54,9 @@ function convertToObject(range) {
 async function fetchData(supabase) {
   const { data: alltimeRanking } = await supabase.from('alltimeRanking').select('*');
   const { data: calendar } = await supabase.from('calendar').select('*');
-  const { data: rankingPerYear } = await supabase.from('alltimeRankingPerYear').select('2023Points, 2023Rank, rider');
+  const { data: rankingPerYear } = await supabase.from('alltimeRankingPerYear').select('2024Points, 2024Rank, rider');
   const { data: pointSystem } = await supabase.from('pointSystem').select('*');
-  const { data: resultsCurYear } = await supabase.from('results').select('*').eq('year', 2023);
+  const { data: resultsCurYear } = await supabase.from('results').select('*').eq('year', 2024);
   const { data: nationsList } = await supabase.from('nationsRanking').select('*');
 
   return {
@@ -87,7 +87,7 @@ async function updateAlltimeRanking(payload, rider, supabase) {
 async function updateAlltimeRankingPerYear(points, rank, rider, supabase) {
   const { data, error } = await supabase
     .from('alltimeRankingPerYear')
-    .update({ "2023Points": points, "2023Rank": rank })
+    .update({ "2024Points": points, "2024Rank": rank })
     .eq("rider", rider)
     .select()
 }
@@ -95,14 +95,14 @@ async function updateAlltimeRankingPerYear(points, rank, rider, supabase) {
 async function postRankingPerYear(points, rank, rider, supabase) {
   const { data } = await supabase
     .from('alltimeRankingPerYear')
-    .insert({ "rider": rider, "2023Points": points, "2023Rank": rank })
+    .insert({ "rider": rider, "2024Points": points, "2024Rank": rank })
     .select()
 }
 
 async function updateNationResultCount(count, nation, supabase) {
   const { data, error } = await supabase
     .from('nationResultCount')
-    .update({ "2023": count })
+    .update({ "2024": count })
     .eq("nation", nation)
     .select()
 }
@@ -111,12 +111,12 @@ async function postResult(race, rider, date, supabase, index) {
   if (index) {
     var { data } = await supabase
       .from('results')
-      .insert({ "year": 2023, "race": race, "rider": rider, "raceDate": date, "index": index })
+      .insert({ "year": 2024, "race": race, "rider": rider, "raceDate": date, "index": index })
       .select()
   } else {
     var { data } = await supabase
       .from('results')
-      .insert({ "year": 2023, "race": race, "rider": rider, "raceDate": date })
+      .insert({ "year": 2024, "race": race, "rider": rider, "raceDate": date })
       .select()
   }
 }
@@ -305,16 +305,16 @@ export default function Dashboard(props) {
         if (!rankingPerYear.map(i => i.rider).includes(row.Rytter)) {
           postRankingPerYear(row.Point, row.Placering, row.Rytter, supabase)
           console.log("Tilføjede til 'alltimeRankingPerYear':")
-          console.log(row.Rytter + " 2023 point: " + row.Point + " 2023 placering: " + row.Placering)
+          console.log(row.Rytter + " 2024 point: " + row.Point + " 2024 placering: " + row.Placering)
         } else {
-          if (row.Point.toString() !== alltimeRanking.find(i => i.fullName == row.Rytter).points.toString() || row.Point !== rankingPerYear.find(i => i.rider == row.Rytter)["2023Points"]?.toString() || row.Placering !== rankingPerYear.find(i => i.rider == row.Rytter)["2023Rank"]?.toString()) {
+          if (row.Point.toString() !== alltimeRanking.find(i => i.fullName == row.Rytter).points.toString() || row.Point !== rankingPerYear.find(i => i.rider == row.Rytter)["2024Points"]?.toString() || row.Placering !== rankingPerYear.find(i => i.rider == row.Rytter)["2024Rank"]?.toString()) {
             updateAlltimeRanking(row.Point, row.Rytter, supabase)
             console.log("Opdaterede til 'alltimeRanking':")
             console.log(row.Rytter + " Point: " + row.Point)
 
             updateAlltimeRankingPerYear(row.Point, row.Placering, row.Rytter, supabase)
             console.log("Opdaterede til 'alltimeRankingPerYear':")
-            console.log(row.Rytter + " 2023 point: " + row.Point + " 2023 placering: " + row.Placering)
+            console.log(row.Rytter + " 2024 point: " + row.Point + " 2024 placering: " + row.Placering)
           }
         }
       }
@@ -380,7 +380,7 @@ export default function Dashboard(props) {
     Object.keys(nationResultCount).map(i => {
       updateNationResultCount(nationResultCount[i], i, supabase)
       console.log("Opdaterede til 'nationResultCount':")
-      console.log(i + ": " + "2023:" + nationResultCount[i])
+      console.log(i + ": " + "2024:" + nationResultCount[i])
     })
   }
 

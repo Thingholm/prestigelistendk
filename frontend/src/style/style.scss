@@ -95,6 +95,204 @@ h2 {
     position: relative;
 }
 
+// --------------------- TWITTER SNAPSHOT -----------------------
+
+.twitter-snapshot-container {
+    margin: 50px;
+    display: flex;
+    height: 400px;
+    width: auto;
+    aspect-ratio: 16 / 9;
+    border: 2px #e6e6e6 solid;
+
+    &.dark {
+        .left {
+            p {
+                color: $white-primary;
+            }
+        }
+    }
+
+    .fi {
+        border-radius: 2px;
+    }
+
+    .left {
+        padding: 2%;
+
+        div {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+
+        p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        >p:first-of-type {
+            // font-size: 40px;
+            text-overflow: clip;
+            max-width: 200px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        img {
+            height: 200px;
+            width: 200px;
+            border-radius: 10px;
+        }
+    }
+
+    .right {
+        padding: 2%;
+        width: calc(400px * 16 / 9 - calc(200px + 4%));
+
+        .result-title-container {
+            display: flex;
+            justify-content: space-between;
+
+            h4 {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+        }
+
+        .changes-wrapper {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+
+            .change-container {
+                .content {
+                    display: flex;
+
+                    p {
+                        position: relative;
+                    }
+
+                    p:first-of-type {
+                        font-size: 35px;
+                        font-weight: 600;
+                    }
+
+                    div {
+                        height: 35px;
+                        margin-left: 5px;
+
+                        p:first-of-type {
+                            font-size: 10px;
+                            margin-top: 6px;
+                            opacity: 0.4;
+                            padding-left: 12px;
+
+                            &:has(.up-icon) {
+                                color: #46ac17;
+                                opacity: 0.8;
+                            }
+                        }
+
+                        p:last-of-type {
+                            font-size: 16px;
+                            opacity: 0.8;
+                        }
+                    }
+
+                    svg {
+                        position: absolute;
+                        height: 12px;
+                        width: 12px;
+                        left: 0px;
+                        top: 0px;
+
+                        &:not(.up-icon) {
+                            top: -1px;
+                        }
+                    }
+
+                    .up-icon {
+                        fill: #46ac17;
+                    }
+                }
+            }
+        }
+
+        .twitter-table-wrapper {
+            margin-top: 10px;
+
+            h4 {
+                font-size: 15px;
+                margin-bottom: 2px;
+            }
+
+            .table {
+                font-size: 14px;
+
+                .table-header,
+                .table-row {
+                    p:nth-of-type(1) {
+                        width: 20%;
+                    }
+
+                    p:nth-of-type(2) {
+                        width: 55%;
+                    }
+
+                    p:nth-of-type(3) {
+                        width: 20%;
+                    }
+
+                    p:nth-of-type(4) {
+                        width: 10%;
+                    }
+                }
+            }
+        }
+
+        .rider-top-results-container {
+            margin-top: 2px;
+
+            h4 {
+                font-size: 15px;
+                margin-bottom: 2px;
+            }
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                align-items: space-between;
+                max-height: 70px;
+
+                li {
+                    width: calc(50% - 3px);
+                    font-size: 14px;
+                    margin-bottom: 2px;
+
+                    &:nth-of-type(7) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &.dark {
+        .highlight {
+            p {
+                color: $white-primary;
+            }
+        }
+    }
+}
+
+
+
 // --------------------- GLOBAL STYLING -------------------------
 
 html {

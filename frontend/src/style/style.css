@@ -78,6 +78,156 @@ h2 {
   position: relative;
 }
 
+.twitter-snapshot-container {
+  margin: 50px;
+  display: flex;
+  height: 400px;
+  width: auto;
+  aspect-ratio: 16/9;
+  border: 2px #e6e6e6 solid;
+}
+.twitter-snapshot-container.dark .left p {
+  color: #ffffff;
+}
+.twitter-snapshot-container .fi {
+  border-radius: 2px;
+}
+.twitter-snapshot-container .left {
+  padding: 2%;
+}
+.twitter-snapshot-container .left div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.twitter-snapshot-container .left p {
+  font-size: 16px;
+  font-weight: 500;
+}
+.twitter-snapshot-container .left > p:first-of-type {
+  text-overflow: clip;
+  max-width: 200px;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.twitter-snapshot-container .left img {
+  height: 200px;
+  width: 200px;
+  border-radius: 10px;
+}
+.twitter-snapshot-container .right {
+  padding: 2%;
+  width: calc(711.1111111111px - (200px + 4%));
+}
+.twitter-snapshot-container .right .result-title-container {
+  display: flex;
+  justify-content: space-between;
+}
+.twitter-snapshot-container .right .result-title-container h4 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+.twitter-snapshot-container .right .changes-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.twitter-snapshot-container .right .changes-wrapper .change-container .content {
+  display: flex;
+}
+.twitter-snapshot-container .right .changes-wrapper .change-container .content p {
+  position: relative;
+}
+.twitter-snapshot-container .right .changes-wrapper .change-container .content p:first-of-type {
+  font-size: 35px;
+  font-weight: 600;
+}
+.twitter-snapshot-container .right .changes-wrapper .change-container .content div {
+  height: 35px;
+  margin-left: 5px;
+}
+.twitter-snapshot-container .right .changes-wrapper .change-container .content div p:first-of-type {
+  font-size: 10px;
+  margin-top: 6px;
+  opacity: 0.4;
+  padding-left: 12px;
+}
+.twitter-snapshot-container .right .changes-wrapper .change-container .content div p:first-of-type:has(.up-icon) {
+  color: #46ac17;
+  opacity: 0.8;
+}
+.twitter-snapshot-container .right .changes-wrapper .change-container .content div p:last-of-type {
+  font-size: 16px;
+  opacity: 0.8;
+}
+.twitter-snapshot-container .right .changes-wrapper .change-container .content svg {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  left: 0px;
+  top: 0px;
+}
+.twitter-snapshot-container .right .changes-wrapper .change-container .content svg:not(.up-icon) {
+  top: -1px;
+}
+.twitter-snapshot-container .right .changes-wrapper .change-container .content .up-icon {
+  fill: #46ac17;
+}
+.twitter-snapshot-container .right .twitter-table-wrapper {
+  margin-top: 10px;
+}
+.twitter-snapshot-container .right .twitter-table-wrapper h4 {
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+.twitter-snapshot-container .right .twitter-table-wrapper .table {
+  font-size: 14px;
+}
+.twitter-snapshot-container .right .twitter-table-wrapper .table .table-header p:nth-of-type(1),
+.twitter-snapshot-container .right .twitter-table-wrapper .table .table-row p:nth-of-type(1) {
+  width: 20%;
+}
+.twitter-snapshot-container .right .twitter-table-wrapper .table .table-header p:nth-of-type(2),
+.twitter-snapshot-container .right .twitter-table-wrapper .table .table-row p:nth-of-type(2) {
+  width: 55%;
+}
+.twitter-snapshot-container .right .twitter-table-wrapper .table .table-header p:nth-of-type(3),
+.twitter-snapshot-container .right .twitter-table-wrapper .table .table-row p:nth-of-type(3) {
+  width: 20%;
+}
+.twitter-snapshot-container .right .twitter-table-wrapper .table .table-header p:nth-of-type(4),
+.twitter-snapshot-container .right .twitter-table-wrapper .table .table-row p:nth-of-type(4) {
+  width: 10%;
+}
+.twitter-snapshot-container .right .rider-top-results-container {
+  margin-top: 2px;
+}
+.twitter-snapshot-container .right .rider-top-results-container h4 {
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+.twitter-snapshot-container .right .rider-top-results-container ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: space-between;
+  max-height: 70px;
+}
+.twitter-snapshot-container .right .rider-top-results-container ul li {
+  width: calc(50% - 3px);
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.twitter-snapshot-container .right .rider-top-results-container ul li:nth-of-type(7) {
+  display: none;
+}
+.twitter-snapshot-container.dark .highlight p {
+  color: #ffffff;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 70px;
