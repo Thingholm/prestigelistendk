@@ -450,7 +450,7 @@ export default function Dashboard(props) {
 
     supabaseActiveRanking.map(rider => {
       if (!activeRanking.find(i => i.Rytter == rider.fullName)) {
-        changeActiveStatus(false, rider.fullName)
+        changeActiveStatus(false, rider.fullName, supabase)
         console.log("Fjernet fra aktive ryttere:")
         console.log(rider.fullName)
       }
