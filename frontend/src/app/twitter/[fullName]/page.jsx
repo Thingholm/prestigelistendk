@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 import { IoCaretUpOutline } from "react-icons/io5";
 import { TiEquals } from "react-icons/ti";
 import RiderResults from "@/app/rytter/[fullName]/RiderResults";
-import html2canvas from 'html2canvas'
-import Image from "next/image";
+// import "./flag-icons.min.css"
+import { toPng } from "html-to-image"
 
 export default function Page(props) {
     const [fontSize, setFontSize] = useState(40)
@@ -20,13 +20,11 @@ export default function Page(props) {
     const snapshot = document.getElementById("snapshot")
 
     async function handleSnapshot() {
-        window.scrollTo(0, 0)
-        html2canvas(snapshot, {
-            allowTaint: true,
-            logging: false,
-            useCORS: true,
-        }).then(function (canvas) {
-            document.body.appendChild(canvas)
+        toPng(snapshot, { quality: 1, backgroundColor: "#ffffff", width: 711, height: 400 }).then((dataUrl) => {
+            const link = document.createElement('a')
+            link.download = 'my-image-name.png'
+            link.href = dataUrl
+            link.click()
         })
     }
 
@@ -190,7 +188,7 @@ export default function Page(props) {
             {riderData && highlightedResult && riderActiveRankingIndex && oldNationsRanking && oldActiveRanking &&
                 <div className={"twitter-snapshot-container " + fontColor} id="snapshot">
                     <div className="left" style={{ backgroundColor: color }}>
-                        <Image
+                        <img
                             loader={() => imgSrc}
                             src={imgSrc}
                             onError={() => setImgSrc("https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/riderPortraits/nopicture.png")}
@@ -198,10 +196,13 @@ export default function Page(props) {
                             width={200}
                             quality={100}
                             alt={"Billede af " + riderData?.fullName.replace(" ", "").toLowerCase()}
-                            style={{ verticalAlign: "center" }}
+                            className="img"
                         />
                         <div className="">
-                            <p><span className={'fi fi-' + riderData.nationFlagCode}></span> {riderData.nation}</p>
+                            <p>
+                                <img src={"/4x3/" + riderData.nationFlagCode + ".svg"} alt={riderData.nationFlagCode} className="fi" height={14} width={18.66} />
+                                {/* <span className={'fi fi-' + riderData.nationFlagCode}></span> */}
+                                {riderData.nation}</p>
                             <p>{riderData.birthYear}</p>
                         </div>
                         <p style={{ fontSize: fontSize, lineHeight: 1 }}>{riderData.fullName}</p>
@@ -214,7 +215,7 @@ export default function Page(props) {
                     </div>
                     <div className="right">
                         <div className="result-title-container">
-                            <h4>{highlightedResult.race}</h4>
+                            <h4>{highlightedResult.race.split(" (")[0]}</h4>
                             <p>{highlightedResult.racePoints} point</p>
                         </div>
                         <div className="changes-wrapper">
@@ -275,7 +276,7 @@ export default function Page(props) {
                                         return (
                                             <div key={rider.id} className={rider.fullName.toLowerCase() == name.toLowerCase() ? "table-row highlight" : "table-row"} style={{ backgroundColor: rider.fullName.toLowerCase() == name.toLowerCase() && color }}>
                                                 <p>{rider.currentRank.toLocaleString("de-DE")}</p>
-                                                <p className="table-name-reversed"><span className={'fi fi-' + rider.nationFlagCode}></span><span className="last-name">{nameArr[1]} </span><span>{nameArr[0]}</span></p>
+                                                <p className="table-name-reversed"><span className={"fi fi-" + rider.nationFlagCode}></span><span className="last-name">{nameArr[1]} </span><span>{nameArr[0]}</span></p>
                                                 <p>{rider.birthYear}</p>
                                                 <p>{rider.points.toLocaleString("de-DE")}</p>
                                             </div>

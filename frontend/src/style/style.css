@@ -79,12 +79,15 @@ h2 {
 }
 
 .twitter-snapshot-container {
-  margin: 50px;
   display: flex;
   height: 400px;
   width: auto;
   aspect-ratio: 16/9;
-  border: 2px #e6e6e6 solid;
+}
+.twitter-snapshot-container img.fi {
+  height: 14px;
+  width: 18.66px;
+  border-radius: 2px;
 }
 .twitter-snapshot-container.dark .left p {
   color: #ffffff;
@@ -113,7 +116,7 @@ h2 {
   margin-top: 10px;
   margin-bottom: 5px;
 }
-.twitter-snapshot-container .left img {
+.twitter-snapshot-container .left .img {
   height: 200px;
   width: 200px;
   border-radius: 10px;

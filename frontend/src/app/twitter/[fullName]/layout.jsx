@@ -6,6 +6,9 @@ export async function generateMetadata({ params }) {
     return {
         title: stringDecoder(params.fullName) + " - Prestigelisten",
         description: "Cykelrytteren " + stringDecoder(params.fullName) + ", hans placering på Prestigelisten over største cykelryttere nogensinde og en liste over hans resultater og udvikling i karrieren",
+        openGraph: {
+            images: ["https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/twitterPics/lukas-plapp.png"]
+        }
     }
 }
 
