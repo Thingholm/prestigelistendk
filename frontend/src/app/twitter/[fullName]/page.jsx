@@ -4,7 +4,7 @@ import { stringDecoder, stringEncoder } from "@/components/stringHandler";
 import numerizeRanking from "@/utils/numerizeRanking";
 import "../../../../node_modules/flag-icons/css/flag-icons.min.css"
 import { useAlltimeRanking, useLatestResults, usePointSystem, useResultsByRider, useRiderRankingPerYear } from "@/utils/queryHooks";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoCaretUpOutline } from "react-icons/io5";
 import { TiEquals } from "react-icons/ti";
 import RiderResults from "@/app/rytter/[fullName]/RiderResults";
@@ -16,16 +16,29 @@ export default function Page(props) {
     const [color, setColor] = useState("#c5c5c5")
     const [colorInput, setColorInput] = useState("c5c5c5")
     const [fontColor, setFontColor] = useState("dark")
-
-    const snapshot = document.getElementById("snapshot")
+    const ref = useRef(null);
 
     async function handleSnapshot() {
-        toPng(snapshot, { quality: 1, backgroundColor: "#ffffff", width: 711, height: 400 }).then((dataUrl) => {
-            const link = document.createElement('a')
-            link.download = 'my-image-name.png'
-            link.href = dataUrl
-            link.click()
+        if (ref.current === null) {
+            return
+        }
+
+        toPng(ref.current, {
+            quality: 1,
+            backgroundColor: "#ffffff",
+            width: 800,
+            height: 400,
+            pixelRatio: 1
         })
+            .then((dataUrl) => {
+                const link = document.createElement('a')
+                link.download = 'my-image-name.png'
+                link.href = dataUrl
+                link.click()
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     const name = stringDecoder(props.fullName);
@@ -152,7 +165,12 @@ export default function Page(props) {
         }
     }, [alltimeRanking, latestResultsData, pointSystem])
 
-    const [imgSrc, setImgSrc] = useState("https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/riderPortraits/" + riderData?.fullName.replace(/ /g, "").toLowerCase().replace(/ø/g, "oe").replace(/å/g, "aa").replace(/æ/g, "ae") + ".jpg");
+    const [imgSrc, setImgSrc] = useState("");
+    useEffect(() => {
+        if (riderData) {
+            setImgSrc("https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/riderPortraits/" + riderData.fullName.replace(/ /g, "").toLowerCase().replace(/ø/g, "oe").replace(/å/g, "aa").replace(/æ/g, "ae") + ".jpg")
+        }
+    }, [riderData])
 
     const highlightedResult = latestResults?.filter(i => i.rider.toLowerCase() == name.toLowerCase())[0];
     const activeRanking = alltimeRanking && numerizeRanking(alltimeRanking.filter(i => i.active == true))
@@ -186,10 +204,9 @@ export default function Page(props) {
     return (
         <div className="">
             {riderData && highlightedResult && riderActiveRankingIndex && oldNationsRanking && oldActiveRanking &&
-                <div className={"twitter-snapshot-container " + fontColor} id="snapshot">
+                <div className={"twitter-snapshot-container " + fontColor} id="snapshot" ref={ref}>
                     <div className="left" style={{ backgroundColor: color }}>
                         <img
-                            loader={() => imgSrc}
                             src={imgSrc}
                             onError={() => setImgSrc("https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/riderPortraits/nopicture.png")}
                             height={200}
@@ -197,11 +214,11 @@ export default function Page(props) {
                             quality={100}
                             alt={"Billede af " + riderData?.fullName.replace(" ", "").toLowerCase()}
                             className="img"
+                            crossOrigin="anonymous"
                         />
                         <div className="">
                             <p>
-                                <img src={"/4x3/" + riderData.nationFlagCode + ".svg"} alt={riderData.nationFlagCode} className="fi" height={14} width={18.66} />
-                                {/* <span className={'fi fi-' + riderData.nationFlagCode}></span> */}
+                                <span className={'fi fi-' + riderData.nationFlagCode}></span>
                                 {riderData.nation}</p>
                             <p>{riderData.birthYear}</p>
                         </div>

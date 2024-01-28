@@ -82,7 +82,7 @@ h2 {
   display: flex;
   height: 400px;
   width: auto;
-  aspect-ratio: 16/9;
+  aspect-ratio: 2/1;
 }
 .twitter-snapshot-container img.fi {
   height: 14px;
@@ -96,7 +96,7 @@ h2 {
   border-radius: 2px;
 }
 .twitter-snapshot-container .left {
-  padding: 2%;
+  padding: 2.5%;
 }
 .twitter-snapshot-container .left div {
   display: flex;
@@ -122,8 +122,8 @@ h2 {
   border-radius: 10px;
 }
 .twitter-snapshot-container .right {
-  padding: 2%;
-  width: calc(711.1111111111px - (200px + 4%));
+  padding: 2.5%;
+  width: calc(800px - (200px + 5%));
 }
 .twitter-snapshot-container .right .result-title-container {
   display: flex;
