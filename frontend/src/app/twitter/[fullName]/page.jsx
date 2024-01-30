@@ -15,7 +15,7 @@ import { supabase } from "@/utils/supabase";
 async function upload(dataUrl, props) {
     const base64 = await fetch(dataUrl);
     const blob = await base64.blob();
-    const { error: uploadError } = await supabase.storage.from('twitterPics').upload("riders/" + props.fullName + ".png", blob);
+    const { error: uploadError } = await supabase.storage.from('twitterPics').upload(props.fullName + ".png", blob);
     console.log(uploadError)
 }
 
