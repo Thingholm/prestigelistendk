@@ -1,6 +1,6 @@
 "use client"
 
-import { stringDecoder, stringEncoder } from "@/components/stringHandler";
+import { stringDecoder } from "@/components/stringHandler";
 import numerizeRanking from "@/utils/numerizeRanking";
 import "../../../../node_modules/flag-icons/css/flag-icons.min.css"
 import { useAlltimeRanking, useLatestResults, usePointSystem, useResultsByRider, useRiderRankingPerYear } from "@/utils/queryHooks";
@@ -10,6 +10,14 @@ import { TiEquals } from "react-icons/ti";
 import RiderResults from "@/app/rytter/[fullName]/RiderResults";
 // import "./flag-icons.min.css"
 import { toPng } from "html-to-image"
+import { supabase } from "@/utils/supabase";
+
+async function upload(dataUrl, props) {
+    const base64 = await fetch(dataUrl);
+    const blob = await base64.blob();
+    const { error: uploadError } = await supabase.storage.from('twitterPics').upload("riders/" + props.fullName + ".png", blob);
+    console.log(uploadError)
+}
 
 export default function Page(props) {
     const [fontSize, setFontSize] = useState(40)
@@ -31,6 +39,8 @@ export default function Page(props) {
             pixelRatio: 1
         })
             .then((dataUrl) => {
+                console.log(dataUrl)
+                upload(dataUrl, props);
                 const link = document.createElement('a')
                 link.download = 'my-image-name.png'
                 link.href = dataUrl
