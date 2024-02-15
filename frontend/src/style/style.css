@@ -78,6 +78,11 @@ h2 {
   position: relative;
 }
 
+.twitter-meta-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .twitter-snapshot-container {
   display: flex;
   height: 400px;
@@ -97,8 +102,15 @@ h2 {
 }
 .twitter-snapshot-container .left {
   padding: 2.5%;
+  width: 200px;
 }
-.twitter-snapshot-container .left div {
+.twitter-snapshot-container .left > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 205px);
+}
+.twitter-snapshot-container .left > div > div {
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
@@ -114,7 +126,6 @@ h2 {
   text-transform: uppercase;
   font-weight: 600;
   margin-top: 10px;
-  margin-bottom: 5px;
 }
 .twitter-snapshot-container .left .img {
   height: 200px;
@@ -124,6 +135,12 @@ h2 {
 .twitter-snapshot-container .right {
   padding: 2.5%;
   width: calc(800px - (200px + 5%));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.twitter-snapshot-container .right .rank-label {
+  margin-bottom: 5px;
 }
 .twitter-snapshot-container .right .result-title-container {
   display: flex;
@@ -131,7 +148,6 @@ h2 {
 }
 .twitter-snapshot-container .right .result-title-container h4 {
   font-size: 24px;
-  margin-bottom: 15px;
 }
 .twitter-snapshot-container .right .changes-wrapper {
   display: flex;
@@ -179,9 +195,6 @@ h2 {
 .twitter-snapshot-container .right .changes-wrapper .change-container .content .up-icon {
   fill: #46ac17;
 }
-.twitter-snapshot-container .right .twitter-table-wrapper {
-  margin-top: 10px;
-}
 .twitter-snapshot-container .right .twitter-table-wrapper h4 {
   font-size: 15px;
   margin-bottom: 2px;
@@ -205,9 +218,6 @@ h2 {
 .twitter-snapshot-container .right .twitter-table-wrapper .table .table-row p:nth-of-type(4) {
   width: 10%;
 }
-.twitter-snapshot-container .right .rider-top-results-container {
-  margin-top: 2px;
-}
 .twitter-snapshot-container .right .rider-top-results-container h4 {
   font-size: 15px;
   margin-bottom: 2px;
@@ -229,6 +239,38 @@ h2 {
 }
 .twitter-snapshot-container.dark .highlight p {
   color: #ffffff;
+}
+
+.twitter-controls {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+.twitter-controls div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.twitter-controls div button {
+  border: none;
+  background-color: #fee402;
+  padding: 10px 10px 8px 10px;
+  border-radius: 100px;
+  animation: 0.3s;
+}
+.twitter-controls div button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.twitter-controls div p {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.twitter-controls button:nth-last-of-type(2) {
+  margin-top: 5px;
+}
+.twitter-controls button:last-of-type {
+  margin-top: 15px;
 }
 
 html {

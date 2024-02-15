@@ -5,7 +5,7 @@ import numerizeRanking from "@/utils/numerizeRanking";
 import "../../../../node_modules/flag-icons/css/flag-icons.min.css"
 import { useAlltimeRanking, useLatestResults, usePointSystem, useResultsByRider, useRiderRankingPerYear } from "@/utils/queryHooks";
 import { useEffect, useRef, useState } from "react";
-import { IoCaretUpOutline } from "react-icons/io5";
+import { IoCaretUpOutline, IoChevronDownOutline, IoChevronUpOutline } from "react-icons/io5";
 import { TiEquals } from "react-icons/ti";
 import RiderResults from "@/app/rytter/[fullName]/RiderResults";
 // import "./flag-icons.min.css"
@@ -54,7 +54,7 @@ export default function Page(props) {
     const name = stringDecoder(props.fullName);
 
     const alltimeRankingQuery = useAlltimeRanking();
-    const alltimeRanking = alltimeRankingQuery.data;
+    const alltimeRanking = alltimeRankingQuery.isSuccess && numerizeRanking(alltimeRankingQuery.data);
 
     const pointSystemQuery = usePointSystem();
     const pointSystem = pointSystemQuery.data
@@ -68,6 +68,7 @@ export default function Page(props) {
     let resultRace = "";
     let riderData;
     let alltimeRankByNation;
+    let alltimeRankByYear;
     let rider;
 
     if (alltimeRanking && pointSystem && riderResultsQuery.isSuccess) {
@@ -90,6 +91,7 @@ export default function Page(props) {
 
         riderData = numerizeRanking(alltimeRanking).find(i => i.fullName.toLowerCase() == name.toLowerCase());
         alltimeRankByNation = numerizeRanking(alltimeRanking.filter(i => i.nation == riderData.nation)).find(i => i.fullName.toLowerCase() == name.toLowerCase())
+        alltimeRankByYear = numerizeRanking(alltimeRanking.filter(i => i.birthYear == riderData.birthYear)).find(i => i.fullName.toLowerCase() == riderData.fullName.toLowerCase())
 
         if (riderData.active) {
             riderData = { ...riderData, activeRank: numerizeRanking(alltimeRanking.filter(i => i.active == true)).find(i => i.fullName.toLowerCase() == name.toLowerCase()).currentRank }
@@ -102,76 +104,80 @@ export default function Page(props) {
     const latestResultsData = latestResultsQuery.data
 
     useEffect(() => {
-        if (alltimeRanking && latestResultsData && pointSystem) {
-            const filteredResults = latestResultsData.filter(i => alltimeRanking.map(j => j.fullName).includes(i.rider));
-            const resultsGroupedByDateWithPoints = filteredResults.reduce((acc, obj) => {
-                const key = obj["raceDate"];
-                const curGroup = acc[key] ?? [];
-                const curResult = ((obj.race.includes("etape") ? obj.race.split(". ")[1] : obj.race))
-                const curPoints = (pointSystem.find(i => i.raceName == curResult) ? pointSystem.find(i => i.raceName == curResult).points : 0)
-                let counter = 1;
-                if (curGroup.find(i => i.rider == obj.rider)) {
-                    const index = curGroup.findIndex(i => i.rider == obj.rider);
-                    acc[key][index].points += curPoints;
-                    acc[key][index].race = [acc[key][index].race, obj.race];
-                    acc[key][index].count++;
-                    return { ...acc, [key]: curGroup.sort((a, b) => b.points - a.points) }
-                } else {
-                    return { ...acc, [key]: [...curGroup, { ...obj, points: curPoints, count: counter }].sort((a, b) => b.points - a.points) }
-                }
-            }, {})
-
-            let resultsGroupedArray = [];
-
-            Object.keys(resultsGroupedByDateWithPoints).map(i => {
-                resultsGroupedArray.push({ date: i, data: resultsGroupedByDateWithPoints[i] })
-            })
-
-            resultsGroupedArray = resultsGroupedArray.sort((a, b) => b.date.localeCompare(a.date))
-
-            let finalMovementsList = [];
-
-            let prevRanking = numerizeRanking(alltimeRanking);
-
-            resultsGroupedArray = resultsGroupedArray.map(i => {
-                let newPrevRanking = prevRanking.map(j => {
-                    return {
-                        currentRank: j.currentRank,
-                        fullName: j.fullName,
-                        points: j.points,
-                        nationFlagCode: j.nationFlagCode,
+        if (latestResultsData?.find(i => i.rider.toLowerCase() == name.toLowerCase())) {
+            if (alltimeRanking && latestResultsData && pointSystem) {
+                const filteredResults = latestResultsData.filter(i => alltimeRanking.map(j => j.fullName).includes(i.rider));
+                const resultsGroupedByDateWithPoints = filteredResults.reduce((acc, obj) => {
+                    const key = obj["raceDate"];
+                    const curGroup = acc[key] ?? [];
+                    const curResult = ((obj.race.includes("etape") ? obj.race.split(". ")[1] : obj.race))
+                    const curPoints = (pointSystem.find(i => i.raceName == curResult) ? pointSystem.find(i => i.raceName == curResult).points : 0)
+                    let counter = 1;
+                    if (curGroup.find(i => i.rider == obj.rider)) {
+                        const index = curGroup.findIndex(i => i.rider == obj.rider);
+                        acc[key][index].points += curPoints;
+                        acc[key][index].race = [acc[key][index].race, obj.race];
+                        acc[key][index].count++;
+                        return { ...acc, [key]: curGroup.sort((a, b) => b.points - a.points) }
+                    } else {
+                        return { ...acc, [key]: [...curGroup, { ...obj, points: curPoints, count: counter }].sort((a, b) => b.points - a.points) }
                     }
-                });
+                }, {})
 
-                i.data.map(j => {
-                    const rankingIndex = newPrevRanking.findIndex(k => k.fullName == j.rider)
-                    newPrevRanking[rankingIndex].points = newPrevRanking[rankingIndex].points - j.points;
+                let resultsGroupedArray = [];
 
+                Object.keys(resultsGroupedByDateWithPoints).map(i => {
+                    resultsGroupedArray.push({ date: i, data: resultsGroupedByDateWithPoints[i] })
                 })
 
-                newPrevRanking = numerizeRanking(newPrevRanking)
+                resultsGroupedArray = resultsGroupedArray.sort((a, b) => b.date.localeCompare(a.date))
 
-                i.data.map(j => {
-                    const rankingIndex = newPrevRanking.findIndex(k => k.fullName == j.rider);
-                    const newRankIndex = prevRanking.findIndex(k => k.fullName == j.rider);
-                    finalMovementsList.push(
-                        {
-                            ...j,
-                            ...prevRanking[newRankIndex],
-                            oldRank: newPrevRanking[rankingIndex].currentRank,
-                            oldPoints: newPrevRanking[rankingIndex].points,
-                            newRank: prevRanking[newRankIndex].currentRank,
-                            newPoints: prevRanking[newRankIndex].points,
-                            raceDate: i.date,
-                            racePoints: j.points,
+                let finalMovementsList = [];
+
+                let prevRanking = numerizeRanking(alltimeRanking);
+
+                resultsGroupedArray = resultsGroupedArray.map(i => {
+                    let newPrevRanking = prevRanking.map(j => {
+                        return {
+                            currentRank: j.currentRank,
+                            fullName: j.fullName,
+                            points: j.points,
+                            nationFlagCode: j.nationFlagCode,
                         }
-                    )
+                    });
+
+                    i.data.map(j => {
+                        const rankingIndex = newPrevRanking.findIndex(k => k.fullName == j.rider)
+                        newPrevRanking[rankingIndex].points = newPrevRanking[rankingIndex].points - j.points;
+
+                    })
+
+                    newPrevRanking = numerizeRanking(newPrevRanking)
+
+                    i.data.map(j => {
+                        const rankingIndex = newPrevRanking.findIndex(k => k.fullName == j.rider);
+                        const newRankIndex = prevRanking.findIndex(k => k.fullName == j.rider);
+                        finalMovementsList.push(
+                            {
+                                ...j,
+                                ...prevRanking[newRankIndex],
+                                oldRank: newPrevRanking[rankingIndex].currentRank,
+                                oldPoints: newPrevRanking[rankingIndex].points,
+                                newRank: prevRanking[newRankIndex].currentRank,
+                                newPoints: prevRanking[newRankIndex].points,
+                                raceDate: i.date,
+                                racePoints: j.points,
+                            }
+                        )
+                    })
+
+                    prevRanking = newPrevRanking;
                 })
 
-                prevRanking = newPrevRanking;
-            })
-
-            setLatestResults(finalMovementsList)
+                setLatestResults(finalMovementsList)
+            }
+        } else {
+            console.log("INAKTIV")
         }
     }, [alltimeRanking, latestResultsData, pointSystem])
 
@@ -184,15 +190,15 @@ export default function Page(props) {
 
     const highlightedResult = latestResults?.filter(i => i.rider.toLowerCase() == name.toLowerCase())[0];
     const activeRanking = alltimeRanking && numerizeRanking(alltimeRanking.filter(i => i.active == true))
-    const riderActiveRankingIndex = activeRanking?.findIndex(i => i.fullName.toLowerCase() == name.toLowerCase())
+    const riderActiveRankingIndex = activeRanking && activeRanking?.findIndex(i => i.fullName.toLowerCase() == name.toLowerCase())
+    const riderRankingIndex = activeRanking && alltimeRanking?.findIndex(i => i.fullName.toLowerCase() == name.toLowerCase())
     const newNationsRanking = riderData && alltimeRanking && numerizeRanking(alltimeRanking.filter(i => i.nation == riderData.nation)).find(i => i.fullName.toLowerCase() == name.toLowerCase())
-    const nationRanking = riderData && alltimeRanking && highlightedResult && JSON.parse(JSON.stringify(alltimeRanking)).filter(i => i.nation == riderData.nation)
+    let nationRanking = riderData && alltimeRanking && highlightedResult && JSON.parse(JSON.stringify(alltimeRanking)).filter(i => i.nation == riderData.nation)
     let oldNationsRanking;
 
     if (nationRanking) {
         nationRanking[nationRanking.findIndex(i => i.fullName.toLowerCase() == name.toLowerCase())].points = highlightedResult.oldPoints
         oldNationsRanking = numerizeRanking(nationRanking).find(i => i.fullName.toLowerCase() == name.toLowerCase())
-        console.log(oldNationsRanking)
     }
     let oldActiveRanking;
     if (activeRanking && highlightedResult) {
@@ -201,18 +207,28 @@ export default function Page(props) {
     }
 
     let slicedActiveRanking;
+    let slicedRanking;
     if (activeRanking && riderActiveRankingIndex) {
         if (riderActiveRankingIndex > 2) {
-            slicedActiveRanking = activeRanking.slice(riderActiveRankingIndex - 2, riderActiveRankingIndex + 3)
+            slicedActiveRanking = activeRanking.slice(riderActiveRankingIndex - 2, riderActiveRankingIndex + 2)
         } else if (riderActiveRankingIndex == 1) {
-            slicedActiveRanking = activeRanking.slice(riderActiveRankingIndex - 1, riderActiveRankingIndex + 4)
+            slicedActiveRanking = activeRanking.slice(riderActiveRankingIndex - 1, riderActiveRankingIndex + 3)
         } else if (riderActiveRankingIndex == 0) {
-            slicedActiveRanking = activeRanking.slice(riderActiveRankingIndex, riderActiveRankingIndex + 5)
+            slicedActiveRanking = activeRanking.slice(riderActiveRankingIndex, riderActiveRankingIndex + 4)
+        }
+    }
+    if (alltimeRanking && riderRankingIndex) {
+        if (riderRankingIndex > 2) {
+            slicedRanking = alltimeRanking.slice(riderRankingIndex - 2, riderRankingIndex + 3)
+        } else if (riderRankingIndex == 1) {
+            slicedRanking = alltimeRanking.slice(riderRankingIndex - 1, riderRankingIndex + 4)
+        } else if (riderRankingIndex == 0) {
+            slicedRanking = alltimeRanking.slice(riderRankingIndex, riderRankingIndex + 5)
         }
     }
 
     return (
-        <div className="">
+        <div className="twitter-meta-container">
             {riderData && highlightedResult && riderActiveRankingIndex && oldNationsRanking && oldActiveRanking &&
                 <div className={"twitter-snapshot-container " + fontColor} id="snapshot" ref={ref}>
                     <div className="left" style={{ backgroundColor: color }}>
@@ -226,23 +242,26 @@ export default function Page(props) {
                             className="img"
                             crossOrigin="anonymous"
                         />
-                        <div className="">
-                            <p>
-                                <span className={'fi fi-' + riderData.nationFlagCode}></span>
-                                {riderData.nation}</p>
-                            <p>{riderData.birthYear}</p>
+                        <div>
+                            <div className="">
+                                <p>
+                                    <span className={'fi fi-' + riderData.nationFlagCode}></span>
+                                    {riderData.nation}</p>
+                                <p>{riderData.birthYear}</p>
+                            </div>
+                            <p style={{ fontSize: fontSize, lineHeight: 1 }}>{riderData.fullName}</p>
+                            <p>{riderData.currentTeam}</p>
                         </div>
-                        <p style={{ fontSize: fontSize, lineHeight: 1 }}>{riderData.fullName}</p>
-                        <p>{riderData.currentTeam}</p>
-
-                        {/* <p className="label">Rytter</p>
-                        <p className="label">Nation</p>
-                        <p className="label">Årgang</p>
-                        <p className="label">Hold</p> */}
                     </div>
                     <div className="right">
                         <div className="result-title-container">
-                            <h4>{highlightedResult.race.split(" (")[0]}</h4>
+                            <h4>
+                                {!Array.isArray(highlightedResult.race) ?
+                                    highlightedResult.race.split(" (")[0] :
+                                    highlightedResult.race.map((i, index) => {
+                                        return (index == highlightedResult.race.length - 1 ? "og " + i.split(" (")[0] : i.split(" (")[0] + ", ")
+                                    }).join("")
+                                }</h4>
                             <p>{highlightedResult.racePoints} point</p>
                         </div>
                         <div className="changes-wrapper">
@@ -319,15 +338,98 @@ export default function Page(props) {
                     </div>
                 </div>
             }
+            {riderData && riderData.active == false &&
+                <div className={"twitter-snapshot-container " + fontColor} id="snapshot" ref={ref}>
+                    <div className="left" style={{ backgroundColor: color }}>
+                        <img
+                            src={imgSrc}
+                            onError={() => setImgSrc("https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/riderPortraits/nopicture.png")}
+                            height={200}
+                            width={200}
+                            quality={100}
+                            alt={"Billede af " + riderData?.fullName.replace(" ", "").toLowerCase()}
+                            className="img"
+                            crossOrigin="anonymous"
+                        />
+                        <div>
+                            <div className="">
+                                <p>
+                                    <span className={'fi fi-' + riderData.nationFlagCode}></span>
+                                    {riderData.nation}</p>
+                                <p>{riderData.birthYear}</p>
+                            </div>
+                            <p style={{ fontSize: fontSize, lineHeight: 1 }}>{riderData.fullName}</p>
+                            <div className="filler"></div>
+
+                        </div>
+                    </div>
+                    <div className="right">
+                        <div>
+                            <h4 className="rank-label">Placeringer på Prestigelisten:</h4>
+                            <div className="changes-wrapper">
+                                <div className="change-container">
+                                    <p className="label">All time</p>
+                                    <div className="content">
+                                        <p>{riderData.currentRank}</p>
+                                    </div>
+                                </div>
+                                <div className="change-container">
+                                    <p className="label">{riderData.nation}</p>
+                                    <div className="content">
+                                        <p>{alltimeRankByNation.currentRank}</p>
+                                    </div>
+                                </div>
+                                <div className="change-container">
+                                    <p className="label">Født i {riderData.birthYear}</p>
+                                    <div className="content">
+                                        <p>{alltimeRankByYear.currentRank}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="twitter-table-wrapper">
+                            <h4>All time placering:</h4>
+                            <div className="table">
+                                <div className="table-header">
+                                    <p>Placering</p>
+                                    <p>Rytter</p>
+                                    <p>Årgang</p>
+                                    <p>Point</p>
+                                </div>
+                                <div className="table-content">
+
+                                    {slicedRanking && slicedRanking.map(rider => {
+                                        const nameArr = rider.fullName.split(/ (.*)/);
+
+                                        return (
+                                            <div key={rider.id} className={rider.fullName.toLowerCase() == name.toLowerCase() ? "table-row highlight" : "table-row"} style={{ backgroundColor: rider.fullName.toLowerCase() == name.toLowerCase() && color }}>
+                                                <p>{rider.currentRank.toLocaleString("de-DE")}</p>
+                                                <p className="table-name-reversed"><span className={"fi fi-" + rider.nationFlagCode}></span><span className="last-name">{nameArr[1]} </span><span>{nameArr[0]}</span></p>
+                                                <p>{rider.birthYear}</p>
+                                                <p>{rider.points.toLocaleString("de-DE")}</p>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="greatest-results">
+                            <RiderResults resultData={riderResults} />
+                        </div>
+                    </div>
+                </div>
+            }
             <div className="twitter-controls">
-                <button onClick={() => setFontSize(fontSize + 1)}>Op</button>
-                <p>Tekststørrelse: {fontSize}</p>
-                <button onClick={() => setFontSize(fontSize - 1)}>Ned</button>
+                <div>
+                    <button onClick={() => setFontSize(fontSize + 1)}><IoChevronUpOutline /></button>
+                    <p>Tekststørrelse: {fontSize}</p>
+                    <button onClick={() => setFontSize(fontSize - 1)}><IoChevronDownOutline /></button>
+                </div>
                 <label htmlFor="color">Farvekode (HEX): #</label>
                 <input type="text" name="color" id="colorInp" value={colorInput} onChange={e => setColorInput(e.target.value)} />
                 <button onClick={() => setColor("#" + colorInput)}>Sæt farve</button>
-                <button onClick={() => setFontColor(fontColor == "dark" ? "light" : "dark")}>{fontColor == "dark" ? "Lys tekst" : "Mørk tekst"}</button>
-                <button onClick={() => handleSnapshot()}>Snapshot</button>
+                <button onClick={() => setFontColor(fontColor == "dark" ? "light" : "dark")}>{fontColor !== "dark" ? "Lys tekst" : "Mørk tekst"}</button>
+                <button onClick={() => handleSnapshot()}>Sæt billede</button>
             </div>
         </div>
     )

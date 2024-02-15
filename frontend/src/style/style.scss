@@ -97,6 +97,11 @@ h2 {
 
 // --------------------- TWITTER SNAPSHOT -----------------------
 
+.twitter-meta-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .twitter-snapshot-container {
     // margin: 50px;
     display: flex;
@@ -125,12 +130,21 @@ h2 {
 
     .left {
         padding: 2.5%;
+        width: calc(200px);
 
-        div {
+        >div {
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            margin-top: 5px;
+            height: calc(100% - 205px);
+
+            >div {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 5px;
+            }
         }
+
 
         p {
             font-size: 16px;
@@ -145,7 +159,7 @@ h2 {
             text-transform: uppercase;
             font-weight: 600;
             margin-top: 10px;
-            margin-bottom: 5px;
+            // margin-bottom: 5px;
         }
 
         .img {
@@ -153,11 +167,19 @@ h2 {
             width: 200px;
             border-radius: 10px;
         }
+
     }
 
     .right {
         padding: 2.5%;
         width: calc(400px * 2 / 1 - calc(200px + 5%));
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .rank-label {
+            margin-bottom: 5px;
+        }
 
         .result-title-container {
             display: flex;
@@ -165,7 +187,7 @@ h2 {
 
             h4 {
                 font-size: 24px;
-                margin-bottom: 15px;
+                // margin-bottom: 15px;
             }
         }
 
@@ -229,7 +251,7 @@ h2 {
         }
 
         .twitter-table-wrapper {
-            margin-top: 10px;
+            // margin-top: 10px;
 
             h4 {
                 font-size: 15px;
@@ -261,7 +283,7 @@ h2 {
         }
 
         .rider-top-results-container {
-            margin-top: 2px;
+            // margin-top: 2px;
 
             h4 {
                 font-size: 15px;
@@ -294,6 +316,44 @@ h2 {
                 color: $white-primary;
             }
         }
+    }
+}
+
+.twitter-controls {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+
+    div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+
+        button {
+            border: none;
+            background-color: $yellow-primary;
+            padding: 10px 10px 8px 10px;
+            border-radius: 100px;
+            animation: 0.3s;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.05);
+            }
+        }
+
+        p {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+
+    button:nth-last-of-type(2) {
+        margin-top: 5px;
+    }
+
+    button:last-of-type {
+        margin-top: 15px;
     }
 }
 
