@@ -34,7 +34,7 @@ export default function Page(props) {
         toPng(ref.current, {
             quality: 1,
             backgroundColor: "#ffffff",
-            width: 800,
+            width: 764,
             height: 400,
             pixelRatio: 1
         })
