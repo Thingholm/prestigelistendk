@@ -257,6 +257,7 @@ h2 {
   padding: 10px 10px 8px 10px;
   border-radius: 100px;
   animation: 0.3s;
+  margin-top: 0px !important;
 }
 .twitter-controls div button:hover {
   cursor: pointer;
