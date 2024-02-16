@@ -24,6 +24,7 @@ export default function Page(props) {
     const [color, setColor] = useState("#c5c5c5")
     const [colorInput, setColorInput] = useState("c5c5c5")
     const [fontColor, setFontColor] = useState("dark")
+    const [alltimeRanking, setAlltimeRanking] = useState();
     const ref = useRef(null);
 
     async function handleSnapshot() {
@@ -54,7 +55,11 @@ export default function Page(props) {
     const name = stringDecoder(props.fullName);
 
     const alltimeRankingQuery = useAlltimeRanking();
-    const alltimeRanking = alltimeRankingQuery.isSuccess && numerizeRanking(alltimeRankingQuery.data);
+    useEffect(() => {
+        if (alltimeRankingQuery.isSuccess && !alltimeRanking) {
+            setAlltimeRanking(numerizeRanking(alltimeRankingQuery.data))
+        }
+    }, [alltimeRankingQuery])
 
     const pointSystemQuery = usePointSystem();
     const pointSystem = pointSystemQuery.data
