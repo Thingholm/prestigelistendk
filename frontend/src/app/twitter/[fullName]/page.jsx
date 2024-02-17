@@ -350,7 +350,7 @@ export default function Page(props) {
                     </div>
                 </div>
             }
-            {riderData && riderData.active == false &&
+            {riderData && !latestResults &&
                 <div className={"twitter-snapshot-container " + fontColor} id="snapshot" ref={ref}>
                     <div className="left" style={{ backgroundColor: color }}>
                         <img
@@ -371,8 +371,7 @@ export default function Page(props) {
                                 <p>{riderData.birthYear}</p>
                             </div>
                             <p style={{ fontSize: fontSize, lineHeight: 1 }}>{riderData.fullName}</p>
-                            <div className="filler"></div>
-
+                            <p>{riderData.active && riderData.currentTeam}</p>
                         </div>
                     </div>
                     <div className="right">
