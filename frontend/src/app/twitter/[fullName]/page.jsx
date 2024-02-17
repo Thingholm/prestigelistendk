@@ -15,8 +15,13 @@ import { supabase } from "@/utils/supabase";
 async function upload(dataUrl, props) {
     const base64 = await fetch(dataUrl);
     const blob = await base64.blob();
-    const { error: uploadError } = await supabase.storage.from('twitterPics').upload(props.fullName + ".png", blob);
+
+    const { error: uploadError } = await supabase
+        .storage
+        .from('twitterPics')
+        .upload(props.fullName + ".png", blob, { cacheControl: 3600, upsert: true });
     console.log(uploadError)
+    return uploadError ? "Fejl" : "Upload lykkedes";
 }
 
 export default function Page(props) {
@@ -25,9 +30,11 @@ export default function Page(props) {
     const [colorInput, setColorInput] = useState("c5c5c5")
     const [fontColor, setFontColor] = useState("dark")
     const [alltimeRanking, setAlltimeRanking] = useState();
+    const [uploadState, setUploadState] = useState("");
     const ref = useRef(null);
 
     async function handleSnapshot() {
+        setUploadState("Uploader...")
         if (ref.current === null) {
             return
         }
@@ -41,11 +48,11 @@ export default function Page(props) {
         })
             .then((dataUrl) => {
                 console.log(dataUrl)
-                upload(dataUrl, props);
+                setUploadState(upload(dataUrl, props));
                 const link = document.createElement('a')
-                link.download = 'my-image-name.png'
-                link.href = dataUrl
-                link.click()
+                // link.download = 'my-image-name.png'
+                // link.href = dataUrl
+                // link.click()
             })
             .catch((err) => {
                 console.log(err)
@@ -435,6 +442,7 @@ export default function Page(props) {
                 <button onClick={() => setColor("#" + colorInput)}>Sæt farve</button>
                 <button onClick={() => setFontColor(fontColor == "dark" ? "light" : "dark")}>{fontColor !== "dark" ? "Lys tekst" : "Mørk tekst"}</button>
                 <button onClick={() => handleSnapshot()}>Sæt billede</button>
+                <p>{uploadState}</p>
             </div>
         </div>
     )
