@@ -52,6 +52,10 @@ $skeleton-base: #DDDBDD;
     }
 }
 
+.fi {
+    border-radius: 2px;
+}
+
 .fi-su {
     background-image: url(../style//flags/su.svg) !important;
 }
@@ -79,7 +83,7 @@ h6 {
 }
 
 .media {
-    display: none;
+    display: none !important;
 }
 
 .media-smallest {
@@ -3752,7 +3756,7 @@ footer {
 
     .active-ranking-table-container {
         .media {
-            display: inline-block;
+            display: inline-block !important;
         }
 
         .table {
@@ -4056,7 +4060,7 @@ footer {
                 .table-header,
                 .table-row {
                     .media {
-                        display: inline-block;
+                        display: inline-block !important;
                     }
 
                     p:nth-of-type(2) {
@@ -4561,7 +4565,7 @@ footer {
                 .table-header,
                 .table-row {
                     .media {
-                        display: none;
+                        display: none !important;
                     }
 
                     p:nth-of-type(1) {
@@ -4599,7 +4603,7 @@ footer {
                 }
 
                 .media {
-                    display: inline-block;
+                    display: inline-block !important;
                 }
             }
 
@@ -4782,7 +4786,7 @@ footer {
             padding: 10px 5% 5px;
 
             .media {
-                display: block;
+                display: block !important;
 
                 .mobile-charts-container {
                     .mobile-charts-header-and-options-container {
@@ -4858,7 +4862,7 @@ footer {
                     }
 
                     .media {
-                        display: inline-block;
+                        display: inline-block !important;
                     }
                 }
             }
@@ -5015,7 +5019,7 @@ footer {
                         }
 
                         .media {
-                            display: inline-block;
+                            display: inline-block !important;
                         }
 
                         h4 {
@@ -5040,7 +5044,7 @@ footer {
                             }
 
                             .media {
-                                display: inline-block;
+                                display: inline-block !important;
                             }
                         }
 
@@ -5364,7 +5368,7 @@ footer {
                 .table-header,
                 .table-row {
                     .media {
-                        display: inline-block;
+                        display: inline-block !important;
                     }
 
                     p:nth-of-type(1) {
@@ -5414,7 +5418,7 @@ footer {
                     width: 60%;
 
                     .media {
-                        display: block;
+                        display: block !important;
                         opacity: 0.6;
                     }
                 }
@@ -5520,7 +5524,7 @@ footer {
                     }
 
                     .media {
-                        display: block;
+                        display: block !important;
                         position: relative;
                         left: -3px;
                     }
@@ -5616,7 +5620,7 @@ footer {
                         }
 
                         .media {
-                            display: inline-block;
+                            display: inline-block !important;
                         }
                     }
 
@@ -5643,7 +5647,7 @@ footer {
         padding: 15px 5% 20px;
 
         .media {
-            display: inline-block;
+            display: inline-block !important;
 
 
             h3 {
@@ -6107,7 +6111,7 @@ footer {
                                 width: 80%;
 
                                 .media {
-                                    display: inline-block;
+                                    display: inline-block !important;
                                 }
                             }
 
@@ -6194,7 +6198,7 @@ footer {
                             display: none;
 
                             &.media {
-                                display: inline;
+                                display: inline !important;
                             }
                         }
                     }
@@ -6205,7 +6209,7 @@ footer {
 
                     &:nth-of-type(3) {
                         .media {
-                            display: inline-block;
+                            display: inline-block !important;
                         }
 
                         width: 60%;
@@ -6304,7 +6308,7 @@ footer {
                         width: 20%;
 
                         .media {
-                            display: inline-block;
+                            display: inline-block !important;
                             opacity: 0.4;
                             font-weight: 300;
                             padding-left: 5px;
@@ -6322,7 +6326,7 @@ footer {
 
                     p:nth-of-type(4) {
                         .media {
-                            display: inline-block;
+                            display: inline-block !important;
                         }
 
                         width: 70%;
@@ -6639,7 +6643,7 @@ footer {
                     width: 70%;
 
                     .media-smallest {
-                        display: inline;
+                        display: inline !important;
                     }
                 }
 

@@ -35,6 +35,10 @@
   content: " ";
 }
 
+.fi {
+  border-radius: 2px;
+}
+
 .fi-su {
   background-image: url(../style//flags/su.svg) !important;
 }
@@ -62,7 +66,7 @@ h6 {
 }
 
 .media {
-  display: none;
+  display: none !important;
 }
 
 .media-smallest {
@@ -2930,7 +2934,7 @@ footer p {
     width: 50%;
   }
   .active-ranking-table-container .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .active-ranking-table-container .table .table-header p:nth-of-type(1),
   .active-ranking-table-container .table .table-row p:nth-of-type(1) {
@@ -3123,7 +3127,7 @@ footer p {
   }
   .hero-section .hero-ranking-container .table .table-header .media,
   .hero-section .hero-ranking-container .table .table-row .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(2),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(2) {
@@ -3412,7 +3416,7 @@ footer p {
   }
   .hero-section .hero-ranking-container .table .table-header .media,
   .hero-section .hero-ranking-container .table .table-row .media {
-    display: none;
+    display: none !important;
   }
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(1),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(1) {
@@ -3439,7 +3443,7 @@ footer p {
     display: none;
   }
   .landing-movements-section .table .table-header .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .landing-movements-section .table .table-content .table-row p:first-of-type svg {
     display: none;
@@ -3549,7 +3553,7 @@ footer p {
     padding: 10px 5% 5px;
   }
   .nation-page-container .nation-evolution-container .media {
-    display: block;
+    display: block !important;
   }
   .nation-page-container .nation-evolution-container .media .mobile-charts-container .mobile-charts-header-and-options-container h3 {
     color: #ffffff;
@@ -3598,7 +3602,7 @@ footer p {
   }
   .nation-page-container .nation-top-results-container .table .table-header .media,
   .nation-page-container .nation-top-results-container .table .table-row .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .nation-page-container .nation-rankings-container {
     flex-direction: column;
@@ -3682,7 +3686,7 @@ footer p {
     width: 80%;
   }
   .compare-page-container .comparison-container .greatest-results-comparison > div > div .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .compare-page-container .comparison-container .greatest-results-comparison > div > div h4 {
     margin-bottom: 10px;
@@ -3701,7 +3705,7 @@ footer p {
     display: none;
   }
   .compare-page-container .comparison-container .greatest-results-comparison > div > div:last-of-type .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .compare-page-container .comparison-container .chart-container div {
     width: 100%;
@@ -3942,7 +3946,7 @@ footer p {
   }
   .hero-section .hero-ranking-container .table .table-header .media,
   .hero-section .hero-ranking-container .table .table-row .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .hero-section .hero-ranking-container .table .table-header p:nth-of-type(1),
   .hero-section .hero-ranking-container .table .table-row p:nth-of-type(1) {
@@ -3981,7 +3985,7 @@ footer p {
   }
   .landing-movements-section .table .table-row p:nth-of-type(3) .media,
   .landing-movements-section .table .table-header p:nth-of-type(3) .media {
-    display: block;
+    display: block !important;
     opacity: 0.6;
   }
   .landing-movements-section .table .table-row p:nth-of-type(4),
@@ -4055,7 +4059,7 @@ footer p {
   }
   .greatest-seasons-container .rounded-table-container .table .table-row .media,
   .greatest-seasons-container .rounded-table-container .table .table-header .media {
-    display: block;
+    display: block !important;
     position: relative;
     left: -3px;
   }
@@ -4118,7 +4122,7 @@ footer p {
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5) .media,
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(6),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(6) {
@@ -4137,7 +4141,7 @@ footer p {
     padding: 15px 5% 20px;
   }
   .rider-evolution-container .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .rider-evolution-container .media h3 {
     color: #ffffff;
@@ -4415,7 +4419,7 @@ footer p {
   }
   .rider-related-rankings-container .table-wrapper:last-of-type .rounded-table-container .table .table-header p:nth-of-type(2) .media,
   .rider-related-rankings-container .table-wrapper:last-of-type .rounded-table-container .table .table-row p:nth-of-type(2) .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .rider-related-rankings-container .table-wrapper:last-of-type .rounded-table-container .table .table-header p:nth-of-type(3),
   .rider-related-rankings-container .table-wrapper:last-of-type .rounded-table-container .table .table-row p:nth-of-type(3) {
@@ -4472,7 +4476,7 @@ footer p {
   }
   .seasons-page .table .table-header p:nth-of-type(1) span.media,
   .seasons-page .table .table-row .row-content p:nth-of-type(1) span.media {
-    display: inline;
+    display: inline !important;
   }
   .seasons-page .table .table-header p:nth-of-type(2),
   .seasons-page .table .table-row .row-content p:nth-of-type(2) {
@@ -4484,7 +4488,7 @@ footer p {
   }
   .seasons-page .table .table-header p:nth-of-type(3) .media,
   .seasons-page .table .table-row .row-content p:nth-of-type(3) .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .seasons-page .table .table-header p:nth-of-type(4),
   .seasons-page .table .table-row .row-content p:nth-of-type(4) {
@@ -4550,7 +4554,7 @@ footer p {
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(1) .media,
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(1) .media {
-    display: inline-block;
+    display: inline-block !important;
     opacity: 0.4;
     font-weight: 300;
     padding-left: 5px;
@@ -4569,7 +4573,7 @@ footer p {
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(4) .media,
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(4) .media {
-    display: inline-block;
+    display: inline-block !important;
   }
   .ranking-page-container .ranking-page-table-container .table .table-header p:nth-of-type(5),
   .ranking-page-container .ranking-page-table-container .table .table-row p:nth-of-type(5) {
@@ -4753,7 +4757,7 @@ footer p {
   }
   .landing-movements-section .table .table-header p:nth-of-type(3) .media-smallest,
   .landing-movements-section .table .table-row p:nth-of-type(3) .media-smallest {
-    display: inline;
+    display: inline !important;
   }
   .landing-movements-section .table .table-header p:nth-of-type(5),
   .landing-movements-section .table .table-row p:nth-of-type(5) {
