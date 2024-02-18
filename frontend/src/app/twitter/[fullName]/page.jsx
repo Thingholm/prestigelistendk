@@ -11,6 +11,7 @@ import RiderResults from "@/app/rytter/[fullName]/RiderResults";
 // import "./flag-icons.min.css"
 import { toPng } from "html-to-image"
 import { supabase } from "@/utils/supabase";
+import { useSearchParams } from "next/navigation";
 
 async function upload(dataUrl, props) {
     const base64 = await fetch(dataUrl);
@@ -31,6 +32,7 @@ export default function Page(props) {
     const [fontColor, setFontColor] = useState("dark")
     const [alltimeRanking, setAlltimeRanking] = useState();
     const [uploadState, setUploadState] = useState("");
+    const searchParams = useSearchParams().toString();
     const ref = useRef(null);
 
     async function handleSnapshot() {
@@ -241,7 +243,7 @@ export default function Page(props) {
 
     return (
         <div className="twitter-meta-container">
-            {riderData && highlightedResult && riderActiveRankingIndex && oldNationsRanking && oldActiveRanking &&
+            {riderData && highlightedResult && riderActiveRankingIndex && oldNationsRanking && oldActiveRanking && !searchParams &&
                 <div className={"twitter-snapshot-container " + fontColor} id="snapshot" ref={ref}>
                     <div className="left" style={{ backgroundColor: color }}>
                         <img
@@ -350,7 +352,7 @@ export default function Page(props) {
                     </div>
                 </div>
             }
-            {riderData && !latestResults &&
+            {riderData && (!latestResults || searchParams) &&
                 <div className={"twitter-snapshot-container " + fontColor} id="snapshot" ref={ref}>
                     <div className="left" style={{ backgroundColor: color }}>
                         <img
