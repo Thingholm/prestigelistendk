@@ -2929,6 +2929,42 @@ footer p {
   max-height: 500px;
 }
 
+.age-page {
+  padding: 20px 5%;
+}
+.age-page .select-container {
+  margin: 20px 0px;
+}
+.age-page .select-container label {
+  margin-bottom: 5px;
+  display: block;
+}
+.age-page .select-container select {
+  display: block;
+  font-size: 16px;
+  width: 200px;
+}
+.age-page .table .table-header p:nth-of-type(1),
+.age-page .table .table-row p:nth-of-type(1) {
+  width: 15%;
+}
+.age-page .table .table-header p:nth-of-type(2),
+.age-page .table .table-row p:nth-of-type(2) {
+  width: 35%;
+}
+.age-page .table .table-header p:nth-of-type(3),
+.age-page .table .table-row p:nth-of-type(3) {
+  width: 25%;
+}
+.age-page .table .table-header p:nth-of-type(4),
+.age-page .table .table-row p:nth-of-type(4) {
+  width: 15%;
+}
+.age-page .table .table-header p:nth-of-type(5),
+.age-page .table .table-row p:nth-of-type(5) {
+  width: 10%;
+}
+
 @media only screen and (max-width: 1350px) {
   .hero-section .hero-ranking-container {
     width: 50%;
@@ -4334,6 +4370,28 @@ footer p {
   }
   .compare-page-container .comparison-container .comparison-rider-profile > div > div:nth-last-of-type(2) {
     width: 0%;
+  }
+  .age-page .age-container .table-header p:first-of-type .media {
+    display: inline-block !important;
+  }
+  .age-page .age-container .table-header p:first-of-type span:last-of-type {
+    display: none;
+  }
+  .age-page .age-container .table-header p:nth-of-type(2),
+  .age-page .age-container .table-row p:nth-of-type(2) {
+    width: 55%;
+  }
+  .age-page .age-container .table-header p:nth-of-type(2) .media,
+  .age-page .age-container .table-row p:nth-of-type(2) .media {
+    display: inline-block !important;
+  }
+  .age-page .age-container .table-header p:nth-of-type(3),
+  .age-page .age-container .table-row p:nth-of-type(3) {
+    display: none;
+  }
+  .age-page .age-container .table-header p:nth-of-type(4),
+  .age-page .age-container .table-row p:nth-of-type(4) {
+    width: 20%;
   }
 }
 @media screen and (max-width: 500px) {

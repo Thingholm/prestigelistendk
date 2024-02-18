@@ -2,6 +2,7 @@ import Footer from "@/components/Footer"
 import MobileNavbar from "@/components/MobileNav"
 import Navbar from "@/components/Navbar"
 import QueryProvider from "@/components/QueryProvider"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/react"
 
 export const metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
           <MobileNavbar />
           <main>{children}</main>
           <Footer />
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryProvider>
         <Analytics />
       </body>

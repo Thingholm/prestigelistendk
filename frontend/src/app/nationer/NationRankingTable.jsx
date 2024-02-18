@@ -57,7 +57,7 @@ export default function NationRankingTable(props) {
         if (nationsRankingQuery.isSuccess) {
             setFilteredRanking(numerizeRanking(nationsRanking));
         }
-    }, [])
+    }, [nationsRankingQuery])
 
     useEffect(() => {
         setIsLoading(true);
