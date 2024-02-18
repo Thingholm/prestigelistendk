@@ -8,7 +8,7 @@ import AgeSelect from "./AgeSelect"
 export default function AgePage() {
     return (
         <div className="age-page">
-            <h2>Flest point optjent på hvert alderstrin <SectionLinkButton link={baseUrl + "/alderstrin"} sectionName={"Flest point optjent på hvert alderstrin"} /></h2>
+            <h2>Største ryttere på sit alderstrin gennem tiden <SectionLinkButton link={baseUrl + "/alderstrin"} sectionName={"Største ryttere på sit alderstrin gennem tiden"} /></h2>
             <AgeSelect />
             <AgeRanking />
         </div>
