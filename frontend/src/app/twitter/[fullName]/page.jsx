@@ -433,6 +433,7 @@ export default function Page(props) {
                 </div>
             }
             <div className="twitter-controls">
+                <Link href={"https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/twitterPics/" + rider.fullName + ".png"}>Revalidér billede</Link>
                 <div>
                     <button onClick={() => setFontSize(fontSize + 1)}><IoChevronUpOutline /></button>
                     <p>Tekststørrelse: {fontSize}</p>
