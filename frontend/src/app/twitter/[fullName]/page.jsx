@@ -12,7 +12,7 @@ import RiderResults from "@/app/rytter/[fullName]/RiderResults";
 import { toPng } from "html-to-image"
 import { supabase } from "@/utils/supabase";
 import { useSearchParams } from "next/navigation";
-import { Link } from "next"
+import { Link } from "next/link"
 
 async function upload(dataUrl, props) {
     const base64 = await fetch(dataUrl);
