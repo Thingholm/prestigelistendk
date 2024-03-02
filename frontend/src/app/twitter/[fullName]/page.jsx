@@ -12,7 +12,7 @@ import RiderResults from "@/app/rytter/[fullName]/RiderResults";
 import { toPng } from "html-to-image"
 import { supabase } from "@/utils/supabase";
 import { useSearchParams } from "next/navigation";
-import { Link } from "next/link"
+import Link from "next/link"
 
 async function upload(dataUrl, props) {
     const base64 = await fetch(dataUrl);
@@ -274,7 +274,7 @@ export default function Page(props) {
                                 {!Array.isArray(highlightedResult.race) ?
                                     highlightedResult.race.split(" (")[0] :
                                     highlightedResult.race.map((i, index) => {
-                                        return (index == highlightedResult.race.length - 1 ? "og " + i.split(" (")[0] : (index == 0 ? i.split(" (")[0] : ", " + i.split(" (")[0]))
+                                        return (index == highlightedResult.race.length - 1 ? " og " + i.split(" (")[0] : (index == 0 ? i.split(" (")[0] : ", " + i.split(" (")[0]))
                                     }).join("")
                                 }</h4>
                             <p>{highlightedResult.racePoints} point</p>
@@ -434,7 +434,7 @@ export default function Page(props) {
                 </div>
             }
             <div className="twitter-controls">
-                <Link href={"https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/twitterPics/" + props.fullName + ".png"}>Revalidér billede</Link>
+                <Link target="_blank" href={"https://fyoonxbvccocgqkxnjqs.supabase.co/storage/v1/object/public/twitterPics/" + props.fullName + ".png"}>Revalidér billede</Link>
                 <div>
                     <button onClick={() => setFontSize(fontSize + 1)}><IoChevronUpOutline /></button>
                     <p>Tekststørrelse: {fontSize}</p>
