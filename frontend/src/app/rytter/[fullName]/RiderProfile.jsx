@@ -20,7 +20,7 @@ export default function RiderProfile(props) {
                 <p>Årgang: <Link href={"listen?yearFilterRange=single&bornBefore=" + rider.birthYear}><span className="profile-value-span">{rider.birthYear}</span></Link></p>
                 {rider.active && <p>Hold: <span className="profile-value-span">{rider.currentTeam}</span></p>}
                 <p>Placering all time: <Link href={"listen"}><span className="profile-value-span">{rider.currentRank.toLocaleString("de-DE")}</span></Link></p>
-                <p>Placering all time (Kun {rider.nation}) : <Link href={"listen?nation=" + rider.nation}><span className="profile-value-span">{alltimeRankByNation.currentRank.toLocaleString("de-DE")}</span></Link></p>
+                <p>Placering all time (Kun {rider.nation}): <Link href={"listen?nation=" + rider.nation}><span className="profile-value-span">{alltimeRankByNation.currentRank.toLocaleString("de-DE")}</span></Link></p>
                 {rider.active && <p>Placering (Kun aktive): <Link href={"listen?activeStatus=active"}><span className="profile-value-span">{rider.activeRank.toLocaleString("de-DE")}</span></Link></p>}
                 <p>Point: <span className="profile-value-span">{rider.points.toLocaleString("de-DE")}</span></p>
             </div>
