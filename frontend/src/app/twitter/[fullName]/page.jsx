@@ -20,7 +20,7 @@ async function upload(dataUrl, props) {
     const { error: uploadError } = await supabase
         .storage
         .from('twitterPics')
-        .upload(props.fullName + ".png", blob, { cacheControl: 3600, upsert: true });
+        .upload(props.fullName + ".png", blob, { cacheControl: 10, upsert: true });
     console.log(uploadError)
     return uploadError ? "Fejl" : "Upload lykkedes";
 }
