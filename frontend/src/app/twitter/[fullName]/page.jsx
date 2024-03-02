@@ -49,9 +49,9 @@ export default function Page(props) {
             pixelRatio: 1
         })
             .then((dataUrl) => {
-                console.log(dataUrl)
+                // console.log(dataUrl)
                 setUploadState(upload(dataUrl, props));
-                const link = document.createElement('a')
+                // const link = document.createElement('a')
                 // link.download = 'my-image-name.png'
                 // link.href = dataUrl
                 // link.click()
@@ -263,7 +263,7 @@ export default function Page(props) {
                                     {riderData.nation}</p>
                                 <p>{riderData.birthYear}</p>
                             </div>
-                            <p style={{ fontSize: fontSize, lineHeight: 1 }}>{riderData.fullName}</p>
+                            <p className="name" style={{ fontSize: fontSize, lineHeight: 1 }}>{riderData.fullName}</p>
                             <p>{riderData.currentTeam}</p>
                         </div>
                     </div>
@@ -273,7 +273,7 @@ export default function Page(props) {
                                 {!Array.isArray(highlightedResult.race) ?
                                     highlightedResult.race.split(" (")[0] :
                                     highlightedResult.race.map((i, index) => {
-                                        return (index == highlightedResult.race.length - 1 ? "og " + i.split(" (")[0] : i.split(" (")[0] + ", ")
+                                        return (index == highlightedResult.race.length - 1 ? "og " + i.split(" (")[0] : (index == 0 ? i.split(" (")[0] : ", " + i.split(" (")[0]))
                                     }).join("")
                                 }</h4>
                             <p>{highlightedResult.racePoints} point</p>
