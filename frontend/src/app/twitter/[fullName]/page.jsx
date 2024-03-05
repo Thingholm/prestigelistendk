@@ -33,6 +33,9 @@ export default function Page(props) {
     const [fontColor, setFontColor] = useState("dark")
     const [alltimeRanking, setAlltimeRanking] = useState();
     const [uploadState, setUploadState] = useState("");
+    const [latestResults, setLatestResults] = useState();
+    const [latestActiveResults, setLatestActiveResults] = useState();
+    const [oldActiveRanking, setOldActiveRanking] = useState();
     const searchParams = useSearchParams().toString();
     const ref = useRef(null);
 
@@ -112,8 +115,6 @@ export default function Page(props) {
             riderData = { ...riderData, activeRank: numerizeRanking(alltimeRanking.filter(i => i.active == true)).find(i => i.fullName.toLowerCase() == name.toLowerCase()).currentRank }
         }
     }
-
-    const [latestResults, setLatestResults] = useState();
 
     const latestResultsQuery = useLatestResults()
     const latestResultsData = latestResultsQuery.data
@@ -215,11 +216,83 @@ export default function Page(props) {
         nationRanking[nationRanking.findIndex(i => i.fullName.toLowerCase() == name.toLowerCase())].points = highlightedResult.oldPoints
         oldNationsRanking = numerizeRanking(nationRanking).find(i => i.fullName.toLowerCase() == name.toLowerCase())
     }
-    let oldActiveRanking;
-    if (activeRanking && highlightedResult) {
-        JSON.parse(JSON.stringify(activeRanking))[activeRanking.findIndex(i => i.fullName.toLowerCase() == name.toLowerCase())].points = highlightedResult.oldPoints
-        oldActiveRanking = numerizeRanking(activeRanking).find(i => i.fullName.toLowerCase() == name.toLowerCase())
+    if (activeRanking && highlightedResult && !latestActiveResults) {
+        // JSON.parse(JSON.stringify(activeRanking))[activeRanking.findIndex(i => i.fullName.toLowerCase() == name.toLowerCase())].points = highlightedResult.oldPoints
+        // oldActiveRanking = numerizeRanking(activeRanking).find(i => i.fullName.toLowerCase() == name.toLowerCase())
+        const filteredResults = latestResultsData.filter(i => activeRanking.map(j => j.fullName).includes(i.rider));
+        const resultsGroupedByDateWithPoints = filteredResults.reduce((acc, obj) => {
+            const key = obj["raceDate"];
+            const curGroup = acc[key] ?? [];
+            const curResult = ((obj.race.includes("etape") ? obj.race.split(". ")[1] : obj.race))
+            const curPoints = (pointSystem.find(i => i.raceName == curResult) ? pointSystem.find(i => i.raceName == curResult).points : 0)
+            let counter = 1;
+            if (curGroup.find(i => i.rider == obj.rider)) {
+                const index = curGroup.findIndex(i => i.rider == obj.rider);
+                acc[key][index].points += curPoints;
+                acc[key][index].race = [acc[key][index].race, obj.race];
+                acc[key][index].count++;
+                return { ...acc, [key]: curGroup.sort((a, b) => b.points - a.points) }
+            } else {
+                return { ...acc, [key]: [...curGroup, { ...obj, points: curPoints, count: counter }].sort((a, b) => b.points - a.points) }
+            }
+        }, {})
+
+        let resultsGroupedArray = [];
+
+        Object.keys(resultsGroupedByDateWithPoints).map(i => {
+            resultsGroupedArray.push({ date: i, data: resultsGroupedByDateWithPoints[i] })
+        })
+
+        resultsGroupedArray = resultsGroupedArray.sort((a, b) => b.date.localeCompare(a.date))
+
+        let finalMovementsList = [];
+
+        let prevRanking = numerizeRanking(activeRanking);
+
+        resultsGroupedArray = resultsGroupedArray.map(i => {
+            let newPrevRanking = prevRanking.map(j => {
+                return {
+                    currentRank: j.currentRank,
+                    fullName: j.fullName,
+                    points: j.points,
+                    nationFlagCode: j.nationFlagCode,
+                }
+            });
+
+            i.data.map(j => {
+                const rankingIndex = newPrevRanking.findIndex(k => k.fullName == j.rider)
+                newPrevRanking[rankingIndex].points = newPrevRanking[rankingIndex].points - j.points;
+
+            })
+
+            newPrevRanking = numerizeRanking(newPrevRanking)
+
+            i.data.map(j => {
+                const rankingIndex = newPrevRanking.findIndex(k => k.fullName == j.rider);
+                const newRankIndex = prevRanking.findIndex(k => k.fullName == j.rider);
+                finalMovementsList.push(
+                    {
+                        ...j,
+                        ...prevRanking[newRankIndex],
+                        oldRank: newPrevRanking[rankingIndex].currentRank,
+                        oldPoints: newPrevRanking[rankingIndex].points,
+                        newRank: prevRanking[newRankIndex].currentRank,
+                        newPoints: prevRanking[newRankIndex].points,
+                        raceDate: i.date,
+                        racePoints: j.points,
+                    }
+                )
+            })
+
+            prevRanking = newPrevRanking;
+        })
+
+        const curRider = finalMovementsList.find(i => i.fullName.toLowerCase() == name.toLowerCase())
+        setOldActiveRanking({ fullName: curRider.fullName, currentRank: curRider.oldRank })
+        setLatestActiveResults(finalMovementsList)
     }
+
+    console.log(oldActiveRanking)
 
     let slicedActiveRanking;
     let slicedRanking;
