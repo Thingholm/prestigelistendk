@@ -292,12 +292,12 @@ export default function Page(props) {
         setLatestActiveResults(finalMovementsList)
     }
 
-    console.log(oldActiveRanking)
+    console.log(riderActiveRankingIndex)
 
     let slicedActiveRanking;
     let slicedRanking;
     if (activeRanking && riderActiveRankingIndex) {
-        if (riderActiveRankingIndex > 2) {
+        if (riderActiveRankingIndex > 1) {
             slicedActiveRanking = activeRanking.slice(riderActiveRankingIndex - 2, riderActiveRankingIndex + 2)
         } else if (riderActiveRankingIndex == 1) {
             slicedActiveRanking = activeRanking.slice(riderActiveRankingIndex - 1, riderActiveRankingIndex + 3)
@@ -406,7 +406,6 @@ export default function Page(props) {
 
                                     {slicedActiveRanking && slicedActiveRanking.map(rider => {
                                         const nameArr = rider.fullName.split(/ (.*)/);
-
                                         return (
                                             <div key={rider.id} className={rider.fullName.toLowerCase() == name.toLowerCase() ? "table-row highlight" : "table-row"} style={{ backgroundColor: rider.fullName.toLowerCase() == name.toLowerCase() && color }}>
                                                 <p>{rider.currentRank.toLocaleString("de-DE")}</p>
