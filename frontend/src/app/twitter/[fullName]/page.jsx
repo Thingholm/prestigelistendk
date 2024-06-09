@@ -306,7 +306,7 @@ export default function Page(props) {
         }
     }
     if (alltimeRanking && riderRankingIndex) {
-        if (riderRankingIndex > 2) {
+        if (riderRankingIndex > 1) {
             slicedRanking = alltimeRanking.slice(riderRankingIndex - 2, riderRankingIndex + 3)
         } else if (riderRankingIndex == 1) {
             slicedRanking = alltimeRanking.slice(riderRankingIndex - 1, riderRankingIndex + 4)
