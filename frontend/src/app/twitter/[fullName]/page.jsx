@@ -292,10 +292,11 @@ export default function Page(props) {
         setLatestActiveResults(finalMovementsList)
     }
 
-    console.log(riderActiveRankingIndex)
-
     let slicedActiveRanking;
     let slicedRanking;
+    if (riderActiveRankingIndex === 0){
+        slicedActiveRanking = activeRanking.slice(riderActiveRankingIndex, riderActiveRankingIndex + 4)
+    }
     if (activeRanking && riderActiveRankingIndex) {
         if (riderActiveRankingIndex > 1) {
             slicedActiveRanking = activeRanking.slice(riderActiveRankingIndex - 2, riderActiveRankingIndex + 2)
@@ -317,7 +318,7 @@ export default function Page(props) {
 
     return (
         <div className="twitter-meta-container">
-            {riderData && highlightedResult && riderActiveRankingIndex && oldNationsRanking && oldActiveRanking && !searchParams &&
+            {riderData && highlightedResult && riderActiveRankingIndex > -1 && oldNationsRanking && oldActiveRanking && !searchParams &&
                 <div className={"twitter-snapshot-container " + fontColor} id="snapshot" ref={ref}>
                     <div className="left" style={{ backgroundColor: color }}>
                         <img
